@@ -11,7 +11,7 @@
 #' }
 
 topic_guide <- function(...){
-  base <- bookdown::word_document2(base_format = "style-reference1.docx", ...)
+  base <- bookdown::word_document2(reference_docx = "style-reference1.docx", ...)
 
   # Mostly copied from knitr::render_sweave
   base$knitr$opts_chunk$comment <- "#>"
