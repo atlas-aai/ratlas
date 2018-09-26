@@ -3,8 +3,8 @@ title: "Untitled"
 output: ratlas::topic_guide
 ---
 
+My report starts here. 
 
-My report starts here.
-
+# Heading title
 
 
