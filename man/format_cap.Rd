@@ -7,12 +7,12 @@
 format_cap(x, allwords = FALSE)
 }
 \arguments{
-\item{x}{A character string}
+\item{x}{Must be a character string}
 
 \item{allwords}{Defaults to FALSE. If TRUE, the first letter of every word in the string will be capitalized.}
 }
 \description{
-This function allows you to capitalize first letters of the first word or every word in a string.
+This function allows you to capitalize first letter of the first word or every word in a character string.
 }
 \examples{
 format_cap("hello world!")

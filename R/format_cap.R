@@ -1,7 +1,7 @@
 #' Word capitalization function
 #'
-#' This function allows you to capitalize first letters of the first word or every word in a string.
-#' @param x A character string
+#' This function allows you to capitalize first letter of the first word or every word in a character string.
+#' @param x Must be a character string
 #' @param allwords Defaults to FALSE. If TRUE, the first letter of every word in the string will be capitalized.
 #' @keywords capitalization upper
 #' @export
@@ -10,6 +10,8 @@
 #' format_cap("hello world!", allwords = TRUE)
 
 format_cap <- function(x, allwords = FALSE) {
+  # Creating custom error message for when x is not character
+  if (grepl("^[A-Za-z]+$", x, perl = T) == FALSE) stop('x must be a character string')
   if (allwords) {
     s <- strsplit(x, " ")[[1]]
     paste(toupper(substring(s, 1,1)), substring(s, 2),
