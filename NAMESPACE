@@ -2,4 +2,5 @@
 
 export(format_cap)
 export(num2word)
+export(order_num)
 export(topic_guide)

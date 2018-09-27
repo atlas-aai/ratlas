@@ -10,7 +10,7 @@ num2word(x)
 \item{x}{Ideally an integer from 0 to 9. If x is already a written number or any integer not in [0, 9], then this function will return x.}
 }
 \description{
-This function allows you to convert an integer from 0 to 9 to a text representation of the integer.
+This function allows you to convert an integer from 0 to 9 to a text representation of the integer. For example, this function will convert the number 4, to the word "four".
 }
 \examples{
 num2word(4)
