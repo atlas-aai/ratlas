@@ -1,8 +1,8 @@
 #' Vector concatenating function
 #'
-#' This function allows you to turn a vector of words or numbers into a character string.
+#' This function allows you to turn a vector of numeric, character or logical values into a character string.
 #' The last object in the vector will be connected to the rest of the objects with an "and" by default.
-#' @param vec a vector containing either words, numbers, or both.
+#' @param vec a vector or list containing numeric, character or logical values.
 #' @param final A character object that connects the last object in vec to the rest of the objects in vec. Defaults to "and".
 #' @keywords paste concatenate integer text number
 #' @export

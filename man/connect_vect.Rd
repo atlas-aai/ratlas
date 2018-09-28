@@ -7,12 +7,12 @@
 connect_vect(vec, final = "and")
 }
 \arguments{
-\item{vec}{a vector containing either words, numbers, or both.}
+\item{vec}{a vector or list containing numeric, character or logical values.}
 
 \item{final}{A character object that connects the last object in vec to the rest of the objects in vec. Defaults to "and".}
 }
 \description{
-This function allows you to turn a vector of words or numbers into a character string.
+This function allows you to turn a vector of numeric, character or logical values into a character string.
 The last object in the vector will be connected to the rest of the objects with an "and" by default.
 }
 \examples{
