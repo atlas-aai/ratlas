@@ -5,7 +5,7 @@ Version: 0.1.0
 Author: person("Noelle", "Pablo", email = "noellebpablo@gmail.com", role = c("aut", "cre"))
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: This package contains various templates and formatting functions used for ATLAS.
-Depends: R (>= 3.4.3), bookdown, dplyr
+Depends: R (>= 3.4.3), bookdown, dplyr, stringr, glue
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
