@@ -1,14 +1,28 @@
 Package: ratlas
-Type: Package
 Title: ATLAS formatting functions and templates
-Version: 0.1.0
-Author: person("Noelle", "Pablo", email = "noellebpablo@gmail.com", role = c("aut", "cre"))
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: This package contains various templates and formatting functions used for ATLAS.
-Depends: R (>= 3.4.3), bookdown, dplyr, stringr, glue
-License: What license is it under?
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Noelle", "Pablo", email = "noellepablo@gmail.com",
+           role = c("aut", "cre")),
+    person("W. Jake", "Thompson", email = "wjakethompson@gmail.com",
+           role = c("aut"), comment = c(ORCID = "0000-0001-7339-0300")),
+    person("ATLAS", role = c("cph", "fnd"))
+    )
+Description: This package contains various template and formatting functions
+    used for ATLAS. This include R Markdown templates, formatting funcitons, and
+    ggplot2 themes.
+License: file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends:
+    R (>= 3.5.0)
+Imports:
+    bookdown (>= 0.7.19),
+    dplyr (>= 0.7.6),
+    glue (>= 1.3.0),
+    knitr (>= 1.20),
+    rmarkdown (>= 1.10),
+    stringr (>= 1.3.1)
+Suggests: 
+    testthat
 RoxygenNote: 6.1.0
-Suggests: knitr, rmarkdown
-
