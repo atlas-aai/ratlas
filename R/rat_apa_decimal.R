@@ -7,16 +7,37 @@
 #'
 #' @param x A numeric value
 #' @param digits Number of decimal places. Defaults to 3.
-#' @retrun A character string of the formatted and rounded number
+#' @return A character string of the formatted and rounded number
 #' @export
 rat_apa_decimal <- function(x, digits = 3) {
-  # Check numeric
-  if (!is.numeric(x)) stop("`x` must be a numeric", call. = FALSE)
-
-  # Check acceptable values
-  if (!dplyr::between(x, -1, 1)) stop("`x` must be between -1 and 1",
-    call. = FALSE)
+  x <- check_apa_decimal(x)
+  digits <- check_digits(digits)
 
   stringr::str_replace_all(sprintf(glue::glue("%.{digits}f"), x),
     "^(-?)0.", "\\1.")
+}
+
+check_apa_decimal <- function(x) {
+  if (length(x) != 1 || !is.numeric(x)) {
+    stop("`x` must be a length one numeric vector.", call. = FALSE)
+  }
+
+  if (!dplyr::between(x, -1, 1) || is.na(x)) {
+    stop("`x` must be between -1 and 1 and non-missing.", call. = FALSE)
+  } else {
+    x
+  }
+}
+
+check_digits <- function(x) {
+  if (length(x) != 1 || !is.numeric(x)) {
+    stop("`digits` must be a length one numeric vector.", call. = FALSE)
+  }
+  x <- as.integer(x)
+
+  if (x < 1 || is.na(x)) {
+    stop("`digits` must not be less than one or missing.", call. = FALSE)
+  } else {
+    x
+  }
 }
