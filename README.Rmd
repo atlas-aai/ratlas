@@ -26,3 +26,13 @@ You can install the latest version with:
 ``` r
 remotes::install_github("atlas-aai/ratlas")
 ```
+
+## Test Coverage
+
+```{r}
+devtools::test()
+
+
+covr::package_coverage()
+```
+
