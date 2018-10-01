@@ -8,10 +8,7 @@
 #' @examples
 #' format_cap("hello world!")
 #' format_cap("hello world!", allwords = TRUE)
-
 format_cap <- function(x, allwords = FALSE) {
-  # Creating custom error message for when x is not character
-  if (grepl("^[A-Za-z]+$", x, perl = T) == FALSE) stop('x must be a character string')
   if (allwords) {
     s <- strsplit(x, " ")[[1]]
     paste(toupper(substring(s, 1,1)), substring(s, 2),
