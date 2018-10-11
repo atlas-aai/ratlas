@@ -5,11 +5,11 @@
 #' @keywords convert integer text number
 #' @export
 #' @examples
-#' num2word(4)
-#' num2word("five")
-#' num2word(-99)
+#' rat_num2word(4)
+#' rat_num2word("five")
+#' rat_num2word(-99)
 
-num2word <- function(x) {
+rat_num2word <- function(x) {
   num_lookup <- tibble::data_frame(
     number = 0:9,
     word = c("zero", "one", "two", "three", "four", "five", "six", "seven",

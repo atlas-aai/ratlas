@@ -7,11 +7,11 @@
 #' @keywords paste concatenate integer text number
 #' @export
 #' @examples
-#' connect_vect(c(4, 5, 6, 7))
-#' connect_vect(c("apples", "oranges", "pears"), final = "or")
-#' connect_vect(c("chicken", 2))
+#' rat_connect_vect(c(4, 5, 6, 7))
+#' rat_connect_vect(c("apples", "oranges", "pears"), final = "or")
+#' rat_connect_vect(c("chicken", 2))
 
-connect_vect <- function(vec, final = "and") {
+rat_connect_vect <- function(vec, final = "and") {
   if (length(vec) == 1) {
     return(vec)
   } else if (length(vec) == 2) {

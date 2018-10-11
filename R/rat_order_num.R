@@ -5,11 +5,11 @@
 #' @keywords convert integer text ordinal number
 #' @export
 #' @examples
-#' order_num(4)
-#' order_num("fifth")
-#' order_num(-99)
+#' rat_order_num(4)
+#' rat_order_num("fifth")
+#' rat_order_num(-99)
 
-order_num <- function(x) {
+rat_order_num <- function(x) {
   num_lookup <- tibble::data_frame(
     number = 1:10,
     word = c("first", "second", "third", "fourth", "fifth", "sixth", "seventh",

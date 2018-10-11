@@ -6,9 +6,10 @@
 #' @keywords capitalization upper
 #' @export
 #' @examples
-#' format_cap("hello world!")
-#' format_cap("hello world!", allwords = TRUE)
-format_cap <- function(x, allwords = FALSE) {
+#' rat_format_cap("hello world!")
+#' rat_format_cap("hello world!", allwords = TRUE)
+
+rat_format_cap <- function(x, allwords = FALSE) {
   if (allwords) {
     s <- strsplit(x, " ")[[1]]
     paste(toupper(substring(s, 1,1)), substring(s, 2),
