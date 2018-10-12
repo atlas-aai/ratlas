@@ -10,7 +10,9 @@ test_that("final must be a valid value", {
 })
 
 test_that("vector is correctly concatenated", {
-  expect_match(rat_connect_vect(testing), "Cheeseburger, fries, and a milkshake", all = TRUE)
+  expect_match(rat_connect_vect(testing),
+               "Cheeseburger, fries, and a milkshake",
+               all = TRUE)
 })
 
 test_that("a vector with length == 1 is returned", {

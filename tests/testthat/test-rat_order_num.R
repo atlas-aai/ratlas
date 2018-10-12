@@ -7,5 +7,5 @@ test_that("x is correctly converted", {
 
 test_that("x is returned if it is not an integer between 1 and 10", {
   expect_equal(rat_order_num(23), 23)
-  expect_equal(rat_order_num('third'), 'third')
+  expect_equal(rat_order_num("third"), "third")
 })
