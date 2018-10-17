@@ -7,7 +7,7 @@
 rat_connect_vect(vec, final = "and")
 }
 \arguments{
-\item{vec}{a vector or list containing numeric, character or logical values.}
+\item{vec}{a vector or list containing character values.}
 
 \item{final}{A character object that connects the last object in vec to the rest of the objects in vec. Defaults to "and".}
 }

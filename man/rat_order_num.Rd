@@ -7,15 +7,13 @@
 rat_order_num(x)
 }
 \arguments{
-\item{x}{Ideally an integer from 1 to 10. If x is already a written ordinal number or any integer not in 1-10, then this function will return x.}
+\item{x}{An integer from 1 to 10. If x is already a written ordinal number or any integer not in 1-10, then this function will return x.}
 }
 \description{
 This function allows you to convert an integer from 1 to 10 to its corresponding ordinal number. For example, this function will convert the number 4 to its ordinal number "fourth".
 }
 \examples{
 rat_order_num(4)
-rat_order_num("fifth")
-rat_order_num(-99)
 }
 \keyword{convert}
 \keyword{integer}
