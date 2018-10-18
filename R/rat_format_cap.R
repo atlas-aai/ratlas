@@ -10,7 +10,7 @@
 #' rat_format_cap("hello world!", allwords = TRUE)
 
 rat_format_cap <- function(x, allwords = FALSE) {
-  x <- check_char(x)
+  x <- check_x(x)
   x <- check_singlestring(x)
   allwords <- check_logical(allwords)
 
@@ -30,24 +30,26 @@ rat_format_cap <- function(x, allwords = FALSE) {
   }
 }
 
-check_char <- function(x){
-  if (!is.character(x)){
-    stop("`x` must be a character vector.", call. = FALSE)
+check_x <- function(x) {
+  if (!is.character(x)) {
+    stop("`x` must be a character string.", call. = FALSE)
   } else {
     x
   }
 }
 
-check_singlestring <- function(x){
-  if (length(x) != 1){
-    stop("`x` must have a length of one.", call. = FALSE)
+check_singlestring <- function(x) {
+  if (length(x) != 1) {
+    stop("`x` must be length one.", call. = FALSE)
   } else {
     x
   }
 }
 
-check_logical <- function(x){
-  if (!isTRUE(x) | !isFALSE(x)){
-    stop("`x` must be either TRUE or FALSE.", call. = FALSE)
+check_logical <- function(allwords) {
+  if (!isTRUE(allwords) & !isFALSE(allwords)) {
+    stop("`allwords` must be either TRUE or FALSE.", call. = FALSE)
+  } else {
+    allwords
   }
 }

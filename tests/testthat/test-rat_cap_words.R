@@ -1,9 +1,12 @@
 context("Capitalizing every word")
 string <- "Testing is fun!"
 
-test_that("x must be a valid value", {
-  expect_error(rat_cap_words(1), "non-character argument")
-  expect_error(rat_cap_words(atlas), "object 'atlas' not found")
+test_that("x must be character", {
+  expect_error(check_char(123), "`x` must be character.")
+})
+
+test_that("x is length one", {
+  expect_error(check_xlength(c(1, 2, 3)), "`x` must be length one.")
 })
 
 test_that("string is correctly capitalized", {

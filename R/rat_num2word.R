@@ -10,6 +10,9 @@
 #' rat_num2word(-99)
 
 rat_num2word <- function(x) {
+  x <- check_numeric(x)
+  x <- check_range09(x)
+  x <- check_xlength(x)
   num_lookup <- tibble::data_frame(
     number = 0:9,
     word = c("zero", "one", "two", "three", "four", "five", "six", "seven",
@@ -19,6 +22,14 @@ rat_num2word <- function(x) {
     num_lookup %>%
       dplyr::filter(.data$number == x) %>%
       dplyr::pull(.data$word)
+  } else {
+    x
+  }
+}
+
+check_range09 <- function(x) {
+  if (!x %in% 0:9) {
+    stop("`x` must be an integer from 0 through 9.", call. = FALSE)
   } else {
     x
   }

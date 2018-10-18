@@ -10,6 +10,7 @@
 rat_order_num <- function(x) {
   x <- check_numeric(x)
   x <- check_range(x)
+  x <- check_xlength(x)
 
   num_lookup <- tibble::data_frame(
     number = 1:10,
@@ -25,17 +26,25 @@ rat_order_num <- function(x) {
   }
 }
 
-check_numeric <- function(x){
-  if (!is.numeric(x)){
+check_numeric <- function(x) {
+  if (!is.numeric(x)) {
     stop("`x` must be numeric.", call. = FALSE)
   } else {
     x
   }
 }
 
-check_range <- function(x){
-  if (!x %in% 1:10){
+check_range <- function(x) {
+  if (!x %in% 1:10) {
     stop("`x` must be an integer from 1 through 10.", call. = FALSE)
+  } else {
+    x
+  }
+}
+
+check_xlength <- function(x) {
+  if (length(x) != 1) {
+    stop("`x` must be length one.", call. = FALSE)
   } else {
     x
   }

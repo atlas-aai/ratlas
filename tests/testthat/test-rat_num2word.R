@@ -1,12 +1,12 @@
 context("test-rat_num2word")
 
-test_that("x must be a valid value", {
-  expect_error(rat_num2word(testing123test),
-               "object 'testing123test' not found")
+test_that("x must be numeric", {
+  expect_error(check_numeric("try"), "`x` must be numeric.")
+  expect_error(check_numeric(c("try", "to")), "`x` must be numeric.")
 })
 
-test_that("only one x value is inputted", {
-  expect_warning(rat_num2word(c(2, 4, 6, 8)))
+test_that("x is length one", {
+  expect_error(check_xlength(c(1, 2, 3)), "`x` must be length one.")
 })
 
 test_that("x is correctly converted to word", {
@@ -17,8 +17,8 @@ test_that("x is correctly converted to word", {
   expect_match(rat_num2word(4), "four")
 })
 
-test_that("if x is not an integer in [0, 9], return x", {
-  expect_equal(rat_num2word(11), 11)
-  expect_match(rat_num2word("twenty"), "twenty")
-  expect_match(rat_num2word("puppy"), "puppy")
+test_that("x in an integer from 0 to 10", {
+  expect_error(check_range09(-1), "`x` must be an integer from 0 through 9.")
+  expect_error(check_range09(20), "`x` must be an integer from 0 through 9.")
+  expect_error(check_range09(1.5), "`x` must be an integer from 0 through 9.")
 })

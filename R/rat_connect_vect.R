@@ -13,7 +13,8 @@
 
 rat_connect_vect <- function(vec, final = "and") {
   vec <- check_vec(vec)
-  final <- check_vec(final)
+  final <- check_final(final)
+  final <- check_finallength(final)
 
   if (length(vec) == 1) {
     return(vec)
@@ -27,9 +28,24 @@ rat_connect_vect <- function(vec, final = "and") {
 
 check_vec <- function(x) {
   if (!is.character(x)){
-    stop("`x` must be a character vector.", call. = FALSE)
+    stop("`vec` must be a character vector.", call. = FALSE)
   } else {
     x
   }
 }
 
+check_final <- function(x) {
+  if (!is.character(x)){
+    stop("`final` must be a character object.", call. = FALSE)
+  } else {
+    x
+  }
+}
+
+check_finallength <- function(x){
+  if (length(x) != 1){
+    stop("`final` must be length one.", call. = FALSE)
+  } else {
+    x
+  }
+}
