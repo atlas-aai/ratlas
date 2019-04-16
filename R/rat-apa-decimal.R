@@ -17,6 +17,7 @@ rat_apa_decimal <- function(x, digits = 3) {
     "^(-?)0.", "\\1.")
 }
 
+
 check_apa_decimal <- function(x) {
   if (length(x) != 1 || !is.numeric(x)) {
     stop("`x` must be a length one numeric vector.", call. = FALSE)
