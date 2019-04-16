@@ -22,7 +22,7 @@ check_apa_decimal <- function(x) {
     stop("`x` must be a length one numeric vector.", call. = FALSE)
   }
 
-  if (!dplyr::between(x, -1, 1) || is.na(x)) {
+  if (!(x > -1 && x < 1) || is.na(x)) {
     stop("`x` must be between -1 and 1 and non-missing.", call. = FALSE)
   } else {
     x
