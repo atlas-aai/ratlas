@@ -2,10 +2,10 @@ Package: ratlas
 Title: ATLAS formatting functions and templates
 Version: 0.0.0.9000
 Authors@R: c(
-    person("Noelle", "Pablo", email = "noellepablo@gmail.com",
-           role = c("aut", "cre")),
     person("W. Jake", "Thompson", email = "wjakethompson@gmail.com",
-           role = c("aut"), comment = c(ORCID = "0000-0001-7339-0300")),
+           role = c("aut", "cre"), comment = c(ORCID = "0000-0001-7339-0300")),
+    person("Noelle", "Pablo", email = "noellepablo@gmail.com",
+           role = c("aut")),
     person("ATLAS", role = c("cph", "fnd"))
     )
 Description: This package contains various template and formatting functions
