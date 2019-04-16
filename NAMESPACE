@@ -3,4 +3,3 @@
 export(rat_apa_decimal)
 export(rat_cap_words)
 export(topicguide_docx)
-importFrom(rlang,.data)

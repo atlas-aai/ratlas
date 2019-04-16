@@ -9,7 +9,6 @@
 #' @docType package
 #' @name ratlas-package
 #' @aliases ratlas
-#' @importFrom rlang .data
 NULL
 
 ## Make R CMD Check go away
