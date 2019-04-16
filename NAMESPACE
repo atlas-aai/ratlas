@@ -3,3 +3,5 @@
 export(rat_apa_decimal)
 export(rat_cap_words)
 export(topicguide_docx)
+importFrom(xfun,read_utf8)
+importFrom(xfun,write_utf8)

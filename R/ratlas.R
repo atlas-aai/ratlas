@@ -9,6 +9,7 @@
 #' @docType package
 #' @name ratlas-package
 #' @aliases ratlas
+#' @importFrom xfun read_utf8 write_utf8
 NULL
 
 ## Make R CMD Check go away
