@@ -13,8 +13,8 @@ install:
 cache:
   - C:\RLibrary
 
-environment:
-  NOT_CRAN: true
+# environment:
+  # NOT_CRAN: true
   # env vars that may need to be set, at least temporarily, from time to time
   # see https://github.com/krlmlr/r-appveyor#readme for details
   # USE_RTOOLS: true
@@ -23,6 +23,7 @@ environment:
 # Adapt as necessary starting from here
 
 environment:
+  NOT_CRAN: true
   global:
     WARNINGS_ARE_ERRORS: 1
     _R_CHECK_SYSTEM_CLOCK_: FALSE
