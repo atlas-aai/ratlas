@@ -1,7 +1,12 @@
 #' Capitalization of words
 #'
+#' Capitalize the first letters of words in a string. Can either use sentence
+#' case (i.e., only the first word capitalized; `all = FALSE`) or title case
+#' (i.e., all words capitalized; `all = TRUE`).
+#'
 #' @param x A character string
-#' @param all Logical. If `TRUE`, the first letter of every word is capitalized. If `FALSE` (the default), only the first word is capitalized.
+#' @param all Logical. If `TRUE`, the first letter of every word is capitalized.
+#'   If `FALSE` (the default), only the first word is capitalized.
 #'
 #' @return A character string with the specified capitalization.
 #' @export
