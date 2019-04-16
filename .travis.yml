@@ -5,3 +5,5 @@ dist: trusty
 cache:
   packages: true
 
+after_success:
+    - Rscript -e 'covr::codecov()'
