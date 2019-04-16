@@ -9,13 +9,16 @@ rat_cap_words(x, all = FALSE)
 \arguments{
 \item{x}{A character string}
 
-\item{all}{Logical. If \code{TRUE}, the first letter of every word is capitalized. If \code{FALSE} (the default), only the first word is capitalized.}
+\item{all}{Logical. If \code{TRUE}, the first letter of every word is capitalized.
+If \code{FALSE} (the default), only the first word is capitalized.}
 }
 \value{
 A character string with the specified capitalization.
 }
 \description{
-Capitalization of words
+Capitalize the first letters of words in a string. Can either use sentence
+case (i.e., only the first word capitalized; \code{all = FALSE}) or title case
+(i.e., all words capitalized; \code{all = TRUE}).
 }
 \examples{
 name <- c("zip code", "state", "final count")

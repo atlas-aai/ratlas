@@ -10,7 +10,7 @@ The ratlas package serves three main purposes:
 }
 \details{
 \itemize{
-\item Project templates for topic guides
+\item Project templates for topic guides and technical reports
 \item Functions for formatting
 \item Consistent ggplot2 themes
 }
