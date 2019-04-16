@@ -2,7 +2,7 @@
 #'
 #' The ratlas package serves three main purposes:
 #'
-#' - Project templates for topic guides
+#' - Project templates for topic guides and technical reports
 #' - Functions for formatting
 #' - Consistent ggplot2 themes
 #'
