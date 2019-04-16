@@ -24,7 +24,7 @@ rat_cap_words <- function(x, all = FALSE) {
     paste(toupper(substring(s, 1, 1)), substring(s, 2),
           sep = "", collapse = " ")
   } else {
-    s <- strsplit(x, " ")[[1]] %>% tolower()
+    s <- tolower(strsplit(x, " ")[[1]])
     s <- paste0(toupper(substring(s, 1, 1)), substring(s, 2))
     if (length(s) > 1) {
       s[2:length(s)] <- tolower(s[2:length(s)])
