@@ -1,14 +1,18 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-ratlas
-======
 
-[![Travis build status](https://travis-ci.com/atlas-aai/ratlas.svg?branch=master)](https://travis-ci.com/atlas-aai/ratlas)
+# ratlas
 
-The goal of ratlas is to provide uniform [R Markdown](https://bookdown.org/yihui/rmarkdown/) templates for creating topic guides and technical reports, helper functions formating text in documents, and providing consistent themes for [**ggplot2**](https://ggplot2.tidyverse.org) graphics.
+[![Travis build
+status](https://travis-ci.org/atlas-aai/ratlas.svg?branch=master)](https://travis-ci.org/atlas-aai/ratlas)
 
-Installation
-------------
+The goal of ratlas is to provide uniform [R
+Markdown](https://bookdown.org/yihui/rmarkdown/) templates for creating
+topic guides and technical reports, helper functions formating text in
+documents, and providing consistent themes for
+[**ggplot2**](https://ggplot2.tidyverse.org) graphics.
+
+## Installation
 
 You can install the latest version with:
 
@@ -16,20 +20,18 @@ You can install the latest version with:
 remotes::install_github("atlas-aai/ratlas")
 ```
 
-Test Coverage
--------------
+## Test Coverage
 
 ``` r
 devtools::test()
 #> Loading ratlas
-#> Loading required package: testthat
 #> Testing ratlas
 #> ✔ | OK F W S | Context
 #> 
 ⠏ |  0       | lints
 ⠋ |  0 1     | lints
-✖ |  0 1     | lints [1.5 s]
-#> ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+✖ |  0 1     | lints [1.6 s]
+#> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> test-lintr.R:5: failure: Package style
 #> Not lint free
 #> R/cap_words.R:12:32: style: Commas should always have a space after.
@@ -53,7 +55,7 @@ devtools::test()
 #> R/topic_guide.R:14:1: style: lines should not be more than 80 characters.
 #>   base <- bookdown::word_document2(reference_docx = "style-reference1.docx", ...)
 #> ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#> ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> 
 ⠏ |  0       | test-rat_apa_decimal
 ⠋ |  1       | test-rat_apa_decimal
@@ -73,7 +75,7 @@ devtools::test()
 ⠼ | 15       | test-rat_apa_decimal
 ✔ | 15       | test-rat_apa_decimal
 #> 
-#> ══ Results ════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+#> ══ Results ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 #> Duration: 1.6 s
 #> 
 #> OK:       15
