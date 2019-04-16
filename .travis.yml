@@ -1,5 +1,7 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
-language: R
+language: r
+pandoc_version: 2.2
 sudo: false
-cache: packages
+dist: trusty
+cache:
+  packages: true
+
