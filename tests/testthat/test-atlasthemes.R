@@ -35,10 +35,10 @@ test_that("we can do something", {
   th <- theme_atlas(grid = "XY", axis = "xy")
   expect_that(th$plot.title$family, equals("Arial Narrow"))
 
-  invisible(scale_x_percent(sec.axis = sec_axis( ~ . + 10)))
-  invisible(scale_y_percent(sec.axis = sec_axis( ~ . + 10)))
-  invisible(scale_x_comma(sec.axis = sec_axis( ~ . + 10)))
-  invisible(scale_y_comma(sec.axis = sec_axis( ~ . + 10)))
+  invisible(scale_x_percent(sec.axis = sec_axis(~ . + 10)))
+  invisible(scale_y_percent(sec.axis = sec_axis(~ . + 10)))
+  invisible(scale_x_comma(sec.axis = sec_axis(~ . + 10)))
+  invisible(scale_y_comma(sec.axis = sec_axis(~ . + 10)))
 
   invisible(scale_x_percent(sec.axis = ~ . + 10))
   invisible(scale_y_percent(sec.axis = ~ . + 10))

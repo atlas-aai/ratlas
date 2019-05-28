@@ -38,7 +38,8 @@ theme_atlas <- function(base_family = "Arial Narrow",
     ret <-
       ret + theme(panel.grid.major = element_line(color = grid_col, size = 0.2))
     ret <-
-      ret + theme(panel.grid.minor = element_line(color = grid_col, size = 0.15))
+      ret +
+      theme(panel.grid.minor = element_line(color = grid_col, size = 0.15))
 
     if (inherits(grid, "character")) {
       if (regexpr("X", grid)[1] < 0)
