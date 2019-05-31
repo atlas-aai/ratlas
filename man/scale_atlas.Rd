@@ -32,13 +32,4 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
   geom_point() + scale_color_atlas()
 ggplot(iris, aes(Sepal.Length, fill = Species)) +
   geom_density(alpha = 0.7) + scale_fill_atlas(order = c(1, 3, 5))
-
-cowplot::plot_grid(
-  gg_color_swatches(8) + scale_fill_atlas(darken = 0.6),
-  gg_color_swatches(8) + scale_fill_atlas(darken = 0.4),
-  gg_color_swatches(8) + scale_fill_atlas(darken = 0.2),
-  gg_color_swatches(8) + scale_fill_atlas(darken = 0),
-  gg_color_swatches(8) + scale_fill_atlas(darken = -0.2),
-  gg_color_swatches(8) + scale_fill_atlas(darken = -0.4),
-  gg_color_swatches(8) + scale_fill_atlas(darken = -0.6), ncol = 1)
 }
