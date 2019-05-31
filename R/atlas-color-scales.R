@@ -63,17 +63,17 @@ scale_atlas <- function(aesthetics, use_black = FALSE, order = 1:8, darken = 0,
   alpha <- rep_len(alpha, n)
 
   di <- darken > 0
-  if (sum(di) > 0) { # at least one color needs darkening
+  if (sum(di) > 0) {
     values[di] <- colorspace::darken(values[di], amount = darken[di])
   }
 
   li <- darken < 0
-  if (sum(li) > 0) { # at least one color needs lightening
-    values[li] <- colorspace::lighten(values[li], amount = -1*darken[li])
+  if (sum(li) > 0) {
+    values[li] <- colorspace::lighten(values[li], amount = -1 * darken[li])
   }
 
   ai <- !is.na(alpha)
-  if (sum(ai) > 0) { # at least one color needs alpha
+  if (sum(ai) > 0) {
     values[ai] <- scales::alpha(values[ai], alpha[ai])
   }
 
