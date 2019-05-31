@@ -32,7 +32,7 @@ Suggests:
     covr (>= 3.2.1),
     english (>= 1.2.3),
     lintr (>= 1.0.3),
-    testthat (>= 2.0.1),
+    testthat (>= 2.1.0),
     vdiffr (>= 0.3.0)
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
