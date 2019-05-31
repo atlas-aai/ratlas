@@ -33,6 +33,7 @@ Suggests:
     english (>= 1.2.3),
     lintr (>= 1.0.3),
     testthat (>= 2.1.0),
+    tinytex (>= 0.13),
     vdiffr (>= 0.3.0)
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
