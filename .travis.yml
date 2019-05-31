@@ -8,11 +8,21 @@ sudo: false
 dist: trusty
 cache:
   packages: true
+  directories:
+    - $HOME/.TinyTeX
 
 r:
   - oldrel
   - release
   - devel
+
+addons:
+  apt:
+    packages:
+    - ghostscript
+
+before_install:
+  - wget -qO- https://github.com/yihui/tinytex/raw/master/tools/download-travis-linux.sh | sh
 
 after_success:
     - Rscript -e 'covr::codecov()'
