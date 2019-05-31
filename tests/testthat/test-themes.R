@@ -1,6 +1,5 @@
 context("themes")
 test_that("themes are correct", {
-
   testthat::skip_on_cran()
   testthat::skip_on_appveyor()
   testthat::skip_on_travis()
