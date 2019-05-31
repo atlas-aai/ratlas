@@ -6,7 +6,6 @@ test_that("atlas colors work", {
   testthat::skip_on_travis()
 
   df <- data.frame(x = 1:3, y = 1:3, z = c("a", "b", "a"), a = 1)
-  df2 <- data.frame(x = 1:10, y = 1:10, z = letters[1:10])
 
   plot <- ggplot(df, aes(x, y, colour = z)) +
     geom_point() +
