@@ -2,8 +2,6 @@ context("atlas-colors")
 
 test_that("atlas colors work", {
   testthat::skip_on_cran()
-  testthat::skip_on_appveyor()
-  testthat::skip_on_travis()
 
   df <- data.frame(x = 1:3, y = 1:3, z = c("a", "b", "a"), a = 1)
 
