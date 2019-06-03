@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ratlas
+# ratlas <img src="man/figures/ratlas.png" align="right" width="120" />
 
 [![Travis build
 status](https://travis-ci.org/atlas-aai/ratlas.svg?branch=master)](https://travis-ci.org/atlas-aai/ratlas)
@@ -12,7 +12,7 @@ coverage](https://codecov.io/gh/atlas-aai/ratlas/branch/master/graph/badge.svg)]
 
 The goal of ratlas is to provide uniform [R
 Markdown](https://bookdown.org/yihui/rmarkdown/) templates for creating
-topic guides and technical reports, helper functions formating text in
+topic guides and technical reports, helper functions formatting text in
 documents, and providing consistent themes for
 [**ggplot2**](https://ggplot2.tidyverse.org) graphics.
 
