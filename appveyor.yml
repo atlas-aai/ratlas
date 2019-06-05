@@ -12,24 +12,26 @@ install:
 
 cache:
   - C:\RLibrary
-
-# environment:
-  # NOT_CRAN: true
-  # env vars that may need to be set, at least temporarily, from time to time
-  # see https://github.com/krlmlr/r-appveyor#readme for details
-  # USE_RTOOLS: true
-  # R_REMOTES_STANDALONE: true
+  - C:\Program Files (x86)\Pandoc\
 
 # Adapt as necessary starting from here
+branches:
+  only:
+    - master
 
 environment:
   NOT_CRAN: true
+  USE_RTOOLS: true
   global:
     WARNINGS_ARE_ERRORS: 1
     _R_CHECK_SYSTEM_CLOCK_: FALSE
 
   matrix:
-  - R_VERSION: 3.4.4
+  - R_VERSION: oldrel
+    R_ARCH: x64
+    GCC_PATH: mingw_64
+
+  - R_VERSION: release
     R_ARCH: x64
     GCC_PATH: mingw_64
 
@@ -37,8 +39,13 @@ environment:
     R_ARCH: x64
     GCC_PATH: mingw_64
 
-  - R_VERSION: patched
-    GCC_PATH: mingw_32
+before_test:
+  - ps: >-
+      if (-Not (Test-Path "C:\Program Files (x86)\Pandoc\")) {
+        cinst pandoc
+      }
+  - ps: $env:Path += ";C:\Program Files (x86)\Pandoc\"
+  - pandoc -v
 
 build_script:
   - travis-tool.sh install_deps
