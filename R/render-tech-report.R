@@ -13,9 +13,9 @@
 #'   output: ratlas::techreport_pdf
 #' }
 techreport_pdf <- function(...) {
-  template <- find_resource("techreport", "template.pdf")
-  base <- bookdown::pdf_document2(template = tech-report-template, ...)
-  
+  template <- find_resource("techreport", "tech-report-template.pdf")
+  base <- bookdown::pdf_document2(template = template, ...)
+
   base$knitr$opts_chunk$comment <- "#>"
   base$knitr$opts_chunk$message <- FALSE
   base$knitr$opts_chunk$warning <- FALSE
@@ -25,6 +25,6 @@ techreport_pdf <- function(...) {
   base$knitr$opts_chunk$fig.ext <- "png"
   base$knitr$opts_chunk$fig.retina <- 3
   base$knitr$opts_chunk$fig.path <- "figures/"
-  
+
   base
 }
