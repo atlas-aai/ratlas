@@ -1,4 +1,4 @@
-context("project-skeletons")
+context("topic-guide-project-skeletons")
 
 test_that("topicguide docx works", {
   testthat::skip_on_cran()

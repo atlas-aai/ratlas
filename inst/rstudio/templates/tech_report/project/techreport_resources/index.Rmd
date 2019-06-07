@@ -1,7 +1,7 @@
 ---
-title: "Topic Guide Title"
+title: "Tech Report Title"
 date: "`r format(Sys.Date(), '%B, %Y')`"
-output: ratlas::topicguide_docx
+output: ratlas::techreport_pdf
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
 biblio-style: apalike2
 csl: csl/apa.csl
