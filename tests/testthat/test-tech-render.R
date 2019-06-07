@@ -1,6 +1,6 @@
-context("topic guide rmarkdown renderers")
+context("tech report rmarkdown renderers")
 
-test_that("topicguide-docx renders", {
+test_that("techreport-pdf renders", {
   testthat::skip_on_cran()
 
   # work in a temp directory
@@ -9,7 +9,7 @@ test_that("topicguide-docx renders", {
   oldwd <- setwd(dir)
   on.exit(setwd(oldwd), add = TRUE)
 
-  topicguide_skeleton(dir)
+  techreport_skeleton(dir)
   rmarkdown::render("index.Rmd")
-  expect_true(file.exists("index.docx"))
+  expect_true(file.exists("index.pdf"))
 })
