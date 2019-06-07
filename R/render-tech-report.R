@@ -6,15 +6,15 @@
 #' @param ... Arguments to be passed to `[bookdown::pdf_document2]`
 #'
 #' @return A modified `pdf_document2` with the standard tech report formatting.
-#' @export
+#' @export techreport_pdf
 #'
 #' @examples
 #' \dontrun{
 #'   output: ratlas::techreport_pdf
 #' }
 techreport_pdf <- function(...) {
-  template <- find_resource("techreport", "tech-report-template.pdf")
-  base <- bookdown::pdf_document2(template = template, ...)
+  template <- find_resource("techreport", "template.tex")
+  base <- bookdown::pdf_document2(template = template)
 
   base$knitr$opts_chunk$comment <- "#>"
   base$knitr$opts_chunk$message <- FALSE
