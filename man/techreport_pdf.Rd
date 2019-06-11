@@ -18,6 +18,6 @@ specify using the standard DLM tech report pdf document formatting.
 }
 \examples{
 \dontrun{
-  output: ratlas::techreport_pdf
+output:ratlas::techreport_pdf
 }
 }

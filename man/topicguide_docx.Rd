@@ -18,6 +18,6 @@ specify using the standard DLM topic guide word document formatting.
 }
 \examples{
 \dontrun{
-  output: ratlas::topicguide_docx
+output:ratlas::topicguide_docx
 }
 }
