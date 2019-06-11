@@ -33,5 +33,17 @@ save the report project. To lessen confusion later, it is usually worthwhile to
 save each report in its own directory so that you can quickly and easily find 
 the report at a later date.
 
+## Writing the Setup Chunk
 
+## Structuring the Project Directories
+
+## Create and Cross Reference Tables
+
+## Create and Cross Reference Figures
+
+## Using Inline R Code 
+
+## Combining Words
+
+## Turning Numbers Into Words
 
