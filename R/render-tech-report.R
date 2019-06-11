@@ -6,7 +6,7 @@
 #' @param ... Arguments to be passed to `[bookdown::pdf_document2]`
 #'
 #' @return A modified `pdf_document2` with the standard tech report formatting.
-#' @export techreport_pdf
+#' @export
 #'
 #' @examples
 #' \dontrun{

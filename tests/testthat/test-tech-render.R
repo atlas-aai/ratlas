@@ -10,6 +10,6 @@ test_that("techreport-pdf renders", {
   on.exit(setwd(oldwd), add = TRUE)
 
   techreport_skeleton(dir)
-  rmarkdown::render("index.Rmd")
-  expect_true(file.exists("index.pdf"))
+  rmarkdown::render("template.tex")
+  expect_true(file.exists("template.pdf"))
 })

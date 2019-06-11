@@ -12,5 +12,7 @@ test_that("techreport pdf works", {
   techreport_skeleton(dir)
   check_files <- list.files(dir, recursive = TRUE)
 
-  expect_equal(check_files, c("bib/refs.bib", "csl/apa.csl", "index.Rmd"))
+  expect_equal(check_files, c("bib/refs.bib", "csl/apa.csl",
+                              "figure/ATLAS_icon.png", "template.pdf",
+                              "template.tex"))
 })
