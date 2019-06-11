@@ -22,12 +22,11 @@ library(tidyverse)
 
 ## Creating a New Project
 
-When beginning to write a new report, the first step is to create a new project
-in RStudio. This can be done by clicking 
+When beginning a new report, the first step is to create a new project
+in RStudio. This can be done by clicking: 
   
 <center> **File > New Project > New Directory > New Project** </center>
 
-  
 From there, specify the project name and the directory where you would like to 
 save the report project. To lessen confusion later, it is usually worthwhile to 
 save each report in its own directory so that you can quickly and easily find 
