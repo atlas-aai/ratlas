@@ -18,8 +18,8 @@ test_that("digits must be a valid value", {
 
 test_that("apa decimals round", {
   expect_equal(rat_apa_decimal(-0.44860516, digits = 3), "-.449")
-  expect_equal(rat_apa_decimal(0.98244517,  digits = 2), ".98")
-  expect_equal(rat_apa_decimal(0.08264625,  digits = 1), ".1")
+  expect_equal(rat_apa_decimal(0.98244517, digits = 2), ".98")
+  expect_equal(rat_apa_decimal(0.08264625, digits = 1), ".1")
   expect_equal(rat_apa_decimal(-0.54044132, digits = 2), "-.54")
-  expect_equal(rat_apa_decimal(0.06634024,  digits = 2), ".07")
+  expect_equal(rat_apa_decimal(0.06634024, digits = 2), ".07")
 })

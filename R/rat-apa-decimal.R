@@ -13,8 +13,10 @@ rat_apa_decimal <- function(x, digits = 3) {
   x <- check_apa_decimal(x)
   digits <- check_digits(digits)
 
-  stringr::str_replace_all(sprintf(glue::glue("%.{digits}f"), x),
-    "^(-?)0.", "\\1.")
+  stringr::str_replace_all(
+    sprintf(glue::glue("%.{digits}f"), x),
+    "^(-?)0.", "\\1."
+  )
 }
 
 

@@ -23,17 +23,20 @@
 #' @param axis add x or y axes? `TRUE`, `FALSE`, "`xy`"
 #' @param ticks ticks if `TRUE` add ticks
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' library(ggplot2)
 #' library(dplyr)
 #'
 #' # seminal scatterplot
 #' ggplot(mtcars, aes(mpg, wt)) +
 #'   geom_point() +
-#'   labs(x="Fuel effiiency (mpg)", y="Weight (tons)",
-#'        title="Seminal ggplot2 scatterplot example",
-#'        subtitle="A plot that is only useful for demonstration purposes",
-#'        caption="Brought to you by the letter 'g'") +
+#'   labs(
+#'     x = "Fuel effiiency (mpg)", y = "Weight (tons)",
+#'     title = "Seminal ggplot2 scatterplot example",
+#'     subtitle = "A plot that is only useful for demonstration purposes",
+#'     caption = "Brought to you by the letter 'g'"
+#'   ) +
 #'   theme_atlas()
 #'
 #' # seminal bar chart
@@ -43,13 +46,15 @@
 #' count(mpg, class) %>%
 #'   ggplot(aes(class, n)) +
 #'   geom_col() +
-#'   geom_text(aes(label=n), nudge_y=3) +
-#'   labs(x="Fuel efficiency (mpg)", y="Weight (tons)",
-#'        title="Seminal ggplot2 bar chart example",
-#'        subtitle="A plot that is only useful for demonstration purposes",
-#'        caption="Brought to you by the letter 'g'") +
-#'   theme_atlas(grid="Y") +
-#'   theme(axis.text.y=element_blank())
+#'   geom_text(aes(label = n), nudge_y = 3) +
+#'   labs(
+#'     x = "Fuel efficiency (mpg)", y = "Weight (tons)",
+#'     title = "Seminal ggplot2 bar chart example",
+#'     subtitle = "A plot that is only useful for demonstration purposes",
+#'     caption = "Brought to you by the letter 'g'"
+#'   ) +
+#'   theme_atlas(grid = "Y") +
+#'   theme(axis.text.y = element_blank())
 #' }
 theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
                         plot_title_family = base_family, plot_title_size = 18,
@@ -67,21 +72,25 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
                         plot_margin = margin(30, 30, 30, 30),
                         grid_col = "#cccccc", grid = TRUE,
                         axis_col = "#cccccc", axis = FALSE, ticks = FALSE) {
-
-  ret <- ggplot2::theme_minimal(base_family = base_family,
-                                base_size = base_size)
+  ret <- ggplot2::theme_minimal(
+    base_family = base_family,
+    base_size = base_size
+  )
 
   ret <- ret + theme(legend.background = element_blank())
   ret <- ret + theme(legend.key = element_blank())
   ret <- ret + theme(legend.position = "bottom")
 
   if (inherits(grid, "character") | grid == TRUE) {
-
     ret <- ret + theme(panel.grid = element_line(color = grid_col, size = 0.2))
-    ret <- ret + theme(panel.grid.major = element_line(color = grid_col,
-                                                       size = 0.2))
-    ret <- ret + theme(panel.grid.minor = element_line(color = grid_col,
-                                                       size = 0.15))
+    ret <- ret + theme(panel.grid.major = element_line(
+      color = grid_col,
+      size = 0.2
+    ))
+    ret <- ret + theme(panel.grid.minor = element_line(
+      color = grid_col,
+      size = 0.15
+    ))
 
     if (inherits(grid, "character")) {
       if (regexpr("X", grid)[1] < 0) {
@@ -97,7 +106,6 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
         ret <- ret + theme(panel.grid.minor.y = element_blank())
       }
     }
-
   } else {
     ret <- ret + theme(panel.grid = element_blank())
   }
@@ -109,20 +117,28 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
       if (regexpr("x", axis)[1] < 0) {
         ret <- ret + theme(axis.line.x = element_blank())
       } else {
-        ret <- ret + theme(axis.line.x = element_line(color = axis_col,
-                                                      size = 0.15))
+        ret <- ret + theme(axis.line.x = element_line(
+          color = axis_col,
+          size = 0.15
+        ))
       }
       if (regexpr("y", axis)[1] < 0) {
         ret <- ret + theme(axis.line.y = element_blank())
       } else {
-        ret <- ret + theme(axis.line.y = element_line(color = axis_col,
-                                                      size = 0.15))
+        ret <- ret + theme(axis.line.y = element_line(
+          color = axis_col,
+          size = 0.15
+        ))
       }
     } else {
-      ret <- ret + theme(axis.line.x = element_line(color = axis_col,
-                                                    size = 0.15))
-      ret <- ret + theme(axis.line.y = element_line(color = axis_col,
-                                                    size = 0.15))
+      ret <- ret + theme(axis.line.x = element_line(
+        color = axis_col,
+        size = 0.15
+      ))
+      ret <- ret + theme(axis.line.y = element_line(
+        color = axis_col,
+        size = 0.15
+      ))
     }
   } else {
     ret <- ret + theme(axis.line = element_blank())
@@ -140,40 +156,58 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
   }
 
   xj <- switch(tolower(substr(axis_title_just, 1, 1)),
-               b = 0, l = 0, m = 0.5, c = 0.5, r = 1, t = 1)
+    b = 0, l = 0, m = 0.5, c = 0.5, r = 1, t = 1
+  )
   yj <- switch(tolower(substr(axis_title_just, 2, 2)),
-               b = 0, l = 0, m = 0.5, c = 0.5, r = 1, t = 1)
+    b = 0, l = 0, m = 0.5, c = 0.5, r = 1, t = 1
+  )
 
   ret <- ret +
     theme(
       axis.text.x = element_text(size = axis_text_size, margin = margin(t = 0)),
       axis.text.y = element_text(size = axis_text_size, margin = margin(r = 0)),
-      axis.title = element_text(size = axis_title_size,
-                                family = axis_title_family),
-      axis.title.x = element_text(hjust = xj, size = axis_title_size,
-                                  family = axis_title_family,
-                                  face = axis_title_face),
-      axis.title.y = element_text(hjust = yj, size = axis_title_size,
-                                  family = axis_title_family,
-                                  face = axis_title_face),
-      axis.title.y.right = element_text(hjust = yj, size = axis_title_size,
-                                        angle = 90, family = axis_title_family,
-                                        face = axis_title_face),
-      strip.text = element_text(hjust = 0, size = strip_text_size,
-                                face = strip_text_face,
-                                family = strip_text_family),
+      axis.title = element_text(
+        size = axis_title_size,
+        family = axis_title_family
+      ),
+      axis.title.x = element_text(
+        hjust = xj, size = axis_title_size,
+        family = axis_title_family,
+        face = axis_title_face
+      ),
+      axis.title.y = element_text(
+        hjust = yj, size = axis_title_size,
+        family = axis_title_family,
+        face = axis_title_face
+      ),
+      axis.title.y.right = element_text(
+        hjust = yj, size = axis_title_size,
+        angle = 90, family = axis_title_family,
+        face = axis_title_face
+      ),
+      strip.text = element_text(
+        hjust = 0, size = strip_text_size,
+        face = strip_text_face,
+        family = strip_text_family
+      ),
       panel.spacing = grid::unit(2, "lines"),
-      plot.title = element_text(hjust = 0, size = plot_title_size,
-                                margin = margin(b = plot_title_margin),
-                                family = plot_title_family,
-                                face = plot_title_face),
-      plot.subtitle = element_text(hjust = 0, size = subtitle_size,
-                                   margin = margin(b = subtitle_margin),
-                                   family = subtitle_family,
-                                   face = subtitle_face),
-      plot.caption = element_text(hjust = 1, size = caption_size,
-                                  margin = margin(t = caption_margin),
-                                  family = caption_family, face = caption_face),
+      plot.title = element_text(
+        hjust = 0, size = plot_title_size,
+        margin = margin(b = plot_title_margin),
+        family = plot_title_family,
+        face = plot_title_face
+      ),
+      plot.subtitle = element_text(
+        hjust = 0, size = subtitle_size,
+        margin = margin(b = subtitle_margin),
+        family = subtitle_family,
+        face = subtitle_face
+      ),
+      plot.caption = element_text(
+        hjust = 1, size = caption_size,
+        margin = margin(t = caption_margin),
+        family = caption_family, face = caption_face
+      ),
       plot.margin = plot_margin
     )
 
@@ -188,10 +222,14 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
 #' @export
 update_geom_font_defaults <- function(family = "Arial Narrow", face = "plain",
                                       size = 3.5, color = "#2b2b2b") {
-  update_geom_defaults("text", list(family = family, face = face, size = size,
-                                    color = color))
-  update_geom_defaults("label", list(family = family, face = face, size = size,
-                                     color = color))
+  update_geom_defaults("text", list(
+    family = family, face = face, size = size,
+    color = color
+  ))
+  update_geom_defaults("label", list(
+    family = family, face = face, size = size,
+    color = color
+  ))
 }
 
 #' @rdname ArialNarrow

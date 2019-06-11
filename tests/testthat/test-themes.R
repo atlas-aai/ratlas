@@ -6,7 +6,7 @@ test_that("themes are correct", {
 
   plot <- ggplot(df, aes(x, y, colour = z)) +
     geom_point() +
-    facet_wrap(~ a)
+    facet_wrap(~a)
 
   vdiffr::expect_doppelganger("theme_atlas", plot + theme_atlas())
 })

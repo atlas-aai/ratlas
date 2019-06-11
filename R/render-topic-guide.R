@@ -10,7 +10,7 @@
 #'
 #' @examples
 #' \dontrun{
-#'   output: ratlas::topicguide_docx
+#' output:ratlas::topicguide_docx
 #' }
 topicguide_docx <- function(...) {
   template <- find_resource("topicguide", "template.docx")

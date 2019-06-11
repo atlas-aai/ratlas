@@ -1,7 +1,8 @@
 # Helper functions from bookdown and rticles -----------------------------------
 find_file <- function(template, file) {
   template <- system.file("rmarkdown", "templates", template, file,
-                          package = "ratlas")
+    package = "ratlas"
+  )
   if (template == "") {
     stop("Couldn't find template file ", template, "/", file, call. = FALSE)
   }
