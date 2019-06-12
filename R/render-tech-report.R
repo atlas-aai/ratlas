@@ -10,7 +10,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' output:ratlas::techreport_pdf
+#'   output: ratlas::techreport_pdf
 #' }
 techreport_pdf <- function(...) {
   template <- find_resource("techreport", "template.tex")
