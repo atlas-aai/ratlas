@@ -1,11 +1,23 @@
 ---
-title: "Topic Guide Title"
+title: "Tech Report Title"
 date: "`r format(Sys.Date(), '%B, %Y')`"
-output: ratlas::topicguide_docx
+output: 
+  ratlas::techreport_pdf:
+    template: inst/rmarkdown/templates/techreport/resources/template.tex
+    latex_engine: xelatex
+    citation_package: biblatex
+    keep_tex: yes
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
 biblio-style: apalike2
 csl: csl/apa.csl
 link-citations: yes
+lot: true
+lof: true
+subparagraph: yes
+mainfont: Palatino LT Std
+fontsize: 11pt
+acknowledgements: >
+  `r if(knitr::is_latex_output()) jayhawkdown::inc("front-matter/preface.Rmd")`
 ---
 
 ```{r setup, include=FALSE}
