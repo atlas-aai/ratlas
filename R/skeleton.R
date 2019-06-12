@@ -1,6 +1,6 @@
 topicguide_skeleton <- function(path) {
   # copy 'topicguide_resources' folder to path
-  resources <- ratlas_file("rstudio", "templates", "topic_guide", "project",
+  resources <- ratlas_file("rstudio", "templates", "project",
                            "topicguide_resources")
 
   sub_dirs <- list.dirs(resources, recursive = TRUE, full.names = FALSE)
@@ -20,7 +20,7 @@ topicguide_skeleton <- function(path) {
 
 techreport_skeleton <- function(path) {
   # copy 'topicguide_resources' folder to path
-  resources <- ratlas_file("rstudio", "templates", "tech_report", "project",
+  resources <- ratlas_file("rstudio", "templates", "project",
                            "techreport_resources")
 
   sub_dirs <- list.dirs(resources, recursive = TRUE, full.names = FALSE)
