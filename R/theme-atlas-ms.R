@@ -34,11 +34,11 @@
 #'        title="Seminal ggplot2 scatterplot example",
 #'        subtitle="A plot that is only useful for demonstration purposes",
 #'        caption="Brought to you by the letter 'g'") +
-#'   theme_atlas()
+#'   theme_atlas_ms()
 #'
 #' # seminal bar chart
 #'
-#' update_geom_font_defaults()
+#' update_geom_ms_font_defaults()
 #'
 #' count(mpg, class) %>%
 #'   ggplot(aes(class, n)) +
@@ -48,7 +48,7 @@
 #'        title="Seminal ggplot2 bar chart example",
 #'        subtitle="A plot that is only useful for demonstration purposes",
 #'        caption="Brought to you by the letter 'g'") +
-#'   theme_atlas(grid="Y") +
+#'   theme_atlas_ms(grid="Y") +
 #'   theme(axis.text.y=element_blank())
 #' }
 theme_atlas_ms <- function(base_family = "Montserrat", base_size = 11.5,
