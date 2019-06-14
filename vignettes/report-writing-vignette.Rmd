@@ -10,11 +10,16 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.path = "figure/",
+  fig.retina = 3,
+  fig.width = 6,
+  fig.asp = 0.618, fig.align = "center",
+  out.width = "90%"
 )
 ```
 
-```{r setup}
+```{r setup, include = FALSE}
 library(ratlas)
 library(here)
 library(tidyverse)
@@ -28,13 +33,44 @@ in RStudio. This can be done by clicking:
 <center> **File > New Project > New Directory > New Project** </center>
 
 From there, specify the project name and the directory where you would like to 
-save the report project. To lessen confusion later, it is usually worthwhile to 
-save each report in its own directory so that you can quickly and easily find 
-the report at a later date.
-
-## Writing the Setup Chunk
+save the project for the new report. To lessen confusion later, it is usually 
+worthwhile to save each report in its own directory so that you can quickly and 
+easily find the report at a later date.
 
 ## Structuring the Project Directories
+
+Once the project has been created, the next step is to create the file structure 
+for the report. To do this, begin by typing `library(here)` into the RStudio 
+Console. Note, you will need to install the here package if it is not already 
+installed. The here package can be installed by typing `install.packages("here)`.
+
+![Type RStudio Console Commands](figure/type-commands-console.png)
+
+
+
+After the here package has been installed and loaded, four project directories 
+will need to be created. These four directories are:
+
+- R/
+- data-raw/
+- data/
+- output/
+
+To create the R directory, type the command `dir.create(here("R"))`. This will 
+create the folder, and you should be able to see it in your file directory at 
+the lower right corner of your RStudio screen. The same process can be used to 
+create the remaining three directories. 
+
+The R directory is used to store analysis scripts.
+
+The data-raw directory is used to store raw data files.
+
+The data directory is used to store cleaned or intermediate files.
+
+The output directory is used to store final output files that can be read into 
+the report.
+
+## Writing the Setup Chunk
 
 ## Create and Cross Reference Tables
 
