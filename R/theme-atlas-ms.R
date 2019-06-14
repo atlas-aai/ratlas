@@ -194,7 +194,7 @@ import_montserrat <- function() {
 
 }
 
-update_geom_font_defaults <- function(family = "Arial Narrow", face = "plain",
+update_geom_mont_defaults <- function(family = "Montserrat", face = "plain",
                                       size = 3.5, color = "#2b2b2b") {
   update_geom_defaults("text", list(family = family, face = face, size = size,
                                     color = color))
