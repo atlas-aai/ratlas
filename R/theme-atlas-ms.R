@@ -1,6 +1,6 @@
 #' ATLAS ggplot2 theme for consistent graphics
 #'
-#' Based on \code{hrbrthemes::\link[hrbrthemes]{theme_ipsum_tw}}.
+#' Based on \code{hrbrthemes::\link[hrbrthemes]{theme_ipsum}}.
 #'
 #' @param base_family,base_size base font family and size
 #' @param plot_title_family,plot_title_face,plot_title_size,plot_title_margin
@@ -51,7 +51,7 @@
 #'   theme_atlas(grid="Y") +
 #'   theme(axis.text.y=element_blank())
 #' }
-theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
+theme_atlas <- function(base_family = "Montserrat", base_size = 11.5,
                         plot_title_family = base_family, plot_title_size = 18,
                         plot_title_face = "bold", plot_title_margin = 10,
                         subtitle_family = base_family, subtitle_size = 12,
@@ -180,12 +180,20 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
   ret
 }
 
-#' Update matching font defaults for text geoms
+#' Import Montserrat font for use in charts
 #'
-#' Updates [ggplot2::geom_label] and [ggplot2::geom_text] font defaults
+#' Montserrat is a trademark of Google.
 #'
-#' @param family,face,size,color font family name, face, size and color
+#' @importFrom showtext font_add_google
+#' @importFrom showtext showtext_auto
 #' @export
+import_montserrat <- function() {
+
+  font_add_google(name = "Montserrat")
+  showtext_auto()
+
+}
+
 update_geom_font_defaults <- function(family = "Arial Narrow", face = "plain",
                                       size = 3.5, color = "#2b2b2b") {
   update_geom_defaults("text", list(family = family, face = face, size = size,
@@ -193,10 +201,3 @@ update_geom_font_defaults <- function(family = "Arial Narrow", face = "plain",
   update_geom_defaults("label", list(family = family, face = face, size = size,
                                      color = color))
 }
-
-#' @rdname ArialNarrow
-#' @title Arial Narrow font name R variable aliases
-#' @description `font_an` == "`Arial Narrow`"
-#' @format length 1 character vector
-#' @export
-font_an <- "Arial Narrow"
