@@ -194,6 +194,12 @@ import_montserrat <- function() {
 
 }
 
+#' Update matching font defaults for text geoms
+#'
+#' Updates [ggplot2::geom_label] and [ggplot2::geom_text] font defaults
+#'
+#' @param family,face,size,color font family name, face, size and color
+#' @export
 update_geom_font_ms_defaults <- function(family = "Montserrat", face = "plain",
                                       size = 3.5, color = "#2b2b2b") {
   update_geom_defaults("text", list(family = family, face = face, size = size,
