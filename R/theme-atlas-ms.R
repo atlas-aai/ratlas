@@ -187,15 +187,17 @@ theme_atlas_ms <- function(base_family = "Montserrat", base_size = 11.5,
 #' @importFrom extrafont font_import
 #' @export
 import_montserrat <- function() {
+  ms_font_dir <-
+    system.file("fonts", "montserrat", package = "ratlas")
 
-  ms_font_dir <- system.file("fonts", "montserrat", package = "ratlas")
-
-  suppressWarnings(suppressMessages(extrafont::font_import(ms_font_dir, prompt=FALSE)))
+  suppressWarnings(suppressMessages(extrafont::font_import(ms_font_dir, prompt =
+                                                             FALSE)))
 
   message(
     sprintf(
       "You will likely need to install these fonts on your system as well.\n\nYou can find them in [%s]",
-      ms_font_dir)
+      ms_font_dir
+    )
   )
 
 }
