@@ -9,4 +9,5 @@ test_that("themes are correct", {
     facet_wrap(~ a)
 
   vdiffr::expect_doppelganger("theme_atlas", plot + theme_atlas())
+  vdiffr::expect_doppelganger("theme_atlas_ms", plot + theme_atlas_ms())
 })
