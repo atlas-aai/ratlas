@@ -184,13 +184,19 @@ theme_atlas_ms <- function(base_family = "Montserrat", base_size = 11.5,
 #'
 #' Montserrat is a trademark of Google.
 #'
-#' @importFrom showtext font_add_google
-#' @importFrom showtext showtext_auto
+#' @importFrom extrafont font_import
 #' @export
 import_montserrat <- function() {
 
-  font_add_google(name = "Montserrat")
-  showtext_auto()
+  ms_font_dir <- system.file("fonts", "montserrat", package = "ratlas")
+
+  suppressWarnings(suppressMessages(extrafont::font_import(ms_font_dir, prompt=FALSE)))
+
+  message(
+    sprintf(
+      "You will likely need to install these fonts on your system as well.\n\nYou can find them in [%s]",
+      ms_font_dir)
+  )
 
 }
 
