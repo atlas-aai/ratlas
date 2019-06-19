@@ -57,11 +57,13 @@
 #'   theme(axis.text.y = element_blank())
 #' }
 theme_atlas_ms <- function(base_family = "Montserrat", base_size = 11.5,
-                           plot_title_family = base_family, plot_title_size = 18,
+                           plot_title_family = base_family,
+                           plot_title_size = 18,
                            plot_title_face = "bold", plot_title_margin = 10,
                            subtitle_family = base_family, subtitle_size = 12,
                            subtitle_face = "plain", subtitle_margin = 15,
-                           strip_text_family = base_family, strip_text_size = 12,
+                           strip_text_family = base_family,
+                           strip_text_size = 12,
                            strip_text_face = "plain",
                            caption_family = base_family, caption_size = 9,
                            caption_face = "italic", caption_margin = 10,
@@ -231,7 +233,8 @@ import_montserrat <- function() {
 
   message(
     sprintf(
-      "You will likely need to install these fonts on your system as well.\n\nYou can find them in [%s]",
+      "You will likely need to install these fonts on your
+      system as well.\n\nYou can find them in [%s]",
       ms_font_dir
     )
   )
