@@ -12,5 +12,7 @@ test_that("topicguide docx works", {
   topicguide_skeleton(dir)
   check_files <- list.files(dir, recursive = TRUE)
 
-  expect_equal(check_files, c("bib/refs.bib", "csl/apa.csl", "index.Rmd"))
+  expect_equal(sort(check_files),
+               sort(c("bib/refs.bib", "csl/apa.csl", "index.Rmd",
+                      "_bookdown.yml")))
 })
