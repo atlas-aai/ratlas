@@ -31,16 +31,24 @@ test_that("theme_atlas_ms font colors are correct", {
 })
 
 test_that("theme_atlas_ms grids, axis, and ticks are correct", {
-  invisible(theme_atlas_ms(grid = FALSE))
-  invisible(theme_atlas_ms(grid = "XY"))
-  invisible(theme_atlas_ms(grid = "xy"))
+  expect_equal(invisible(theme_atlas_ms(grid = FALSE)),
+               theme_atlas_ms(grid = FALSE))
+  expect_equal(invisible(theme_atlas_ms(grid = "XY")),
+               theme_atlas_ms(grid = "XY"))
+  expect_equal(invisible(theme_atlas_ms(grid = "xy")),
+               theme_atlas_ms(grid = "xy"))
 
-  invisible(theme_atlas_ms(axis = TRUE))
+  expect_equal(invisible(theme_atlas_ms(axis = TRUE)),
+               theme_atlas_ms(axis = TRUE))
 
-  invisible(theme_atlas_ms(axis = FALSE))
-  invisible(theme_atlas_ms(axis = "xy"))
-  invisible(theme_atlas_ms(axis = ""))
-  invisible(theme_atlas_ms(ticks = TRUE))
+  expect_equal(invisible(theme_atlas_ms(axis = FALSE)),
+               theme_atlas_ms(axis = FALSE))
+  expect_equal(invisible(theme_atlas_ms(axis = "xy")),
+               theme_atlas_ms(axis = "xy"))
+  expect_equal(invisible(theme_atlas_ms(axis = "")),
+               theme_atlas_ms(axis = ""))
+  expect_equal(invisible(theme_atlas_ms(ticks = TRUE)),
+               theme_atlas_ms(ticks = TRUE))
 })
 
 test_that("import_montserrat() works", {
