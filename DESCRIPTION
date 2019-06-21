@@ -28,6 +28,7 @@ Imports:
     scales (>= 1.0.0),
     stringr (>= 1.4.0),
     xfun (>= 0.6),
+    extrafont (>= 0.17)
 Suggests: 
     covr (>= 3.2.1),
     english (>= 1.2.3),
