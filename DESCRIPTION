@@ -30,6 +30,7 @@ Imports:
     hrbrthemes (>= 0.6.0),
     knitr (>= 1.22),
     magrittr (>= 1.5),
+    rlang (>= 0.3.4),
     rmarkdown (>= 1.12),
     scales (>= 1.0.0),
     stringr (>= 1.4.0),
