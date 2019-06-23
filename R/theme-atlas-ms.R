@@ -218,7 +218,7 @@ theme_atlas_ms <- function(base_family = "Montserrat", base_size = 11.5,
 
 #' Import Montserrat font for use in charts
 #'
-#' Montserrat is a trademark of Google.
+#' Montserrat is a copyright of Julieta Ulanovsky.
 #'
 #' @export
 import_montserrat <- function() {
