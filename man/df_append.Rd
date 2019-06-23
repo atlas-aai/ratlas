@@ -23,7 +23,7 @@ Add row and/or column summaries (e.g., total counts) to a data frame.
 }
 \examples{
 set.seed(9416)
-df <- tibble(char = letters[1:5], x = rnorm(5), y = rnorm(5))
-df_append(df, rows = TRUE, cols = TRUE, .f = sum)
-df_append(df, rows = FALSE, .f = mean)
+df <- tibble::tibble(char = letters[1:5], x = rnorm(5), y = rnorm(5))
+df_append(df, row = TRUE, col = TRUE, .f = sum)
+df_append(df, row = FALSE, .f = mean)
 }
