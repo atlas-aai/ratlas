@@ -7,5 +7,5 @@
 import_montserrat()
 }
 \description{
-Montserrat is a trademark of Google.
+Montserrat is a copyright of Julieta Ulanovsky.
 }
