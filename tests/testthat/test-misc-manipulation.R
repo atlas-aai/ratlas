@@ -25,14 +25,14 @@ test_that("append_summary works", {
   col_sums <- df %>%
     dplyr::select(-.data$group) %>%
     tibble::rowid_to_column(var = "rowid") %>%
-    tidyr::pivot_longer(-.data$rowid, names_to = "col",  values_to = "val") %>%
+    tidyr::gather(key = "col", value = "val", -.data$rowid) %>%
     dplyr::group_by(.data$rowid) %>%
     dplyr::summarize(sum = sum(val)) %>%
     dplyr::select(.data$sum)
   col_medians <- df %>%
     dplyr::select(-.data$group) %>%
     tibble::rowid_to_column(var = "rowid") %>%
-    tidyr::pivot_longer(-.data$rowid, names_to = "col",  values_to = "val") %>%
+    tidyr::gather(key = "col", value = "val", -.data$rowid) %>%
     dplyr::group_by(.data$rowid) %>%
     dplyr::summarize(median = stats::median(val)) %>%
     dplyr::select(.data$median)

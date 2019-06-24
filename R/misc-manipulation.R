@@ -50,8 +50,7 @@ append_summary <- function(df, row = TRUE, col = TRUE, .f = sum) {
     only_if(col)(dplyr::bind_cols)(
       dplyr::select_if(., is.numeric) %>%
         tibble::rowid_to_column(var = "rowid") %>%
-        tidyr::pivot_longer(-.data$rowid, names_to = "col_name",
-                            values_to = "value") %>%
+        tidyr::gather(key = "col_name", value = "value", -.data$rowid) %>%
         dplyr::rename(!!func_name := .data$value) %>%
         dplyr::select(-.data$col_name) %>%
         dplyr::group_by(.data$rowid) %>%
