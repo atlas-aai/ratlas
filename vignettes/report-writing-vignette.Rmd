@@ -49,10 +49,6 @@ for the report. To do this, begin by typing `library(here)` into the RStudio
 Console. Note, you will need to install the here package if it is not already 
 installed. The here package can be installed by typing `install.packages("here)`.
 
-![Type RStudio Console Commands](figure/type-commands-console.png)
-
-
-
 After the here package has been installed and loaded, four project directories 
 will need to be created. These four directories are:
 
@@ -64,7 +60,11 @@ will need to be created. These four directories are:
 To create the R directory, type the command `dir.create(here("R"))`. This will 
 create the folder, and you should be able to see it in your file directory at 
 the lower right corner of your RStudio screen. The same process can be used to 
-create the remaining three directories. 
+create the remaining three directories with the following code: 
+
+- `dir.create(here("data-raw"))`
+- `dir.create(here("data"))`
+- `dir.create(here("output"))`
 
 The R directory is used to store analysis scripts.
 
@@ -355,4 +355,3 @@ indefinite(3, words = FALSE)` ``.
 
 The `as.roman` function can convert 3 to `r utils::as.roman(3)` via `` `r
 utils::as.roman(3)` ``.
-
