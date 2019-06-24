@@ -1,6 +1,6 @@
 #' ATLAS ggplot2 theme for consistent graphics
 #'
-#' #' You should [import_montserrat]() first and also install the fonts on your
+#' You should [import_montserrat]() first and also install the fonts on your
 #' system before trying to use this theme.
 #'
 #' Based on \code{hrbrthemes::\link[hrbrthemes]{theme_ipsum}}.
