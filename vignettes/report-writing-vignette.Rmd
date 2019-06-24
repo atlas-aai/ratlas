@@ -72,6 +72,38 @@ the report.
 
 ## Writing the Setup Chunk
 
+The Setup Chunk is where you set all of the default settings for your report. 
+In doing this, you want to create the Setup Chunk so that all of the necessary 
+settings can be set in a reproducible way. In other words, you want the code to 
+be able to run on any computer, not just yours.
+
+The first step in doing this is to load the ratlas package. Bear in mind that 
+not all computers will have the ratlas package installed already. Thus, the code 
+in the Setup Chunk needs to test whether ratlas is already installed, install 
+ratlas if it is not already installed, and load the ratlas package. 
+
+This can be done by running the following code:
+
+```{r load_ratlas, echo = TRUE, eval = FALSE}
+install.packages(ratlas)
+library(ratlas)
+```
+
+Additionally, the theme for ggplot should be specified. This can be done with 
+the following code.
+
+```{r set_ggplot_theme, echo = TRUE, eval = FALSE}
+
+```
+
+Together, your first chunk of the file should look like:
+
+```{r setup_chunk, echo = TRUE, eval = FALSE}
+install.packages(ratlas)
+library(ratlas)
+
+```
+
 ## Create and Cross Reference Tables
 
 ## Create and Cross Reference Figures
