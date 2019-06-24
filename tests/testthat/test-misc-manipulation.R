@@ -9,7 +9,7 @@ test_that("only_if works", {
   expect_equal(d %>% only_if(FALSE)(dplyr::filter)(.data$mpg > 25), d)
 })
 
-test_that("df_append works", {
+test_that("append works", {
   set.seed(9416)
   df <- tibble::tibble(group = letters[1:5],
                x = sample(1:10, 5, TRUE),
@@ -37,14 +37,14 @@ test_that("df_append works", {
     dplyr::summarize(median = stats::median(val)) %>%
     dplyr::select(.data$median)
 
-  expect_equal(df_append(df, row = FALSE, col = FALSE), df)
-  expect_equal(df_append(df, row = TRUE, col = FALSE),
+  expect_equal(append(df, row = FALSE, col = FALSE), df)
+  expect_equal(append(df, row = TRUE, col = FALSE),
                dplyr::bind_rows(df, row_sums))
-  expect_equal(df_append(df, row = FALSE),
+  expect_equal(append(df, row = FALSE),
                dplyr::bind_cols(df, col_sums))
-  expect_equal(df_append(df, col = FALSE, .f = stats::median),
+  expect_equal(append(df, col = FALSE, .f = stats::median),
                dplyr::bind_rows(df, row_medians))
-  expect_equal(df_append(df),
+  expect_equal(append(df),
                dplyr::bind_cols(df, col_sums) %>%
                  dplyr::bind_rows(
                    dplyr::mutate(row_sums, sum = sum(col_sums$sum))

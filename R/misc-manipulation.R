@@ -38,9 +38,9 @@ only_if <- function(condition) {
 #' @examples
 #' set.seed(9416)
 #' df <- tibble::tibble(char = letters[1:5], x = rnorm(5), y = rnorm(5))
-#' df_append(df, row = TRUE, col = TRUE, .f = sum)
-#' df_append(df, row = FALSE, .f = mean)
-df_append <- function(df, row = TRUE, col = TRUE, .f = sum) {
+#' append(df, row = TRUE, col = TRUE, .f = sum)
+#' append(df, row = FALSE, .f = mean)
+append <- function(df, row = TRUE, col = TRUE, .f = sum) {
   func_name <- as.character(substitute(.f))
 
   df %>%
