@@ -136,21 +136,15 @@ rmarkdown file to write the report.
 
 ## Create and Cross Reference Tables
 
-Tables can be created using the kableExtra package in R. If the kableExtra package is not already installed, please install it using the following command:
+Tables can be created using the kable function in the kableExtra package in R. 
 
-```{r install_kable, echo = TRUE, eval = FALSE}
-install.packages("kableExtra")
-```
+Creating tables is relatively simple. The kable package takes an existing 
+dataset and places the vectors (i.e., columns in the data frame) into columns in
+the table. 
 
-And then load the package using the following command:
-
-```{r load_kable, echo = TRUE, eval = FALSE}
-library(kableExtra)
-```
-
-Creating tables is relatively simple. The kable package takes an existing dataset and places the vectors (i.e., columns) into columns in the table. Table formatting can then be specified either within the kable command or within kable_styling function. 
-
-Take the *iris* dataset that is automatically loaded in R. To make a more reasonably sized table for this example, let's filter the dataset to flowers with petal length greater than 6.0 with the following code:
+As an example, take the *iris* dataset that is automatically loaded in R. To 
+make a more reasonably sized table for this example, let's filter the dataset to
+flowers with petal length greater than 6.0 with the following code:
 
 ```{r filtered_iris, echo = TRUE, eval = TRUE}
 temp <- iris %>%
@@ -160,9 +154,21 @@ temp <- iris %>%
 temp
 ```
 
-Now that the data is more manageable, the smaller dataset can be turned into a table. The full help page can be found by using the `?kable` command. Briefly, *x* holds the data frame, *digits* indicates the number of digits displayed to the right of the decimal point, *col.names* indicates what each column should be called, *align* specifies how to align the data in each column, *caption* specifies the title for the table, *booktabs* specifies formatting for the table (i.e., the bolded column headers, the horizontal lines, the subtle horizontal lines between each row), and *format.args* specifies format arguments to be used in the table. In this instance, *big.mark = ","* specifies that commas should be inserted to the left of the decimal point when necessary to improve readability (i.e., printing 3,400 instead of 3400).
+Do note, that this example uses the tidyverse package in filtering the data.
 
-Tables may be referenced using the following inline command: `\@ref(tab:chunk-label)`. Please note, however, that the text to the right of the colon specifies that name of the code chunk. Also note that cross-references cannot use an underscore in the name of the code chunk. The underscore is a special character in Latex, which causes difficulties in references table code chunks with an underscore in the name.
+Now that the data is more manageable, the smaller dataset can be turned into a 
+table. The full kable function help page can be found by using the `?kable` 
+command. The full details for the kable function parameters can be found here. 
+
+Briefly, *x* holds the data frame, *digits* indicates the number of digits 
+displayed to the right of the decimal point, *col.names* indicates what each 
+column should be named, *align* specifies how to align the data within each 
+column, *caption* specifies the title for the table, *booktabs* specifies 
+formatting for the table (i.e., the bolded column headers, the horizontal lines,
+the subtle horizontal lines between each row), and *format.args* specifies 
+format arguments to be used in the table. In this instance, *big.mark = ","* 
+specifies that commas should be inserted to the left of the decimal point when 
+necessary to improve readability (i.e., printing 3,400 instead of 3400).
 
 ```{r iris, echo = TRUE}
 kable(x = temp, digits = 1, col.names = c("Sepal Length", "Sepal Width", 
@@ -172,7 +178,17 @@ kable(x = temp, digits = 1, col.names = c("Sepal Length", "Sepal Width",
       booktabs = TRUE, format.args = list(big.mark = ","))
 ```
 
-In practice, we can then reference the numbered table using `\@ref(tab:iris)`.
+Tables may be referenced using the following inline command: 
+`\@ref(tab:chunk-label)`. Please note, however, that the text to the right of 
+the colon refers to the code chunk name. Of special importance, cross-references
+cannot use an underscore in the name of the code chunk. The underscore is a 
+special character in Latex, which causes difficulties in referencing table code 
+chunks using an underscore in the name.
+
+In completing this example, we can then reference the numbered table using 
+`\@ref(tab:iris)`, and a hyperlink will appear with the number of the table. The 
+hyperlink can be clicked to direct the user to the location of the table in the 
+document.
 
 ## Create and Cross Reference Figures
 
