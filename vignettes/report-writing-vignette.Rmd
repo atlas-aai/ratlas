@@ -280,5 +280,12 @@ mean(iris$Petal.Length)` `` as the inline coded.
 
 ## Combining Words
 
+When using inline code, it is sometimes possible to generate character strings (i.e., words) that would be listed in a grammatically incorrect way. For example, an inline code might return "apples" "oranges" "bananas", which would ideally be listed as "apples, oranges, and bananas" to be grammatically correct. 
+
+The `combine_words` function in the knitr package does just that. By placing the inline code as a parameter within the `knitr::combinewords()` function, the `combine_words` function will combine the items into a list with commas and an "and" when necessary. Alternatively, `combine_words` will place an "and" between words when there are only two words returned by the inline function, and `combine_words` will not alter the inline functions returned value when it is only a single word. 
+
+To demonstrate, I will use the command `colnames(iris)` to return all of the column header names for the iris dataset, which consists of five different character values. When wrapping the command in the `knitr::combine_words()` function, the inline text becomes `r knitr::combine_words(colnames(iris))` via `` `r
+knitr::combine_words(colnames(iris))` ``.
+
 ## Turning Numbers Into Words
 
