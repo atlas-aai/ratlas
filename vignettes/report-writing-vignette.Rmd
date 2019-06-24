@@ -267,6 +267,17 @@ reference the figure.
 
 ## Using Inline R Code 
 
+Up to this point, all of the code that has been discussed has involved code 
+chunks. Code can also be evalued inline so that the results are presented in the
+sentence without special formatting. By using `` `r
+r_code` ``, the results of *r_code* would be pasted into the text. Consider the 
+following example. If I am describing the iris dataset, I might want to state 
+the mean petal length in the text. To do this using inline code, I might say:
+
+The mean petal length of the irises was `r mean(iris$Petal.Length)`, which uses
+`` `r
+mean(iris$Petal.Length)` `` as the inline coded. 
+
 ## Combining Words
 
 ## Turning Numbers Into Words
