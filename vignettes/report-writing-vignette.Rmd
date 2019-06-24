@@ -300,5 +300,38 @@ character strings. When wrapping the `colnames(iris)` command in the
 via `` `r
 knitr::combine_words(colnames(iris))` ``.
 
+For additional help regarding the `combine_words` function, you can visit the 
+`?combine_words` help page.
+
 ## Turning Numbers Into Words
+
+Often times, computer code will generate numerical answers when an answer written in words is more appropriate whether by convention, publishing standards, etc. The english package allows for numbers to be converted to a variety of written formats. 
+
+First, it should be noted that the english package supports converting numbers only into the English language. Furthermore, the english package allows the user to specify whether to use American style English or UK style English. This can be set with either `options(english.UK = TRUE)` or `options(english.UK = FALSE)`. For the purposes of this vignette, the option will be set to American style English.
+
+```{r english_settings}
+options(english.UK = FALSE)
+```
+
+Within the english package, there are four primary functions. The first function is `words` or `Words`. These two functions have the same functionality, although `Words` capitalizes the first letter of the word, whereas `word` leaves all of the letters lowercase. The second function is the `ordinal` function, which converts the numbers to ordinal numbers (e.g., 5 becomes fifth). The third function is `indefinite` or `Indefinite`. Like the `words` and `Words` function, the only difference between these two indefinite functions is the capitalization. The indefinite functions put an indefinite article (i.e., "a" or "an") before each word (e.g., 8 becomes "an eight"). Importantly, the indefinite functions allow for the indefinite article to be added without changing the word to a number. This can be done with `indefinite(8, words = FALSE)`. The fourth and final function is the `as.roman` function, which is technically a part of the utils package. The `as.roman` function converts numbers to their Roman numeral equivalent (e.g., 3 becomes III).
+
+Examples of each of the four functions are provided below.
+
+The `words` function can convert 3 to `r words(3)` via `` `r
+words(3)` ``. Although grammatically incorrect, the `Words` function can convert 3 to `r Words(3)` via `` `r
+Words(3)` ``.
+
+The `ordinal` function can convert 3 to `r ordinal(3)` via `` `r
+ordinal(3)` ``.
+
+The `indefinite` function can convert 3 to `r indefinite(3)` via `` `r
+indefinite(3)` ``. Once again, it is grammatically incorrect, but the 
+`Indefinite` function can convert 3 to `r Indefinite(3)` via `` `r
+Indefinite(3)` ``. To demonstrate the ability to add the indefinite article 
+without converting the number to a word, the `indefinite` function can convert 
+3 to `r indefinite(3, words = FALSE)` via `` `r
+indefinite(3, words = FALSE)` ``.
+
+The `as.roman` function can convert 3 to `r utils::as.roman(3)` via `` `r
+utils::as.roman(3)` ``.
 
