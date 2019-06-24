@@ -1,6 +1,9 @@
 ---
 title: "Report Writing"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    number_sections: true
+    fig_caption: true
 vignette: >
   %\VignetteIndexEntry{report-writing-vignette}
   %\VignetteEngine{knitr::rmarkdown}
@@ -14,7 +17,8 @@ knitr::opts_chunk$set(
   fig.path = "figure/",
   fig.retina = 3,
   fig.width = 6,
-  fig.asp = 0.618, fig.align = "center",
+  fig.asp = 0.618, 
+  fig.align = "center",
   out.width = "90%"
 )
 ```
@@ -23,6 +27,9 @@ knitr::opts_chunk$set(
 library(ratlas)
 library(here)
 library(tidyverse)
+library(kableExtra)
+library(english)
+library(knitr)
 ```
 
 ## Creating a New Project
@@ -77,16 +84,26 @@ In doing this, you want to create the Setup Chunk so that all of the necessary
 settings can be set in a reproducible way. In other words, you want the code to 
 be able to run on any computer, not just yours.
 
-The first step in doing this is to load the ratlas package. Bear in mind that 
-not all computers will have the ratlas package installed already. Thus, the code 
-in the Setup Chunk needs to test whether ratlas is already installed, install 
-ratlas if it is not already installed, and load the ratlas package. 
+The first step in doing this is to load the needed packages. Bear in mind that 
+not all computers will have the the necessary packages installed already. Thus, 
+the code in the Setup Chunk needs to test whether these are already installed, 
+install them if they are not already installed, and then load the packages. 
 
 This can be done by running the following code:
 
-```{r load_ratlas, echo = TRUE, eval = FALSE}
-install.packages(ratlas)
-library(ratlas)
+```{r package_install_loading, echo = TRUE, eval = FALSE}
+needed_packages <- c("ratlas", "tidyverse", "english", "kableExtra")
+load_packages <- function(x) {
+  if (!(x %in% installed.packages())) {
+    install.packages(x)
+  }
+  suppressPackageStartupMessages(require(x, character.only = TRUE))
+}
+vapply(needed_packages, load_packages, logical(1))
+
+system <- ifelse(Sys.info()["sysname"] == "Darwin", "Mac", "Windows")
+
+extrafont::loadfonts(quiet = TRUE)
 ```
 
 Additionally, the theme for ggplot should be specified. This can be done with 
@@ -99,12 +116,63 @@ the following code.
 Together, your first chunk of the file should look like:
 
 ```{r setup_chunk, echo = TRUE, eval = FALSE}
-install.packages(ratlas)
-library(ratlas)
+needed_packages <- c("ratlas", "tidyverse", "english", "kableExtra")
+load_packages <- function(x) {
+  if (!(x %in% installed.packages())) {
+    install.packages(x)
+  }
+  suppressPackageStartupMessages(require(x, character.only = TRUE))
+}
+vapply(needed_packages, load_packages, logical(1))
+
+system <- ifelse(Sys.info()["sysname"] == "Darwin", "Mac", "Windows")
+
+extrafont::loadfonts(quiet = TRUE)
 
 ```
 
+For simplicity, this setup code chunk can just be copy and pasted into the 
+rmarkdown file to write the report. 
+
 ## Create and Cross Reference Tables
+
+Tables can be created using the kableExtra package in R. If the kableExtra package is not already installed, please install it using the following command:
+
+```{r install_kable, echo = TRUE, eval = FALSE}
+install.packages("kableExtra")
+```
+
+And then load the package using the following command:
+
+```{r load_kable, echo = TRUE, eval = FALSE}
+library(kableExtra)
+```
+
+Creating tables is relatively simple. The kable package takes an existing dataset and places the vectors (i.e., columns) into columns in the table. Table formatting can then be specified either within the kable command or within kable_styling function. 
+
+Take the *iris* dataset that is automatically loaded in R. To make a more reasonably sized table for this example, let's filter the dataset to flowers with petal length greater than 6.0 with the following code:
+
+```{r filtered_iris, echo = TRUE, eval = TRUE}
+temp <- iris %>%
+  filter(Petal.Length > 6.0) %>%
+  arrange(desc(Petal.Length))
+
+temp
+```
+
+Now that the data is more manageable, the smaller dataset can be turned into a table. The full help page can be found by using the `?kable` command. Briefly, *x* holds the data frame, *digits* indicates the number of digits displayed to the right of the decimal point, *col.names* indicates what each column should be called, *align* specifies how to align the data in each column, *caption* specifies the title for the table, *booktabs* specifies formatting for the table (i.e., the bolded column headers, the horizontal lines, the subtle horizontal lines between each row), and *format.args* specifies format arguments to be used in the table. In this instance, *big.mark = ","* specifies that commas should be inserted to the left of the decimal point when necessary to improve readability (i.e., printing 3,400 instead of 3400).
+
+Tables may be referenced using the following inline command: `\@ref(tab:chunk-label)`. Please note, however, that the text to the right of the colon specifies that name of the code chunk. Also note that cross-references cannot use an underscore in the name of the code chunk. The underscore is a special character in Latex, which causes difficulties in references table code chunks with an underscore in the name.
+
+```{r iris, echo = TRUE}
+kable(x = temp, digits = 1, col.names = c("Sepal Length", "Sepal Width", 
+                                          "Petal Length", "Petal Width", 
+                                          "Species"), 
+      align = "c", caption = "A table of irises with long petals", 
+      booktabs = TRUE, format.args = list(big.mark = ","))
+```
+
+In practice, we can then reference the numbered table using `\@ref(tab:iris)`.
 
 ## Create and Cross Reference Figures
 
