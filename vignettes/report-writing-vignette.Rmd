@@ -2,8 +2,6 @@
 title: "Report Writing"
 output: 
   rmarkdown::html_vignette:
-    number_sections: true
-    fig_caption: true
 vignette: >
   %\VignetteIndexEntry{report-writing-vignette}
   %\VignetteEngine{knitr::rmarkdown}
