@@ -12,8 +12,7 @@ Description: This package contains various template and formatting functions
     used for ATLAS. This include R Markdown templates, formatting funcitons, and
     ggplot2 themes.
 License: GPL-3
-Encoding: UTF-8
-LazyData: true
+VignetteBuilder: knitr
 Depends:
     R (>= 3.4.0)
 Imports:
@@ -38,8 +37,7 @@ Suggests:
     tidyverse (>= 1.2.1),
     tinytex (>= 0.13),
     vdiffr (>= 0.3.0)
-RoxygenNote: 6.1.1
+Encoding: UTF-8
+LazyData: true
 Roxygen: list(markdown = TRUE)
-Remotes:
-    tidyverse/ggplot2
-VignetteBuilder: knitr
+RoxygenNote: 6.1.1
