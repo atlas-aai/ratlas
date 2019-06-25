@@ -105,10 +105,16 @@ extrafont::loadfonts(quiet = TRUE)
 ```
 
 Additionally, the theme for ggplot should be specified. This can be done with 
-the following code.
+the either of the following code chunks.
 
-```{r set_ggplot_theme, echo = TRUE, eval = FALSE}
+```{r set_ggplot_theme1, echo = TRUE, eval = FALSE}
+theme_atlas()
+```
 
+Or
+
+```{r set_ggplot_theme2, echo = TRUE, eval = FALSE}
+theme_atlas_ms()
 ```
 
 Together, your first chunk of the file should look like:
@@ -127,10 +133,16 @@ system <- ifelse(Sys.info()["sysname"] == "Darwin", "Mac", "Windows")
 
 extrafont::loadfonts(quiet = TRUE)
 
+theme_atlas()
+#OR
+#theme_atlas_ms()
 ```
 
 For simplicity, this setup code chunk can just be copy and pasted into the 
-rmarkdown file to write the report. 
+rmarkdown file to write the report. Please note, however, that you should only
+select one of the two ATLAS themes (theme_atlas and theme_atlas_ms). 
+`Theme_atlas_ms()` has been commented out in the above code, but `theme_atlas()`
+be commented out if `theme_atlas_ms()` is desired.
 
 ## Create and Cross Reference Tables
 
@@ -330,10 +342,12 @@ function is `indefinite` or `Indefinite`. Like the `words` and `Words` function,
 the only difference between these two indefinite functions is the 
 capitalization. The indefinite functions put an indefinite article (i.e., "a" or
 "an") before each word (e.g., 8 becomes "an eight"). Importantly, the indefinite
-functions allow for the indefinite article to be added without changing the word to a number. This can be done with `indefinite(8, words = FALSE)`. The fourth and final function is the 
-`as.roman` function, which is technically a part of the utils package, which 
-means it should be called using `utils::as.roman`. The `as.roman` function 
-converts numbers to their Roman numeral equivalent (e.g., 3 becomes III).
+functions allow for the indefinite article to be added without changing the word
+to a number. This can be done with `indefinite(8, words = FALSE)`. The fourth 
+and final function is the `as.roman` function, which is technically a part of 
+the utils package, which means it should be called using `utils::as.roman`. The 
+`as.roman` function converts numbers to their Roman numeral equivalent (e.g., 3 
+becomes III).
 
 Examples of each of the four functions are provided below.
 
