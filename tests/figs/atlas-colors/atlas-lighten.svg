@@ -31,9 +31,9 @@
 <polyline points='167.80,478.05 167.80,81.42 ' style='stroke-width: 0.43; stroke: #CCCCCC; stroke-linecap: butt;' clip-path='url(#cpNDguMDR8NjkwLjExfDQ3OC4wNXw4MS40Mg==)' />
 <polyline points='369.07,478.05 369.07,81.42 ' style='stroke-width: 0.43; stroke: #CCCCCC; stroke-linecap: butt;' clip-path='url(#cpNDguMDR8NjkwLjExfDQ3OC4wNXw4MS40Mg==)' />
 <polyline points='570.35,478.05 570.35,81.42 ' style='stroke-width: 0.43; stroke: #CCCCCC; stroke-linecap: butt;' clip-path='url(#cpNDguMDR8NjkwLjExfDQ3OC4wNXw4MS40Mg==)' />
-<rect x='77.22' y='339.83' width='181.15' height='120.19' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #D2F0F5;' clip-path='url(#cpNDguMDR8NjkwLjExfDQ3OC4wNXw4MS40Mg==)' />
-<rect x='278.50' y='219.64' width='181.15' height='240.38' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FFDD4B;' clip-path='url(#cpNDguMDR8NjkwLjExfDQ3OC4wNXw4MS40Mg==)' />
-<rect x='479.78' y='99.44' width='181.15' height='360.58' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #D2F0F5;' clip-path='url(#cpNDguMDR8NjkwLjExfDQ3OC4wNXw4MS40Mg==)' />
+<rect x='77.22' y='339.83' width='181.15' height='120.19' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #A6DEE8;' clip-path='url(#cpNDguMDR8NjkwLjExfDQ3OC4wNXw4MS40Mg==)' />
+<rect x='278.50' y='219.64' width='181.15' height='240.38' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FFB841;' clip-path='url(#cpNDguMDR8NjkwLjExfDQ3OC4wNXw4MS40Mg==)' />
+<rect x='479.78' y='99.44' width='181.15' height='360.58' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #A6DEE8;' clip-path='url(#cpNDguMDR8NjkwLjExfDQ3OC4wNXw4MS40Mg==)' />
 <defs>
   <clipPath id='cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA='>
     <rect x='0.00' y='0.00' width='720.00' height='576.00' />
@@ -60,8 +60,8 @@
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)'><text x='369.07' y='505.92' style='font-size: 11.50px; font-family: Arial Narrow;' textLength='0.00px' lengthAdjust='spacingAndGlyphs'>x</text></g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)'><text transform='translate(42.31,279.73) rotate(-90)' style='font-size: 11.50px; font-family: Arial Narrow;' textLength='0.00px' lengthAdjust='spacingAndGlyphs'>y</text></g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)'><text x='340.34' y='537.95' style='font-size: 11.50px; font-family: Arial Narrow;' textLength='0.00px' lengthAdjust='spacingAndGlyphs'>z</text></g>
-<rect x='346.77' y='523.81' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #D2F0F5;' clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)' />
-<rect x='375.51' y='523.81' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FFDD4B;' clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)' />
+<rect x='346.77' y='523.81' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #A6DEE8;' clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)' />
+<rect x='375.51' y='523.81' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FFB841;' clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)' />
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)'><text x='369.07' y='536.71' style='font-size: 9.20px; font-family: Arial Narrow;' textLength='0.00px' lengthAdjust='spacingAndGlyphs'>a</text></g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)'><text x='397.81' y='536.71' style='font-size: 9.20px; font-family: Arial Narrow;' textLength='0.00px' lengthAdjust='spacingAndGlyphs'>b</text></g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA=)'><text x='48.04' y='49.33' style='font-size: 18.00px; font-weight: bold; font-family: Arial Narrow;' textLength='0.00px' lengthAdjust='spacingAndGlyphs'>atlas_lighten</text></g>
