@@ -31,7 +31,7 @@ Imports:
 Suggests: 
     covr (>= 3.2.1),
     english (>= 1.2.3),
-    here (>= 0.1),
+    here(>= 0.1),
     kableExtra (>= 1.1.0),
     lintr (>= 1.0.3),
     qpdf (>= 1.1),
