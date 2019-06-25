@@ -6,8 +6,7 @@ test_that("topicguide-docx renders", {
   # work in a temp directory
   dir <- tempfile()
   dir.create(dir)
-  oldwd <- getwd()
-  setwd(dir)
+  oldwd <- setwd(dir)
   on.exit(setwd(oldwd), add = TRUE)
 
   topicguide_skeleton(dir)
