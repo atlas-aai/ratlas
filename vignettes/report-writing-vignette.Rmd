@@ -39,15 +39,19 @@ in RStudio. This can be done by clicking:
 
 From there, specify the project name and the directory where you would like to 
 save the project for the new report. To lessen confusion later, it is usually 
-worthwhile to save each report in its own directory so that you can quickly and 
-easily find the report at a later date.
+worthwhile to save each report in its own directory/project so that you can 
+quickly and easily find the report at a later date.
 
 ## Structuring the Project Directories
 
 Once the project has been created, the next step is to create the file structure 
-for the report. To do this, begin by typing `library(here)` into the RStudio 
-Console. Note, you will need to install the here package if it is not already 
-installed. The here package can be installed by typing `install.packages("here)`.
+for the report. To do this, begin by making sure the here package is installed. 
+If it is not installed, type `install.packages("here)`. After here is installed, 
+type `library(here)` to load the library into RStudio. 
+
+The `here()` function is designed to reference the directory where you have 
+saved your project file, which is why the project file should always be 
+created first. 
 
 After the here package has been installed and loaded, four project directories 
 will need to be created. These four directories are:
@@ -75,12 +79,35 @@ The data directory is used to store cleaned or intermediate files.
 The output directory is used to store final output files that can be read into 
 the report.
 
+## Creating the R Markdown File
+
+Now that the project and the file directories have been created, it is time to 
+create the R Markdown file, which is where the report will be written. An 
+R Markdown file can be created by clicking:
+
+<center> **File > New File > R Markdown...** </center>
+
+In setting up the new R Markdown file, you will be able to set a few of the 
+default settings. Under the document table, the author and title can be 
+specified. These entries will be added to report text, so it is important to 
+distinguish between the title and the eventual file name that will be given to 
+the R Markdown file when saving. Also, the type of output can be specified when 
+creating the R Markdown file. The three predominant output types are html, word 
+documents, and pdf documents. 
+
 ## Writing the Setup Chunk
 
 The Setup Chunk is where you set all of the default settings for your report. 
 In doing this, you want to create the Setup Chunk so that all of the necessary 
 settings can be set in a reproducible way. In other words, you want the code to 
 be able to run on any computer, not just yours.
+
+In the default template for R Markdown files, the Setup Chunk is the first code 
+chunk that looks like:
+
+```{r setup_chunk_example, eval = FALSE, echo = TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 The first step in doing this is to load the needed packages. Bear in mind that 
 not all computers will have the the necessary packages installed already. Thus, 
@@ -195,6 +222,7 @@ cannot use an underscore in the name of the code chunk. The underscore is a
 special character in Latex, which causes difficulties in referencing table code 
 chunks using an underscore in the name.
 
+Although not shown above, the code chunk containing the table was labeled *iris*.
 In completing this example, we can then reference the numbered table using 
 `\@ref(tab:iris)`, and a hyperlink will appear with the number of the table. The 
 hyperlink can be clicked to direct the user to the location of the table in the 
