@@ -26,5 +26,5 @@ test_that("techreport-pdf renders", {
 
   techreport_skeleton(dir)
   rmarkdown::render("index.Rmd")
-  expect_true(file.exists("template.pdf"))
+  expect_true(file.exists("index.pdf"))
 })
