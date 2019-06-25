@@ -78,22 +78,6 @@ The data directory is used to store cleaned or intermediate files.
 The output directory is used to store final output files that can be read into 
 the report.
 
-## Creating the R Markdown File
-
-Now that the project and the file directories have been created, it is time to 
-create the R Markdown file, which is where the report will be written. An 
-R Markdown file can be created by clicking:
-
-<center> **File > New File > R Markdown...** </center>
-
-In setting up the new R Markdown file, you will be able to set a few of the 
-default settings. Under the document table, the author and title can be 
-specified. These entries will be added to report text, so it is important to 
-distinguish between the title and the eventual file name that will be given to 
-the R Markdown file when saving. Also, the type of output can be specified when 
-creating the R Markdown file. The three predominant output types are html, word 
-documents, and pdf documents. 
-
 ## Writing the Setup Chunk
 
 The Setup Chunk is where you set all of the default settings for your report. 
