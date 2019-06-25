@@ -40,7 +40,7 @@ scale_fill_atlas <- function(aesthetics = "fill", ...) {
 #'   geom_density(alpha = 0.7) + scale_fill_atlas(order = c(1, 3, 5))
 #' @export
 #' @usage NULL
-scale_atlas <- function(aesthetics, use_black = FALSE, order = 1:8, darken = 0,
+scale_atlas <- function(aesthetics, use_black = FALSE, order = 1:6, darken = 0,
                         alpha = NA, ...) {
   if (use_black) {
     values <- palette_atlas_black[order]

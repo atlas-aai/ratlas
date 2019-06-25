@@ -22,6 +22,8 @@ topicguide_docx <- function(...) {
   base$knitr$opts_chunk$error <- FALSE
   base$knitr$opts_chunk$echo <- FALSE
   base$knitr$opts_chunk$cache <- FALSE
+  base$knitr$opts_chunk$fig.width <- 8
+  base$knitr$opts_chunk$fig.asp <- 0.618
   base$knitr$opts_chunk$fig.ext <- "png"
   base$knitr$opts_chunk$fig.retina <- 3
   base$knitr$opts_chunk$fig.path <- "figures/"
