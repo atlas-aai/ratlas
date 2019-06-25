@@ -10,7 +10,6 @@ test_that("vignette renders", {
   on.exit(setwd(oldwd), add = TRUE)
 
   vignette_skeleton(dir)
-  rmarkdown::render(here("vignettes/report-writing-vignette.Rmd"),
-                    output_dir = dir)
+  rmarkdown::render("report-writing-vignette.Rmd")
   expect_true(file.exists("report-writing-vignette.html"))
 })
