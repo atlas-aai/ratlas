@@ -125,8 +125,6 @@ load_packages <- function(x) {
 }
 vapply(needed_packages, load_packages, logical(1))
 
-system <- ifelse(Sys.info()["sysname"] == "Darwin", "Mac", "Windows")
-
 extrafont::loadfonts(quiet = TRUE)
 ```
 
