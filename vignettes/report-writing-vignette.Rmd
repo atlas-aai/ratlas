@@ -1,7 +1,6 @@
 ---
 title: "Report Writing"
-output: 
-  rmarkdown::html_vignette:
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{report-writing-vignette}
   %\VignetteEngine{knitr::rmarkdown}
