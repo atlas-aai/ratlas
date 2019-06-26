@@ -47,8 +47,8 @@ topicguide_docx <- function(...) {
 #'   output: ratlas::techreport_pdf
 #' }
 techreport_pdf <- function(...) {
-  template <- find_resource("techreport", "template.tex")
-  base <- bookdown::pdf_document2(template = template, ...)
+  tech_report_template <- find_resource("techreport", "template.tex")
+  base <- bookdown::pdf_document2(template = tech_report_template, ...)
 
   base$knitr$opts_chunk$comment <- "#>"
   base$knitr$opts_chunk$message <- FALSE
