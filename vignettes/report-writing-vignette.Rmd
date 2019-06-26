@@ -23,7 +23,6 @@ knitr::opts_chunk$set(
 library(ratlas)
 library(dplyr)
 library(ggplot2)
-library(kableExtra)
 library(english)
 library(knitr)
 ```
@@ -187,7 +186,7 @@ format arguments to be used in the table. In this instance, *big.mark = ","*
 specifies that commas should be inserted to the left of the decimal point when 
 necessary to improve readability (i.e., printing 3,400 instead of 3400).
 
-```{r iris, echo = TRUE}
+```{r iris, echo = TRUE, eval = FALSE}
 kable(x = temp, digits = 1, col.names = c("Sepal Length", "Sepal Width", 
                                           "Petal Length", "Petal Width", 
                                           "Species"), 

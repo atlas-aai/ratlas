@@ -41,7 +41,6 @@ Imports:
 Suggests: 
     covr (>= 3.2.1),
     english (>= 1.2.3),
-    kableExtra (>= 1.1.0),
     lintr (>= 1.0.3),
     testthat (>= 2.1.0),
     tinytex (>= 0.13),
