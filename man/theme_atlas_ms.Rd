@@ -53,7 +53,7 @@ family, face and size}
 \item{ticks}{ticks if \code{TRUE} add ticks}
 }
 \description{
-#' You should \url{import_montserrat} first and also install the fonts on your
+You should \url{import_montserrat} first and also install the fonts on your
 system before trying to use this theme.
 }
 \details{
