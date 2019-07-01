@@ -17,6 +17,7 @@ Description: This package contains various template and
     formatting functions used for ATLAS. This include R Markdown
     templates, formatting funcitons, and ggplot2 themes.
 License: GPL-3
+VignetteBuilder: knitr
 Depends:
     R (>= 3.4.0)
 Imports:

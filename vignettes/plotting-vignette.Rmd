@@ -1,0 +1,38 @@
+---
+title: "Plotting"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{plotting-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  eval = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  fig.retina = 3,
+  fig.width = 6,
+  fig.asp = 0.618,
+  fig.align = "center",
+  out.width = "90%"
+)
+
+# Notes to self
+
+# file structure has been made parallel to report-writing-vignette
+  # make changes commensurate with being able to pass Github checks
+# write Rmd vignette file
+```
+
+```{r setup, include = FALSE}
+# see which of these I need and add to suggests in DESCRIPTION if needed
+library(ratlas)
+library(dplyr)
+library(ggplot2)
+library(english)
+library(knitr)
+```
+
