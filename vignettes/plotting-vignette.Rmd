@@ -34,9 +34,160 @@ library(dplyr)
 library(ggplot2)
 library(english)
 library(knitr)
+library(fivethirtyeight)
+
+options(warn = -1)
 ```
 
 # Introduction to ggplot2
+
+Figures are created using the ggplot2 package which is a part of the tidyverse 
+family of packages. Figures are created using multiple steps and layers. The 
+first step is to import the data into ggplot. This can be done using the 
+following code:
+
+```{r first_layer}
+iris %>%
+  ggplot()
+```
+
+The next step is to add layers to the graph. The first layer specifies the 
+aesthetics. Within the ggplot function, the parameter *aes* corresponds to the 
+aesthetics that are specified. For this graph, let's create a scatterplot with 
+petal length on the x-axis, petal width on the y-axis, and the color of each 
+point will correspond with species. The aesthetics of such a graph are specified
+in the following code:
+
+```{r second_layer}
+iris %>%
+  ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species))
+```
+
+While the above code specifies how to map the graph aesthetics, no points are 
+plotted on the coordinate plane. This is because the second layer involved in 
+creating a figure is to add a geometric object layer that corresponds to the 
+type of graph that is desired. In this case, we will use `geom_point` since we 
+want to create a scatterplot. The geometric object layers are added using a *+* 
+sign from the line above. The code below provides an example of adding the 
+`geom_point` geometric object layer.
+
+```{r third_layer, eval = TRUE}
+iris %>%
+  ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species)) +
+  geom_point()
+```
+
+In the graph above, you will notice that there are no parameters for the 
+`geom_point` layer. This is done for two reasons. First, all of the global 
+parameters specified in the `ggplot(aes(...))` layer are passed on to subsequent
+layers. Thus, `geom_point` is run using the global parameters. Second, there 
+were no necessary local changes, and hence no new parameters were necessary.
+
+Geometric objects can also be layered on one another. The graph below adds a 
+regression line using a `geom_smooth` object:
+
+```{r fourth_layer, eval = TRUE}
+iris %>%
+  ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species)) +
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+Note, however, that adding the `geom_smooth` object actually provided three 
+regression lines, one for each species of iris. This is because the global 
+settings  are specified to color each species differently. In order to create a 
+single regression line, the color aesthetic must be specified locally for the 
+`geom_point` object. This will allow the points to be colored according to 
+species, while drawing a single regression line through the points. Furthermore, 
+the default color of the regression line will be overridden with 
+`color = "black"` in the `geom_smooth` geometric object.
+
+```{r iris-figure, eval = TRUE}
+iris %>%
+  ggplot(aes(x = Petal.Length, y = Petal.Width)) +
+  geom_point(aes(color = Species)) + 
+  geom_smooth(method = "lm", se = FALSE, color = "black")
+```
+
+## Facets
+
+The example graph for the iris data provides an example of creating a single graph to display data. Now consider a second example which will graph the unemployement rate by median income of all college major categories using the `college_all_ages` dataset that comes with the `fivethirtyeight` package.
+
+```{r college-ex, eval = TRUE}
+college_all_ages %>% 
+  ggplot(aes(x = unemployment_rate, y = median)) +
+  geom_point(aes(color = major_category), show.legend = FALSE)
+```
+
+While the above graph contains a lot of information, it's rather convoluted because all of the college major categories are included in the same graph. Facets all for the data to be split based on one of the variables. 
+
+There are two primary types of facets. First, there is `facet_grid()`, which splits the graph into a grid based on up to two chosen variables. One variable will specify how the graph is to be split into columns, and the other variable will specify how the graph will be split into rows. As will be shown in the example, one or two variables can be specified for defining the grid. The only consequence is the shape of the grid. Figure \@ref(fig:facet-grid-ex) shows the effect of using `facet_grid()` with the `major_category` variable. More help can be found by typing `?facet_grid` into the console. 
+
+For simplicity, the following graph has been restricted to the Law & Public Policy, Communications & Journalism, Engineering, and Computers & Mathematics major categories.
+
+```{r facet-grid-ex, eval = TRUE}
+college_all_ages %>% 
+  filter(major_category == "Communications & Journalism" | 
+           major_category == "Law & Public Policy" | 
+           major_category == "Engineering" |
+           major_category == "Computers & Mathematics") %>% 
+  ggplot(aes(x = unemployment_rate, y = median)) +
+  geom_point(aes(color = major), show.legend = FALSE) +
+  facet_grid(rows = vars(major_category), scales = "free_y")
+```
+
+Second, there is `facet_wrap()`, which splits the graph into a rectangular grid based on the number of rows or columns that are desired. Unlike  `facet_grid()`, `facet_wrap()` can only use a single variable to split the dataset into a rectangular grid. Figure \@ref(fig:facet-wrap-ex) shows the effect of using `facet_wrap()` with the `major_category` variable. To improve readability, `ncols` will be set to three in this example. More help can be found by typing `?facet_wrap` into the console. 
+
+```{r facet-wrap-ex, eval = TRUE}
+college_all_ages %>% 
+  ggplot(aes(x = unemployment_rate, y = median)) +
+  geom_point(aes(color = major), show.legend = FALSE) +
+  facet_wrap(facets = vars(major_category), ncol = 3, scales = "fixed")
+```
+
+Additional reading and information about facets can be found [here](https://r4ds.had.co.nz/data-visualisation.html#facets)
+
+## Stats
+
+The previous examples using geometric objects have demonstrated how the data can be used to visualize the data itself. An extension of this is to create a layer based on a statistical calculation. Stats objects do just that. 
+
+The format of geometric objects is `geom_[type]`. The format of stats objects is `stat_[type]`. 
+
+Continuing with the previous example of the unemployment rates and median income of all college major categories, we can use a stats object to overlay the mean onto the scatterplot.
+
+```{r stats-obj-ex, eval = TRUE}
+college_all_ages %>% 
+  ggplot(aes(x = unemployment_rate, y = median)) +
+  geom_point(aes(color = major_category), show.legend = FALSE) + 
+  stat_summary(geom = "hline", y.fun = "mean", 
+               yintercept = mean(college_all_ages$median), color = "black")
+```
+
+Additional reading and information about stats objects can be found [here](https://r4ds.had.co.nz/data-visualisation.html#statistical-transformations)
+
+## Scales
+
+The scale layers allow for the graph scales to be adjusted to specifications. The x and y scales can be set individually through layers such as `scale_x_continuous()`, `scale_y_continuous()`, `scale_x_discrete()`, or `scale_y_discrete()`. The choice of continuous or discrete is dependent on the data type as to which one should be called.
+
+In continuing the example using the college major data, `scale_y_continuous()` and `scale_x_continuous()` can be used to scale the data. Note that continuous was chosen because both the median and the unemployment data are continuous variables.
+
+```{r scale-ex, eval = TRUE}
+college_all_ages %>% 
+  ggplot(aes(x = unemployment_rate, y = median)) +
+  geom_point(aes(color = major_category), show.legend = FALSE) +
+  scale_x_continuous(name = "Unemployment rate", limits = c(0, 0.2)) + 
+  scale_y_continuous(name = "Median income")
+```
+
+## Other geometric objects
+
+While the above example is useful for demonstrating how graphs and figures can be creating using ggplot2, a major limitations is often that creating good graphs is limited by the user's understanding of what graphs are possible with ggplot2. There are dozens of different geometric objects available through ggplot2. Since descriptions of all of them are beyond the scope of this vignette, Hadley Wickham provides a general description of geometric objects [here](https://r4ds.had.co.nz/data-visualisation.html#geometric-objects) and there is a a "Data Visualization Cheat Sheet" available [here](https://www.rstudio.com/resources/cheatsheets/#ggplot2). The Cheat Sheet provides examples of all of the different geometric objects and their arguments as well as different stats and scales options with their respective arguments.
+
+## Additional aesthetic arguments
+
+The above example demonstrates how to create a simple graph using the `geom_point` and `geom_smooth` geometric objects with the *x*, *y*, and *color* aesthetics. The above example also included `geom_smooth` specific arguments for *method* and *se*. Hadley Wickham provides a comprehensive description of all of the aesthetic arguments [here](https://r4ds.had.co.nz/data-visualisation.html#aesthetic-mappings). 
+
+Additional walkthroughs of visualizing data through ggplot2 can be found [here](https://tidy-ds.wjakethompson.com/days/day1/visualize/), where Jake Thompson has created a compilation of examples, demonstrations, and resources of plotting in ggplot2.
 
 # Using theme_atlas()
 
