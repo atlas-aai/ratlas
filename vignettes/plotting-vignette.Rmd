@@ -36,3 +36,15 @@ library(english)
 library(knitr)
 ```
 
+# Introduction to ggplot2
+
+# Using theme_atlas()
+
+# Using theme_atlas_ms()
+
+# Using the OkabeIto palette
+
+# Using the atlas palette
+
+# Using theme setting functions
+
