@@ -15,22 +15,11 @@
 #' @export
 
 set_theme <- function(theme = "theme_atlas"){
-  okabeito_palette <-
-    c(
-      "#E69F00",
-      "#56B4E9",
-      "#009E73",
-      "#F0E442",
-      "#0072B2",
-      "#D55E00",
-      "#CC79A7",
-      "#999999"
-    )
   pos <- 1
   envir <- as.environment(pos)
-  assign("scale_colour_discrete", function(..., values = okabeito_palette)
+  assign("scale_colour_discrete", function(..., values = palette_OkabeIto)
     scale_colour_manual(..., values = values), envir = envir)
-  assign("scale_fill_discrete", function(..., values = okabeito_palette)
+  assign("scale_fill_discrete", function(..., values = palette_OkabeIto)
     scale_fill_manual(..., values = values), envir = envir)
   options(ggplot2.continuous.colour = "viridis")
   options(ggplot2.continuous.fill = "viridis")
