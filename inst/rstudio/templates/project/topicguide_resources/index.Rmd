@@ -18,6 +18,8 @@ load_packages <- function(x) {
   suppressPackageStartupMessages(require(x, character.only = TRUE))
 }
 vapply(needed_packages, load_packages, logical(1))
+
+options(knitr.kable.NA = "")
 ```
 
 

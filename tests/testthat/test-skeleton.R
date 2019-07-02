@@ -12,7 +12,9 @@ test_that("topicguide docx works", {
   topicguide_skeleton(dir)
   check_files <- list.files(dir, recursive = TRUE)
 
-  expect_equal(check_files, c("bib/refs.bib", "csl/apa.csl", "index.Rmd"))
+  expect_equal(sort(check_files),
+               sort(c("bib/refs.bib", "csl/apa.csl", "index.Rmd",
+                      "_bookdown.yml")))
 })
 
 test_that("techreport pdf works", {
@@ -27,7 +29,5 @@ test_that("techreport pdf works", {
   techreport_skeleton(dir)
   check_files <- list.files(dir, recursive = TRUE)
 
-  expect_equal(check_files, c("bib/refs.bib", "csl/apa.csl",
-                              "figure/ATLAS_icon.png", "template.pdf",
-                              "template.tex"))
+  expect_equal(check_files, c("bib/refs.bib", "csl/apa.csl", "index.Rmd"))
 })
