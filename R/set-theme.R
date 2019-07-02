@@ -26,10 +26,12 @@ set_theme <- function(theme = "theme_atlas"){
       "#CC79A7",
       "#999999"
     )
+  pos <- 1
+  envir <- as.environment(pos)
   assign("scale_colour_discrete", function(..., values = okabeito_palette)
-    scale_colour_manual(..., values = values), globalenv())
+    scale_colour_manual(..., values = values), envir = envir)
   assign("scale_fill_discrete", function(..., values = okabeito_palette)
-    scale_fill_manual(..., values = values), globalenv())
+    scale_fill_manual(..., values = values), envir = envir)
   options(ggplot2.continuous.colour = "viridis")
   options(ggplot2.continuous.fill = "viridis")
 
