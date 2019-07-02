@@ -1,5 +1,7 @@
 ---
 title: "Tech Report Title"
+shorttitle: "A Short Title"
+subtitle: "Technical Report #XX-XX"
 date: "`r format(Sys.Date(), '%B, %Y')`"
 output: 
   ratlas::techreport_pdf:
@@ -7,9 +9,14 @@ output:
     citation_package: biblatex
     keep_tex: yes
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
-biblio-style: apalike2
+biblio-style: apa
+biblatexoptions:
+  - sortcites
 csl: csl/apa.csl
 link-citations: yes
+lot: true
+lof: true
+subparagraph: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -22,12 +29,14 @@ load_packages <- function(x) {
   suppressPackageStartupMessages(require(x, character.only = TRUE))
 }
 vapply(needed_packages, load_packages, logical(1))
+
+options(knitr.kable.NA = "")
 ```
 
 
 
 
-###### Page break
+\newpage
 
 # References
 
