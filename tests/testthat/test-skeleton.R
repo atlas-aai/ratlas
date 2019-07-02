@@ -31,6 +31,6 @@ test_that("techreport pdf works", {
 
   expect_equal(sort(check_files),
                sort(c("bib/refs.bib", "csl/apa.csl", "index.Rmd",
-                      "figure/pre-generated/atlas.png",
-                      "figure/pre-generated/dlm.png")))
+                      "figures/pre-generated/atlas.png",
+                      "figures/pre-generated/dlm.png")))
 })
