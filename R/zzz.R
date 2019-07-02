@@ -1,20 +1,13 @@
-.onLoad <- function(libname, pkgname) {
+.onAttach <- function(libname, pkgname) {
   if (.Platform$OS.type == "windows") {
+    if (interactive()) packageStartupMessage("Registering Windows fonts with R")
     extrafont::loadfonts("win", quiet = TRUE)
   }
 
   if (getOption("ratlas.loadfonts", default = FALSE)) {
-    extrafont::loadfonts("pdf", quiet = TRUE)
-    extrafont::loadfonts("postscript", quiet = TRUE)
-  }
-}
-
-.onAttach <- function(libname, pkgname) {
-  if (.Platform$OS.type == "windows") {
-    if (interactive()) packageStartupMessage("Registering Windows fonts with R")
-  }
-
-  if (getOption("ratlas.loadfonts", default = FALSE)) {
+    if (interactive()){
+      packageStartupMessage("Registering PDF & PostScript fonts with R")
+    }
     extrafont::loadfonts("pdf", quiet = TRUE)
     extrafont::loadfonts("postscript", quiet = TRUE)
   }
