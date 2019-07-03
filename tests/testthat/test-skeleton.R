@@ -1,6 +1,6 @@
 context("project-skeletons")
 
-test_that("topicguide docx works", {
+test_that("copying topicguide docx files works", {
   testthat::skip_on_cran()
 
   # work in a temp directory
@@ -17,7 +17,7 @@ test_that("topicguide docx works", {
                       "_bookdown.yml")))
 })
 
-test_that("techreport pdf works", {
+test_that("copying techreport pdf files works", {
   testthat::skip_on_cran()
 
   # work in a temp directory
@@ -28,6 +28,7 @@ test_that("techreport pdf works", {
 
   techreport_skeleton(dir)
   check_files <- list.files(dir, recursive = TRUE)
+  print(check_files)
 
   expect_equal(sort(check_files),
                sort(c("bib/refs.bib", "csl/apa.csl", "index.Rmd",

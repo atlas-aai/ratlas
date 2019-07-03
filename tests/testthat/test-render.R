@@ -20,16 +20,16 @@ test_that("topicguide-docx renders", {
 })
 
 
-test_that("techreport-pdf renders", {
-  testthat::skip_on_cran()
-
-  # work in a temp directory
-  dir <- tempfile()
-  dir.create(dir)
-  oldwd <- setwd(dir)
-  on.exit(setwd(oldwd), add = TRUE)
-
-  techreport_skeleton(dir)
-  rmarkdown::render("index.Rmd")
-  expect_true(file.exists("index.pdf"))
-})
+# test_that("techreport-pdf renders", {
+#   testthat::skip_on_cran()
+#
+#   # work in a temp directory
+#   dir <- tempfile()
+#   dir.create(dir)
+#   oldwd <- setwd(dir)
+#   on.exit(setwd(oldwd), add = TRUE)
+#
+#   techreport_skeleton(dir)
+#   rmarkdown::render("index.Rmd")
+#   expect_true(file.exists("index.pdf"))
+# })
