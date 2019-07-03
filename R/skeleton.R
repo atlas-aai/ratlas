@@ -19,7 +19,7 @@ topicguide_skeleton <- function(path) {
 }
 
 techreport_skeleton <- function(path) {
-  # copy 'topicguide_resources' folder to path
+  # copy 'techreport_resources' folder to path
   resources <- ratlas_file("rstudio", "templates", "project",
                            "techreport_resources")
 
