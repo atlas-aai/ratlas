@@ -20,14 +20,6 @@ test_that("copying topicguide docx files works", {
 test_that("copying techreport pdf files works", {
   testthat::skip_on_cran()
 
-  print("Check ratlas_file")
-  resources <- ratlas_file("rstudio", "templates", "project",
-                           "techreport_resources")
-  print(resources)
-
-  files <- list.files(resources, recursive = TRUE, include.dirs = FALSE)
-  print(files)
-
   # work in a temp directory
   dir <- tempfile()
   dir.create(dir)
