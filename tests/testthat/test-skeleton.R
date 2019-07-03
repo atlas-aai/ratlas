@@ -21,7 +21,9 @@ test_that("copying techreport pdf files works", {
   testthat::skip_on_cran()
 
   print("Check ratlas_file")
-  ratlas_file("rstudio", "templates", "project", "techreport_resources")
+  resources <- ratlas_file("rstudio", "templates", "project",
+                           "techreport_resources")
+  print(resources)
 
   files <- list.files(resources, recursive = TRUE, include.dirs = FALSE)
   print(files)
