@@ -1,5 +1,5 @@
 ---
-title: "Plotting"
+title: "Plotting in ratlas"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{plotting-vignette}
@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 # write Rmd vignette file
 ```
 
-```{r setup, include = FALSE}
+```{r setup, include = FALSE, eval = TRUE}
 # see which of these I need and add to suggests in DESCRIPTION if needed
 library(ratlas)
 library(dplyr)
