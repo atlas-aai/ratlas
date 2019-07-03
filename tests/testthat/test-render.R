@@ -23,6 +23,7 @@ test_that("topicguide-docx renders", {
 
 test_that("techreport-pdf renders", {
   testthat::skip_on_cran()
+  testthat::skip_on_appveyor()
 
   # work in a temp directory
   dir <- tempfile()

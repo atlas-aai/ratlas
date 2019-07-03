@@ -19,7 +19,6 @@ test_that("copying topicguide docx files works", {
 
 test_that("copying techreport pdf files works", {
   testthat::skip_on_cran()
-  testthat::skip_on_appveyor()
 
   # work in a temp directory
   dir <- tempfile()
