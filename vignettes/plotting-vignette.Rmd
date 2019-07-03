@@ -204,7 +204,29 @@ college_all_ages %>%
 
 # Using theme_atlas()
 
+The first of ratlas' theme packages is `theme_atlas()`, which specifies font characteristics, axes and labels, and background display settings. The `theme_atlas()` theme can be enacted as shown in Figure \@ref(fig:theme-atlas-ex).
+
+```{r theme-atlas-ex, eval = TRUE}
+college_all_ages %>% 
+  ggplot(aes(x = unemployment_rate, y = median)) +
+  geom_point(aes(color = major_category), show.legend = FALSE) +
+  scale_x_continuous(name = "Unemployment rate", limits = c(0, 0.2)) + 
+  scale_y_continuous(name = "Median income") +
+  theme_atlas()
+```
+
 # Using theme_atlas_ms()
+
+The second of ratlas' theme packages is `theme_atlas_ms()`, which is similar to `theme_atlas()` but specifies a different font. The `theme_atlas_ms()` theme can be enacted as shown in Figure \@ref(fig:theme-atlas-ms-ex).
+
+```{r theme-atlas-ms-ex, eval = TRUE}
+college_all_ages %>% 
+  ggplot(aes(x = unemployment_rate, y = median)) +
+  geom_point(aes(color = major_category), show.legend = FALSE) +
+  scale_x_continuous(name = "Unemployment rate", limits = c(0, 0.2)) + 
+  scale_y_continuous(name = "Median income") +
+  theme_atlas_ms()
+```
 
 # Using the OkabeIto palette
 
