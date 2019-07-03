@@ -189,6 +189,19 @@ The above example demonstrates how to create a simple graph using the `geom_poin
 
 Additional walkthroughs of visualizing data through ggplot2 can be found [here](https://tidy-ds.wjakethompson.com/days/day1/visualize/), where Jake Thompson has created a compilation of examples, demonstrations, and resources of plotting in ggplot2.
 
+## Themes
+
+ggplot comes with a handful of pre-built themes that allow the user to change the appearance of the graph to be in accordance with the theme's settings. The theme can be set by calling the theme's function as an additional layer of the graph. Figure \@ref(fig:theme-ex) sets the previous graph to use the `theme_bw()` theme. 
+
+```{r theme-ex, eval = TRUE}
+college_all_ages %>% 
+  ggplot(aes(x = unemployment_rate, y = median)) +
+  geom_point(aes(color = major_category), show.legend = FALSE) +
+  scale_x_continuous(name = "Unemployment rate", limits = c(0, 0.2)) + 
+  scale_y_continuous(name = "Median income") +
+  theme_bw()
+```
+
 # Using theme_atlas()
 
 # Using theme_atlas_ms()
