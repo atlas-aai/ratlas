@@ -3,6 +3,8 @@ context("rmarkdown renderers")
 test_that("unknown template errors", {
   expect_error(find_resource("topicguide", "template2.docx"),
                "Couldn't find template")
+  expect_error(find_resource("techreport", "template2.tex"),
+               "Couldn't find template")
 })
 
 test_that("topicguide-docx renders", {
@@ -17,4 +19,18 @@ test_that("topicguide-docx renders", {
   topicguide_skeleton(dir)
   rmarkdown::render("index.Rmd")
   expect_true(file.exists("index.docx"))
+})
+
+test_that("techreport-pdf renders", {
+  testthat::skip_on_cran()
+
+  # work in a temp directory
+  dir <- tempfile()
+  dir.create(dir)
+  oldwd <- setwd(dir)
+  on.exit(setwd(oldwd), add = TRUE)
+
+  techreport_skeleton(dir)
+  rmarkdown::render("index.Rmd")
+  expect_true(file.exists("index.pdf"))
 })
