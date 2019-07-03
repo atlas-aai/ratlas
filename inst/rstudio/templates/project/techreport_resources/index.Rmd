@@ -31,6 +31,7 @@ load_packages <- function(x) {
 vapply(needed_packages, load_packages, logical(1))
 
 options(knitr.kable.NA = "")
+options(tinytex.verbose = TRUE)
 ```
 
 
