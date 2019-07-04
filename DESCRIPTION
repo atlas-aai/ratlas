@@ -11,6 +11,10 @@ Authors@R:
              family = "Pablo",
              role = "aut",
              email = "noellepablo@gmail.com"),
+      person(given = "Jeffrey",
+             family = "Hoover",
+             role = "aut",
+             email = "jeffrey.c.hoover@gmail.com"),
       person(given = "ATLAS",
              role = c("cph", "fnd")))
 Description: This package contains various template and
