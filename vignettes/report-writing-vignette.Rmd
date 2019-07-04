@@ -209,80 +209,15 @@ document.
 
 ## Create and Cross Reference Figures
 
-Figures are created using the ggplot2 package which is a part of the tidyverse 
-family of packages. Figures are created using multiple steps and layers. The 
-first step is to import the data into ggplot. This can be done using the 
-following code:
-
-```{r first_layer, echo = TRUE, eval = FALSE}
-iris %>%
-  ggplot()
-```
-
-The next step is to add layers to the graph. The first layer specifies the 
-aesthetics. Within the ggplot function, the parameter *aes* corresponds to the 
-aesthetics that are specified. For this graph, let's create a scatterplot with 
-petal length on the x-axis, petal width on the y-axis, and the color of each 
-point will correspond with species. The aesthetics of such a graph are specified
-in the following code:
-
-```{r second_layer, echo = TRUE, eval = FALSE}
-iris %>%
-  ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species))
-```
-
-While the above code specifies how to map the graph aesthetics, no points are 
-plotted on the coordinate plane. This is because the second layer involved in 
-creating a figure is to add a geometric object layer that corresponds to the 
-type of graph that is desired. In this case, we will use `geom_point` since we 
-want to create a scatterplot. The geometric object layers are added using a *+* 
-sign from the line above. The code below provides an example of adding the 
-`geom_point` geometric object layer.
-
-```{r third_layer, echo = TRUE}
-iris %>%
-  ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species)) +
-  geom_point()
-```
-
-In the graph above, you will notice that there are no parameters for the 
-`geom_point` layer. This is done for two reasons. First, all of the global 
-parameters specified in the `ggplot(aes(...))` layer are passed on to subsequent
-layers. Thus, `geom_point` is run using the global parameters. Second, there 
-were no necessary local changes, and hence no new parameters were necessary.
-
-Geometric objects can also be layered on one another. The graph below adds a 
-regression line using a `geom_smooth` object:
-
-```{r fourth_layer, echo = TRUE}
-iris %>%
-  ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species)) +
-  geom_point() + 
-  geom_smooth(method = "lm", se = FALSE)
-```
-
-Note, however, that adding the `geom_smooth` object actually provided three 
-regression lines, one for each species of iris. This is because the global 
-settings  are specified to color each species differently. In order to create a 
-single regression line, the color aesthetic must be specified locally for the 
-`geom_point` object. This will allow the points to be colored according to 
-species, while drawing a single regression line through the points. Furthermore, 
-the default color of the regression line will be overridden with 
-`color = "black"` in the `geom_smooth` geometric object.
-
-```{r iris-figure, echo = TRUE}
-iris %>%
-  ggplot(aes(x = Petal.Length, y = Petal.Width)) +
-  geom_point(aes(color = Species)) + 
-  geom_smooth(method = "lm", se = FALSE, color = "black")
-```
-
 Cross-referencing figures can be done similarly to cross-referencing tables. The
 most notable difference is the syntax for referencing a figure. To reference a 
 figure, we can use `\@ref(fig:chunk-label)`. Once again, *chunk-label* refers to
 the name of the code chunk containing the figure. In this case, the code chunk 
 name is *iris-figure*. Therefore, we can use `\@ref(fig:iris-figure)` to 
 reference the figure.
+
+A more in-depth introduction to ggplot can be found in the plotting vignette, 
+which can be called by typing `vignette(reporting-writing-vignette)`.
 
 ## Using Inline R Code 
 
