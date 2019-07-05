@@ -230,7 +230,37 @@ college_all_ages %>%
 
 # Using the OkabeIto palette
 
+Palettes are assortments of colors that are pre-prepared for use in a graph. The colorblindr package in R is specially developed to provide visualizations that can accomodate those with colorblindness. The OkabeIto palette is one such palette in colorblindr. 
+
+To use the OkabeIto pallete, simply add `scale_fill_OkabeIto(palette = palette_OkabeIto)` as another layer to the graph. This will convert the colors of the graph to those of the color palette. An example is provided in Figure \@ref(fig:okabeito-example).
+
+```{r okabeito-example}
+college_all_ages %>% 
+  ggplot(aes(x = unemployment_rate, y = median)) +
+  geom_point(aes(color = major_category), show.legend = FALSE) +
+  scale_x_continuous(name = "Unemployment rate", limits = c(0, 0.2)) + 
+  scale_y_continuous(name = "Median income") +
+  theme_atlas_ms() + 
+  scale_fill_OkabeIto(palette = palette_OkabeIto)
+```
+
+There is a second OkabeIto pallete called `palette_OkabeIto_black`, and it can be called with `scale_fill_OkabeIto(palette = palette_OkabeIto_black`.
+
 # Using the atlas palette
+
+Similarly, the atlas palette can be used. The major difference is that the `scale_fill_OkabeIto()` layer is specific to the colorblindr package. For general purposes, a layer calling `scale_fill_continuous()` or `scale_fill_discrete()` can be used depending on whether you data is contintuous or discrete, respectively. An example is provided in Figure \@ref(fig:atlas-palette-example)
+
+```{r atlas-palette-example}
+college_all_ages %>% 
+  ggplot(aes(x = unemployment_rate, y = median)) +
+  geom_point(aes(color = major_category), show.legend = FALSE) +
+  scale_x_continuous(name = "Unemployment rate", limits = c(0, 0.2)) + 
+  scale_y_continuous(name = "Median income") +
+  theme_atlas_ms() + 
+  scale_fill_continuous(palette = palette_atlas)
+```
+
+Just like the OkabeIto palette, there is a second palette choice for the atlas palettes. Using the same naming format as the OkabeIto palettes, the second atlas palette is titled `palette_atlas_black`, and it can be called using `scale_fill_continuous(palette = palette_atlas_black` or `scale_fill_discrete(palette = palette_atlas_black)`.
 
 # Using theme setting functions
 
