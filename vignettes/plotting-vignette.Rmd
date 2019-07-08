@@ -1,6 +1,9 @@
 ---
 title: "Plotting in ratlas"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
 vignette: >
   %\VignetteIndexEntry{plotting-vignette}
   %\VignetteEngine{knitr::rmarkdown}
@@ -264,3 +267,17 @@ Just like the OkabeIto palette, there is a second palette choice for the atlas p
 
 # Using theme setting functions
 
+The theme for the plots can also be set globally using the `set_theme()` command, which can be added in the setup code chunk. The `set_theme()` function takes one argument, theme. By default, the theme argument is set to be "theme_atlas", although this can be specified to be "theme_atlas_ms".
+
+To set the theme in the setup chunk, the setup chunk will look similar to:
+
+```{r setup-ex, include = TRUE, eval = FALSE, echo = TRUE}
+# see which of these I need and add to suggests in DESCRIPTION if needed
+library(ratlas)
+
+# setting the theme to theme_atlas
+set_theme(theme = "theme_atlas") # could also be written as set_theme()
+
+# setting the theme to theme_atlas_ms
+# set_theme(theme = "theme_atlas_ms")
+```
