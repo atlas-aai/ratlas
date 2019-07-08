@@ -22,20 +22,12 @@ knitr::opts_chunk$set(
   fig.align = "center",
   out.width = "90%"
 )
-
-# Notes to self
-
-# file structure has been made parallel to report-writing-vignette
-  # make changes commensurate with being able to pass Github checks
-# write Rmd vignette file
 ```
 
 ```{r setup, include = FALSE, eval = TRUE}
-# see which of these I need and add to suggests in DESCRIPTION if needed
 library(ratlas)
 library(dplyr)
 library(ggplot2)
-library(english)
 library(knitr)
 library(fivethirtyeight)
 
