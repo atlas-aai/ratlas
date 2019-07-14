@@ -27,7 +27,7 @@ topicguide_docx <- function(...) {
   base$knitr$opts_chunk$fig.ext <- "png"
   base$knitr$opts_chunk$fig.retina <- 3
   base$knitr$opts_chunk$fig.path <- "figures/"
-  base$knitr$opts_chunk$fig.show <- "hold"
+  base$knitr$opts_chunk$fig.pos <- "H"
 
   base
 }
@@ -65,7 +65,7 @@ techreport_pdf <- function(...) {
   base$knitr$opts_chunk$fig.ext <- "pdf"
   base$knitr$opts_chunk$fig.retina <- 3
   base$knitr$opts_chunk$fig.path <- "figures/"
-  base$knitr$opts_chunk$fig.show <- "hold"
+  base$knitr$opts_chunk$fig.pos <- "H"
 
   base
 }
