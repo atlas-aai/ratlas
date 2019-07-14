@@ -27,6 +27,7 @@ topicguide_docx <- function(...) {
   base$knitr$opts_chunk$fig.ext <- "png"
   base$knitr$opts_chunk$fig.retina <- 3
   base$knitr$opts_chunk$fig.path <- "figures/"
+  base$knitr$opts_chunk$fig.show <- "hold"
 
   base
 }
@@ -48,7 +49,10 @@ topicguide_docx <- function(...) {
 #' }
 techreport_pdf <- function(...) {
   tech_report_template <- find_resource("techreport", "template.tex")
-  base <- bookdown::pdf_document2(template = tech_report_template, ...)
+  base <- bookdown::pdf_document2(template = tech_report_template,
+                                  latex_engine = "xelatex",
+                                  citation_package = "biblatex",
+                                  keep_tex = TRUE, ...)
 
   base$knitr$opts_chunk$comment <- "#>"
   base$knitr$opts_chunk$message <- FALSE
@@ -56,9 +60,12 @@ techreport_pdf <- function(...) {
   base$knitr$opts_chunk$error <- FALSE
   base$knitr$opts_chunk$echo <- FALSE
   base$knitr$opts_chunk$cache <- FALSE
-  base$knitr$opts_chunk$fig.ext <- "png"
+  base$knitr$opts_chunk$fig.width <- 8
+  base$knitr$opts_chunk$fig.asp <- 0.618
+  base$knitr$opts_chunk$fig.ext <- "pdf"
   base$knitr$opts_chunk$fig.retina <- 3
   base$knitr$opts_chunk$fig.path <- "figures/"
+  base$knitr$opts_chunk$fig.show <- "hold"
 
   base
 }
