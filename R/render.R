@@ -25,9 +25,13 @@ topicguide_docx <- function(...) {
   base$knitr$opts_chunk$fig.width <- 8
   base$knitr$opts_chunk$fig.asp <- 0.618
   base$knitr$opts_chunk$fig.ext <- "png"
+  base$knitr$opts_chunk$fig.align <- "center"
   base$knitr$opts_chunk$fig.retina <- 3
   base$knitr$opts_chunk$fig.path <- "figures/"
   base$knitr$opts_chunk$fig.pos <- "H"
+  base$knitr$opts_chunk$out.extra <- ""
+  base$knitr$opts_chunk$out.width <- "90%"
+  base$knitr$opts_chunk$fig.show <- "hold"
 
   base
 }
@@ -63,9 +67,13 @@ techreport_pdf <- function(...) {
   base$knitr$opts_chunk$fig.width <- 8
   base$knitr$opts_chunk$fig.asp <- 0.618
   base$knitr$opts_chunk$fig.ext <- "pdf"
+  base$knitr$opts_chunk$fig.align <- "center"
   base$knitr$opts_chunk$fig.retina <- 3
   base$knitr$opts_chunk$fig.path <- "figures/"
   base$knitr$opts_chunk$fig.pos <- "H"
+  base$knitr$opts_chunk$out.extra <- ""
+  base$knitr$opts_chunk$out.width <- "90%"
+  base$knitr$opts_chunk$fig.show <- "hold"
 
   base
 }
