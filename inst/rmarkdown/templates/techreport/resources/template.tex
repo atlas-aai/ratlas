@@ -127,6 +127,8 @@
 % references
 \usepackage[style=apa]{biblatex}
 \ExecuteBibliographyOptions{sortcites}
+\DeclareFieldFormat{doi}{%
+  doi\addcolon\nolinkurl{#1}}
 
 $for(bibliography)$
 \addbibresource{$bibliography$}
