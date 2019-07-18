@@ -129,6 +129,8 @@
 \ExecuteBibliographyOptions{sortcites}
 \DeclareFieldFormat{doi}{%
   doi\addcolon\nolinkurl{#1}}
+\DeclareFieldFormat{eprint:arXiv}{%
+  arXiv\addcolon\nolinkurl{#1}}
 
 $for(bibliography)$
 \addbibresource{$bibliography$}
