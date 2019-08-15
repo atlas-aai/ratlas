@@ -16,7 +16,7 @@ subparagraph: yes
 mainfont: Palatino LT Std
 fontsize: 11pt
 acknowledgements: >
-  `r if (knitr::is_latex_output()) inc("front-matter/preface.Rmd")`
+  `r if (knitr::is_latex_output()) ratlas::inc("front-matter/preface.Rmd")`
 ---
 
 ```{r setup, include=FALSE}
