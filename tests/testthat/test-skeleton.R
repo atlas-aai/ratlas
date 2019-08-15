@@ -28,7 +28,6 @@ test_that("copying techreport pdf files works", {
 
   techreport_skeleton(dir)
   check_files <- list.files(dir, recursive = TRUE)
-  print(check_files)
 
   expect_equal(sort(check_files),
                sort(c("bib/refs.bib", "csl/apa.csl", "index.Rmd",
