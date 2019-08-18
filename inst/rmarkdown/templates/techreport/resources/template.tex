@@ -69,11 +69,26 @@
   \noindent\rule{\linewidth}{0.2mm}\par
   \vspace*{\dimexpr-\parskip-.5\baselineskip+#1}}
 
-\definecolor{dlmblue}{RGB}{91,155,213}
+% Create command for searching substrings
+\makeatletter
+\def\instring#1#2{TT\fi\begingroup
+  \edef\x{\endgroup\noexpand\in@{#1}{#2}}\x\ifin@}
+\makeatother
+
+% Define color for rule on front page
+\if\instring{DLM}{$program$}
+\definecolor{progcolor}{RGB}{91,155,213}
+\else
+  \if\instring{I-SMART}{$program$}
+  \definecolor{progcolor}{RGB}{38,92,179}
+  \else
+  \definecolor{progcolor}{RGB}{0,0,0}
+  \fi
+\fi
 
 \newcommand{\subtitle}[1]{
   \posttitle{
-    \begin{center}{\color{dlmblue}\HRule[12pt]}\mdseries\LARGE#1\end{center}
+    \begin{center}{\color{progcolor}\HRule[12pt]}\mdseries\LARGE#1\end{center}
     }
 }
 
@@ -219,6 +234,11 @@ $endfor$
 \pagestyle{fancy}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ -- \ #1}}
 
+% program name for header
+\if\instring{DLM}{$program$}\newcommand{\progName}{Dynamic Learning Maps}
+\else\newcommand{\progName}{$program$}
+\fi
+
 \fancypagestyle{plain}{%
   \lhead{}
   \chead{}
@@ -250,7 +270,7 @@ $endfor$
   % \fancyfoot[L]{Chapter \rightmark}
   \fancyfoot[R]{Page \thepage}
   \fancyhead[L]{\includegraphics[width=2in]{figures/pre-generated/atlas.jpg}}
-  \fancyhead[R]{$shorttitle$\\Dynamic Learning Maps\\$subtitle$}
+  \fancyhead[R]{$shorttitle$\\\progName{}\\$subtitle$}
 }
 
 \usepackage{amsthm}
@@ -270,7 +290,7 @@ $endfor$
 
 \begin{document}
 \pagestyle{plain}
-\includegraphics[width=6.5in]{figures/pre-generated/$logo$.png}
+\includegraphics[width=6.5in]{figures/pre-generated/$program$.png}
 {\let\newpage\relax\maketitle}
 
 $if(acknowledgements)$
