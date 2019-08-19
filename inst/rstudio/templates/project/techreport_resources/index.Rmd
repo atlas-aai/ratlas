@@ -1,11 +1,23 @@
 ---
-title: "Topic Guide Title"
+title: "Tech Report Title"
+shorttitle: "A Short Title"
+subtitle: "Technical Report #XX-XX"
 date: "`r format(Sys.Date(), '%B, %Y')`"
-output: ratlas::topicguide_docx
+program: "DLM"
+output: ratlas::techreport_pdf
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
-biblio-style: apalike2
+biblio-style: apa
+biblatexoptions:
+  - sortcites
 csl: csl/apa.csl
 link-citations: yes
+lot: true
+lof: true
+subparagraph: yes
+mainfont: Palatino LT Std
+fontsize: 11pt
+acknowledgements: >
+  `r if (knitr::is_latex_output()) ratlas::inc("front-matter/preface.Rmd")`
 ---
 
 ```{r setup, include=FALSE}
@@ -19,13 +31,15 @@ load_packages <- function(x) {
 }
 vapply(needed_packages, load_packages, logical(1))
 
+extrafont::loadfonts(quiet = TRUE)
+
 options(knitr.kable.NA = "")
 ```
 
 
 
 
-###### Page break
+\newpage
 
 # References
 
@@ -36,4 +50,7 @@ suppressWarnings(
 )
 ```
 
-<div id="refs"></div>
+\printbibliography[heading=none]
+
+\setlength{\parindent}{15pt}
+\setlength{\leftskip}{0pt}

@@ -1,0 +1,323 @@
+\documentclass[$if(fontsize)$$fontsize$,$endif$]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+    $if(mainfont)$
+      \setmainfont[]{$mainfont$}
+    $endif$
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[includeheadfoot,hmargin=1in,vmargin=0.5in,headheight=0.6in,headsep=11pt,footskip=0.5in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={$title$},
+            pdfborder={0 0 0},
+            breaklinks=true,
+            linktocpage,
+            linktoc=all}
+\urlstyle{same}  % don't use monospace font for urls
+
+\usepackage{longtable,booktabs,dcolumn}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 0pt minus 0pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+\usepackage{xcolor}
+
+% Create subtitle command for use in maketitle
+\newcommand{\HRule}[1][\medskipamount]{\par
+  \vspace*{\dimexpr-\parskip-\baselineskip+#1}
+  \noindent\rule{\linewidth}{0.2mm}\par
+  \vspace*{\dimexpr-\parskip-.5\baselineskip+#1}}
+
+% Create command for searching substrings
+\makeatletter
+\def\instring#1#2{TT\fi\begingroup
+  \edef\x{\endgroup\noexpand\in@{#1}{#2}}\x\ifin@}
+\makeatother
+
+% Define color for rule on front page
+\if\instring{DLM}{$program$}
+\definecolor{progcolor}{RGB}{91,155,213}
+\else
+  \if\instring{I-SMART}{$program$}
+  \definecolor{progcolor}{RGB}{38,92,179}
+  \else
+  \definecolor{progcolor}{RGB}{0,0,0}
+  \fi
+\fi
+
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}{\color{progcolor}\HRule[12pt]}\mdseries\LARGE#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{$title$}
+    \pretitle{\vspace{\droptitle}\centering\Huge\bfseries\emph}
+  \posttitle{\par}
+
+  \subtitle{$subtitle$}
+
+  \author{}
+    \preauthor{}
+  \postauthor{}
+
+  \date{$date$}
+    \predate{\centering\large\bfseries}
+  \postdate{\par}
+
+
+\usepackage{float}
+\usepackage{tabu}
+\usepackage{caption}
+\usepackage{setspace}
+\usepackage{makecell}
+\usepackage{colortbl}
+\raggedbottom
+\raggedright
+
+% page breaks before each section
+\usepackage{titlesec}
+%\newcommand{\sectionbreak}{\clearpage}
+
+% footnote formatting
+\interfootnotelinepenalty=10000
+\usepackage[bottom]{footmisc}
+
+% \makeatletter
+%     \renewcommand\@makefntext[1]{\raggedright\@makefnmark#1}
+% \makeatother
+
+% \makeatletter
+% \renewcommand\@makefntext[1]{%
+%   \raggedright
+%   \leavevmode
+%   \rlap{\hss\@thefnmark\enspace}%
+%   #1%
+% }
+% \makeatother
+
+% references
+\usepackage[style=apa]{biblatex}
+\ExecuteBibliographyOptions{sortcites}
+\DeclareFieldFormat{doi}{%
+  doi\addcolon\nolinkurl{#1}}
+\DeclareFieldFormat{eprint:arXiv}{%
+  arXiv\addcolon\nolinkurl{#1}}
+
+$for(bibliography)$
+\addbibresource{$bibliography$}
+$endfor$
+\DeclareLanguageMapping{english}{american-apa}
+
+% roman pages
+\newenvironment{romanpages}
+{\cleardoublepage\setcounter{page}{1}\renewcommand{\thepage}{\roman{page}}}
+{\cleardoublepage\setcounter{page}{1}\renewcommand{\thepage}{\arabic{page}}}
+
+% table and figure numbering
+\usepackage{pdflscape}
+\usepackage{threeparttablex}
+% \usepackage{chngcntr}
+% \counterwithin{table}{section}
+% \counterwithin{figure}{section}
+% \numberwithin{figure}{section}
+% \numberwithin{table}{section}
+% \numberwithin{equation}{section}
+\usepackage[singlelinecheck=false]{caption}
+\captionsetup[figure]{name={Figure},labelfont=it,labelsep=period}
+\captionsetup[table]{name={Table},labelsep=period}
+
+% toc formatting
+\usepackage{tocloft}
+\tocloftpagestyle{front}
+\renewcommand{\cfttoctitlefont}{\hfill\LARGE\bfseries}
+\renewcommand{\cftaftertoctitle}{\hfill}
+\renewcommand{\cftlottitlefont}{\hfill\LARGE\bfseries}
+\renewcommand{\cftafterlottitle}{\hfill}
+\renewcommand{\cftloftitlefont}{\hfill\LARGE\bfseries}
+\renewcommand{\cftafterloftitle}{\hfill}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftsecdotsep}}
+\renewcommand\cftsecdotsep{\cftdot}
+\renewcommand\cftsubsecdotsep{\cftdot}
+\renewcommand\cftsubsubsecdotsep{\cftdot}
+\renewcommand\cftparadotsep{\cftdot}
+\renewcommand\cfttabdotsep{\cftdot}
+\renewcommand\cftfigdotsep{\cftdot}
+
+\makeatletter
+\renewcommand{\@tocrmarg}{2.55em plus1fil}
+\makeatletter
+
+% title styles
+% \titleformat{\section}{\bfseries\LARGE}{}{0pt}{}
+% \titlespacing*{\section}{0pt}{6pt}{0pt}
+% \titleformat{\subsection}{\bfseries\Large}{}{0pt}{}
+% \titlespacing*{\subsection}{0pt}{10pt}{0pt}
+% \titleformat{\subsubsection}{\bfseries\itshape\Large}{}{0pt}{}
+% \titlespacing*{\subsubsection}{0pt}{10pt}{0pt}
+% \titleformat{\paragraph}{\bfseries\large}{}{0pt}{}
+% \titlespacing*{\paragraph}{0pt}{10pt}{0pt}
+% \titleformat{\subparagraph}{\bfseries\itshape\large}{}{0pt}{}
+% \titlespacing*{\subparagraph}{0pt}{10pt}{0pt}
+\titleformat{\section}{\bfseries\LARGE}{\thesection. }{0pt}{}
+\titlespacing*{\section}{0pt}{6pt}{0pt}
+\titleformat{\subsection}{\bfseries\Large}{\thesubsection. }{0pt}{}
+\titlespacing*{\subsection}{0pt}{10pt}{0pt}
+\titleformat{\subsubsection}{\bfseries\itshape\Large}{\thesubsubsection. }{0pt}{}
+\titlespacing*{\subsubsection}{0pt}{10pt}{0pt}
+\titleformat{\paragraph}{\bfseries\large}{\theparagraph. }{0pt}{}
+\titlespacing*{\paragraph}{0pt}{10pt}{0pt}
+\titleformat{\subparagraph}{\bfseries\itshape\large}{\thesubparagraph. }{0pt}{}
+\titlespacing*{\subparagraph}{0pt}{10pt}{0pt}
+
+% changemargin definition
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+
+% redefine hyperlinks
+\let\oldhref\href
+\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
+
+% page styles
+\usepackage{fancyhdr}
+\lhead{}
+\chead{}
+\rhead{}
+\renewcommand{\headrulewidth}{0pt}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ -- \ #1}}
+
+% program name for header
+\if\instring{DLM}{$program$}\newcommand{\progName}{Dynamic Learning Maps}
+\else\newcommand{\progName}{$program$}
+\fi
+
+\fancypagestyle{plain}{%
+  \lhead{}
+  \chead{}
+  \rhead{}
+  \renewcommand{\headrulewidth}{0pt}
+  \lfoot{}
+  \cfoot{}
+  \rfoot{}
+}
+\fancypagestyle{front}{%
+  \lhead{}
+  \chead{}
+  \rhead{}
+  \renewcommand{\headrulewidth}{0pt}
+  \lfoot{}
+  \cfoot{}
+  \rfoot{}
+  \fancyfoot[R]{Page \thepage}
+}
+\fancypagestyle{norm}{%
+  \lhead{}
+  \chead{}
+  \rhead{}
+  \renewcommand{\headrulewidth}{0pt}
+  \lfoot{}
+  \cfoot{}
+  \rfoot{}
+  \renewcommand{\headrulewidth}{0pt}%
+  % \fancyfoot[L]{Chapter \rightmark}
+  \fancyfoot[R]{Page \thepage}
+  \fancyhead[L]{\includegraphics[width=2in]{figures/pre-generated/atlas.jpg}}
+  \fancyhead[R]{$shorttitle$\\\progName{}\\$subtitle$}
+}
+
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+
+\begin{document}
+\pagestyle{plain}
+\includegraphics[width=6.5in]{figures/pre-generated/$program$.png}
+{\let\newpage\relax\maketitle}
+
+$if(acknowledgements)$
+  $acknowledgements$
+$endif$
+
+\begin{romanpages}
+\pagestyle{front}
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\clearpage
+\listoftables
+
+\clearpage
+\listoffigures
+
+\end{romanpages}
+\pagenumbering{arabic}
+\pagestyle{norm}
+
+$body$
+
+% \clearpage
+% \addcontentsline{toc}{section}{References}
+% \printbibliography[heading=bibintoc,title={References}]
+
+\end{document}
