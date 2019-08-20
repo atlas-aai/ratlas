@@ -259,3 +259,9 @@ update_geom_font_ms_defaults <- function(family = "Montserrat", face = "plain",
     color = color
   ))
 }
+
+#' @rdname Montserrat
+#' @title Montserrat font name R variable aliases
+#' @description `font_ms` == "`Montserrat`"
+#' @format length 1 character vector
+#' @export

@@ -3,6 +3,7 @@
 export("%>%")
 export(append_summary)
 export(font_an)
+export(font_ms)
 export(gg_check)
 export(import_montserrat)
 export(inc)
