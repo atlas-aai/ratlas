@@ -4,4 +4,5 @@
 ^\.Rproj\.user$
 ^codecov\.yml$
 ^appveyor\.yml$
+^\.lintr$
 hex-logo
