@@ -25,9 +25,6 @@
 #' @param axis_text_size font size of axis text
 #' @param axis add x or y axes? `TRUE`, `FALSE`, "`xy`"
 #' @param ticks ticks if `TRUE` add ticks
-#' @importFrom grDevices windowsFonts
-#' @importFrom grDevices pdfFonts
-#' @importFrom grDevices postscriptFonts
 #' @export
 #' @examples
 #' \dontrun{
