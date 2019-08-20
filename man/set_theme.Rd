@@ -4,20 +4,20 @@
 \alias{set_theme}
 \title{Set default ggplot2 theme}
 \usage{
-set_theme(theme = "theme_atlas")
+set_theme(font = "Arial Narrow")
 }
 \arguments{
-\item{theme}{defaults to \code{theme_atlas}. Can be changed to \code{theme_atlas_ms}}
+\item{font}{One of "Arial Narrow" (default) or "Montserrat".}
 }
 \description{
-Sets the default color schemes, fonts, and theme for ggplot2 plots.
-The default color scheme for continuous variables is the
-\href{https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html}{viridis} color palette,
-and the default color scheme for discrete variables is the
+Sets the default color schemes, fonts, and theme for ggplot2 plots. The
+default color scheme for continuous variables is the
+\href{https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html}{viridis}
+color palette, and the default color scheme for discrete variables is the
 \href{http://jfly.iam.u-tokyo.ac.jp/color/}{Okabe Ito} palette.
 }
 \examples{
-set_theme()
-set_theme("theme_atlas_ms")
+set_theme("Arial Narrow")
+set_theme("Montserrat")
 
 }

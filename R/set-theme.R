@@ -1,20 +1,19 @@
 #' Set default ggplot2 theme
 #'
-#' Sets the default color schemes, fonts, and theme for ggplot2 plots.
-#' The default color scheme for continuous variables is the
-#' \href{https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html}{viridis} color palette,
-#' and the default color scheme for discrete variables is the
-#' \href{http://jfly.iam.u-tokyo.ac.jp/color/}{Okabe Ito} palette.
+#' Sets the default color schemes, fonts, and theme for ggplot2 plots. The
+#' default color scheme for continuous variables is the
+#' [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
+#' color palette, and the default color scheme for discrete variables is the
+#' [Okabe Ito](http://jfly.iam.u-tokyo.ac.jp/color/) palette.
 #'
-#' @param theme defaults to `theme_atlas`. Can be changed to `theme_atlas_ms`
+#' @param font One of "Arial Narrow" (default) or "Montserrat".
 #'
 #' @examples
-#' set_theme()
-#' set_theme("theme_atlas_ms")
+#' set_theme("Arial Narrow")
+#' set_theme("Montserrat")
 #'
 #' @export
-
-set_theme <- function(theme = "theme_atlas"){
+set_theme <- function(font = "Arial Narrow"){
   pos <- 1
   envir <- as.environment(pos)
   assign("scale_colour_discrete", function(..., values = palette_OkabeIto)
@@ -24,10 +23,11 @@ set_theme <- function(theme = "theme_atlas"){
   options(ggplot2.continuous.colour = "viridis")
   options(ggplot2.continuous.fill = "viridis")
 
-  if (theme == "theme_atlas") {
+  if (font == "Arial Narrow") {
     theme_set(theme_atlas())
-  } else if (theme == "theme_atlas_ms") {
+    update_geom_font_defaults()
+  } else if (font == "Montserrat") {
     theme_set(theme_atlas_ms())
-    import_montserrat()
+    update_geom_font_ms_defaults()
   }
 }
