@@ -250,14 +250,10 @@ import_montserrat <- function() {
 #' @export
 update_geom_font_ms_defaults <- function(family = "Montserrat", face = "plain",
                                          size = 3.5, color = "#2b2b2b") {
-  update_geom_defaults("text", list(
-    family = family, face = face, size = size,
-    color = color
-  ))
-  update_geom_defaults("label", list(
-    family = family, face = face, size = size,
-    color = color
-  ))
+  update_geom_defaults("text", list(family = family, face = face, size = size,
+                                    color = color))
+  update_geom_defaults("label", list(family = family, face = face, size = size,
+                                     color = color))
 }
 
 #' @rdname Montserrat
@@ -265,3 +261,4 @@ update_geom_font_ms_defaults <- function(family = "Montserrat", face = "plain",
 #' @description `font_ms` == "`Montserrat`"
 #' @format length 1 character vector
 #' @export
+font_ms <- "Montserrat"
