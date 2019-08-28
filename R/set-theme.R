@@ -7,6 +7,10 @@
 #' [Okabe Ito](http://jfly.iam.u-tokyo.ac.jp/color/) palette.
 #'
 #' @param font One of "Arial Narrow" (default) or "Montserrat".
+#' @param discrete Color palette for discrete colors. One of "okabeito"
+#'   (default), "atlas", or "ggplot2".
+#' @param continuous Color palette for continuous scales. One of "magma",
+#'   "inferno", "plasma", "viridis" (default), or "cividis", or "ggplot2".
 #'
 #' @examples
 #' set_theme("Arial Narrow")
@@ -33,15 +37,20 @@ set_theme <- function(font = "Arial Narrow", discrete = "okabeito",
     update_geom_font_ms_defaults()
   }
 
+  pos <- 1
+  envir <- as.environment(pos)
   if (!is.null(disc_option)) {
     assign("scale_colour_discrete", function(..., values = disc_option)
-      scale_colour_manual(..., values = values), pos = ".GlobalEnv")
+      scale_colour_manual(..., values = values), envir = envir)
     assign("scale_fill_discrete", function(..., values = disc_option)
-      scale_fill_manual(..., values = values), pos = ".GlobalEnv")
+      scale_fill_manual(..., values = values), envir = envir)
   }
   if (!is.null(cont_option)) {
     assign("scale_fill_continuous", function(..., option = cont_option)
-      scale_fill_continuous(..., option = option, type = "viridis"),
-      pos = ".GlobalEnv")
+      ggplot2::scale_fill_continuous(..., option = option, type = "viridis"),
+      envir = envir)
+    assign("scale_colour_continuous", function(..., option = cont_option)
+      ggplot2::scale_colour_continuous(..., option = option, type = "viridis"),
+      envir = envir)
   }
 }
