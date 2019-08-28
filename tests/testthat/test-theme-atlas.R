@@ -53,8 +53,8 @@ test_that("theme_atlas grids, axis, and ticks are correct", {
 
 test_that("update_geom_font_defaults() works", {
   expect_equal(update_geom_font_defaults(),
-               update_geom_defaults("text", list(
-                 family = "Arial Narrow", face = "plain", size = 3.5,
-                 color = "#2b2b2b"
-               )))
+               ggplot2::update_geom_defaults("text",
+                                             list(family = "Arial Narrow",
+                                                  face = "plain", size = 3.5,
+                                                  color = "#2b2b2b")))
 })
