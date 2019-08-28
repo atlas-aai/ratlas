@@ -9,6 +9,7 @@
 #' @docType package
 #' @name ratlas-package
 #' @aliases ratlas
+#' @import grDevices
 #' @import ggplot2 scales
 #' @importFrom rlang .data :=
 #' @importFrom xfun read_utf8 write_utf8

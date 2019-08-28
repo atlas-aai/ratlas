@@ -1,5 +1,8 @@
 #' ATLAS ggplot2 theme for consistent graphics
 #'
+#' You should [import_montserrat]() first and also install the fonts on your
+#' system before trying to use this theme.
+#'
 #' Based on \code{hrbrthemes::\link[hrbrthemes]{theme_ipsum}}.
 #'
 #' @param base_family,base_size base font family and size
@@ -247,12 +250,15 @@ import_montserrat <- function() {
 #' @export
 update_geom_font_ms_defaults <- function(family = "Montserrat", face = "plain",
                                          size = 3.5, color = "#2b2b2b") {
-  update_geom_defaults("text", list(
-    family = family, face = face, size = size,
-    color = color
-  ))
-  update_geom_defaults("label", list(
-    family = family, face = face, size = size,
-    color = color
-  ))
+  update_geom_defaults("text", list(family = family, face = face, size = size,
+                                    color = color))
+  update_geom_defaults("label", list(family = family, face = face, size = size,
+                                     color = color))
 }
+
+#' @rdname Montserrat
+#' @title Montserrat font name R variable aliases
+#' @description `font_ms` == "`Montserrat`"
+#' @format length 1 character vector
+#' @export
+font_ms <- "Montserrat"
