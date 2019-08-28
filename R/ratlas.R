@@ -12,7 +12,6 @@
 #' @import grDevices
 #' @import ggplot2 scales
 #' @importFrom rlang .data :=
-#' @importFrom xfun read_utf8 write_utf8
 NULL
 
 ## Make R CMD Check go away
