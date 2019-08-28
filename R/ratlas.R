@@ -10,7 +10,6 @@
 #' @name ratlas-package
 #' @aliases ratlas
 #' @import grDevices
-#' @import ggplot2 scales
 #' @importFrom rlang .data :=
 NULL
 

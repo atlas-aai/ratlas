@@ -14,8 +14,8 @@ theme_atlas_ms(base_family = "Montserrat", base_size = 11.5,
   caption_size = 9, caption_face = "italic", caption_margin = 10,
   axis_text_size = 9, axis_title_family = subtitle_family,
   axis_title_size = base_size, axis_title_face = "plain",
-  axis_title_just = "cm", plot_margin = margin(30, 30, 30, 30),
-  grid_col = "#cccccc", grid = TRUE, axis_col = "#cccccc",
+  axis_title_just = "cm", plot_margin = ggplot2::margin(30, 30, 30,
+  30), grid_col = "#cccccc", grid = TRUE, axis_col = "#cccccc",
   axis = FALSE, ticks = FALSE)
 }
 \arguments{
@@ -67,12 +67,10 @@ library(dplyr)
 # seminal scatterplot
 ggplot(mtcars, aes(mpg, wt)) +
   geom_point() +
-  labs(
-    x = "Fuel effiiency (mpg)", y = "Weight (tons)",
-    title = "Seminal ggplot2 scatterplot example",
-    subtitle = "A plot that is only useful for demonstration purposes",
-    caption = "Brought to you by the letter 'g'"
-  ) +
+  labs(x = "Fuel effiiency (mpg)", y = "Weight (tons)",
+       title = "Seminal ggplot2 scatterplot example",
+       subtitle = "A plot that is only useful for demonstration purposes",
+       caption = "Brought to you by the letter 'g'") +
   theme_atlas_ms()
 
 # seminal bar chart
@@ -83,12 +81,10 @@ count(mpg, class) \%>\%
   ggplot(aes(class, n)) +
   geom_col() +
   geom_text(aes(label = n), nudge_y = 3) +
-  labs(
-    x = "Fuel efficiency (mpg)", y = "Weight (tons)",
-    title = "Seminal ggplot2 bar chart example",
-    subtitle = "A plot that is only useful for demonstration purposes",
-    caption = "Brought to you by the letter 'g'"
-  ) +
+  labs(x = "Fuel efficiency (mpg)", y = "Weight (tons)",
+       title = "Seminal ggplot2 bar chart example",
+       subtitle = "A plot that is only useful for demonstration purposes",
+       caption = "Brought to you by the letter 'g'") +
   theme_atlas_ms(grid = "Y") +
   theme(axis.text.y = element_blank())
 }
