@@ -41,9 +41,14 @@ set_theme <- function(font = "Arial Narrow", discrete = "okabeito",
   envir <- as.environment(pos)
   if (!is.null(disc_option)) {
     assign("scale_colour_discrete", function(..., values = disc_option)
-      scale_colour_manual(..., values = values), envir = envir)
+      ggplot2::scale_colour_manual(..., values = values), envir = envir)
     assign("scale_fill_discrete", function(..., values = disc_option)
-      scale_fill_manual(..., values = values), envir = envir)
+      ggplot2::scale_fill_manual(..., values = values), envir = envir)
+  } else {
+    assign("scale_colour_discrete", ggplot2::scale_colour_discrete(),
+           envir = envir)
+    assign("scale_fill_discrete", ggplot2::scale_fill_discrete(),
+           envir = envir)
   }
   if (!is.null(cont_option)) {
     assign("scale_fill_continuous", function(..., option = cont_option)
@@ -52,5 +57,10 @@ set_theme <- function(font = "Arial Narrow", discrete = "okabeito",
     assign("scale_colour_continuous", function(..., option = cont_option)
       ggplot2::scale_colour_continuous(..., option = option, type = "viridis"),
       envir = envir)
+  } else {
+    assign("scale_fill_continuous", ggplot2::scale_fill_continuous(),
+           envir = envir)
+    assign("scale_colour_continuous", ggplot2::scale_colour_continuous(),
+           envir = envir)
   }
 }
