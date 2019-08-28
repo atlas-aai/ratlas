@@ -1,8 +1,9 @@
 context("test-set-theme")
+library(ggplot2)
 
 # Arial Narrow -----------------------------------------------------------------
 set_theme(font = "Arial Narrow", discrete = "okabeito", continuous = "viridis")
-thm <- theme_get()
+thm <- ggplot2::theme_get()
 
 test_that("theme_atlas is a theme", {
   expect_s3_class(thm, "theme")
@@ -57,7 +58,7 @@ test_that("theme_atlas grids, axis, and ticks are correct", {
 
 # Montserrat -------------------------------------------------------------------
 set_theme(font = "Montserrat", discrete = "okabeito", continuous = "viridis")
-thm <- theme_get()
+thm <- ggplot2::theme_get()
 
 test_that("theme_atlas_ms is a theme", {
   expect_s3_class(thm, "theme")
@@ -107,4 +108,102 @@ test_that("theme_atlas_ms grids, axis, and ticks are correct", {
                theme_atlas_ms(axis = ""))
   expect_equal(invisible(theme_atlas_ms(ticks = TRUE)),
                theme_atlas_ms(ticks = TRUE))
+})
+
+
+# Discrete colors --------------------------------------------------------------
+df_d <- data.frame(x = 1:5, y = 1:5, z = letters[1:5])
+
+set_theme(font = "Montserrat", discrete = "okabeito")
+thm <- ggplot2::theme_get()
+test_that("okabeito works", {
+  plot <- ggplot(df_d, aes(x, y, color = z)) +
+    geom_label(aes(label = z), size = 3) +
+    thm
+
+  vdiffr::expect_doppelganger("ms_okabeito", plot)
+})
+
+set_theme(font = "Montserrat", discrete = "atlas")
+thm <- ggplot2::theme_get()
+test_that("atlas works", {
+  plot <- ggplot(df_d, aes(x, y, color = z)) +
+    geom_label(aes(label = z), size = 3) +
+    thm
+
+  vdiffr::expect_doppelganger("ms_atlas", plot)
+})
+
+set_theme(font = "Montserrat", discrete = "ggplot2")
+thm <- ggplot2::theme_get()
+test_that("ggplot2 works", {
+  plot <- ggplot(df_d, aes(x, y, color = z)) +
+    geom_label(aes(label = z), size = 3) +
+    thm
+
+  vdiffr::expect_doppelganger("ms_ggplot2", plot)
+})
+
+
+# Continuous colors ------------------------------------------------------------
+df_c <- data.frame(x = rep(1:3, times = 3), y = rep(1:3, each = 3), z = 1:9)
+
+set_theme(font = "Montserrat", continuous =  "magma")
+thm <- ggplot2::theme_get()
+test_that("magma works", {
+  plot <- ggplot(df_c, aes(x, y, fill = z)) +
+    geom_tile() +
+    thm
+
+  vdiffr::expect_doppelganger("ms_magma", plot)
+})
+
+set_theme(font = "Montserrat", continuous =  "inferno")
+thm <- ggplot2::theme_get()
+test_that("inferno works", {
+  plot <- ggplot(df_c, aes(x, y, fill = z)) +
+    geom_tile() +
+    thm
+
+  vdiffr::expect_doppelganger("ms_inferno", plot)
+})
+
+set_theme(font = "Montserrat", continuous =  "plasma")
+thm <- ggplot2::theme_get()
+test_that("plasma works", {
+  plot <- ggplot(df_c, aes(x, y, fill = z)) +
+    geom_tile() +
+    thm
+
+  vdiffr::expect_doppelganger("ms_plasma", plot)
+})
+
+set_theme(font = "Montserrat", continuous =  "viridis")
+thm <- ggplot2::theme_get()
+test_that("viridis works", {
+  plot <- ggplot(df_c, aes(x, y, fill = z)) +
+    geom_tile() +
+    thm
+
+  vdiffr::expect_doppelganger("ms_viridis", plot)
+})
+
+set_theme(font = "Montserrat", continuous =  "cividis")
+thm <- ggplot2::theme_get()
+test_that("cividis works", {
+  plot <- ggplot(df_c, aes(x, y, fill = z)) +
+    geom_tile() +
+    thm
+
+  vdiffr::expect_doppelganger("ms_cividis", plot)
+})
+
+set_theme(font = "Montserrat", continuous = "ggplot2")
+thm <- ggplot2::theme_get()
+test_that("ggplot2 works", {
+  plot <- ggplot(df_c, aes(x, y, fill = z)) +
+    geom_tile() +
+    thm
+
+  vdiffr::expect_doppelganger("ms_ggplot2_c", plot)
 })

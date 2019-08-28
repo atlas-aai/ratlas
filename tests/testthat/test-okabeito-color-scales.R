@@ -1,4 +1,5 @@
 context("okabeito-colors")
+library(ggplot2)
 
 test_that("Okabe Ito colors work", {
   testthat::skip_on_cran()

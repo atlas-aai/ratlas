@@ -1,4 +1,6 @@
 context("themes")
+library(ggplot2)
+
 test_that("themes are correct", {
   testthat::skip_on_cran()
 
