@@ -20,7 +20,7 @@ acknowledgements: >
   `r if (knitr::is_latex_output()) ratlas::inc("front-matter/preface.Rmd")`
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 needed_packages <- c("ratlas", "knitr", "english")
 load_packages <- function(x) {
   if (!(x %in% installed.packages())) {
@@ -32,8 +32,10 @@ load_packages <- function(x) {
 vapply(needed_packages, load_packages, logical(1))
 
 extrafont::loadfonts(quiet = TRUE)
+set_theme(font = "Montserrat")
 
 options(knitr.kable.NA = "")
+options(knitr.table.format = "latex")
 ```
 
 

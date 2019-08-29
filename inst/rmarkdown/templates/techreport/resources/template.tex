@@ -82,7 +82,11 @@
   \if\instring{I-SMART}{$program$}
   \definecolor{progcolor}{RGB}{38,92,179}
   \else
-  \definecolor{progcolor}{RGB}{0,0,0}
+    \if\instring{ATLAS}{$program$}
+    \definecolor{progcolor}{RGB}{22,91,126}
+    \else
+    \definecolor{progcolor}{RGB}{0,0,0}
+    \fi
   \fi
 \fi
 
@@ -235,8 +239,10 @@ $endfor$
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ -- \ #1}}
 
 % program name for header
-\if\instring{DLM}{$program$}\newcommand{\progName}{Dynamic Learning Maps}
-\else\newcommand{\progName}{$program$}
+\if\instring{DLM}{$program$}
+\newcommand{\progName}{Dynamic Learning Maps}
+\else
+\newcommand{\progName}{$program$}
 \fi
 
 \fancypagestyle{plain}{%
@@ -269,7 +275,7 @@ $endfor$
   \renewcommand{\headrulewidth}{0pt}%
   % \fancyfoot[L]{Chapter \rightmark}
   \fancyfoot[R]{Page \thepage}
-  \fancyhead[L]{\includegraphics[width=2in]{figures/pre-generated/atlas.jpg}}
+  \fancyhead[L]{\includegraphics[width=2in]{figures/pre-generated/letterhead.jpg}}
   \fancyhead[R]{$shorttitle$\\\progName{}\\$subtitle$}
 }
 
