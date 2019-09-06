@@ -1,0 +1,107 @@
+---
+title: "ATLAS presentation template"
+author: "author name"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["atlas.css", "atlas-fonts.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+class: reg-slide
+layout: true
+---
+
+class: inverse, middle, center
+# Heading Slide 1
+
+---
+
+# Slide 1
+
+- bullet 1
+
+--
+
+- bullet 2
+
+--
+
+- bullet 3<sup>1</sup>
+
+--
+
+.footnote[
+[1] footnote for bullet 3
+]
+---
+
+class: inverse, middle, center
+# Heading Slide 2
+
+---
+
+# Slide 2
+
+.pull-left[
+Left text 
+- bullet 1
+
+- bullet 2
+
+- bullet 3<sup>1</sup>
+]
+
+.pull-right[
+Right text 
+- bullet 4
+
+- bullet 5
+
+- bullet 6
+]
+
+--
+
+.footnote[
+[1] footnote for bullet 3
+]
+
+---
+
+
+# R Plots
+
+```{r cars, fig.height=3, fig.width = 5, dev='svg'}
+par(mar = c(4, 4, 1, .1))
+plot(cars, pch = 19, col = 'darkgray', las = 1)
+```
+
+---
+
+# Tables
+
+If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
+
+```{r}
+knitr::kable(head(iris), format = 'html')
+```
+
+---
+layout: false 
+class: final-slide, right, top
+
+# Thanks!
+
+website: ATLAS4Learning.org
+
+email: ATLAS-AAI@ku.edu
+
+twitter: @ATLAS4Learning
