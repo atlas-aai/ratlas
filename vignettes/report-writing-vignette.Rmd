@@ -34,6 +34,8 @@ in RStudio. This can be done by clicking:
   
 <center> **File > New Project > New Directory > New Project** </center>
 
+<center> ![](menu sc.png) </center>
+
 From there, specify the project name and the directory where you would like to 
 save the project for the new report. To lessen confusion later, it is usually 
 worthwhile to save each report in its own directory/project so that you can 
