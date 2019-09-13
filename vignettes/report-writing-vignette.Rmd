@@ -46,77 +46,12 @@ quickly and easily find the report at a later date.
 
 ## Writing the Setup Chunk
 
-The Setup Chunk is where you set all of the default settings for your report. 
-In doing this, you want to create the Setup Chunk so that all of the necessary 
-settings can be set in a reproducible way. In other words, you want the code to 
-be able to run on any computer, not just yours.
+The Setup Chunk is where the default settings for your report are set. The Setup Chunk will be automatically created for you. The only editing of the Setup Chunk will be 
 
-In the default template for R Markdown files, the Setup Chunk is the first code 
-chunk that looks like:
+- Adding necessary packages to the `needed_packages` variable
+- Setting a global ggplot2 theme using the `set_theme()` function
 
-```{r setup_chunk_example, eval = FALSE, echo = TRUE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-The first step in doing this is to load the needed packages. Bear in mind that 
-not all computers will have the the necessary packages installed already. Thus, 
-the code in the Setup Chunk needs to test whether these are already installed, 
-install them if they are not already installed, and then load the packages. 
-
-This can be done by running the following code:
-
-```{r package_install_loading, echo = TRUE, eval = FALSE}
-needed_packages <- c("ratlas", "tidyverse", "english", "kableExtra")
-load_packages <- function(x) {
-  if (!(x %in% installed.packages())) {
-    install.packages(x)
-  }
-  suppressPackageStartupMessages(require(x, character.only = TRUE))
-}
-vapply(needed_packages, load_packages, logical(1))
-
-extrafont::loadfonts(quiet = TRUE)
-```
-
-Additionally, the theme for ggplot should be specified. This can be done with 
-the either of the following code chunks.
-
-```{r set_ggplot_theme1, echo = TRUE, eval = FALSE}
-theme_atlas()
-```
-
-Or
-
-```{r set_ggplot_theme2, echo = TRUE, eval = FALSE}
-theme_atlas_ms()
-```
-
-Together, your first chunk of the file should look like:
-
-```{r setup_chunk, echo = TRUE, eval = FALSE}
-needed_packages <- c("ratlas", "tidyverse", "english", "kableExtra")
-load_packages <- function(x) {
-  if (!(x %in% installed.packages())) {
-    install.packages(x)
-  }
-  suppressPackageStartupMessages(require(x, character.only = TRUE))
-}
-vapply(needed_packages, load_packages, logical(1))
-
-system <- ifelse(Sys.info()["sysname"] == "Darwin", "Mac", "Windows")
-
-extrafont::loadfonts(quiet = TRUE)
-
-theme_atlas()
-#OR
-#theme_atlas_ms()
-```
-
-For simplicity, this setup code chunk can just be copy and pasted into the 
-rmarkdown file to write the report. Please note, however, that you should only
-select one of the two ATLAS themes (theme_atlas and theme_atlas_ms). 
-`Theme_atlas_ms()` has been commented out in the above code, but `theme_atlas()`
-be commented out if `theme_atlas_ms()` is desired.
+Setting a global ggplot2 theme using the `set_theme()` function can be done by adding either `set_theme("Arial Narrow")` or `set_theme("Montserrat")` to the Setup Chunk.
 
 ## Create and Cross Reference Tables
 
