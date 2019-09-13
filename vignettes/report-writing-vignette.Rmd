@@ -61,35 +61,11 @@ Creating tables is relatively simple. The kable package takes an existing
 dataset and places the vectors (i.e., columns in the data frame) into columns in
 the table. 
 
-As an example, take the *iris* dataset that is automatically loaded in R. To 
-make a more reasonably sized table for this example, let's filter the dataset to
-flowers with petal length greater than 6.0 with the following code:
-
 ```{r filtered_iris, echo = TRUE, eval = TRUE}
 temp <- iris %>%
   filter(Petal.Length > 6.0) %>%
   arrange(desc(Petal.Length))
 
-temp
-```
-
-Do note, that this example uses the tidyverse package in filtering the data.
-
-Now that the data is more manageable, the smaller dataset can be turned into a 
-table. The full kable function help page can be found by using the `?kable` 
-command. The full details for the kable function parameters can be found here. 
-
-Briefly, *x* holds the data frame, *digits* indicates the number of digits 
-displayed to the right of the decimal point, *col.names* indicates what each 
-column should be named, *align* specifies how to align the data within each 
-column, *caption* specifies the title for the table, *booktabs* specifies 
-formatting for the table (i.e., the bolded column headers, the horizontal lines,
-the subtle horizontal lines between each row), and *format.args* specifies 
-format arguments to be used in the table. In this instance, *big.mark = ","* 
-specifies that commas should be inserted to the left of the decimal point when 
-necessary to improve readability (i.e., printing 3,400 instead of 3400).
-
-```{r iris, echo = TRUE, eval = FALSE}
 kable(x = temp, digits = 1, col.names = c("Sepal Length", "Sepal Width", 
                                           "Petal Length", "Petal Width", 
                                           "Species"), 
@@ -97,30 +73,21 @@ kable(x = temp, digits = 1, col.names = c("Sepal Length", "Sepal Width",
       booktabs = TRUE, format.args = list(big.mark = ","))
 ```
 
-Tables may be referenced using the following inline command: 
-`\@ref(tab:chunk-label)`. Please note, however, that the text to the right of 
-the colon refers to the code chunk name. Of special importance, cross-references
-cannot use an underscore in the name of the code chunk. The underscore is a 
-special character in Latex, which causes difficulties in referencing table code 
-chunks using an underscore in the name.
-
-Although not shown above, the code chunk containing the table was labeled *iris*.
-In completing this example, we can then reference the numbered table using 
-`\@ref(tab:iris)`, and a hyperlink will appear with the number of the table. The 
-hyperlink can be clicked to direct the user to the location of the table in the 
-document.
+Additional information about the kableExtra package and cross referencing tables can be found by following the hyperlinks. ??? note to self: add hyperlinks here ???
 
 ## Create and Cross Reference Figures
 
-Cross-referencing figures can be done similarly to cross-referencing tables. The
-most notable difference is the syntax for referencing a figure. To reference a 
-figure, we can use `\@ref(fig:chunk-label)`. Once again, *chunk-label* refers to
-the name of the code chunk containing the figure. In this case, the code chunk 
-name is *iris-figure*. Therefore, we can use `\@ref(fig:iris-figure)` to 
-reference the figure.
+Figures can be created using the ggplot2 package in R. An example is included below.
 
-A more in-depth introduction to ggplot can be found in the plotting vignette, 
-which can be called by typing `vignette(reporting-writing-vignette)`.
+```{r iris-fig}
+iris %>%
+  ggplot(aes(x = Petal.Length, y = Sepal.Length, color = Species)) +
+  geom_point() +
+  labs(x = "Petal Length", y = "Sepal Length") + 
+  theme_atlas()
+```
+
+Additional information about the ggplot2 package and cross referencing figures can be found by following the hyperlinks. ??? note to self: add hyperlinks here ???
 
 ## Using Inline R Code 
 
