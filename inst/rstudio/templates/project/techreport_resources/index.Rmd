@@ -1,11 +1,22 @@
 ---
-title: "Topic Guide Title"
+title: "Tech Report Title"
+shorttitle: "A Short Title"
+subtitle: "Technical Report #XX-XX"
 date: "`r format(Sys.Date(), '%B, %Y')`"
-output: ratlas::topicguide_docx
+output: 
+  ratlas::techreport_pdf:
+    latex_engine: xelatex
+    citation_package: biblatex
+    keep_tex: yes
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
-biblio-style: apalike2
+biblio-style: apa
+biblatexoptions:
+  - sortcites
 csl: csl/apa.csl
 link-citations: yes
+lot: true
+lof: true
+subparagraph: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -20,12 +31,13 @@ load_packages <- function(x) {
 vapply(needed_packages, load_packages, logical(1))
 
 options(knitr.kable.NA = "")
+options(tinytex.verbose = TRUE)
 ```
 
 
 
 
-###### Page break
+\newpage
 
 # References
 
