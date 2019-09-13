@@ -44,43 +44,6 @@ save the project for the new report. To lessen confusion later, it is usually
 worthwhile to save each report in its own directory/project so that you can 
 quickly and easily find the report at a later date.
 
-## Structuring the Project Directories
-
-Once the project has been created, the next step is to create the file structure 
-for the report. To do this, begin by making sure the here package is installed. 
-If it is not installed, type `install.packages("here)`. After here is installed, 
-type `library(here)` to load the library into RStudio. 
-
-The `here()` function is designed to reference the directory where you have 
-saved your project file, which is why the project file should always be 
-created first. 
-
-After the here package has been installed and loaded, four project directories 
-will need to be created. These four directories are:
-
-- R/
-- data-raw/
-- data/
-- output/
-
-To create the R directory, type the command `dir.create(here("R"))`. This will 
-create the folder, and you should be able to see it in your file directory at 
-the lower right corner of your RStudio screen. The same process can be used to 
-create the remaining three directories with the following code: 
-
-- `dir.create(here("data-raw"))`
-- `dir.create(here("data"))`
-- `dir.create(here("output"))`
-
-The R directory is used to store analysis scripts.
-
-The data-raw directory is used to store raw data files.
-
-The data directory is used to store cleaned or intermediate files.
-
-The output directory is used to store final output files that can be read into 
-the report.
-
 ## Writing the Setup Chunk
 
 The Setup Chunk is where you set all of the default settings for your report. 
@@ -316,3 +279,20 @@ indefinite(3, words = FALSE)` ``.
 
 The `as.roman` function can convert 3 to `r utils::as.roman(3)` via `` `r
 utils::as.roman(3)` ``.
+
+## Best Practices
+
+Because of how files within an R project are linked to one another, the best practice is to create a file structure that is organized and references directories without hard coding the directories. 
+
+Four commonly used project directories, which may be useful, are:
+
+- R/
+- data-raw/
+- data/
+- output/
+
+The `here()` function is designed to reference the directory where you have saved your project file, which is why the project file should always be created first and .R and .Rmd files created afterwards. 
+
+As an example, the following code will create the "R" directory in your project folder: `dir.create(here("R"))`.
+
+More information about best practices in file structure in R and the here package can be found by following the hyperlinks.  ???Note to self: insert hyperlinks??? 
