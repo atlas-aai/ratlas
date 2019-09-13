@@ -35,9 +35,9 @@ in RStudio. This can be done by clicking:
   
 <center> **File > New Project > New Directory > New Project** </center>
 
-<center> ![]("images/menu_sc.png") </center>
-<center> ![]("images/new_dir_sc.png") </center>
-<center> ![](images/new_project_sc.png) </center>
+![](images/menu_sc.png)
+![](images/new_dir_sc.png)
+![](images/new_project_sc.png)
 
 From there, specify the project name and the directory where you would like to 
 save the project for the new report. To lessen confusion later, it is usually 
