@@ -28,6 +28,7 @@ library(dplyr)
 library(ggplot2)
 library(english)
 library(knitr)
+library(kableExtra)
 ```
 
 ## Creating a New Project
@@ -53,7 +54,7 @@ The Setup Chunk is where the default settings for your report are set. The Setup
 - Adding necessary packages to the `needed_packages` variable
 - Setting a global ggplot2 theme using the `set_theme()` function
 
-Setting a global ggplot2 theme using the `set_theme()` function can be done by adding either `set_theme("Arial Narrow")` or `set_theme("Montserrat")` to the Setup Chunk.
+Setting a global ggplot2 theme using the `set_theme()` function can be done by adding a function such as `set_theme("Arial Narrow")` or `set_theme("Montserrat")` to the Setup Chunk.
 
 ## Create and Cross Reference Tables
 
