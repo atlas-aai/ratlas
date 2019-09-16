@@ -24,7 +24,7 @@ body { font-family: 'Montserrat', sans-serif}
 
 /* Slide formats */
 .title-slide {
-  background-image: url(https://i.ibb.co/8j9kT1W/title-slide.png);
+  background-image: url("https://i.imgur.com/rz4lUV9.png?1");
   background-size: cover;
   text-shadow: none;
 }
@@ -38,8 +38,29 @@ body { font-family: 'Montserrat', sans-serif}
   line-height: 0.5em;
 }
 
+.reg-slide {
+  background-image: url("https://i.imgur.com/RLKNy4p.png"), url("https://i.imgur.com/ZPlbqvg.png");
+  background-size: 9% 16%, cover;
+  background-position: 3% 100%, center center;
+}
+
+.reg-section {
+  text-align: left !important;
+}
+.reg-section h1 {
+  color: #165C7D;
+  font-weight: bold;
+  position: absolute;
+  top: 60%;
+}
+.reg-section p {
+ position: absolute;
+ font-size: 120%;
+ top: 55%;
+}
+
 .alt-slide {
-  background-image: url(https://i.ibb.co/ChrLpq6/Slide-background-alt-footer.png);
+  background-image: url("https://i.imgur.com/SmFnVsI.png");
   background-size: cover;
 }
 
@@ -59,7 +80,7 @@ body { font-family: 'Montserrat', sans-serif}
 }
 
 .final-slide {
-  background-image: url(https://i.ibb.co/pXPfG5k/final-slide.png);
+  background-image: url("https://i.imgur.com/v2LCb3i.png");
   background-size: cover;
 }
 .final-slide h1 {
