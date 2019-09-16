@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
   fig.align = "center",
   out.width = "90%"
 )
+
+options(warn = -1)
 ```
 
 ```{r setup, include = FALSE}
@@ -61,6 +63,7 @@ Creating tables is relatively simple. The kable package takes an existing
 dataset and places the vectors (i.e., columns in the data frame) into columns in
 the table. 
 
+
 ```{r filtered_iris, echo = TRUE, eval = TRUE}
 temp <- iris %>%
   filter(Petal.Length > 6.0) %>%
@@ -73,7 +76,7 @@ kable(x = temp, digits = 1, col.names = c("Sepal Length", "Sepal Width",
       booktabs = TRUE, format.args = list(big.mark = ","))
 ```
 
-Additional information about the kableExtra package and cross referencing tables can be found by following the hyperlinks. ??? note to self: add hyperlinks here ???
+Additional information about the kableExtra package and cross referencing tables can be found [here](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
 
 ## Create and Cross Reference Figures
 
@@ -87,100 +90,7 @@ iris %>%
   theme_atlas()
 ```
 
-Additional information about the ggplot2 package and cross referencing figures can be found by following the hyperlinks. ??? note to self: add hyperlinks here ???
-
-## Using Inline R Code 
-
-Up to this point, all of the code that has been discussed has involved code 
-chunks. Code can also be evalued inline so that the results are presented in the
-sentence without special formatting. By using `` `r
-r_code` ``, the results of *r_code* would be pasted into the text. Consider the 
-following example. If I am describing the iris dataset, I might want to state 
-the mean petal length in the text. To do this using inline code, I might say:
-
-The mean petal length of the irises was `r mean(iris$Petal.Length)`, which uses
-`` `r
-mean(iris$Petal.Length)` `` as the inline coded. 
-
-## Combining Words
-
-When using inline code, it is sometimes possible to generate character strings 
-(i.e., words) that would be listed in a grammatically incorrect way. For 
-example, an inline code might return "apples" "oranges" "bananas", which should 
-grammatically be listed as "apples, oranges, and bananas." 
-
-The `combine_words` function in the knitr package does just that. By placing the
-inline code as a parameter within the `knitr::combinewords()` function, the 
-`combine_words` function will combine the items into a list with commas and an 
-"and" when necessary. Alternatively, `combine_words` will place an "and" between
-words when there are only two words returned by the inline function, and 
-`combine_words` will not alter the inline function's returned value when the 
-returned value is only a single character string. 
-
-To demonstrate, I will use the command `colnames(iris)` to return all of the 
-column header names for the iris dataset, which consists of five different 
-character strings. When wrapping the `colnames(iris)` command in the 
-`knitr::combine_words()` function, the inline text becomes `r knitr::combine_words(colnames(iris))` 
-via `` `r
-knitr::combine_words(colnames(iris))` ``.
-
-For additional help regarding the `combine_words` function, you can visit the 
-`?combine_words` help page.
-
-## Turning Numbers Into Words
-
-Often times, computer code will generate numerical answers when an answer 
-written in words is more appropriate whether by convention, publishing 
-standards, etc. The english package allows for numbers to be converted to a 
-variety of written formats. 
-
-First, it should be noted that the english package supports converting numbers 
-only into the English language. Furthermore, the english package allows the user
-to specify whether to use American style English or UK style English. This can 
-be set with either `options(english.UK = TRUE)` or 
-`options(english.UK = FALSE)`. For the purposes of this vignette, the option 
-will be set to American style English.
-
-```{r english_settings, include = FALSE}
-options(english.UK = FALSE)
-```
-
-Within the english package, there are four primary functions. The first function
-is `words` or `Words`. These two functions have the same functionality, although
-`Words` capitalizes the first letter of the word, whereas `word` leaves all of 
-the letters lowercase. The second function is the `ordinal` function, which 
-converts the numbers to ordinal numbers (e.g., 5 becomes fifth). The third 
-function is `indefinite` or `Indefinite`. Like the `words` and `Words` function,
-the only difference between these two indefinite functions is the 
-capitalization. The indefinite functions put an indefinite article (i.e., "a" or
-"an") before each word (e.g., 8 becomes "an eight"). Importantly, the indefinite
-functions allow for the indefinite article to be added without changing the word
-to a number. This can be done with `indefinite(8, words = FALSE)`. The fourth 
-and final function is the `as.roman` function, which is technically a part of 
-the utils package, which means it should be called using `utils::as.roman`. The 
-`as.roman` function converts numbers to their Roman numeral equivalent (e.g., 3 
-becomes III).
-
-Examples of each of the four functions are provided below.
-
-The `words` function can convert 3 to `r words(3)` via `` `r
-words(3)` ``. Although grammatically incorrect, the `Words` function can convert
-3 to `r Words(3)` via `` `r
-Words(3)` ``.
-
-The `ordinal` function can convert 3 to `r ordinal(3)` via `` `r
-ordinal(3)` ``.
-
-The `indefinite` function can convert 3 to `r indefinite(3)` via `` `r
-indefinite(3)` ``. Once again, it is grammatically incorrect, but the 
-`Indefinite` function can convert 3 to `r Indefinite(3)` via `` `r
-Indefinite(3)` ``. To demonstrate the ability to add the indefinite article 
-without converting the number to a word, the `indefinite` function can convert 
-3 to `r indefinite(3, words = FALSE)` via `` `r
-indefinite(3, words = FALSE)` ``.
-
-The `as.roman` function can convert 3 to `r utils::as.roman(3)` via `` `r
-utils::as.roman(3)` ``.
+Additional information about the ggplot2 package and cross referencing figures can be found [here](https://ggplot2.tidyverse.org/).
 
 ## Best Practices
 
@@ -197,4 +107,11 @@ The `here()` function is designed to reference the directory where you have save
 
 As an example, the following code will create the "R" directory in your project folder: `dir.create(here("R"))`.
 
-More information about best practices in file structure in R and the here package can be found by following the hyperlinks.  ???Note to self: insert hyperlinks??? 
+More information about best practices in file structure in R and the here package can be found [here](https://www.r-bloggers.com/structuring-r-projects/). 
+
+## Tips and Tricks
+
+Code can be evaluated in-line so that the results are presented in the sentence without special formatting. For example, the code `` `r mean(iris$Petal.Length)` `` evaluates to 
+`r mean(iris$Petal.Length)`. More information on in-line code can be found [here](https://bookdown.org/yihui/rmarkdown/r-code.html).
+
+The `English` package can be used to manipulate words and numbers into grammatically correct syntax. For example, `` `r knitr::combine_words(colnames(iris))` `` becomes `r knitr::combine_words(colnames(iris))`. More information on the `English` package can be found [here](https://www.rdocumentation.org/packages/english/versions/1.1-4).
