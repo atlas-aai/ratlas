@@ -1,6 +1,11 @@
 ---
-title: "Report Writing"
-output: rmarkdown::html_vignette
+title: "Writing a Report With ratlas"
+output:
+  bookdown::html_document2:
+    base_format: rmarkdown::html_vignette
+    number_sections: false
+pkgdown:
+  as_is: true
 vignette: >
   %\VignetteIndexEntry{report-writing-vignette}
   %\VignetteEngine{knitr::rmarkdown}
@@ -28,21 +33,19 @@ library(english)
 library(knitr)
 ```
 
+This vignette walks through the process of creating a new topic guide, technical report, or research report using R Markdown. We also suggest best practices for organizing your report files, and give some tips and tricks for formatting text.
+
 ## Creating a New Project
 
-When beginning a new report, the first step is to create a new project
-in RStudio. This can be done by clicking: 
-  
-<center> **File > New Project > New Directory > New Project** </center>
+When beginning a new report, the first step is to create a new project in RStudio. This can be done by clicking: *File > New Project > New Directory > New Project*, as shown in Figure \@ref(fig:new-proj).
 
-![](images/menu_sc.png)
-![](images/new_dir_sc.png)
-![](images/new_project_sc.png)
+```{r new-proj, echo = FALSE, fig.show = "hold", out.width = "31%", fig.cap = "Creating a new report project."}
+knitr::include_graphics(c("images/new-project.png",
+                          "images/new-directory.png",
+                          "images/selection.png"))
+```
 
-From there, specify the project name and the directory where you would like to 
-save the project for the new report. To lessen confusion later, it is usually 
-worthwhile to save each report in its own directory/project so that you can 
-quickly and easily find the report at a later date.
+From there, specify the project name and the directory where you would like to save the project for the new report. To lessen confusion later, it is usually worthwhile to save each report in its own directory/project so that you can quickly and easily find the report at a later date.
 
 ## Writing the Setup Chunk
 
