@@ -11,6 +11,11 @@ Authors@R:
              family = "Pablo",
              role = "aut",
              email = "noellepablo@gmail.com"),
+      person(given = "Jeffrey",
+             family = "Hoover",
+             role = "aut",
+             email = "jeffrey.c.hoover@gmail.com",
+             comment = c(ORCID = "0000-0002-0276-0308")),
       person(given = "ATLAS",
              role = c("cph", "fnd")))
 Description: This package contains various template and
@@ -28,7 +33,9 @@ Imports:
     fs (>= 1.2.7),
     ggplot2 (>= 3.2.0),
     glue (>= 1.3.1),
+    grDevices,
     hrbrthemes (>= 0.6.0),
+    hunspell (>= 3.0),
     knitr (>= 1.22),
     magrittr (>= 1.5),
     rlang (>= 0.3.4),
@@ -36,13 +43,13 @@ Imports:
     scales (>= 1.0.0),
     stringr (>= 1.4.0),
     tibble (>= 2.1.3),
-    tidyr (>= 0.8.3),
-    xfun (>= 0.6)
+    tidyr (>= 0.8.3)
 Suggests: 
     covr (>= 3.2.1),
     english (>= 1.2.3),
     fivethirtyeight (>= 0.4.0),
     lintr (>= 1.0.3),
+    magick (>= 2.2),
     testthat (>= 2.1.0),
     tinytex (>= 0.13),
     vdiffr (>= 0.3.0)

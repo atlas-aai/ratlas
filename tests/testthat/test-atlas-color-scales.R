@@ -1,4 +1,5 @@
 context("atlas-colors")
+library(ggplot2)
 
 test_that("atlas colors work", {
   testthat::skip_on_cran()
