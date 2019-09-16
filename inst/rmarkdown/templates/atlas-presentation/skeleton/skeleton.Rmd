@@ -1,26 +1,31 @@
 ---
-title: "ATLAS presentation template"
-author: "author name"
-date: "`r Sys.Date()`"
+title: "Presentation Title"
+author:
+  - "Author 1"
+  - "Author 2"
 output:
   xaringan::moon_reader:
-    css: ["atlas.css", "atlas-fonts.css"]
+    css: ["default", "atlas.css", "atlas-fonts.css"]
     lib_dir: libs
     nature:
+      ratio: '16:9'
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+      slideNumberFormat: "%current%"
 ---
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```
-class: reg-slide
+class: alt-slide
 layout: true
----
 
-class: inverse, middle, center
-# Heading Slide 1
+---
+class: alt-section
+# Section Heading
+
+Jake Thompson
 
 ---
 
@@ -43,7 +48,7 @@ class: inverse, middle, center
 ]
 ---
 
-class: inverse, middle, center
+class: alt-section
 # Heading Slide 2
 
 ---
@@ -81,7 +86,7 @@ Right text
 
 ```{r cars, fig.height=3, fig.width = 5, dev='svg'}
 par(mar = c(4, 4, 1, .1))
-plot(cars, pch = 19, col = 'darkgray', las = 1)
+plot(cars, pch = 19, col = 'darkgray', las = 1) #<<
 ```
 
 ---
@@ -96,12 +101,14 @@ knitr::kable(head(iris), format = 'html')
 
 ---
 layout: false 
-class: final-slide, right, top
+class: final-slide
 
-# Thanks!
+# Connect With Us!
 
-website: ATLAS4Learning.org
+`r fontawesome::fa("globe", fill = "#165C7D")` [ATLAS4Learning.org](https://atlas4learning.org)
 
-email: ATLAS-AAI@ku.edu
+`r fontawesome::fa("envelope", fill = "#165C7D")` [ATLAS-AAI@ku.edu](mailto:atlas-aai@ku.edu)
 
-twitter: @ATLAS4Learning
+`r fontawesome::fa("twitter", fill = "#165C7D")` [@ATLAS4Learning](https://twitter.com/atlas4learning)
+
+`r fontawesome::fa("github", fill = "#165C7D")` [@ATLAS-AAI](https://github.com/atlas-aai)
