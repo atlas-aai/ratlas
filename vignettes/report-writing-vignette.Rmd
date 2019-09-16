@@ -28,6 +28,7 @@ library(dplyr)
 library(ggplot2)
 library(english)
 library(knitr)
+library(kableExtra)
 ```
 
 ## Creating a New Tech Report or Topic Guide
