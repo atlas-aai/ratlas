@@ -31,12 +31,12 @@ library(knitr)
 library(kableExtra)
 ```
 
-## Creating a New Project
+## Creating a New Tech Report or Topic Guide
 
 When beginning a new report, the first step is to create a new project
 in RStudio. This can be done by clicking: 
   
-<center> **File > New Project > New Directory > New Project** </center>
+<center> **File > New Project > New Directory > Tech Report using ratlas** </center>
 
 ![](images/menu_sc.png)
 ![](images/new_dir_sc.png)
@@ -47,9 +47,19 @@ save the project for the new report. To lessen confusion later, it is usually
 worthwhile to save each report in its own directory/project so that you can 
 quickly and easily find the report at a later date.
 
-## Writing the Setup Chunk
+## Knitting the R Markdown File
 
-The Setup Chunk is where the default settings for your report are set. The Setup Chunk will be automatically created for you. The only editing of the Setup Chunk will be 
+Before altering the template file, the template R markdown file should be knitted to ensure that the system is working correctly. The R Markdown file can be knitted by clicking the "Knit" button (displayed below).
+
+![](images/knit_sc.png)
+
+## Altering the Setup Chunk
+
+The Setup Chunk (displayed below) is where the default settings for your report are set. 
+
+![](images/setup_chunk_sc.png)
+
+The Setup Chunk will be automatically created for you. The only editing of the Setup Chunk will be 
 
 - Adding necessary packages to the `needed_packages` variable
 - Setting a global ggplot2 theme using the `set_theme()` function
