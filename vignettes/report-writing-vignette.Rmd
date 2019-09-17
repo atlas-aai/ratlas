@@ -29,6 +29,7 @@ library(ggplot2)
 library(english)
 library(knitr)
 library(kableExtra)
+library(here)
 ```
 
 ## Creating a New Tech Report or Topic Guide
@@ -39,15 +40,15 @@ in RStudio. This can be done by clicking:
 <center> **File > New Project > New Directory > Tech Report using ratlas** </center>
 
 ```{r menu-sc, echo = FALSE}
-    knitr::include_graphics("images/menu_sc.png")
+    knitr::include_graphics(here("vignettes/images/menu_sc.PNG"))
 ```
 
 ```{r new-dir-sc, echo = FALSE}
-    knitr::include_graphics("images/new_dir_sc.png")
+    knitr::include_graphics(here("vignettes/images/new_dir_sc.png"))
 ```
 
 ```{r new-proj-sc, echo = FALSE}
-    knitr::include_graphics("images/new_project_sc.png")
+    knitr::include_graphics(here("vignettes/images/new_project_sc.png"))
 ```
 
 From there, specify the project name and the directory where you would like to 
@@ -60,7 +61,7 @@ quickly and easily find the report at a later date.
 Before altering the template file, the template R markdown file should be knitted to ensure that the system is working correctly. The R Markdown file can be knitted by clicking the "Knit" button (displayed below).
 
 ```{r knit-sc, echo = FALSE}
-    knitr::include_graphics("images/knit_sc.png")
+    knitr::include_graphics(here("vignettes/images/knit_sc.png"))
 ```
 
 ## Altering the Setup Chunk
@@ -68,7 +69,7 @@ Before altering the template file, the template R markdown file should be knitte
 The Setup Chunk (displayed below) is where the default settings for your report are set. 
 
 ```{r setup-chunk-sc, echo = FALSE}
-    knitr::include_graphics("images/setup_chunk_sc.png")
+    knitr::include_graphics(here("vignettes/images/setup_chunk_sc.png"))
 ```
 
 The Setup Chunk will be automatically created for you. The only editing of the Setup Chunk will be 
