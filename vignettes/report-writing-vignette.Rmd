@@ -34,10 +34,11 @@ library(here)
 
 ## Creating a New Tech Report or Topic Guide
 
-When beginning a new report, the first step is to create a new project
-in RStudio. This can be done by clicking: 
+When beginning a new report, the first step is to create a new project in RStudio. This can be done by clicking: 
   
 <center> **File > New Project > New Directory > Tech Report using ratlas** </center>
+
+Please note, this example will use the terminology for creating a new tech report, but the same steps can be used to create a new topic guide.
 
 ```{r menu-sc, echo = FALSE}
     knitr::include_graphics(here("vignettes/images/menu_sc.PNG"))
@@ -51,14 +52,11 @@ in RStudio. This can be done by clicking:
     knitr::include_graphics(here("vignettes/images/new_project_sc.PNG"))
 ```
 
-From there, specify the project name and the directory where you would like to 
-save the project for the new report. To lessen confusion later, it is usually 
-worthwhile to save each report in its own directory/project so that you can 
-quickly and easily find the report at a later date.
+Then, specify the project name and the directory where you would like to save the project for the new report. To lessen confusion later, it is usually worthwhile to save each report as a new project in its own directory so that you can quickly and easily find the report at a later date.
 
 ## Knitting the R Markdown File
 
-Before altering the template file, the template R markdown file should be knitted to ensure that the system is working correctly. The R Markdown file can be knitted by clicking the "Knit" button (displayed below).
+Before altering the template file, knit the template R markdown file to ensure the system is working correctly. The R markdown file can be knitted by clicking the "Knit" button (displayed below).
 
 ```{r knit-sc, echo = FALSE}
     knitr::include_graphics(here("vignettes/images/knit_sc.PNG"))
@@ -66,27 +64,24 @@ Before altering the template file, the template R markdown file should be knitte
 
 ## Altering the Setup Chunk
 
-The Setup Chunk (displayed below) is where the default settings for your report are set. 
+The Setup Chunk (displayed below) is where the default settings for your report are specified. 
 
 ```{r setup-chunk-sc, echo = FALSE}
     knitr::include_graphics(here("vignettes/images/setup_chunk_sc.PNG"))
 ```
 
-The Setup Chunk will be automatically created for you. The only editing of the Setup Chunk will be 
+The Setup Chunk will be automatically created for you. The only editing of the Setup Chunk will be to
 
-- Adding necessary packages to the `needed_packages` variable
-- Setting a global ggplot2 theme using the `set_theme()` function
+- Add necessary packages to the `needed_packages` variable
+- Set a global ggplot2 theme using the `set_theme()` function
 
 Setting a global ggplot2 theme using the `set_theme()` function can be done by adding a function such as `set_theme("Arial Narrow")` or `set_theme("Montserrat")` to the Setup Chunk.
 
 ## Create and Cross Reference Tables
 
-Tables can be created using the kable function in the kableExtra package in R. 
+Tables can be created using the `kable()` function in the `kableExtra` package in R. 
 
-Creating tables is relatively simple. The kable package takes an existing 
-dataset and places the vectors (i.e., columns in the data frame) into columns in
-the table. 
-
+To create a table, the `kableExtra` package takes an existing data frame (or tibble) and places the vectors (i.e., columns) into columns of the table. 
 
 ```{r filtered_iris, echo = TRUE, eval = TRUE}
 temp <- iris %>%
@@ -104,7 +99,7 @@ Additional information about the kableExtra package and cross referencing tables
 
 ## Create and Cross Reference Figures
 
-Figures can be created using the ggplot2 package in R. An example is included below.
+Figures can be created using the `ggplot2` package in R. An example is included below.
 
 ```{r iris-fig}
 iris %>%
@@ -114,7 +109,7 @@ iris %>%
   theme_atlas()
 ```
 
-Additional information about the ggplot2 package and cross referencing figures can be found [here](https://ggplot2.tidyverse.org/).
+Additional information about the `ggplot2` package and cross referencing figures can be found [here](https://ggplot2.tidyverse.org/).
 
 ## Best Practices
 
@@ -127,7 +122,7 @@ Four commonly used project directories, which may be useful, are:
 - data/
 - output/
 
-The `here()` function is designed to reference the directory where you have saved your project file, which is why the project file should always be created first and .R and .Rmd files created afterwards. 
+The `here()` function is designed to reference the directory where you have saved your project file, which is why it is recommended to create the project file first, followed by any needed .R or .Rmd files. 
 
 As an example, the following code will create the "R" directory in your project folder: `dir.create(here("R"))`.
 
