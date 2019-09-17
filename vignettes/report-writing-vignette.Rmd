@@ -38,9 +38,17 @@ in RStudio. This can be done by clicking:
   
 <center> **File > New Project > New Directory > Tech Report using ratlas** </center>
 
-![](images/menu_sc.png)
-![](images/new_dir_sc.png)
-![](images/new_project_sc.png)
+```{r menu-sc, echo = FALSE}
+    knitr::include_graphics("images/menu_sc.png")
+```
+
+```{r new-dir-sc, echo = FALSE}
+    knitr::include_graphics("images/new_dir_sc.png")
+```
+
+```{r new-proj-sc, echo = FALSE}
+    knitr::include_graphics("images/new_project_sc.png")
+```
 
 From there, specify the project name and the directory where you would like to 
 save the project for the new report. To lessen confusion later, it is usually 
@@ -51,13 +59,17 @@ quickly and easily find the report at a later date.
 
 Before altering the template file, the template R markdown file should be knitted to ensure that the system is working correctly. The R Markdown file can be knitted by clicking the "Knit" button (displayed below).
 
-![](images/knit_sc.png)
+```{r knit-sc, echo = FALSE}
+    knitr::include_graphics("images/knit_sc.png")
+```
 
 ## Altering the Setup Chunk
 
 The Setup Chunk (displayed below) is where the default settings for your report are set. 
 
-![](images/setup_chunk_sc.png)
+```{r setup-chunk-sc, echo = FALSE}
+    knitr::include_graphics("images/setup_chunk_sc.png")
+```
 
 The Setup Chunk will be automatically created for you. The only editing of the Setup Chunk will be 
 
