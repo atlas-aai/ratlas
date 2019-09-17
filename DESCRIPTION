@@ -52,8 +52,10 @@ Suggests:
     magick (>= 2.2),
     testthat (>= 2.1.0),
     tinytex (>= 0.13),
-    vdiffr (>= 0.3.0)
+    vdiffr (>= 0.3.0),
+    spelling
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
+Language: en-US
