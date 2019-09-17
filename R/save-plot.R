@@ -1,11 +1,11 @@
-#' Save a ggplot
+#' Save a ggplot2 graphic
 #'
 #' This is a wrapper around [ggplot2::ggsave()] with some ATLAS-specific
 #' defaults. The aspect ratio is fixed to 0.618 ([the golden
 #' ratio](https://en.wikipedia.org/wiki/Golden_ratio)) unless the height is
 #' manually defined. Plots are automatically spell checked and warnings are
 #' returned if there are possible mistakes. Finally, plots saved as a pdf have
-#' the fontts embedded using [extrafont::embed_fonts()].
+#' the fonts embedded using [extrafont::embed_fonts()].
 #'
 #' @inheritParams ggplot2::ggsave
 #' @param width Plot size in `units` ("in", "cm", or "mm").

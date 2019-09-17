@@ -20,7 +20,7 @@ Authors@R:
              role = c("cph", "fnd")))
 Description: This package contains various template and
     formatting functions used for ATLAS. This include R Markdown
-    templates, formatting funcitons, and ggplot2 themes.
+    templates, formatting functions, and ggplot2 themes.
 License: GPL-3
 VignetteBuilder: knitr
 Depends:
