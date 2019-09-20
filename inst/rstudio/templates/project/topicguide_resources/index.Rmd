@@ -1,6 +1,6 @@
 ---
 title: "Topic Guide Title"
-date: "`r format(Sys.Date(), '%B, %Y')`"
+date: "`r format(Sys.Date() '%B, %Y')`"
 output: ratlas::topicguide_docx
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
 biblio-style: apalike2
