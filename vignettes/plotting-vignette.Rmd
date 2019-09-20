@@ -1,19 +1,32 @@
 ---
 title: "Plotting in ratlas"
-output: 
-  rmarkdown::html_vignette:
+output:
+  bookdown::html_document2:
+    base_format: rmarkdown::html_vignette
+    number_sections: false
     toc: true
-    toc_depth: 2
 vignette: >
   %\VignetteIndexEntry{plotting-vignette}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r include=FALSE}
+```{r setup, include = FALSE}
+library(ratlas)
+library(dplyr)
+library(ggplot2)
+
+library(scales)
+library(viridis)
+library(dichromat)
+library(colorspace)
+
 knitr::opts_chunk$set(
+  error = FALSE,
+  warning = FALSE,
+  message = FALSE,
   echo = TRUE,
-  eval = FALSE,
+  eval = TRUE,
   collapse = TRUE,
   comment = "#>",
   fig.retina = 3,
@@ -24,234 +37,301 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup, include = FALSE, eval = TRUE}
-library(ratlas)
-library(dplyr)
+This vignette walks through how to create consistent graphics that meet ATLAS formatting standards using [**ggplot2**](https://ggplot2.tidyverse.org). The **ggplot2** package uses the grammar of graphics to create elegant and reproducible plots that are publication ready. The **ratlas** package provides an extension to ggplot2 by customizing the default theme to match brand requirements.
+
+## Introduction to ggplot2
+
+A full tutorial of how to use **ggplot2** is beyond the scope of this vignette. If you are new to **ggplot2** we recommend you start with these resources:
+
+* [Data Visualisation](https://r4ds.had.co.nz/data-visualisation.html) in *R for Data Science*, by Hadley Wickham & Garrett Grolemund
+* [*Data Visualization*](http://socviz.co), by Kieran Healy
+* [*R Graphics Cookbook*](https://r-graphics.org), by Winston Chang
+
+These resources walk through how **ggplot2** works, and provide examples with code for creating different types of plots. For a more in depth description of how **ggplot2** works, we recommend [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org), by Hadley Wickham. The second edition can be purchased from [Amazon](https://www.amazon.com/ggplot2-Elegant-Graphics-Data-Analysis/dp/331924275X/ref=sr_1_1?keywords=ggplot2&qid=1568726727&sr=8-1); however, the third edition is currently under development, and can be accessed for free at [ggplot2-book.org](https://ggplot2-book.org).
+
+To demonstrate how to use the ATLAS theme for **ggplot2**, we will use the following example plot of the `mtcars` data set (Figure \@ref(fig:init-plot)).
+
+(ref:init-plot-cap) Default **ggplot2** theme.
+
+```{r init-plot, fig.cap = "(ref:init-plot-cap)"}
 library(ggplot2)
-library(knitr)
-library(fivethirtyeight)
 
-options(warn = -1)
+ggplot(mtcars, aes(x = mpg, y = disp)) +
+  geom_point(aes(color = factor(cyl)))
 ```
 
-# Introduction to ggplot2
 
-Figures are created using the ggplot2 package which is a part of the tidyverse  family of packages. Figures are created using multiple steps and layers. The first step is to import the data into ggplot. Note, the first example will be using the iris dataset, which is built in to R. This can be done using the following code:
+## Setting up your system
 
-```{r first_layer}
-iris %>%
-  ggplot()
+The ATLAS **ggplot2** themes use different fonts from the default theme in Figure \@ref(fig:init-plot). In order for **ggplot2** to be able to use other fonts on your computer, we need to use the **extrafont** package.
+
+```{r exfnt, eval = FALSE}
+library(extrafont)
+
+extrafont::font_import()
 ```
 
-The next step is to add layers to the graph. The first layer is always the `ggplot()` function. The `ggplot()` function often specifies the aesthetics of the graph. Within the `ggplot()` function, the parameter *aes* corresponds to the aesthetics that are specified, and these aesthetics within the *aes* parameter always correspond to variables in the dataset. For this graph, let's create a scatterplot with Petal.Length on the x-axis, Petal.Width on the y-axis, and the color of each point will correspond with Species. The aesthetics of such a graph are specified in the following code:
+This will import all TrueType fonts (`.ttf`) into a font database that can be accessed by **ggplot2**. If you later install new fonts to your system, you will need to call `extrafont::font_import()` again to add the new fonts to the database. To use the fonts, you simply have to load the database when you start your *R* session.
 
-```{r second_layer}
-iris %>%
-  ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species))
+```{r ldfnt, eval = FALSE}
+# For windows
+extrafont::loadfonts("win")
+
+# For Mac/Linux
+extrafont::loadfonts("pdf")
+extrafont::loadfonts("postscript")
 ```
 
-While the above code specifies how to map the graph aesthetics, no points are 
-plotted on the coordinate plane. This is because a second layer is needed to specify the geometric object layer that corresponds to the type of graph that is desired (a scatterplot). For this example, we will use `geom_point()` since we want to create a scatterplot. The geometric object layers are added using a *+* 
-at the end of the previous line. The code below provides an example of adding the `geom_point()` geometric object layer.
+Alternatively, you can set a global option in your `.Rprofile` to always load the font database when you attach the **ratlas** package with `library(ratlas)`. To edit your `.Rprofile`, use `usethis::edit_r_profile()`. This will open your `.Rprofile`, which is used to set global options. An example `.Rprofile` might look like this:
 
-```{r third_layer, eval = TRUE}
-iris %>%
-  ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species)) +
-  geom_point()
+```{r rprof, eval = FALSE}
+options(
+  repos = c("https://cran.rstudio.com/"),
+  ratlas.loadfonts = TRUE
+)
 ```
 
-In the graph above, you will notice that there are no parameters for the `geom_point()` layer. This is done for two reasons. First, all of the global parameters specified in the `ggplot(aes(...))` layer are passed on to subsequent layers. Thus, `geom_point()` is run using the global specifications. Second, there were no necessary local changes, and hence no new parameters were needed.
+Here, two options have been set. The first defines which CRAN repository to use when installing new packages. The second indicates that the font database should be loaded when **ratlas** is attached. We recommend setting this option in your `.Rprofile` so that you don't have to always remember to load the font database manually.
 
-Geometric objects can also be layered on one another. The graph below adds a regression line using a `geom_smooth()` object:
+## Using `theme_atlas()`
 
-```{r fourth_layer, eval = TRUE}
-iris %>%
-  ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species)) +
-  geom_point() + 
-  geom_smooth(method = "lm", se = FALSE)
-```
+The ATLAS **ggplot2** theme can be applied by adding a `ratlas::theme_atlas()` layer to plot, just as you would add any other theme. The result is shown in Figure \@ref(fig:theme-atlas-ex).
 
-Notice that adding the `geom_smooth()` object created three regression lines, one for each species of iris. This is because the global settings are specified to color each species differently (or group them separately, in other words). In order to create a single regression line, the color aesthetic must be specified locally for the `geom_point()` object. This will cause the points to be colored according to species, while drawing a single regression line through the points. Furthermore, the color of the regression line is set to black with `color = "black"` in the `geom_smooth()` geometric object.
+(ref:theme-atlas-ex-cap) The result of applying `ratlas::theme_atlas()` to a plot.
 
-```{r iris-figure, eval = TRUE}
-iris %>%
-  ggplot(aes(x = Petal.Length, y = Petal.Width)) +
-  geom_point(aes(color = Species)) + 
-  geom_smooth(method = "lm", se = FALSE, color = "black")
-```
+```{r theme-atlas-ex, fig.cap = "(ref:theme-atlas-ex-cap)"}
+library(ratlas)
 
-## Facets
-
-The example graph for the iris data provides an example of creating a single graph to display data. Now consider a second example which will graph the unemployement rate by median income of all college major categories using the `college_all_ages` dataset that comes with the `fivethirtyeight` package.
-
-```{r college-ex, eval = TRUE}
-college_all_ages %>% 
-  ggplot(aes(x = unemployment_rate, y = median)) +
-  geom_point(aes(color = major_category), show.legend = FALSE)
-```
-
-While the above graph contains a lot of information, it's hard to read because all of the college major categories are included in the same graph. Facets all for the data to be split based on one of the variables. 
-
-There are two primary types of facets. First, there is `facet_grid()`, which splits the graph into a grid based on up to two chosen variables. One variable will specify how the graph is to be split into columns, and the other variable will specify how the graph will be split into rows. As will be shown in the example, one or two variables can be specified for defining the grid. The only consequence is the shape of the grid. Figure \@ref(fig:facet-grid-ex) shows the effect of using `facet_grid()` with the `major_category` variable. More help can be found by typing `?facet_grid` into the console. 
-
-For simplicity, the following graph has been restricted to the Law & Public Policy, Communications & Journalism, Engineering, and Computers & Mathematics major categories.
-
-```{r facet-grid-ex, eval = TRUE}
-college_all_ages %>% 
-  filter(major_category == "Communications & Journalism" | 
-           major_category == "Law & Public Policy" | 
-           major_category == "Engineering" |
-           major_category == "Computers & Mathematics") %>% 
-  ggplot(aes(x = unemployment_rate, y = median)) +
-  geom_point(aes(color = major), show.legend = FALSE) +
-  facet_grid(rows = vars(major_category))
-```
-
-Second, there is `facet_wrap()`, which splits the graph into a rectangular grid based on the number of rows or columns that are desired. Unlike  `facet_grid()`, `facet_wrap()` can only use a single variable to split the dataset into a rectangular grid. Figure \@ref(fig:facet-wrap-ex) shows the effect of using `facet_wrap()` with the `major_category` variable. To improve readability, `ncols` will be set to three in this example. More help can be found by typing `?facet_wrap` into the console. With the current example `ncols = 1` will recreate the general shape of the graph from `facet_grid()`.
-
-Once again, the following graph has been restricted to the Law & Public Policy, Communications & Journalism, Engineering, and Computers & Mathematics major categories for simplicity.
-
-```{r facet-wrap-ex, eval = TRUE}
-college_all_ages %>% 
-  filter(major_category == "Communications & Journalism" | 
-           major_category == "Law & Public Policy" | 
-           major_category == "Engineering" |
-           major_category == "Computers & Mathematics") %>% 
-  ggplot(aes(x = unemployment_rate, y = median)) +
-  geom_point(aes(color = major), show.legend = FALSE) +
-  facet_wrap(facets = vars(major_category), ncol = 2)
-```
-
-Additional reading and information about facets can be found [here](https://r4ds.had.co.nz/data-visualisation.html#facets)
-
-## Stats
-
-The previous examples using geometric objects have demonstrated how the data can be used to visualize the data itself. An extension of this is to create a layer based on a statistical calculation. Stats objects do just that. 
-
-The format of geometric objects is `geom_[type]`. The format of stats objects is `stat_[type]`. 
-
-Continuing with the previous example of the unemployment rates and median income of all college major categories, we can use a stats object to overlay the mean onto the scatterplot.
-
-```{r stats-obj-ex, eval = TRUE}
-college_all_ages %>% 
-  ggplot(aes(x = unemployment_rate, y = median)) +
-  geom_point(aes(color = major_category), show.legend = FALSE) + 
-  stat_summary(geom = "hline", yintercept = mean(college_all_ages$median), 
-               color = "black")
-```
-
-Additional reading and information about stats objects can be found [here](https://r4ds.had.co.nz/data-visualisation.html#statistical-transformations)
-
-## Scales
-
-The scale layers allow for the graph scales to be adjusted to specifications. The x and y scales can be set individually through layers such as `scale_x_continuous()`, `scale_y_continuous()`, `scale_x_discrete()`, or `scale_y_discrete()`. The choice of continuous or discrete is dependent on the data type as to which one should be called.
-
-In continuing the example using the college major data, `scale_y_continuous()` and `scale_x_continuous()` can be used to scale the data. Note that continuous was chosen because both the median and the unemployment data are continuous variables.
-
-```{r scale-ex, eval = TRUE}
-college_all_ages %>% 
-  ggplot(aes(x = unemployment_rate, y = median)) +
-  geom_point(aes(color = major_category), show.legend = FALSE) +
-  scale_x_continuous(name = "Unemployment rate", limits = c(0, 0.2)) + 
-  scale_y_continuous(name = "Median income")
-```
-
-## Other geometric objects
-
-While the above example is useful for demonstrating how graphs and figures can be creating using ggplot2, a major limitations is often that creating good graphs is limited by the user's understanding of what graphs are possible with ggplot2. There are dozens of different geometric objects available through ggplot2. Since a  description of all of them is beyond the scope of this vignette, Hadley Wickham provides a general description of geometric objects [here](https://r4ds.had.co.nz/data-visualisation.html#geometric-objects), and there is a "Data Visualization Cheat Sheet" available [here](https://www.rstudio.com/resources/cheatsheets/#ggplot2). The Cheat Sheet provides examples of all of the different geometric objects and their parameters as well as different stats and scales options with their respective parameters.
-
-## Additional aesthetic arguments
-
-The above example demonstrates how to create a simple graph using the `geom_point()` and `geom_smooth()` geometric objects with the *x*, *y*, and *color* aesthetics. The above example also included `geom_smooth()` specific arguments for *method* and *se*. Hadley Wickham provides a comprehensive description of all of the aesthetic arguments [here](https://r4ds.had.co.nz/data-visualisation.html#aesthetic-mappings). 
-
-Additional walkthroughs of visualizing data through ggplot2 can be found [here](https://tidy-ds.wjakethompson.com/days/day1/visualize/), where Jake Thompson has created a compilation of examples, demonstrations, and resources of plotting in ggplot2.
-
-## Themes
-
-ggplot comes with a handful of pre-built themes that allow the user to change the appearance of the graph to be in accordance with the theme's settings. The theme can be set by calling the theme's function as an additional layer of the graph. Figure \@ref(fig:theme-ex) sets the previous graph to use the `theme_bw()` theme, which is the black and white theme. 
-
-```{r theme-ex, eval = TRUE}
-college_all_ages %>% 
-  ggplot(aes(x = unemployment_rate, y = median)) +
-  geom_point(aes(color = major_category), show.legend = FALSE) +
-  scale_x_continuous(name = "Unemployment rate", limits = c(0, 0.2)) + 
-  scale_y_continuous(name = "Median income") +
-  theme_bw()
-```
-
-# Using theme_atlas()
-
-The first of ratlas' theme packages is `theme_atlas()`, which specifies font characteristics, axes and labels, and background display settings. The `theme_atlas()` theme can be enacted as shown in Figure \@ref(fig:theme-atlas-ex).
-
-```{r theme-atlas-ex, eval = TRUE}
-college_all_ages %>% 
-  ggplot(aes(x = unemployment_rate, y = median)) +
-  geom_point(aes(color = major_category), show.legend = FALSE) +
-  scale_x_continuous(name = "Unemployment rate", limits = c(0, 0.2)) + 
-  scale_y_continuous(name = "Median income") +
+ggplot(mtcars, aes(x = mpg, y = disp)) +
+  geom_point(aes(color = factor(cyl))) +
   theme_atlas()
 ```
 
-# Using theme_atlas_ms()
+There are a few points to draw attention to when comparing Figure \@ref(fig:theme-atlas-ex) back to Figure \@ref(fig:init-plot). First, the gray  background has been removed, and the grid lines have been changed from white to gray. Second, the legend has been moved from a vertical orientation on the right-hand side of the plot to a horizontal orientation below the plot. Finally, the font has been changed to Arial Narrow, which should be available on all systems and provides a more modern look.
 
-The second of ratlas' theme packages is `theme_atlas_ms()`, which is similar to `theme_atlas()` but specifies a different font. The `theme_atlas_ms()` theme can be enacted as shown in Figure \@ref(fig:theme-atlas-ms-ex).
+## Changing the font
 
-```{r theme-atlas-ms-ex, eval = TRUE}
-college_all_ages %>% 
-  ggplot(aes(x = unemployment_rate, y = median)) +
-  geom_point(aes(color = major_category), show.legend = FALSE) +
-  scale_x_continuous(name = "Unemployment rate", limits = c(0, 0.2)) + 
-  scale_y_continuous(name = "Median income") +
+Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is [Gotham](https://brand.ku.edu/guidelines/typography). However, this font is expensive, and thus inaccessible to most users. [Montserrat](https://fonts.google.com/specimen/Montserrat) is a very similar font that is available for free through Google Fonts. We recommend that you download and install this font on your system directly from Google Fonts, and then calling `extrafont::font_import()`. However, a convenience function has been provided, `ratlas::import_montserrat()`, that will try do some of the work for you.
+
+Once the Montserrat font has been installed on your system, you can apply it to the ATLAS theme using `ratlas::theme_atlas_ms()`, as shown in Figure \@ref(fig:theme-atlas-ms-ex).
+
+(ref:theme-atlas-ms-ex-cap) Using the Montserrat font with `ratlas::theme_atlas_ms()`.
+
+```{r theme-atlas-ms-ex, fig.cap = "(ref:theme-atlas-ms-ex-cap)"}
+ggplot(mtcars, aes(x = mpg, y = disp)) +
+  geom_point(aes(color = factor(cyl))) +
   theme_atlas_ms()
 ```
 
-# Using the OkabeIto palette
+Notice that Figure \@ref(fig:theme-atlas-ms-ex) is identical to Figure \@ref(fig:theme-atlas-ex), with the exception of a different font (i.e., all other theme changes are preserved).
 
-Palettes are assortments of colors that are pre-prepared for use in a graph. The colorblindr package in R is specially developed to provide visualizations that can accomodate those with colorblindness. The OkabeIto palette is one such palette in colorblindr. 
+## Colors
 
-To use the OkabeIto pallete, simply add `scale_fill_OkabeIto(palette = palette_OkabeIto)` as another layer to the graph. This will convert the colors of the graph to those of the color palette. An example is provided in Figure \@ref(fig:okabeito-example).
+One potential issue with graphics created with **ggplot2** is that the default color scales are not colorblind friendly. For example, Figure \@ref(fig:disc-cvd) shows our working example simulated with different types of color blindness.
 
-```{r okabeito-example}
-college_all_ages %>% 
-  ggplot(aes(x = unemployment_rate, y = median)) +
-  geom_point(aes(color = major_category), show.legend = FALSE) +
-  scale_x_continuous(name = "Unemployment rate", limits = c(0, 0.2)) + 
-  scale_y_continuous(name = "Median income") +
-  theme_atlas_ms() + 
-  scale_fill_OkabeIto(palette = palette_OkabeIto)
+(ref:disc-cvd-cap) The default **ggplot2** color palette for discrete scales with different types of color blindness.
+
+```{r colorblindr-funcs, include = FALSE}
+# This is a placeholder until colorblindr is on CRAN. When that happens,
+# colorblindr can be added to suggests, and we can just use
+# colorblindr::cvd_grid()
+edit_colors <- function(plot = last_plot(), colfun = passthrough, fillfun = NULL, ...)
+{
+  # convert to grob if necessary
+  if (!methods::is(plot, "grob")) {
+    plot <- cowplot::plot_to_gtable(plot)
+  }
+
+  if (is.null(fillfun)) {
+    fillfun = colfun
+  }
+  edit_grob_colors(plot, colfun, fillfun, ...)
+}
+
+edit_grob_colors <- function(grob, colfun, fillfun, ...)
+{
+  if (!is.null(grob$gp)) {
+    if (!is.null(grob$gp$col)) {
+      grob$gp$col <- colfun(grob$gp$col, ...)
+    }
+    if (!is.null(grob$gp$fill)) {
+      grob$gp$fill <- fillfun(grob$gp$fill, ...)
+    }
+  }
+
+  if (!is.null(grob$grobs)) {
+    grob$grobs <- lapply(grob$grobs, edit_grob_colors, colfun, fillfun, ...)
+  }
+
+  if (!is.null(grob$children)) {
+    grob$children <- lapply(grob$children, edit_grob_colors, colfun, fillfun, ...)
+  }
+
+  if (methods::is(grob, "rastergrob")) {
+    grob <- edit_rastergrob_colors(grob, colfun, ...)
+  }
+
+  grob
+}
+
+edit_rastergrob_colors <- function(grob, colfun, ...)
+{
+  rasternew <- colfun(c(grob$raster), ...)
+  dim(rasternew) <- dim(grob$raster)
+  class(rasternew) <- class(grob$raster)
+  grid::editGrob(grob, raster = rasternew)
+}
+
+cvd_grid <- function(plot = last_plot(), severity = 1)
+{
+  deut <- function(c) colorspace::deutan(c, severity)
+  p1 <- edit_colors(plot, deut)
+
+  prot <- function(c) colorspace::protan(c, severity)
+  p2 <- edit_colors(plot, prot)
+
+  trit <- function(c) colorspace::tritan(c, severity)
+  p3 <- edit_colors(plot, trit)
+
+  des <- function(c) colorspace::desaturate(c, severity)
+  p4 <- edit_colors(plot, des)
+
+  cowplot::plot_grid(p1, p2, p3, p4, scale = 0.9, hjust = 0, vjust = 1,
+                     labels = c("Deutanomaly", "Protanomaly", "Tritanomaly", "Desaturated"),
+                     label_x = 0.01, label_y = 0.99, label_size = 12, label_fontface = "bold")
+}
 ```
 
-There is a second OkabeIto pallete called `palette_OkabeIto_black`, and it can be called with `scale_fill_OkabeIto(palette = palette_OkabeIto_black`.
+```{r disc-cvd, echo = FALSE, fig.asp = 1.618, fig.cap = "(ref:disc-cvd-cap)"}
+p <- ggplot(mtcars, aes(x = mpg, y = disp)) +
+  geom_point(aes(color = factor(cyl))) +
+  theme_atlas()
 
-# Using the atlas palette
-
-Similarly, the atlas palette can be used. The major difference is that the `scale_fill_OkabeIto()` layer is specific to the colorblindr package. For general purposes, a layer calling `scale_fill_continuous()` or `scale_fill_discrete()` can be used depending on whether you data is contintuous or discrete, respectively. An example is provided in Figure \@ref(fig:atlas-palette-example)
-
-```{r atlas-palette-example}
-college_all_ages %>% 
-  ggplot(aes(x = unemployment_rate, y = median)) +
-  geom_point(aes(color = major_category), show.legend = FALSE) +
-  scale_x_continuous(name = "Unemployment rate", limits = c(0, 0.2)) + 
-  scale_y_continuous(name = "Median income") +
-  theme_atlas_ms() + 
-  scale_fill_continuous(palette = palette_atlas)
+cvd_grid(p)
 ```
 
-Just like the OkabeIto palette, there is a second palette choice for the atlas palettes. Using the same naming format as the OkabeIto palettes, the second atlas palette is titled `palette_atlas_black`, and it can be called using `scale_fill_continuous(palette = palette_atlas_black` or `scale_fill_discrete(palette = palette_atlas_black)`.
+Figure \@ref(fig:disc-cvd) shows that most types of color blindness make it hard to distinguish between the different level of the `cyl` variable when using the default color palette. The palette for continuous variables has similar problems. Figure \@ref(fig:cont-ex) shows the default color palette for continuous variables in **ggplot2**.
 
-# Using theme setting functions
+(ref:cont-ex-cap) Default color palette for continuous variables in **ggplot2**.
 
-The theme for the plots can also be set globally using the `set_theme()` command, which can be added in the setup code chunk. The `set_theme()` function takes one parameter, *theme*. By default, the *theme* parameter is set to be "theme_atlas", although this can be specified to be "theme_atlas_ms".
+```{r for_repeat, include = FALSE}
+n_col <- 128
+img <- function(obj, nam) {
+  image(1:length(obj), 1, as.matrix(1:length(obj)), col = obj, main = nam,
+        ylab = "", xaxt = "n", yaxt = "n",  bty = "n")
+}
+```
 
-To set the *theme* in the setup chunk, the setup chunk will look similar to:
+```{r cont-ex, echo = FALSE, fig.asp = 0.15, fig.cap = "(ref:cont-ex-cap)"}
+par(mfrow=c(1, 1), mar=rep(1, 4))
+img(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
+                         space = "Lab")(seq(0, 1, length=n_col))), "")
+```
 
-```{r setup-ex, include = TRUE, eval = FALSE, echo = TRUE}
-# see which of these I need and add to suggests in DESCRIPTION if needed
-library(ratlas)
+The simulated color blindness for this scale is shown in Figure \@ref(fig:cont-cvd). Here, several types of color blindness result in large sections of the palette where it is difficult to differentiate values.
 
-# setting the theme to theme_atlas
-set_theme(theme = "theme_atlas") # could also be written as set_theme()
+(ref:cont-cvd-cap) The default **ggplot2** color palette for continuous scales with different types of color blindness.
 
-# setting the theme to theme_atlas_ms
-# set_theme(theme = "theme_atlas_ms")
+```{r cont-cvd, echo = FALSE, fig.asp = 0.5, fig.cap = "(ref:cont-cvd-cap)"}
+par(mfrow=c(4, 1), mar=rep(1, 4))
+img(dichromat(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
+                                   space = "Lab")(seq(0, 1, length=n_col))),
+              "deutan"), "Deutanomaly")
+img(dichromat(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
+                                   space = "Lab")(seq(0, 1, length=n_col))),
+              "protan"), "Protanomaly")
+img(dichromat(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
+                                   space = "Lab")(seq(0, 1, length=n_col))),
+              "tritan"), "Tritanomaly")
+img(desaturate(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
+                                    space = "Lab")(seq(0, 1, length=n_col)))),
+    "Desaturated")
+```
+
+### Using color blind safe palettes
+
+For discrete color scales, the **ratlas** package includes the Okabe Ito color palette developed by [Masataka Okabe and Kei Ito](https://jfly.uni-koeln.de/color/). This can be used with the `ratlas::scale_color_OkabeIto()` function.
+
+```{r okabeito-compare, out.width = "47%", fig.asp = 1.618, fig.show = "hold", fig.cap = "Comparison plot using the default (left) and Okabe Ito (right) discrete color palettes."}
+ggplot(mtcars, aes(x = mpg, y = disp)) +
+  geom_point(aes(color = factor(cyl)), size = 3) +
+  theme_atlas()
+
+ggplot(mtcars, aes(x = mpg, y = disp)) +
+  geom_point(aes(color = factor(cyl)), size = 3) +
+  scale_color_OkabeIto() +
+  theme_atlas()
+```
+
+For continuous color scales, the viridis family of color palettes should be used. These palettes were created by [Stéfan van der Walt](https://github.com/stefanv) and [Nathaniel Smith](https://github.com/njsmith) and are shown in Figure \@ref(fig:show-viridis).
+
+```{r show-viridis, echo = FALSE, fig.asp = 0.6, fig.cap = "The viridis color scales."}
+par(mfrow=c(5, 1), mar=rep(1, 4))
+img(rev(viridis(n_col)), "Viridis")
+img(rev(magma(n_col)), "Magma")
+img(rev(plasma(n_col)), "Plasma")
+img(rev(inferno(n_col)), "Inferno")
+img(rev(cividis(n_col)), "Cividis")
+```
+
+These color scales are perceptually uniform, perform well for a variety of colorblindness, and maintain the ability to discriminate across the perceptual spectrum when rendered or printed in gray scale. This can be applied using `ggplot2::scale_color_viridis_c()`. Figure \@ref(fig:viridis-compare) shows and example of using the the viridis color palette. There is also a discrete option for the viridis color palette (`ggplot2::scale_color_viridis_d()`); however, the Okabe Ito palette is preferred for discrete scales.
+
+```{r viridis-compare, out.width = "47%", fig.asp = 1.618, fig.show = "hold", fig.cap = "Comparison plot with default (left) and viridis (right) continuous color palettes."}
+ggplot(faithfuld, aes(x = eruptions, y = waiting)) +
+  geom_raster(aes(fill = density)) +
+  theme_atlas()
+
+ggplot(faithfuld, aes(x = eruptions, y = waiting)) +
+  geom_raster(aes(fill = density)) +
+  scale_fill_viridis_c() +
+  theme_atlas()
+```
+
+### Brand colors
+
+In additional to palettes that are color blind safe, the **ratlas** package also include brand specific color palettes. For example, a plot can be created using the official ATLAS color palette by using the `ratlas::scale_color_atlas()` function, as shown in Figure \@ref(fig:atlas-colors).
+
+(ref:atlas-colors-cap) Plot with the official ATLAS colors using `ratlas::scale_color_atlas()`.
+
+```{r atlas-colors, fig.cap = "(ref:atlas-colors-cap)"}
+ggplot(mtcars, aes(x = mpg, y = disp)) +
+  geom_point(aes(color = factor(cyl))) +
+  scale_color_atlas() +
+  theme_atlas()
+```
+
+## Setting a global theme
+
+If you have several plots in a document, it can be a hassle to always remember to add `+ theme_atlas()` to every plot and to switch to a non-default color palette. To make the formatting of plots easier, **ratlas** includes a wrapper function, `ratlas::set_theme()` calling this function will change the **ggplot2** defaults so that `theme_atlas()` is always used, and the default color scales are change to the Okabe Ito palette for discrete scales and the viridis palette for continuous scales.
+
+For example, once `set_theme()` has been called, the `scale_color_OkabeIto()` and `theme_atlas()` lines no longer need to be added. Instead, they are applied by default (Figure \@ref(fig:default-theme)). 
+
+(ref:default-theme-cap) Plot generated after using `set_theme()` to set new defaults globally.
+
+```{r default-theme, fig.cap = "(ref:default-theme-cap)"}
+set_theme()
+
+ggplot(mtcars, aes(x = mpg, y = disp)) +
+  geom_point(aes(color = factor(cyl)))
+```
+
+The `set_theme()` functions provides flexibility for which defaults are set. For example, to use the Montserrat font by default, use `set_theme(font = "Montserrat")`. See `?set_theme()` for all options.
+
+## Saving plots
+
+Finally, it is often useful to save plots to a file. This can be done with `ratlas::ggsave2()`. This is a wrapper around `ggplot2::ggsave()`. The `ggsave2()` version applies some defaults to all ATLAS. Specifically, the plot labels and titles are automatically spell checked, the aspect ratio of plots is set to a reasonable default (rather than using the current size of your current graphics device), and embeds the fonts when saving to a PDF format, allowing the plots to render correctly on any system.
+
+```{r eval = FALSE}
+p <- ggplot(mtcars, aes(x = mpg, y = disp)) +
+  geom_point()
+
+ggsave2(plot = p, filename = "my-plot.png", path = "where/to/save")
+```
+
+The `ggsave2()` function also flips the order of the `filename` and `plot` arguments from the `ggplot2::ggsave()` function. This allows calls to the function to be chained together, making it easier to save the sample plot in multiple formats using the `%>%` operator.
+
+```{r eval = FALSE}
+p %>%
+  ggsave2(filename = "my-plot.png", path = "where/to/save") %>%
+  ggsave2(filename = "my-plot.pdf", path = "where/to/save")
 ```
