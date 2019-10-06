@@ -26,7 +26,7 @@ set_theme <- function(font = "Arial Narrow", discrete = "okabeito",
                         viridis = "D",
                         cividis = "E")
   disc_option <- switch(discrete,
-                        okabeito = palette_OkabeIto,
+                        okabeito = palette_okabe_ito,
                         atlas = palette_atlas)
 
   if (font == "Arial Narrow") {
