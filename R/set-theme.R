@@ -17,8 +17,9 @@
 #' set_theme("Montserrat")
 #'
 #' @export
-set_theme <- function(font = "Arial Narrow", discrete = "okabeito",
-                      continuous = "viridis") {
+set_theme <- function(font = c("Arial Narrow", "Montserrat", "Palatino"),
+                      discrete = "okabeito", continuous = "viridis") {
+  font <- match.arg(font)
   cont_option <- switch(continuous,
                         magma = "A",
                         inferno = "B",
@@ -35,6 +36,9 @@ set_theme <- function(font = "Arial Narrow", discrete = "okabeito",
   } else if (font == "Montserrat") {
     ggplot2::theme_set(theme_atlas_ms())
     update_geom_font_ms_defaults()
+  } else if (font == "Palatino") {
+    ggplot2::theme_set(theme_atlas_pl())
+    update_geom_font_pl_defaults()
   }
 
   pos <- 1

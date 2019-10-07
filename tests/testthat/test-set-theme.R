@@ -1,5 +1,6 @@
 context("test-set-theme")
 library(ggplot2)
+library(stringr)
 
 # Arial Narrow -----------------------------------------------------------------
 set_theme(font = "Arial Narrow", discrete = "okabeito", continuous = "viridis")
@@ -108,6 +109,60 @@ test_that("theme_atlas_ms grids, axis, and ticks are correct", {
                theme_atlas_ms(axis = ""))
   expect_equal(invisible(theme_atlas_ms(ticks = TRUE)),
                theme_atlas_ms(ticks = TRUE))
+})
+
+# Palatino ---------------------------------------------------------------------
+set_theme(font = "Palatino", discrete = "okabeito", continuous = "viridis")
+thm <- ggplot2::theme_get()
+
+test_that("theme_atlas_pl is a theme", {
+  expect_s3_class(thm, "theme")
+})
+
+test_that("theme_atlas_pl uses Palatino font", {
+  expect_true(str_detect(thm$text$family, "Palatino"))
+  expect_true(str_detect(thm$plot.title$family, "Palatino"))
+  expect_true(str_detect(thm$plot.subtitle$family, "Palatino"))
+  expect_true(str_detect(thm$plot.caption$family, "Palatino"))
+  expect_true(str_detect(thm$strip.text$family, "Palatino"))
+  expect_true(str_detect(thm$axis.title$family, "Palatino"))
+  expect_null(thm$axis.text$family)
+  expect_null(thm$legend.text$family)
+})
+
+test_that("theme_atlas_pl font sizes are correct", {
+  expect_equal(thm$text$size, 11.5)
+  expect_equal(thm$plot.title$size, 18)
+  expect_equal(thm$plot.subtitle$size, 12)
+  expect_equal(thm$strip.text$size, 12)
+  expect_equal(thm$plot.caption$size, 9)
+  expect_equal(thm$axis.title$size, 11.5)
+})
+
+test_that("theme_atlas_pl font colors are correct", {
+  expect_equal(thm$text$colour, "black")
+  expect_equal(thm$axis.text$colour, "grey30")
+})
+
+test_that("theme_atlas_pl grids, axis, and ticks are correct", {
+  expect_equal(invisible(theme_atlas_pl(grid = FALSE)),
+               theme_atlas_pl(grid = FALSE))
+  expect_equal(invisible(theme_atlas_pl(grid = "XY")),
+               theme_atlas_pl(grid = "XY"))
+  expect_equal(invisible(theme_atlas_pl(grid = "xy")),
+               theme_atlas_pl(grid = "xy"))
+
+  expect_equal(invisible(theme_atlas_pl(axis = TRUE)),
+               theme_atlas_pl(axis = TRUE))
+
+  expect_equal(invisible(theme_atlas_pl(axis = FALSE)),
+               theme_atlas_pl(axis = FALSE))
+  expect_equal(invisible(theme_atlas_pl(axis = "xy")),
+               theme_atlas_pl(axis = "xy"))
+  expect_equal(invisible(theme_atlas_pl(axis = "")),
+               theme_atlas_pl(axis = ""))
+  expect_equal(invisible(theme_atlas_pl(ticks = TRUE)),
+               theme_atlas_pl(ticks = TRUE))
 })
 
 
