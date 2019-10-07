@@ -165,6 +165,13 @@ $endfor$
 {\cleardoublepage\setcounter{page}{1}\renewcommand{\thepage}{\roman{page}}}
 {\cleardoublepage\setcounter{page}{1}\renewcommand{\thepage}{\arabic{page}}}
 
+% watermark
+$if(watermark)$
+  \usepackage{draftwatermark}
+  \SetWatermarkLightness{.8}
+  \SetWatermarkText{$watermark$}
+$endif$
+
 % table and figure numbering
 \usepackage{pdflscape}
 \usepackage{threeparttable}
