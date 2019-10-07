@@ -39,6 +39,7 @@ environment:
   - R_VERSION: devel
     R_ARCH: x64
     GCC_PATH: mingw_64
+    PKGTYPE: binary
 
 before_test:
   - ps: >-

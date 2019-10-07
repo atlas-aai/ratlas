@@ -17,9 +17,7 @@ ggsave2(plot = ggplot2::last_plot(), filename, device = NULL,
 (e.g. \code{\link[=png]{png()}}), or one of "eps", "ps", "tex" (pictex),
 "pdf", "jpeg", "tiff", "png", "bmp", "svg" or "wmf" (windows only).}
 
-\item{path}{Path of the directory to save plot to: \code{path} and \code{filename}
-are combined to create the fully qualified file name. Defaults to the
-working directory.}
+\item{path}{Path to save plot to (combined with filename).}
 
 \item{width}{Plot size in \code{units} ("in", "cm", or "mm").}
 
