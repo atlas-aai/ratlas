@@ -1,26 +1,26 @@
-#' @rdname scale_okabe_ito
+#' @rdname scale_okabeito
 #' @export
 #' @usage NULL
-scale_colour_okabe_ito <- function(aesthetics = "colour", ...) {
-  scale_okabe_ito(aesthetics, ...)
+scale_colour_okabeito <- function(aesthetics = "colour", ...) {
+  scale_okabeito(aesthetics, ...)
 }
 
-#' @rdname scale_okabe_ito
+#' @rdname scale_okabeito
 #' @export
 #' @usage NULL
-scale_color_okabe_ito <- scale_colour_okabe_ito
+scale_color_okabeito <- scale_colour_okabeito
 
-#' @rdname scale_okabe_ito
+#' @rdname scale_okabeito
 #' @export
 #' @usage NULL
-scale_fill_okabe_ito <- function(aesthetics = "fill", ...) {
-  scale_okabe_ito(aesthetics, ...)
+scale_fill_okabeito <- function(aesthetics = "fill", ...) {
+  scale_okabeito(aesthetics, ...)
 }
 
 #' Okabe-Ito color scale
 #'
 #' This is a color-blind friendly, qualitative scale with eight different
-#' colors. See [palette_okabe_ito] for details.
+#' colors. See [palette_okabeito] for details.
 #'
 #' @param use_black If `TRUE`, scale includes black, otherwise includes gray.
 #' @param order Numeric vector listing the order in which the colors should be
@@ -35,18 +35,18 @@ scale_fill_okabe_ito <- function(aesthetics = "fill", ...) {
 #' @examples
 #' library(ggplot2)
 #' ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-#'   geom_point() + scale_color_okabe_ito()
+#'   geom_point() + scale_color_okabeito()
 #' ggplot(iris, aes(Sepal.Length, fill = Species)) +
-#'   geom_density(alpha = 0.7) + scale_fill_okabe_ito(order = c(1, 3, 5))
+#'   geom_density(alpha = 0.7) + scale_fill_okabeito(order = c(1, 3, 5))
 #' @export
 #' @usage NULL
-scale_okabe_ito <- function(aesthetics, use_black = FALSE, order = 1:8,
+scale_okabeito <- function(aesthetics, use_black = FALSE, order = 1:8,
                             darken = 0, alpha = NA, ...) {
   if (use_black) {
-    values <- palette_okabe_ito_black[order]
+    values <- palette_okabeito_black[order]
   }
   else {
-    values <- palette_okabe_ito[order]
+    values <- palette_okabeito[order]
   }
 
   n <- length(values)

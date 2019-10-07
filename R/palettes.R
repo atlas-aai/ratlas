@@ -2,16 +2,16 @@
 #'
 #' Two color palettes taken from the article "Color Universal Design" by Okabe
 #' and Ito, http://jfly.iam.u-tokyo.ac.jp/color/. The variant
-#' `palette_okabe_ito` contains a gray color, while `palette_okabe_ito_black`
+#' `palette_okabeito` contains a gray color, while `palette_okabeito_black`
 #' contains black instead.
 #' @export
-palette_okabe_ito <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
-                       "#D55E00", "#CC79A7", "#999999")
+palette_okabeito <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
+                      "#D55E00", "#CC79A7", "#999999")
 
-#' @rdname palette_okabe_ito
+#' @rdname palette_okabeito
 #' @export
-palette_okabe_ito_black <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442",
-                             "#0072B2", "#D55E00", "#CC79A7", "#000000")
+palette_okabeito_black <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442",
+                            "#0072B2", "#D55E00", "#CC79A7", "#000000")
 
 #' Official color palette for ATLAS
 #'
