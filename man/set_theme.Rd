@@ -4,8 +4,8 @@
 \alias{set_theme}
 \title{Set default ggplot2 theme}
 \usage{
-set_theme(font = "Arial Narrow", discrete = "okabeito",
-  continuous = "viridis")
+set_theme(font = c("Arial Narrow", "Montserrat", "Palatino"),
+  discrete = "okabeito", continuous = "viridis")
 }
 \arguments{
 \item{font}{One of "Arial Narrow" (default) or "Montserrat".}
