@@ -250,7 +250,7 @@ img(desaturate(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
 
 ### Using color blind safe palettes
 
-For discrete color scales, the **ratlas** package includes the Okabe Ito color palette developed by [Masataka Okabe and Kei Ito](https://jfly.uni-koeln.de/color/). This can be used with the `ratlas::scale_color_OkabeIto()` function.
+For discrete color scales, the **ratlas** package includes the Okabe Ito color palette developed by [Masataka Okabe and Kei Ito](https://jfly.uni-koeln.de/color/). This can be used with the `ratlas::scale_color_okabeito()` function.
 
 ```{r okabeito-compare, out.width = "47%", fig.asp = 1.618, fig.show = "hold", fig.cap = "Comparison plot using the default (left) and Okabe Ito (right) discrete color palettes."}
 ggplot(mtcars, aes(x = mpg, y = disp)) +
@@ -259,7 +259,7 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
 
 ggplot(mtcars, aes(x = mpg, y = disp)) +
   geom_point(aes(color = factor(cyl)), size = 3) +
-  scale_color_OkabeIto() +
+  scale_color_okabeito() +
   theme_atlas()
 ```
 
@@ -304,7 +304,7 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
 
 If you have several plots in a document, it can be a hassle to always remember to add `+ theme_atlas()` to every plot and to switch to a non-default color palette. To make the formatting of plots easier, **ratlas** includes a wrapper function, `ratlas::set_theme()` calling this function will change the **ggplot2** defaults so that `theme_atlas()` is always used, and the default color scales are change to the Okabe Ito palette for discrete scales and the viridis palette for continuous scales.
 
-For example, once `set_theme()` has been called, the `scale_color_OkabeIto()` and `theme_atlas()` lines no longer need to be added. Instead, they are applied by default (Figure \@ref(fig:default-theme)). 
+For example, once `set_theme()` has been called, the `scale_color_okabeito()` and `theme_atlas()` lines no longer need to be added. Instead, they are applied by default (Figure \@ref(fig:default-theme)). 
 
 (ref:default-theme-cap) Plot generated after using `set_theme()` to set new defaults globally.
 
