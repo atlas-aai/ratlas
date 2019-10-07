@@ -37,11 +37,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette walks through how to create consistent graphics that meet ATLAS formatting standards using [**ggplot2**](https://ggplot2.tidyverse.org). The **ggplot2** package uses the grammar of graphics to create elegant and reproducible plots that are publication ready. The **ratlas** package provides an extension to ggplot2 by customizing the default theme to match brand requirements.
+This vignette walks through how to create consistent graphics that meet ATLAS formatting standards using [**ggplot2**](https://ggplot2.tidyverse.org). The **ggplot2** package uses the grammar of graphics to create elegant and reproducible plots that are publication ready. The **ratlas** package provides an extension to **ggplot2** by customizing the default theme to match brand requirements.
 
 ## Introduction to ggplot2
 
-A full tutorial of how to use **ggplot2** is beyond the scope of this vignette. If you are new to **ggplot2** we recommend you start with these resources:
+A full tutorial of how to use **ggplot2** is beyond the scope of this vignette. If you are new to **ggplot2**, we recommend you start with these resources:
 
 * [Data Visualisation](https://r4ds.had.co.nz/data-visualisation.html) in *R for Data Science*, by Hadley Wickham & Garrett Grolemund
 * [*Data Visualization*](http://socviz.co), by Kieran Healy
@@ -111,7 +111,7 @@ There are a few points to draw attention to when comparing Figure \@ref(fig:them
 
 ## Changing the font
 
-Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is [Gotham](https://brand.ku.edu/guidelines/typography). However, this font is expensive, and thus inaccessible to most users. [Montserrat](https://fonts.google.com/specimen/Montserrat) is a very similar font that is available for free through Google Fonts. We recommend that you download and install this font on your system directly from Google Fonts, and then calling `extrafont::font_import()`. However, a convenience function has been provided, `ratlas::import_montserrat()`, that will try do some of the work for you.
+Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is [Gotham](https://brand.ku.edu/guidelines/typography). However, this font is expensive, and thus inaccessible to most users. [Montserrat](https://fonts.google.com/specimen/Montserrat) is a very similar font that is available for free through Google Fonts. We recommend that you download and install this font on your system directly from Google Fonts, and then call `extrafont::font_import()`. However, a convenience function has been provided, `ratlas::import_montserrat()`, that will do some of the work for you.
 
 Once the Montserrat font has been installed on your system, you can apply it to the ATLAS theme using `ratlas::theme_atlas_ms()`, as shown in Figure \@ref(fig:theme-atlas-ms-ex).
 
@@ -274,7 +274,7 @@ img(rev(inferno(n_col)), "Inferno")
 img(rev(cividis(n_col)), "Cividis")
 ```
 
-These color scales are perceptually uniform, perform well for a variety of colorblindness, and maintain the ability to discriminate across the perceptual spectrum when rendered or printed in gray scale. This can be applied using `ggplot2::scale_color_viridis_c()`. Figure \@ref(fig:viridis-compare) shows and example of using the the viridis color palette. There is also a discrete option for the viridis color palette (`ggplot2::scale_color_viridis_d()`); however, the Okabe Ito palette is preferred for discrete scales.
+These color scales are perceptually uniform, perform well for a variety of colorblindness, and maintain the ability to discriminate across the perceptual spectrum when rendered or printed in gray scale. These color scales can be applied using `ggplot2::scale_color_viridis_c()`. Figure \@ref(fig:viridis-compare) shows and example of using the the viridis color palette. There is also a discrete option for the viridis color palette (`ggplot2::scale_color_viridis_d()`); however, the Okabe Ito palette is preferred for discrete scales.
 
 ```{r viridis-compare, out.width = "47%", fig.asp = 1.618, fig.show = "hold", fig.cap = "Comparison plot with default (left) and viridis (right) continuous color palettes."}
 ggplot(faithfuld, aes(x = eruptions, y = waiting)) +
@@ -302,7 +302,7 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
 
 ## Setting a global theme
 
-If you have several plots in a document, it can be a hassle to always remember to add `+ theme_atlas()` to every plot and to switch to a non-default color palette. To make the formatting of plots easier, **ratlas** includes a wrapper function, `ratlas::set_theme()` calling this function will change the **ggplot2** defaults so that `theme_atlas()` is always used, and the default color scales are change to the Okabe Ito palette for discrete scales and the viridis palette for continuous scales.
+If you have several plots in a document, it can be a hassle to always remember to add `+ theme_atlas()` to every plot and to switch to a non-default color palette. To make the formatting of plots easier, **ratlas** includes a wrapper function, `ratlas::set_theme()` which will change the **ggplot2** defaults so that `theme_atlas()` is always used, and the default color scales are changed to the Okabe Ito palette for discrete scales and the viridis palette for continuous scales.
 
 For example, once `set_theme()` has been called, the `scale_color_okabeito()` and `theme_atlas()` lines no longer need to be added. Instead, they are applied by default (Figure \@ref(fig:default-theme)). 
 
@@ -315,11 +315,11 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
   geom_point(aes(color = factor(cyl)))
 ```
 
-The `set_theme()` functions provides flexibility for which defaults are set. For example, to use the Montserrat font by default, use `set_theme(font = "Montserrat")`. See `?set_theme()` for all options.
+The `set_theme()` function also provides flexibility for which defaults are set. For example, to use the Montserrat font by default, use `set_theme(font = "Montserrat")`. See `?set_theme()` for all options.
 
 ## Saving plots
 
-Finally, it is often useful to save plots to a file. This can be done with `ratlas::ggsave2()`. This is a wrapper around `ggplot2::ggsave()`. The `ggsave2()` version applies some defaults to all ATLAS. Specifically, the plot labels and titles are automatically spell checked, the aspect ratio of plots is set to a reasonable default (rather than using the current size of your current graphics device), and embeds the fonts when saving to a PDF format, allowing the plots to render correctly on any system.
+Finally, it is often useful to save plots to a file. This can be done with `ratlas::ggsave2()`. This is a wrapper around `ggplot2::ggsave()`. The `ggsave2()` version applies some defaults to all ATLAS plots. Specifically, the plot labels and titles are automatically spell checked, the aspect ratio of plots is set to a reasonable default (rather than using the current size of your current graphics device), and embeds the fonts when saving to a PDF format, allowing the plots to render correctly on any system.
 
 ```{r eval = FALSE}
 p <- ggplot(mtcars, aes(x = mpg, y = disp)) +
