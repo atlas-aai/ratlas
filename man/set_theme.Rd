@@ -4,8 +4,8 @@
 \alias{set_theme}
 \title{Set default ggplot2 theme}
 \usage{
-set_theme(font = "Arial Narrow", discrete = "okabeito",
-  continuous = "viridis")
+set_theme(font = c("Arial Narrow", "Montserrat", "Palatino"),
+  discrete = "okabeito", continuous = "viridis")
 }
 \arguments{
 \item{font}{One of "Arial Narrow" (default) or "Montserrat".}
@@ -19,7 +19,7 @@ set_theme(font = "Arial Narrow", discrete = "okabeito",
 \description{
 Sets the default color schemes, fonts, and theme for ggplot2 plots. The
 default color scheme for continuous variables is the
-\href{https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html}{viridis}
+\href{https://cran.r-project.org/web/packages/viridis/index.html}{viridis}
 color palette, and the default color scheme for discrete variables is the
 \href{http://jfly.iam.u-tokyo.ac.jp/color/}{Okabe Ito} palette.
 }

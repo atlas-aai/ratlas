@@ -28,8 +28,10 @@ only_if <- function(condition) {
 #' Add row and/or column summaries (e.g., total counts) to a data frame.
 #'
 #' @param df A data frame to append summaries to.
-#' @param row logical indicating whether a summary row should be added (i.e., summarizing each column)
-#' @param col logical indicating whether a summary column should be added (i.e., summarizing each row)
+#' @param row logical indicating whether a summary row should be added (i.e.,
+#'   summarizing each column)
+#' @param col logical indicating whether a summary column should be added (i.e.,
+#'   summarizing each row)
 #' @param .f Function to use for calculating summaries
 #'
 #' @return A data frame with the summary row and/or column appended

@@ -1,26 +1,26 @@
-#' @rdname scale_OkabeIto
+#' @rdname scale_okabeito
 #' @export
 #' @usage NULL
-scale_colour_OkabeIto <- function(aesthetics = "colour", ...) {
-  scale_OkabeIto(aesthetics, ...)
+scale_colour_okabeito <- function(aesthetics = "colour", ...) {
+  scale_okabeito(aesthetics, ...)
 }
 
-#' @rdname scale_OkabeIto
+#' @rdname scale_okabeito
 #' @export
 #' @usage NULL
-scale_color_OkabeIto <- scale_colour_OkabeIto
+scale_color_okabeito <- scale_colour_okabeito
 
-#' @rdname scale_OkabeIto
+#' @rdname scale_okabeito
 #' @export
 #' @usage NULL
-scale_fill_OkabeIto <- function(aesthetics = "fill", ...) {
-  scale_OkabeIto(aesthetics, ...)
+scale_fill_okabeito <- function(aesthetics = "fill", ...) {
+  scale_okabeito(aesthetics, ...)
 }
 
 #' Okabe-Ito color scale
 #'
 #' This is a color-blind friendly, qualitative scale with eight different
-#' colors. See [palette_OkabeIto] for details.
+#' colors. See [palette_okabeito] for details.
 #'
 #' @param use_black If `TRUE`, scale includes black, otherwise includes gray.
 #' @param order Numeric vector listing the order in which the colors should be
@@ -35,18 +35,18 @@ scale_fill_OkabeIto <- function(aesthetics = "fill", ...) {
 #' @examples
 #' library(ggplot2)
 #' ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-#'   geom_point() + scale_color_OkabeIto()
+#'   geom_point() + scale_color_okabeito()
 #' ggplot(iris, aes(Sepal.Length, fill = Species)) +
-#'   geom_density(alpha = 0.7) + scale_fill_OkabeIto(order = c(1, 3, 5))
+#'   geom_density(alpha = 0.7) + scale_fill_okabeito(order = c(1, 3, 5))
 #' @export
 #' @usage NULL
-scale_OkabeIto <- function(aesthetics, use_black = FALSE, order = 1:8,
-                           darken = 0, alpha = NA, ...) {
+scale_okabeito <- function(aesthetics, use_black = FALSE, order = 1:8,
+                            darken = 0, alpha = NA, ...) {
   if (use_black) {
-    values <- palette_OkabeIto_black[order]
+    values <- palette_okabeito_black[order]
   }
   else {
-    values <- palette_OkabeIto[order]
+    values <- palette_okabeito[order]
   }
 
   n <- length(values)

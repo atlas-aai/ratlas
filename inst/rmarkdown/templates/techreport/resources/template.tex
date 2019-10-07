@@ -35,6 +35,10 @@
 \urlstyle{same}  % don't use monospace font for urls
 
 \usepackage{longtable,booktabs,dcolumn}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage[normalem]{ulem}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -161,8 +165,16 @@ $endfor$
 {\cleardoublepage\setcounter{page}{1}\renewcommand{\thepage}{\roman{page}}}
 {\cleardoublepage\setcounter{page}{1}\renewcommand{\thepage}{\arabic{page}}}
 
+% watermark
+$if(watermark)$
+  \usepackage{draftwatermark}
+  \SetWatermarkLightness{.8}
+  \SetWatermarkText{$watermark$}
+$endif$
+
 % table and figure numbering
 \usepackage{pdflscape}
+\usepackage{threeparttable}
 \usepackage{threeparttablex}
 % \usepackage{chngcntr}
 % \counterwithin{table}{section}

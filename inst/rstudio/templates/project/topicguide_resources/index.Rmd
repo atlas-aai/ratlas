@@ -1,6 +1,6 @@
 ---
 title: "Topic Guide Title"
-date: "`r format(Sys.Date(), '%B, %Y')`"
+date: "`r format(Sys.Date(), '%B %Y')`"
 output: ratlas::topicguide_docx
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
 biblio-style: apalike2
@@ -20,6 +20,7 @@ load_packages <- function(x) {
 vapply(needed_packages, load_packages, logical(1))
 
 options(knitr.kable.NA = "")
+set_theme(font = "Montserrat")
 ```
 
 
