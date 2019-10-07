@@ -233,7 +233,8 @@ update_geom_font_pl_defaults <- function(family = font_pl, face = "plain",
 
 #' @rdname Palatino
 #' @title Palatino font name R variable aliases
-#' @description `font_pl` == "`Palatino LT Std`" on Mac and "`Palatino Linotype`" on Windows.
+#' @description `font_pl` == "`Palatino LT Std`" on Mac and "`Palatino
+#'   Linotype`" on Windows.
 #' @format length 1 character vector
 #' @export
 font_pl <- ifelse(.Platform$OS.type == "windows", "Palatino Linotype",
