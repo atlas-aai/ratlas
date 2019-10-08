@@ -52,7 +52,7 @@
 #'   theme_atlas_pl(grid = "Y") +
 #'   theme(axis.text.y = element_blank())
 #' }
-theme_atlas_pl <- function(base_family = "Palatino Linotype", base_size = 11.5,
+theme_atlas_pl <- function(base_family = "Palatino", base_size = 11.5,
                            plot_title_family = base_family,
                            plot_title_size = 18,
                            plot_title_face = "bold", plot_title_margin = 10,
@@ -223,9 +223,8 @@ theme_atlas_pl <- function(base_family = "Palatino Linotype", base_size = 11.5,
 #'
 #' @param family,face,size,color font family name, face, size and color
 #' @export
-update_geom_font_pl_defaults <- function(family = "Palatino Linotype",
-                                         face = "plain", size = 3.5,
-                                         color = "#2b2b2b") {
+update_geom_font_pl_defaults <- function(family = "Palatino", face = "plain",
+                                         size = 3.5, color = "#2b2b2b") {
   ggplot2::update_geom_defaults("text", list(family = family, face = face,
                                              size = size, color = color))
   ggplot2::update_geom_defaults("label", list(family = family, face = face,
@@ -234,7 +233,7 @@ update_geom_font_pl_defaults <- function(family = "Palatino Linotype",
 
 #' @rdname Palatino
 #' @title Palatino font name R variable aliases
-#' @description `font_pl` == "`Palatino Linotype`"
+#' @description `font_pl` == "`Palatino`"
 #' @format length 1 character vector
 #' @export
-font_pl <- "Palatino Linotype"
+font_pl <- "Palatino"

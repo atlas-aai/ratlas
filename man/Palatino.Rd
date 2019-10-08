@@ -9,6 +9,6 @@
 font_pl
 }
 \description{
-\code{font_pl} == "\code{Palatino Linotype}"
+\code{font_pl} == "\code{Palatino}"
 }
 \keyword{datasets}

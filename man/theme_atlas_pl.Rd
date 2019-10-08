@@ -4,7 +4,7 @@
 \alias{theme_atlas_pl}
 \title{ATLAS ggplot2 theme for consistent graphics}
 \usage{
-theme_atlas_pl(base_family = "Palatino Linotype", base_size = 11.5,
+theme_atlas_pl(base_family = "Palatino", base_size = 11.5,
   plot_title_family = base_family, plot_title_size = 18,
   plot_title_face = "bold", plot_title_margin = 10,
   subtitle_family = base_family, subtitle_size = 12,
