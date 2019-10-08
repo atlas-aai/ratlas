@@ -17,13 +17,13 @@ more details.}
 used. Default is 1:8.}
 
 \item{darken}{Relative amount by which the scale should be darkened (for
-positive values) or lightened (for negatice values).}
+positive values) or lightened (for negative values).}
 
 \item{alpha}{Alpha transparency level of the color. Default is no
 transparency.}
 }
 \description{
-This is a qualitative scale using the offical ATLAS brand colors. See
+This is a qualitative scale using the official ATLAS brand colors. See
 \link{palette_atlas} for details.
 }
 \examples{

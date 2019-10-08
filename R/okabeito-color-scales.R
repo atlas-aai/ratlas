@@ -26,7 +26,7 @@ scale_fill_okabeito <- function(aesthetics = "fill", ...) {
 #' @param order Numeric vector listing the order in which the colors should be
 #'   used. Default is 1:8.
 #' @param darken Relative amount by which the scale should be darkened (for
-#'   positive values) or lightened (for negatice values).
+#'   positive values) or lightened (for negative values).
 #' @param alpha Alpha transparency level of the color. Default is no
 #'   transparency.
 #' @param ... common discrete scale parameters: `name`, `breaks`, `labels`,

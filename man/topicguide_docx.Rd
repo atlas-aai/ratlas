@@ -13,7 +13,7 @@ topicguide_docx(...)
 A modified \code{word_document2} with the standard topic guide formatting.
 }
 \description{
-This is a function called in the output of the YAML of the Rmd file to
+This is a function called in the output of the yaml of the Rmd file to
 specify using the standard DLM topic guide word document formatting.
 }
 \examples{

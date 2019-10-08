@@ -20,8 +20,9 @@ Authors@R:
              role = c("cph", "fnd")))
 Description: This package contains various template and
     formatting functions used for ATLAS. This include R Markdown
-    templates, formatting funcitons, and ggplot2 themes.
+    templates, formatting functions, and ggplot2 themes.
 License: GPL-3
+VignetteBuilder: knitr
 Depends:
     R (>= 3.4.0)
 Imports:
@@ -45,13 +46,18 @@ Imports:
     tidyr (>= 0.8.3)
 Suggests: 
     covr (>= 3.2.1),
+    cowplot (>= 1.0.0),
+    dichromat (>= 2.0.0),
     english (>= 1.2.3),
     lintr (>= 1.0.3),
     magick (>= 2.2),
+    spelling (>= 2.1),
     testthat (>= 2.1.0),
     tinytex (>= 0.13),
-    vdiffr (>= 0.3.0)
+    vdiffr (>= 0.3.0),
+    viridis (>= 0.5.1)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
+Language: en-US

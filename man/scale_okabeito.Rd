@@ -17,7 +17,7 @@ more details.}
 used. Default is 1:8.}
 
 \item{darken}{Relative amount by which the scale should be darkened (for
-positive values) or lightened (for negatice values).}
+positive values) or lightened (for negative values).}
 
 \item{alpha}{Alpha transparency level of the color. Default is no
 transparency.}

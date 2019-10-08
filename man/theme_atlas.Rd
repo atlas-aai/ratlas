@@ -21,7 +21,7 @@ theme_atlas(base_family = "Arial Narrow", base_size = 11.5,
 \arguments{
 \item{base_family, base_size}{base font family and size}
 
-\item{plot_title_family, plot_title_face, plot_title_size, plot_title_margin}{plot title family, face, size and margi}
+\item{plot_title_family, plot_title_face, plot_title_size, plot_title_margin}{plot title family, face, size and margin}
 
 \item{subtitle_family, subtitle_face, subtitle_size}{plot subtitle family, face
 and size}
