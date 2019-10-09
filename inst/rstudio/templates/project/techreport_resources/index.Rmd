@@ -5,6 +5,7 @@ subtitle: "Technical Report #XX-XX"
 date: "`r format(Sys.Date(), '%B, %Y')`"
 program: "DLM"
 output: ratlas::techreport_pdf
+internal: false
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
 biblio-style: apa
 biblatexoptions:
