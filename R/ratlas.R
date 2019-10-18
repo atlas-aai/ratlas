@@ -9,9 +9,8 @@
 #' @docType package
 #' @name ratlas-package
 #' @aliases ratlas
-#' @import ggplot2 scales
+#' @import grDevices
 #' @importFrom rlang .data :=
-#' @importFrom xfun read_utf8 write_utf8
 NULL
 
 ## Make R CMD Check go away

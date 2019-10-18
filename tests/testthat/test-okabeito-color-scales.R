@@ -1,4 +1,5 @@
 context("okabeito-colors")
+library(ggplot2)
 
 test_that("Okabe Ito colors work", {
   testthat::skip_on_cran()
@@ -9,19 +10,19 @@ test_that("Okabe Ito colors work", {
   plot <- ggplot(df, aes(x, y, colour = z)) +
     geom_point() +
     facet_wrap(~ a) +
-    scale_color_OkabeIto() +
+    scale_color_okabeito() +
     theme_atlas()
 
   plot2 <- ggplot(df, aes(x, y, fill = z)) +
     geom_col() +
     facet_wrap(~ a) +
-    scale_fill_OkabeIto(use_black = TRUE) +
+    scale_fill_okabeito(use_black = TRUE) +
     theme_atlas()
 
   plot3 <- ggplot(df2, aes(x, y, colour = z)) +
     geom_point() +
     facet_wrap(~ a) +
-    scale_color_OkabeIto() +
+    scale_color_okabeito() +
     theme_atlas()
 
   expect_warning(ggplot2::ggplot_build(plot3), "Insufficient values")
@@ -29,9 +30,9 @@ test_that("Okabe Ito colors work", {
   vdiffr::expect_doppelganger("okabeito_color", plot)
   vdiffr::expect_doppelganger("okabeito_fill", plot2)
   vdiffr::expect_doppelganger("okabeito_darken",
-                              plot2 + scale_fill_OkabeIto(darken = 0.2))
+                              plot2 + scale_fill_okabeito(darken = 0.2))
   vdiffr::expect_doppelganger("okabeito_lighten",
-                              plot2 + scale_fill_OkabeIto(darken = -0.2))
+                              plot2 + scale_fill_okabeito(darken = -0.2))
   vdiffr::expect_doppelganger("okabeito_alpha",
-                              plot2 + scale_fill_OkabeIto(alpha = 0.2))
+                              plot2 + scale_fill_okabeito(alpha = 0.2))
 })

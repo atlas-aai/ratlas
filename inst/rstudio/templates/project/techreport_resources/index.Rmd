@@ -3,11 +3,9 @@ title: "Tech Report Title"
 shorttitle: "A Short Title"
 subtitle: "Technical Report #XX-XX"
 date: "`r format(Sys.Date(), '%B, %Y')`"
-output: 
-  ratlas::techreport_pdf:
-    latex_engine: xelatex
-    citation_package: biblatex
-    keep_tex: yes
+program: "DLM"
+output: ratlas::techreport_pdf
+internal: false
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
 biblio-style: apa
 biblatexoptions:
@@ -17,9 +15,13 @@ link-citations: yes
 lot: true
 lof: true
 subparagraph: yes
+mainfont: Palatino LT Std
+fontsize: 11pt
+acknowledgements: >
+  `r if (knitr::is_latex_output()) ratlas::inc("front-matter/preface.Rmd")`
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 needed_packages <- c("ratlas", "knitr", "english")
 load_packages <- function(x) {
   if (!(x %in% installed.packages())) {
@@ -30,8 +32,12 @@ load_packages <- function(x) {
 }
 vapply(needed_packages, load_packages, logical(1))
 
+extrafont::loadfonts(quiet = TRUE)
+set_theme(font = "Montserrat")
+
 options(knitr.kable.NA = "")
-options(tinytex.verbose = TRUE)
+options(knitr.table.format = "latex")
+set_theme(font = "Montserrat")
 ```
 
 
@@ -48,4 +54,7 @@ suppressWarnings(
 )
 ```
 
-<div id="refs"></div>
+\printbibliography[heading=none]
+
+\setlength{\parindent}{15pt}
+\setlength{\leftskip}{0pt}

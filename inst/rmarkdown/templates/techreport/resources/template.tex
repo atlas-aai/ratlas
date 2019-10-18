@@ -35,6 +35,10 @@
 \urlstyle{same}  % don't use monospace font for urls
 
 \usepackage{longtable,booktabs,dcolumn}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage[normalem]{ulem}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -69,11 +73,30 @@
   \noindent\rule{\linewidth}{0.2mm}\par
   \vspace*{\dimexpr-\parskip-.5\baselineskip+#1}}
 
-\definecolor{dlmblue}{RGB}{91,155,213}
+% Create command for searching substrings
+\makeatletter
+\def\instring#1#2{TT\fi\begingroup
+  \edef\x{\endgroup\noexpand\in@{#1}{#2}}\x\ifin@}
+\makeatother
+
+% Define color for rule on front page
+\if\instring{DLM}{$program$}
+\definecolor{progcolor}{RGB}{91,155,213}
+\else
+  \if\instring{I-SMART}{$program$}
+  \definecolor{progcolor}{RGB}{38,92,179}
+  \else
+    \if\instring{ATLAS}{$program$}
+    \definecolor{progcolor}{RGB}{22,91,126}
+    \else
+    \definecolor{progcolor}{RGB}{0,0,0}
+    \fi
+  \fi
+\fi
 
 \newcommand{\subtitle}[1]{
   \posttitle{
-    \begin{center}{\color{dlmblue}\HRule[12pt]}\mdseries\LARGE#1\end{center}
+    \begin{center}{\color{progcolor}\HRule[12pt]}\mdseries\LARGE#1\end{center}
     }
 }
 
@@ -127,6 +150,10 @@
 % references
 \usepackage[style=apa]{biblatex}
 \ExecuteBibliographyOptions{sortcites}
+\DeclareFieldFormat{doi}{%
+  doi\addcolon\nolinkurl{#1}}
+\DeclareFieldFormat{eprint:arXiv}{%
+  arXiv\addcolon\nolinkurl{#1}}
 
 $for(bibliography)$
 \addbibresource{$bibliography$}
@@ -138,8 +165,23 @@ $endfor$
 {\cleardoublepage\setcounter{page}{1}\renewcommand{\thepage}{\roman{page}}}
 {\cleardoublepage\setcounter{page}{1}\renewcommand{\thepage}{\arabic{page}}}
 
+% watermark
+$if(watermark)$
+  \usepackage{draftwatermark}
+  \SetWatermarkLightness{.9}
+  \SetWatermarkText{$watermark$}
+$endif$
+
+% $if(internal)$
+%   \usepackage[firstpage]{draftwatermark}
+%   \SetWatermarkLightness{.8}
+%   \SetWatermarkFontSize{3cm}
+%   \SetWatermarkText{\shortstack{DO NOT\\DISTRIBUTE}}
+% $endif$
+
 % table and figure numbering
 \usepackage{pdflscape}
+\usepackage{threeparttable}
 \usepackage{threeparttablex}
 % \usepackage{chngcntr}
 % \counterwithin{table}{section}
@@ -152,7 +194,8 @@ $endfor$
 \captionsetup[table]{name={Table},labelsep=period}
 
 % toc formatting
-\usepackage{tocloft}
+\usepackage{subfig}
+\usepackage[subfigure]{tocloft}
 \tocloftpagestyle{front}
 \renewcommand{\cfttoctitlefont}{\hfill\LARGE\bfseries}
 \renewcommand{\cftaftertoctitle}{\hfill}
@@ -215,6 +258,13 @@ $endfor$
 \pagestyle{fancy}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ -- \ #1}}
 
+% program name for header
+\if\instring{DLM}{$program$}
+\newcommand{\progName}{Dynamic Learning Maps}
+\else
+\newcommand{\progName}{$program$}
+\fi
+
 \fancypagestyle{plain}{%
   \lhead{}
   \chead{}
@@ -223,6 +273,9 @@ $endfor$
   \lfoot{}
   \cfoot{}
   \rfoot{}
+  $if(internal)$
+    \fancyfoot[L]{FOR INTERNAL CONSORTIUM REVIEW ONLY}
+  $endif$
 }
 \fancypagestyle{front}{%
   \lhead{}
@@ -232,6 +285,9 @@ $endfor$
   \lfoot{}
   \cfoot{}
   \rfoot{}
+  $if(internal)$
+    \fancyfoot[L]{FOR INTERNAL CONSORTIUM REVIEW ONLY}
+  $endif$
   \fancyfoot[R]{Page \thepage}
 }
 \fancypagestyle{norm}{%
@@ -243,10 +299,13 @@ $endfor$
   \cfoot{}
   \rfoot{}
   \renewcommand{\headrulewidth}{0pt}%
+  $if(internal)$
+    \fancyfoot[L]{FOR INTERNAL CONSORTIUM REVIEW ONLY}
+  $endif$
   % \fancyfoot[L]{Chapter \rightmark}
   \fancyfoot[R]{Page \thepage}
-  \fancyhead[L]{\includegraphics[width=2in]{figures/pre-generated/atlas.png}}
-  \fancyhead[R]{$shorttitle$\\Dynamic Learning Maps\\$subtitle$}
+  \fancyhead[L]{\includegraphics[width=2in]{figures/pre-generated/letterhead.jpg}}
+  \fancyhead[R]{$shorttitle$\\\progName{}\\$subtitle$}
 }
 
 \usepackage{amsthm}
@@ -266,7 +325,7 @@ $endfor$
 
 \begin{document}
 \pagestyle{plain}
-\includegraphics[width=6.5in]{figures/pre-generated/dlm.png}
+\includegraphics[width=6.5in]{figures/pre-generated/$program$.png}
 {\let\newpage\relax\maketitle}
 
 $if(acknowledgements)$

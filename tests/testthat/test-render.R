@@ -9,6 +9,8 @@ test_that("unknown template errors", {
 
 test_that("topicguide-docx renders", {
   testthat::skip_on_cran()
+  testthat::skip_on_travis()
+  testthat::skip_on_appveyor()
 
   # work in a temp directory
   dir <- tempfile()
@@ -23,6 +25,7 @@ test_that("topicguide-docx renders", {
 
 test_that("techreport-pdf renders", {
   testthat::skip_on_cran()
+  testthat::skip_on_travis()
   testthat::skip_on_appveyor()
 
   # work in a temp directory
@@ -32,6 +35,6 @@ test_that("techreport-pdf renders", {
   on.exit(setwd(oldwd), add = TRUE)
 
   techreport_skeleton(dir)
-  rmarkdown::render("index.Rmd")
+  suppressWarnings(rmarkdown::render("index.Rmd"))
   expect_true(file.exists("index.pdf"))
 })

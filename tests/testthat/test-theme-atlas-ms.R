@@ -57,8 +57,8 @@ test_that("import_montserrat() works", {
 
 test_that("update_geom_font_ms_defaults() works", {
   expect_equal(update_geom_font_ms_defaults(),
-               update_geom_defaults("text", list(
-                 family = "Montserrat", face = "plain", size = 3.5,
-                 color = "#2b2b2b"
-  )))
+               ggplot2::update_geom_defaults("text",
+                                             list(family = "Montserrat",
+                                                  face = "plain", size = 3.5,
+                                                  color = "#2b2b2b")))
 })
