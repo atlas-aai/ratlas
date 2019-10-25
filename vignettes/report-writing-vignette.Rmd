@@ -48,11 +48,11 @@ When beginning a new report, the first step is to create a new project in RStudi
 Please note, this example will use the terminology for creating a new tech report, but the same steps can be used to create a new topic guide.
 
 ```{r menu-sc, echo = FALSE}
-    knitr::include_graphics(here("vignettes/images/menu_sc.PNG"))
+    knitr::include_graphics(here("vignettes/images/new-project.png"))
 ```
 
 ```{r new-dir-sc, echo = FALSE}
-    knitr::include_graphics(here("vignettes/images/new_dir_sc.PNG"))
+    knitr::include_graphics(here("vignettes/images/new-directory.png"))
 ```
 
 ```{r new-proj-sc, echo = FALSE}
