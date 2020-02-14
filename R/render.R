@@ -94,9 +94,6 @@ techreport_pdf <- function(...) {
 #'   output: ratlas::slides_html
 #' }
 slides_html <- function(...) {
-  slide_css <- find_resource("atlas-presentation", "atlas.css")
-  font_css <- find_resource("atlas-presentation", "atlas-fonts.css")
-
   default_nature <- list(ratio = "16:9",
                          highlightStyle = "github",
                          highlightLines = TRUE,
@@ -111,7 +108,8 @@ slides_html <- function(...) {
     final_nature <- default_nature
   }
 
-  base <- xaringan::moon_reader(css = c("default", slide_css, font_css),
+  base <- xaringan::moon_reader(css = c("default", "assets/css/atlas.css",
+                                        "assets/css/atlas-fonts.css"),
                                 lib_dir = "libs",
                                 nature = final_nature)
 
@@ -122,14 +120,8 @@ slides_html <- function(...) {
   base$knitr$opts_chunk$error <- FALSE
   base$knitr$opts_chunk$echo <- FALSE
   base$knitr$opts_chunk$cache <- FALSE
-  base$knitr$opts_chunk$fig.width <- 8
-  base$knitr$opts_chunk$fig.asp <- 0.618
-  base$knitr$opts_chunk$fig.ext <- "png"
   base$knitr$opts_chunk$fig.retina <- 3
   base$knitr$opts_chunk$fig.path <- "figures/"
-  base$knitr$opts_chunk$out.extra <- ""
-  base$knitr$opts_chunk$out.width <- "90%"
-  base$knitr$opts_chunk$fig.show <- "hold"
   # nolint end
 
   base
