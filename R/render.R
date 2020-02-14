@@ -115,6 +115,7 @@ slides_html <- function(...) {
                                 lib_dir = "libs",
                                 nature = final_nature)
 
+  # nolint start
   base$knitr$opts_chunk$comment <- "#>"
   base$knitr$opts_chunk$message <- FALSE
   base$knitr$opts_chunk$warning <- FALSE
@@ -129,6 +130,7 @@ slides_html <- function(...) {
   base$knitr$opts_chunk$out.extra <- ""
   base$knitr$opts_chunk$out.width <- "90%"
   base$knitr$opts_chunk$fig.show <- "hold"
+  # nolint end
 
   base
 }
