@@ -73,3 +73,58 @@ techreport_pdf <- function(...) {
 
   base
 }
+
+
+#' Create an HTML Slide Deck with R Markdown
+#'
+#' This is a function called in the output of the YAML of the Rmd file to
+#' specify using the standard DLM tech report pdf document formatting.
+#'
+#' @param ... Arguments to be passed to `[xaringan::moon_reader]`
+#'
+#' @return A modified `mood_reader` with ATLAS branding applied.
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#'   output: ratlas::slides_html
+#' }
+slides_html <- function(...) {
+  slide_css <- find_resource("atlas-presentation", "atlas.css")
+  font_css <- find_resource("atlas-presentation", "atlas-fonts.css")
+
+  default_nature <- list(ratio = "16:9",
+                         highlightStyle = "github",
+                         highlightLines = TRUE,
+                         countIncrementalSlides = FALSE,
+                         slideNumberFormat = "%current%")
+
+  dots_args <- list(...)
+  dots_name <- names(dots_args)
+  if ("nature" %in% dots_name) {
+    final_nature <- utils::modifyList(default_nature, dots_args[["nature"]])
+  } else {
+    final_nature <- default_nature
+  }
+
+  base <- xaringan::moon_reader(css = c("default", slide_css, font_css),
+                                lib_dir = "libs",
+                                nature = final_nature)
+
+  base$knitr$opts_chunk$comment <- "#>"
+  base$knitr$opts_chunk$message <- FALSE
+  base$knitr$opts_chunk$warning <- FALSE
+  base$knitr$opts_chunk$error <- FALSE
+  base$knitr$opts_chunk$echo <- FALSE
+  base$knitr$opts_chunk$cache <- FALSE
+  base$knitr$opts_chunk$fig.width <- 8
+  base$knitr$opts_chunk$fig.asp <- 0.618
+  base$knitr$opts_chunk$fig.ext <- "png"
+  base$knitr$opts_chunk$fig.retina <- 3
+  base$knitr$opts_chunk$fig.path <- "figures/"
+  base$knitr$opts_chunk$out.extra <- ""
+  base$knitr$opts_chunk$out.width <- "90%"
+  base$knitr$opts_chunk$fig.show <- "hold"
+
+  base
+}
