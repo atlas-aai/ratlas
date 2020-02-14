@@ -19,14 +19,14 @@ scale_fill_atlas <- function(aesthetics = "fill", ...) {
 
 #' ATLAS color scale
 #'
-#' This is a qualitative scale using the offical ATLAS brand colors. See
+#' This is a qualitative scale using the official ATLAS brand colors. See
 #' [palette_atlas] for details.
 #'
 #' @param use_black If `TRUE`, scale includes black, otherwise includes gray.
 #' @param order Numeric vector listing the order in which the colors should be
 #'   used. Default is 1:8.
 #' @param darken Relative amount by which the scale should be darkened (for
-#'   positive values) or lightened (for negatice values).
+#'   positive values) or lightened (for negative values).
 #' @param alpha Alpha transparency level of the color. Default is no
 #'   transparency.
 #' @param ... common discrete scale parameters: `name`, `breaks`, `labels`,

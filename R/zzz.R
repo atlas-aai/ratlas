@@ -1,12 +1,4 @@
 # nocov start
-.onLoad <- function(libname, pkgname) {
-  pdfFonts <- grDevices::pdfFonts()
-  postscriptFonts <- grDevices::postscriptFonts()
-  if (.Platform$OS.type == "windows") {
-    windowsFonts <- grDevices::windowsFonts()
-  }
-}
-
 .onAttach <- function(libname, pkgname) {
   if (.Platform$OS.type == "windows") {
     if (interactive()) {
@@ -16,7 +8,7 @@
   }
 
   if (getOption("ratlas.loadfonts", default = FALSE)) {
-    if (interactive()){
+    if (interactive()) {
       packageStartupMessage("Registering PDF & PostScript fonts with R")
     }
     extrafont::loadfonts("pdf", quiet = TRUE)

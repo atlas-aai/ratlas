@@ -2,7 +2,7 @@
 % Please edit documentation in R/save-plot.R
 \name{ggsave2}
 \alias{ggsave2}
-\title{Save a ggplot}
+\title{Save a ggplot2 graphic}
 \usage{
 ggsave2(
   plot = ggplot2::last_plot(),
@@ -51,5 +51,5 @@ This is a wrapper around \code{\link[ggplot2:ggsave]{ggplot2::ggsave()}} with so
 defaults. The aspect ratio is fixed to 0.618 (\href{https://en.wikipedia.org/wiki/Golden_ratio}{the golden ratio}) unless the height is
 manually defined. Plots are automatically spell checked and warnings are
 returned if there are possible mistakes. Finally, plots saved as a pdf have
-the fontts embedded using \code{\link[extrafont:embed_fonts]{extrafont::embed_fonts()}}.
+the fonts embedded using \code{\link[extrafont:embed_fonts]{extrafont::embed_fonts()}}.
 }

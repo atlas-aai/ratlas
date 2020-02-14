@@ -13,7 +13,7 @@ techreport_pdf(...)
 A modified \code{pdf_document2} with the standard tech report formatting.
 }
 \description{
-This is a function called in the output of the YAML of the Rmd file to
+This is a function called in the output of the yaml of the Rmd file to
 specify using the standard DLM tech report pdf document formatting.
 }
 \examples{

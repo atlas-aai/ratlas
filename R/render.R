@@ -1,6 +1,6 @@
 #' Create an R Markdown Word Document Topic Guide
 #'
-#' This is a function called in the output of the YAML of the Rmd file to
+#' This is a function called in the output of the yaml of the Rmd file to
 #' specify using the standard DLM topic guide word document formatting.
 #'
 #' @param ... Arguments to be passed to `[bookdown::word_document2]`
@@ -16,6 +16,7 @@ topicguide_docx <- function(...) {
   template <- find_resource("topicguide", "template.docx")
   base <- bookdown::word_document2(reference_docx = template, ...)
 
+  # nolint start
   base$knitr$opts_chunk$comment <- "#>"
   base$knitr$opts_chunk$message <- FALSE
   base$knitr$opts_chunk$warning <- FALSE
@@ -28,6 +29,7 @@ topicguide_docx <- function(...) {
   base$knitr$opts_chunk$fig.retina <- 3
   base$knitr$opts_chunk$fig.path <- "figures/"
   base$knitr$opts_chunk$fig.pos <- "H"
+  # nolint end
 
   base
 }
@@ -35,7 +37,7 @@ topicguide_docx <- function(...) {
 
 #' Create an R Markdown PDF Document Tech Report
 #'
-#' This is a function called in the output of the YAML of the Rmd file to
+#' This is a function called in the output of the yaml of the Rmd file to
 #' specify using the standard DLM tech report pdf document formatting.
 #'
 #' @param ... Arguments to be passed to `[bookdown::pdf_document2]`
@@ -54,6 +56,7 @@ techreport_pdf <- function(...) {
                                   citation_package = "biblatex",
                                   keep_tex = TRUE, ...)
 
+  # nolint start
   base$knitr$opts_chunk$comment <- "#>"
   base$knitr$opts_chunk$message <- FALSE
   base$knitr$opts_chunk$warning <- FALSE
@@ -70,6 +73,7 @@ techreport_pdf <- function(...) {
   base$knitr$opts_chunk$out.extra <- ""
   base$knitr$opts_chunk$out.width <- "90%"
   base$knitr$opts_chunk$fig.show <- "hold"
+  # nolint end
 
   base
 }

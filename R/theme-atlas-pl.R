@@ -35,41 +35,41 @@
 #'        title = "Seminal ggplot2 scatterplot example",
 #'        subtitle = "A plot that is only useful for demonstration purposes",
 #'        caption = "Brought to you by the letter 'g'") +
-#'   theme_atlas()
+#'   theme_atlas_pl()
 #'
 #' # seminal bar chart
 #'
-#' update_geom_font_defaults()
+#' update_geom_pl_font_defaults()
 #'
 #' count(mpg, class) %>%
 #'   ggplot(aes(class, n)) +
 #'   geom_col() +
-#'   geom_text(aes(label=n), nudge_y=3) +
+#'   geom_text(aes(label = n), nudge_y = 3) +
 #'   labs(x = "Fuel efficiency (mpg)", y = "Weight (tons)",
-#'        title =  "Seminal ggplot2 bar chart example",
+#'        title = "Seminal ggplot2 bar chart example",
 #'        subtitle = "A plot that is only useful for demonstration purposes",
 #'        caption = "Brought to you by the letter 'g'") +
-#'   theme_atlas(grid = "Y") +
+#'   theme_atlas_pl(grid = "Y") +
 #'   theme(axis.text.y = element_blank())
 #' }
-theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
-                        plot_title_family = base_family,
-                        plot_title_size = 18,
-                        plot_title_face = "bold", plot_title_margin = 10,
-                        subtitle_family = base_family, subtitle_size = 12,
-                        subtitle_face = "plain", subtitle_margin = 15,
-                        strip_text_family = base_family,
-                        strip_text_size = 12,
-                        strip_text_face = "plain",
-                        caption_family = base_family, caption_size = 9,
-                        caption_face = "italic", caption_margin = 10,
-                        axis_text_size = 9,
-                        axis_title_family = subtitle_family,
-                        axis_title_size = base_size,
-                        axis_title_face = "plain", axis_title_just = "cm",
-                        plot_margin = ggplot2::margin(30, 30, 30, 30),
-                        grid_col = "#cccccc", grid = TRUE,
-                        axis_col = "#cccccc", axis = FALSE, ticks = FALSE) {
+theme_atlas_pl <- function(base_family = "Palatino", base_size = 11.5,
+                           plot_title_family = base_family,
+                           plot_title_size = 18,
+                           plot_title_face = "bold", plot_title_margin = 10,
+                           subtitle_family = base_family, subtitle_size = 12,
+                           subtitle_face = "plain", subtitle_margin = 15,
+                           strip_text_family = base_family,
+                           strip_text_size = 12,
+                           strip_text_face = "plain",
+                           caption_family = base_family, caption_size = 9,
+                           caption_face = "italic", caption_margin = 10,
+                           axis_text_size = 9,
+                           axis_title_family = subtitle_family,
+                           axis_title_size = base_size,
+                           axis_title_face = "plain", axis_title_just = "cm",
+                           plot_margin = ggplot2::margin(30, 30, 30, 30),
+                           grid_col = "#cccccc", grid = TRUE,
+                           axis_col = "#cccccc", axis = FALSE, ticks = FALSE) {
   ret <- ggplot2::theme_minimal(base_family = base_family,
                                 base_size = base_size)
 
@@ -223,17 +223,17 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
 #'
 #' @param family,face,size,color font family name, face, size and color
 #' @export
-update_geom_font_defaults <- function(family = "Arial Narrow", face = "plain",
-                                      size = 3.5, color = "#2b2b2b") {
+update_geom_font_pl_defaults <- function(family = "Palatino", face = "plain",
+                                         size = 3.5, color = "#2b2b2b") {
   ggplot2::update_geom_defaults("text", list(family = family, face = face,
                                              size = size, color = color))
   ggplot2::update_geom_defaults("label", list(family = family, face = face,
                                               size = size, color = color))
 }
 
-#' @rdname ArialNarrow
-#' @title Arial Narrow font name R variable aliases
-#' @description `font_an` == "`Arial Narrow`"
+#' @rdname Palatino
+#' @title Palatino font name R variable aliases
+#' @description `font_pl` == "`Palatino`"
 #' @format length 1 character vector
 #' @export
-font_an <- "Arial Narrow"
+font_pl <- "Palatino"

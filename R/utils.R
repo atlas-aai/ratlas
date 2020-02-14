@@ -6,7 +6,7 @@
 #' @return a string
 #'
 #' @export
-inc <- function(input, sep = "\n\n  "){
+inc <- function(input, sep = "\n\n  ") {
   paste(readLines(input), collapse = sep)
 }
 

@@ -9,9 +9,11 @@ append_summary(df, row = TRUE, col = TRUE, .f = sum)
 \arguments{
 \item{df}{A data frame to append summaries to.}
 
-\item{row}{logical indicating whether a summary row should be added (i.e., summarizing each column)}
+\item{row}{logical indicating whether a summary row should be added (i.e.,
+summarizing each column)}
 
-\item{col}{logical indicating whether a summary column should be added (i.e., summarizing each row)}
+\item{col}{logical indicating whether a summary column should be added (i.e.,
+summarizing each row)}
 
 \item{.f}{Function to use for calculating summaries}
 }

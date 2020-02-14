@@ -14,6 +14,7 @@ cache:
   - C:\RLibrary -> appveryor.yml
   - C:\Program Files (x86)\Pandoc\
 
+
 # Adapt as necessary starting from here
 branches:
   only:

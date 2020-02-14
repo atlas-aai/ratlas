@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ratlas <img src="man/figures/ratlas.png" align="right" width="120" />
+# ratlas <img src="man/figures/ratlas-large.png" align="right" width="120" />
 
 [![Travis build
 status](https://travis-ci.org/atlas-aai/ratlas.svg?branch=master)](https://travis-ci.org/atlas-aai/ratlas)
