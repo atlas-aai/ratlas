@@ -3,29 +3,20 @@ title: "Presentation Title"
 author:
   - "Author 1"
   - "Author 2"
-output:
-  xaringan::moon_reader:
-    css: ["default", "atlas.css", "atlas-fonts.css"]
-    lib_dir: libs
-    nature:
-      ratio: '16:9'
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
-      slideNumberFormat: "%current%"
+output: ratlas::slides_html
 ---
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```
-class: alt-slide
+class: reg-slide
 layout: true
 
 ---
-class: alt-section
+class: reg-section
 # Section Heading
 
-Jake Thompson
+Section Presenter
 
 ---
 
@@ -48,7 +39,7 @@ Jake Thompson
 ]
 ---
 
-class: alt-section
+class: reg-section
 # Heading Slide 2
 
 ---
