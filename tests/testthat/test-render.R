@@ -18,9 +18,25 @@ test_that("topicguide-docx renders", {
   oldwd <- setwd(dir)
   on.exit(setwd(oldwd), add = TRUE)
 
-  topicguide_skeleton(dir)
+  topicguide_docx_skeleton(dir)
   rmarkdown::render("index.Rmd")
   expect_true(file.exists("index.docx"))
+})
+
+test_that("topicguide-pdf renders", {
+  testthat::skip_on_cran()
+  testthat::skip_on_travis()
+  testthat::skip_on_appveyor()
+
+  # work in a temp directory
+  dir <- tempfile()
+  dir.create(dir)
+  oldwd <- setwd(dir)
+  on.exit(setwd(oldwd), add = TRUE)
+
+  topicguide_pdf_skeleton(dir)
+  rmarkdown::render("index.Rmd")
+  expect_true(file.exists("index.pdf"))
 })
 
 test_that("techreport-pdf renders", {
