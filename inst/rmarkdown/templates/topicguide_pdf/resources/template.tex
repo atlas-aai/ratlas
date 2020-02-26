@@ -293,6 +293,7 @@ $endif$
   \rfoot{}
   $if(internal)$
     \fancyfoot[L]{FOR INTERNAL CONSORTIUM REVIEW ONLY}
+    \fancyfoot[R]{\thepage}
   $endif$
 }
 \fancypagestyle{front}{%
@@ -306,7 +307,7 @@ $endif$
   $if(internal)$
     \fancyfoot[L]{FOR INTERNAL CONSORTIUM REVIEW ONLY}
   $endif$
-  \fancyfoot[R]{Page \thepage}
+  \fancyfoot[R]{\thepage}
 }
 \fancypagestyle{norm}{%
   \lhead{}
@@ -320,9 +321,7 @@ $endif$
   $if(internal)$
     \fancyfoot[L]{FOR INTERNAL CONSORTIUM REVIEW ONLY}
   $endif$
-  % \fancyfoot[L]{Chapter \rightmark}
-  \fancyfoot[R]{Page \thepage}
-  %\fancyhead[L]{\includegraphics[width=2in]{figures/pre-generated/letterhead.jpg}}
+  \fancyfoot[R]{\thepage}
   \fancyhead[R]{\progName{}}
 }
 
@@ -343,7 +342,6 @@ $endif$
 
 \begin{document}
 \pagestyle{plain}
-%\includegraphics[width=\textwidth]{figures/pre-generated/$program$.png}
 {\let\newpage\relax\maketitle}
 
 $if(acknowledgements)$
