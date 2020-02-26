@@ -96,10 +96,10 @@ class: final-slide
 
 # Connect With Us!
 
-`r fontawesome::fa("globe", fill = "#165C7D")` [ATLAS4Learning.org](https://atlas4learning.org)
+<i class="fas fa-globe" style="color:#165C7D;"></i> [ATLAS4Learning.org](https://atlas4learning.org)
 
-`r fontawesome::fa("envelope", fill = "#165C7D")` [ATLAS-AAI@ku.edu](mailto:atlas-aai@ku.edu)
+<i class="fas fa-envelope" style="color:#165C7D;"></i> [ATLAS-AAI@ku.edu](mailto:atlas-aai@ku.edu)
 
-`r fontawesome::fa("twitter", fill = "#165C7D")` [@ATLAS4Learning](https://twitter.com/atlas4learning)
+<i class="fab fa-twitter" style="color:#165C7D;"></i> [@ATLAS4Learning](https://twitter.com/atlas4learning)
 
-`r fontawesome::fa("github", fill = "#165C7D")` [@ATLAS-AAI](https://github.com/atlas-aai)
+<i class="fab fa-github" style="color:#165C7D;"></i> [@ATLAS-AAI](https://github.com/atlas-aai)
