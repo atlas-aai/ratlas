@@ -153,10 +153,11 @@ slides_html <- function(...) {
     final_nature <- default_nature
   }
 
-  base <- xaringan::moon_reader(css = c("default", "assets/css/atlas.css",
-                                        "assets/css/atlas-fonts.css"),
-                                lib_dir = "libs",
-                                nature = final_nature)
+  base <- xaringan::moon_reader(
+    css = c("default", "assets/css/atlas.css", "assets/css/atlas-fonts.css"),
+    lib_dir = "libs", nature = final_nature,
+    includes = list(in_header = "assets/header.html")
+  )
 
   # nolint start
   base$knitr$opts_chunk$comment <- "#>"
