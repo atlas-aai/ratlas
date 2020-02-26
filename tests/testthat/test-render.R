@@ -35,7 +35,7 @@ test_that("topicguide-pdf renders", {
   on.exit(setwd(oldwd), add = TRUE)
 
   topicguide_pdf_skeleton(dir)
-  rmarkdown::render("index.Rmd")
+  rmarkdown::render("index.Rmd", quiet = TRUE)
   expect_true(file.exists("index.pdf"))
 })
 
