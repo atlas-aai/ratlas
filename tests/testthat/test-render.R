@@ -38,3 +38,24 @@ test_that("techreport-pdf renders", {
   suppressWarnings(rmarkdown::render("index.Rmd"))
   expect_true(file.exists("index.pdf"))
 })
+
+test_that("slides-html renders", {
+  testthat::skip_on_cran()
+  testthat::skip_on_travis()
+  testthat::skip_on_appveyor()
+
+  # work in a temp directory
+  dir <- tempdir()
+  dir.create(dir)
+  oldwd <- setwd(dir)
+  on.exit(setwd(oldwd), add = TRUE)
+
+  fs::dir_copy(file.path(oldwd, "inst", "rmarkdown", "templates",
+                          "atlas-presentation", "skeleton"),
+               new_path = dir)
+  fs::dir_copy(file.path(oldwd, "inst", "rmarkdown", "templates",
+                         "atlas-presentation", "skeleton", "assets"),
+               new_path = dir)
+  suppressWarnings(rmarkdown::render("index.Rmd"))
+  expect_true(file.exists("index.pdf"))
+})
