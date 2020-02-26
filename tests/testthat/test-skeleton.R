@@ -31,7 +31,11 @@ test_that("copying topicguide pdf files works", {
 
   expect_equal(sort(check_files),
                sort(c("bib/refs.bib", "csl/apa.csl", "index.Rmd",
-                      "_bookdown.yml")))
+                      "figures/pre-generated/letterhead.png",
+                      "figures/pre-generated/letterhead.jpg",
+                      "figures/pre-generated/ATLAS.png",
+                      "figures/pre-generated/DLM.png",
+                      "figures/pre-generated/I-SMART.png")))
 })
 
 test_that("copying techreport pdf files works", {
