@@ -1,5 +1,5 @@
 topicguide_docx_skeleton <- function(path) {
-  # copy 'topicguide_resources' folder to path
+  # copy 'topicguide_docx_resources' folder to path
   resources <- ratlas_file("rstudio", "templates", "project",
                            "topicguide_docx_resources")
 
@@ -19,7 +19,7 @@ topicguide_docx_skeleton <- function(path) {
 }
 
 topicguide_pdf_skeleton <- function(path) {
-  # copy 'topicguide_resources' folder to path
+  # copy 'topicguide_pdf_resources' folder to path
   resources <- ratlas_file("rstudio", "templates", "project",
                            "topicguide_pdf_resources")
 
