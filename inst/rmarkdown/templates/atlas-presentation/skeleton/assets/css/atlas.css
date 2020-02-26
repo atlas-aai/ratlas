@@ -14,9 +14,13 @@ a, a > code {
   padding-right: 4em;
   font-size: 90%;
 }
+.large {font-size: 130%}
+.small {font-size: 70%}
+.huge {font-size: 200%}
 body { font-family: 'Montserrat', sans-serif}
 .remark-code, .remark-inline-code {
   font-family: 'Source Code Pro', monospace;
+  background-color: #D3D3D3;
 }
 .remark-code-line-highlighted {
   background-color: #F0EC74;
@@ -34,7 +38,7 @@ body { font-family: 'Montserrat', sans-serif}
 }
 .title-slide h3 {
   color: #165C7D;
-  font-size: 120%;
+  font-size: 24pt;
   line-height: 0.5em;
 }
 
@@ -42,6 +46,7 @@ body { font-family: 'Montserrat', sans-serif}
   background-image: url("https://i.imgur.com/RLKNy4p.png"), url("https://i.imgur.com/ZPlbqvg.png");
   background-size: 9% 16%, cover;
   background-position: 3% 100%, center center;
+  font-size: 22pt;
 }
 
 .reg-section {
@@ -62,6 +67,7 @@ body { font-family: 'Montserrat', sans-serif}
 .alt-slide {
   background-image: url("https://i.imgur.com/SmFnVsI.png");
   background-size: cover;
+  font-size: 22pt;
 }
 
 .alt-section {
