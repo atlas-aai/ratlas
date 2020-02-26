@@ -50,11 +50,11 @@ topicguide_docx <- function(...) {
 #'   output: ratlas::topicguide_pdf
 #' }
 topicguide_pdf <- function(...) {
-  template <- find_resource("topicguide_pdf", "template.tex")
-  base <- bookdown::pdf_document2(template = template,
+  topic_guide_template <- find_resource("topicguide_pdf", "template.tex")
+  base <- bookdown::pdf_document2(template = topic_guide_template,
                                   latex_engine = "xelatex",
                                   citation_package = "biblatex",
-                                  keep_tex = TRUE, ...)
+                                  keep_tex = TRUE, number_sections = FALSE, ...)
 
   # nolint start
   base$knitr$opts_chunk$comment <- "#>"
