@@ -128,24 +128,13 @@
 
 % page breaks before each section
 \usepackage{titlesec}
-%\newcommand{\sectionbreak}{\clearpage}
+$if(manual)$
+  \newcommand{\sectionbreak}{\clearpage}
+$endif$
 
 % footnote formatting
 \interfootnotelinepenalty=10000
 \usepackage[bottom]{footmisc}
-
-% \makeatletter
-%     \renewcommand\@makefntext[1]{\raggedright\@makefnmark#1}
-% \makeatother
-
-% \makeatletter
-% \renewcommand\@makefntext[1]{%
-%   \raggedright
-%   \leavevmode
-%   \rlap{\hss\@thefnmark\enspace}%
-%   #1%
-% }
-% \makeatother
 
 % references
 \usepackage[style=apa]{biblatex}
@@ -172,23 +161,16 @@ $if(watermark)$
   \SetWatermarkText{$watermark$}
 $endif$
 
-% $if(internal)$
-%   \usepackage[firstpage]{draftwatermark}
-%   \SetWatermarkLightness{.8}
-%   \SetWatermarkFontSize{3cm}
-%   \SetWatermarkText{\shortstack{DO NOT\\DISTRIBUTE}}
-% $endif$
-
 % table and figure numbering
 \usepackage{pdflscape}
 \usepackage{threeparttable}
 \usepackage{threeparttablex}
-% \usepackage{chngcntr}
-% \counterwithin{table}{section}
-% \counterwithin{figure}{section}
-% \numberwithin{figure}{section}
-% \numberwithin{table}{section}
-% \numberwithin{equation}{section}
+
+$if(manual)$
+  \numberwithin{figure}{section}
+  \numberwithin{table}{section}
+  \numberwithin{equation}{section}
+$endif$
 \usepackage[singlelinecheck=false]{caption}
 \captionsetup[figure]{name={Figure},labelfont=it,labelsep=period}
 \captionsetup[table]{name={Table},labelsep=period}
@@ -216,17 +198,11 @@ $endif$
 \makeatletter
 
 % title styles
-% \titleformat{\section}{\bfseries\LARGE}{}{0pt}{}
-% \titlespacing*{\section}{0pt}{6pt}{0pt}
-% \titleformat{\subsection}{\bfseries\Large}{}{0pt}{}
-% \titlespacing*{\subsection}{0pt}{10pt}{0pt}
-% \titleformat{\subsubsection}{\bfseries\itshape\Large}{}{0pt}{}
-% \titlespacing*{\subsubsection}{0pt}{10pt}{0pt}
-% \titleformat{\paragraph}{\bfseries\large}{}{0pt}{}
-% \titlespacing*{\paragraph}{0pt}{10pt}{0pt}
-% \titleformat{\subparagraph}{\bfseries\itshape\large}{}{0pt}{}
-% \titlespacing*{\subparagraph}{0pt}{10pt}{0pt}
-\titleformat{\section}{\bfseries\LARGE}{\thesection. }{0pt}{}
+$if(manual)$
+  \titleformat{\section}{\bfseries\LARGE\center}{\thesection. }{0pt}{}
+$else$
+  \titleformat{\section}{\bfseries\LARGE}{\thesection. }{0pt}{}
+$endif$
 \titlespacing*{\section}{0pt}{6pt}{0pt}
 \titleformat{\subsection}{\bfseries\Large}{\thesubsection. }{0pt}{}
 \titlespacing*{\subsection}{0pt}{10pt}{0pt}
@@ -302,10 +278,18 @@ $endif$
   $if(internal)$
     \fancyfoot[L]{FOR INTERNAL CONSORTIUM REVIEW ONLY}
   $endif$
-  % \fancyfoot[L]{Chapter \rightmark}
+  $if(manual)$
+    \fancyfoot[L]{Chapter \rightmark}
+  $endif$
+
   \fancyfoot[R]{Page \thepage}
   \fancyhead[L]{\includegraphics[width=2in]{figures/pre-generated/letterhead.jpg}}
-  \fancyhead[R]{$shorttitle$\\\progName{}\\$subtitle$}
+
+  $if(manual)$
+    \fancyhead[R]{$title$\\\progName{}\\Alternate Assessment System -- $subtitle$}
+  $else$
+    \fancyhead[R]{$shorttitle$\\\progName{}\\$subtitle$}
+  $endif$
 }
 
 \usepackage{amsthm}
