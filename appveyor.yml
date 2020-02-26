@@ -11,7 +11,7 @@ install:
   ps: Bootstrap
 
 cache:
-  - C:\RLibrary -> appveryor.yml
+  - C:\RLibrary -> appveyor.yml
   - C:\Program Files (x86)\Pandoc\
 
 

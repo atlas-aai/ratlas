@@ -7,7 +7,7 @@
 topicguide_docx(...)
 }
 \arguments{
-\item{...}{Arguments to be passed to \code{[bookdown::word_document2]}}
+\item{...}{Arguments to be passed to \verb{[bookdown::word_document2]}}
 }
 \value{
 A modified \code{word_document2} with the standard topic guide formatting.

@@ -7,7 +7,7 @@
 techreport_pdf(...)
 }
 \arguments{
-\item{...}{Arguments to be passed to \code{[bookdown::pdf_document2]}}
+\item{...}{Arguments to be passed to \verb{[bookdown::pdf_document2]}}
 }
 \value{
 A modified \code{pdf_document2} with the standard tech report formatting.

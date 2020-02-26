@@ -4,9 +4,18 @@
 \alias{ggsave2}
 \title{Save a ggplot2 graphic}
 \usage{
-ggsave2(plot = ggplot2::last_plot(), filename, device = NULL,
-  path = NULL, width = 8, height = NULL, units = "in",
-  dir = c("h", "v"), dpi = "retina", ...)
+ggsave2(
+  plot = ggplot2::last_plot(),
+  filename,
+  device = NULL,
+  path = NULL,
+  width = 8,
+  height = NULL,
+  units = "in",
+  dir = c("h", "v"),
+  dpi = "retina",
+  ...
+)
 }
 \arguments{
 \item{plot}{Plot to save, defaults to last plot displayed.}
