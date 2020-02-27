@@ -5,6 +5,8 @@ output:
     base_format: rmarkdown::html_vignette
     number_sections: false
     toc: true
+pkgdown:
+  as_is: true
 vignette: >
   %\VignetteIndexEntry{plotting-vignette}
   %\VignetteEngine{knitr::rmarkdown}
