@@ -57,10 +57,11 @@ Suggests:
     spelling (>= 2.1),
     testthat (>= 2.1.0),
     tinytex (>= 0.13),
-    vdiffr (>= 0.3.0),
+    vdiffr (>= 0.3.1),
     viridis (>= 0.5.1)
 Remotes:
     tidyverse/ggplot2,
+    tidyverse/glue,
     wilkelab/isoband
 Encoding: UTF-8
 LazyData: true
