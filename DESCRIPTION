@@ -26,7 +26,7 @@ VignetteBuilder: knitr
 URL: https://github.com/atlas-aai/ratlas
 BugReports: https://github.com/atlas-aai/ratlas/issues
 Depends:
-    R (>= 3.4.0)
+    R (>= 3.5.0)
 Imports:
     bookdown (>= 0.9),
     colorspace (>= 1.4.1),
@@ -60,9 +60,7 @@ Suggests:
     vdiffr (>= 0.3.1),
     viridis (>= 0.5.1)
 Remotes:
-    tidyverse/ggplot2,
-    tidyverse/glue,
-    wilkelab/isoband
+    tidyverse/ggplot2
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
