@@ -2,8 +2,9 @@
 title: "Tech Report Title"
 shorttitle: "A Short Title"
 subtitle: "Technical Report #XX-XX"
-date: "`r format(Sys.Date(), '%B, %Y')`"
+date: "`r format(Sys.Date(), '%B %Y')`"
 program: "DLM"
+knit: bookdown::render_book
 output: ratlas::techreport_pdf
 internal: false
 manual: false
