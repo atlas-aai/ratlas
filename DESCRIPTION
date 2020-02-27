@@ -60,7 +60,8 @@ Suggests:
     vdiffr (>= 0.3.0),
     viridis (>= 0.5.1)
 Remotes:
-    tidyverse/ggplot2
+    tidyverse/ggplot2,
+    wilkelab/isoband
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
