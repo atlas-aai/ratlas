@@ -157,8 +157,9 @@ $endfor$
 
 % watermark
 $if(watermark)$
-  \usepackage{draftwatermark}
-  \SetWatermarkLightness{.9}
+  \usepackage[firstpage]{draftwatermark}
+  \SetWatermarkColor[HTML]{FE7E7E}
+  % \SetWatermarkLightness{.9}
   \SetWatermarkText{$watermark$}
 $endif$
 
