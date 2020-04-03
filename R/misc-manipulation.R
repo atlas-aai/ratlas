@@ -67,8 +67,8 @@ append_summary <- function(df, ..., row = TRUE, col = TRUE, .f = sum,
                          dplyr::select(-.data$col_name) %>%
                          dplyr::summarize_all(~do.call(.f, c(list(.x),
                                                              args))) %>%
-                         dplyr::arrange(rowid) %>%
-                         dplyr::select(-rowid))
+                         dplyr::arrange(.data$rowid) %>%
+                         dplyr::select(-.data$rowid))
   }
 
   return(new_df)
