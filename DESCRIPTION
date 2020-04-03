@@ -46,7 +46,8 @@ Imports:
     stringr (>= 1.4.0),
     tibble (>= 2.1.3),
     tidyr (>= 0.8.3),
-    xaringan (>= 0.11)
+    xaringan (>= 0.11),
+    xfun (>= 0.12)
 Suggests: 
     covr (>= 3.2.1),
     cowplot (>= 1.0.0),

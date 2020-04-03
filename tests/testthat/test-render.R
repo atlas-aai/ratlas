@@ -51,8 +51,9 @@ test_that("techreport-pdf renders", {
   on.exit(setwd(oldwd), add = TRUE)
 
   techreport_skeleton(dir)
-  suppressWarnings(rmarkdown::render("index.Rmd", quiet = TRUE))
-  expect_true(file.exists("index.pdf"))
+  rmd_name <- tolower(basename(dir))
+  suppressWarnings(rmarkdown::render(paste0(rmd_name, ".Rmd"), quiet = TRUE))
+  expect_true(file.exists(paste0(rmd_name, ".pdf")))
 })
 
 test_that("slides-html renders", {

@@ -55,5 +55,21 @@ techreport_skeleton <- function(path) {
   target <- file.path(path, files)
   file.copy(source, target)
 
+  # add book_filename to _bookdown.yml and default to the base path name
+  f <- file.path(path, "_bookdown.yml")
+  x <- xfun::read_utf8(f)
+  xfun::write_utf8(c(sprintf('book_filename: "%s"',
+                             stringr::str_to_title(basename(path))),
+                     x,
+                     "",
+                     "rmd_files: [",
+                     sprintf('  "%s.Rmd"', tolower(basename(path))),
+                     "]"),
+                   f)
+
+  # rename index.Rmd
+  fs::file_move(file.path(path, "index.Rmd"),
+                file.path(path, paste0(tolower(basename(path)), ".Rmd")))
+
   TRUE
 }
