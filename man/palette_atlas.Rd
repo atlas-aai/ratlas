@@ -5,7 +5,11 @@
 \alias{palette_atlas}
 \alias{palette_atlas_black}
 \title{Official color palette for ATLAS}
-\format{An object of class \code{character} of length 6.}
+\format{
+An object of class \code{character} of length 6.
+
+An object of class \code{character} of length 6.
+}
 \usage{
 palette_atlas
 
