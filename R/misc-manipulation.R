@@ -42,22 +42,32 @@ only_if <- function(condition) {
 #' df <- tibble::tibble(char = letters[1:5], x = rnorm(5), y = rnorm(5))
 #' append_summary(df, row = TRUE, col = TRUE, .f = sum)
 #' append_summary(df, row = FALSE, .f = mean)
-append_summary <- function(df, row = TRUE, col = TRUE, .f = sum) {
+append_summary <- function(df, ..., row = TRUE, col = TRUE, .f = sum,
+                           args = NULL) {
   func_name <- as.character(substitute(.f))
+  new_df <- df
 
-  df %>%
-    only_if(row)(dplyr::bind_rows)(
-      dplyr::summarize_all(., ~ if (is.numeric(.)) .f(.) else NA)
-    ) %>%
-    only_if(col)(dplyr::bind_cols)(
-      dplyr::select_if(., is.numeric) %>%
-        tibble::rowid_to_column(var = "rowid") %>%
-        tidyr::gather(key = "col_name", value = "value", -.data$rowid) %>%
-        dplyr::rename(!!func_name := .data$value) %>%
-        dplyr::select(-.data$col_name) %>%
-        dplyr::group_by(.data$rowid) %>%
-        dplyr::summarize_all(list(~ .f(.))) %>%
-        dplyr::arrange(.data$rowid) %>%
-        dplyr::select(-.data$rowid)
-    )
+  if (row) {
+    new_df <- new_df %>%
+      dplyr::bind_rows(dplyr::summarize_at(., dplyr::vars(...),
+                                           ~do.call(.f, c(list(.x), args))))
+  }
+
+  if (col) {
+    new_df <- new_df %>%
+      dplyr::bind_cols(tibble::rowid_to_column(., var = "rowid") %>%
+                         dplyr::select(.data$rowid, ...) %>%
+                         tidyr::pivot_longer(cols = -.data$rowid,
+                                             names_to = "col_name",
+                                             values_to = "value") %>%
+                         dplyr::rename(!!func_name := .data$value) %>%
+                         dplyr::group_by(.data$rowid) %>%
+                         dplyr::select(-.data$col_name) %>%
+                         dplyr::summarize_all(~do.call(.f, c(list(.x),
+                                                             args))) %>%
+                         dplyr::arrange(rowid) %>%
+                         dplyr::select(-rowid))
+  }
+
+  return(new_df)
 }

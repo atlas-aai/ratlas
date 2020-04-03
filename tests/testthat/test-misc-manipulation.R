@@ -37,14 +37,14 @@ test_that("append_summary works", {
     dplyr::summarize(median = stats::median(val)) %>%
     dplyr::select(.data$median)
 
-  expect_equal(append_summary(df, row = FALSE, col = FALSE), df)
-  expect_equal(append_summary(df, row = TRUE, col = FALSE),
+  expect_equal(append_summary(df, x, y, z, row = FALSE, col = FALSE), df)
+  expect_equal(append_summary(df, x, y, z, row = TRUE, col = FALSE),
                dplyr::bind_rows(df, row_sums))
-  expect_equal(append_summary(df, row = FALSE),
+  expect_equal(append_summary(df, x, y, z, row = FALSE, col = TRUE),
                dplyr::bind_cols(df, col_sums))
-  expect_equal(append_summary(df, col = FALSE, .f = stats::median),
+  expect_equal(append_summary(df, x, y, z, col = FALSE, .f = stats::median),
                dplyr::bind_rows(df, row_medians))
-  expect_equal(append_summary(df),
+  expect_equal(append_summary(df, x, y, z),
                dplyr::bind_cols(df, col_sums) %>%
                  dplyr::bind_rows(
                    dplyr::mutate(row_sums, sum = sum(col_sums$sum))
