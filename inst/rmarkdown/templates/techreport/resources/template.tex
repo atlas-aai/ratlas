@@ -328,11 +328,16 @@ $endif$
 \setcounter{tocdepth}{3}
 \tableofcontents
 }
-\clearpage
-\listoftables
 
 \clearpage
-\listoffigures
+$if(lot)$
+  \listoftables
+$endif$
+
+\clearpage
+$if(lof)$
+  \listoffigures
+$endif$
 
 \end{romanpages}
 \pagenumbering{arabic}
