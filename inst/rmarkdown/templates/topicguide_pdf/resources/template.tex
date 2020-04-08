@@ -197,8 +197,9 @@ $endif$
 % \numberwithin{table}{section}
 % \numberwithin{equation}{section}
 \usepackage[singlelinecheck=false]{caption}
+\DeclareCaptionFormat{tabformat}{#1#2\par#3}
 \captionsetup[figure]{name={Figure},labelfont=it,labelsep=period}
-\captionsetup[table]{name={Table},labelsep=period}
+\captionsetup[table]{name={Table},format=tabformat,labelsep=none,textfont=it,parskip=6pt plus 0pt minus 0pt}
 
 % toc formatting
 \usepackage{subfig}
@@ -223,37 +224,20 @@ $endif$
 \makeatletter
 
 % title styles
-% \titleformat{\section}{\bfseries\LARGE}{}{0pt}{}
-% \titlespacing*{\section}{0pt}{6pt}{0pt}
-% \titleformat{\subsection}{\bfseries\Large}{}{0pt}{}
-% \titlespacing*{\subsection}{0pt}{10pt}{0pt}
-% \titleformat{\subsubsection}{\bfseries\itshape\Large}{}{0pt}{}
-% \titlespacing*{\subsubsection}{0pt}{10pt}{0pt}
-% \titleformat{\paragraph}{\bfseries\large}{}{0pt}{}
-% \titlespacing*{\paragraph}{0pt}{10pt}{0pt}
-% \titleformat{\subparagraph}{\bfseries\itshape\large}{}{0pt}{}
-% \titlespacing*{\subparagraph}{0pt}{10pt}{0pt}
+\titleformat{\section}{\color{dlmcolor2}\Large\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{-4pt plus 0pt minus 0pt}{-6pt plus 0pt minus 0pt}
 
-\titleformat{\section}
-{\color{dlmcolor2}\Large\bfseries}{}{0pt}{}
-%{\color{dlmcolor2}{}{0pt}{}
-\titleformat{\subsection}
-{\color{dlmcolor}\large\bfseries}{}{0pt}{}
-%{\color{dlmcolor}\thesubsection}{0pt}{}
+\titleformat{\subsection}{\color{dlmcolor}\large\bfseries}{}{0pt}{}
+\titlespacing*{\subsection}{0pt}{2pt plus 0pt minus 0pt}{-6pt plus 0pt minus 0pt}
 
-
-
-
-%\titleformat{\section}{\bfseries\LARGE{\thesection. }{0pt}{}
-\titlespacing*{\section}{0pt}{6pt}{0pt}
-%\titleformat{\subsection}{\bfseries\Large{\thesubsection. }{0pt}{}
-\titlespacing*{\subsection}{0pt}{10pt}{0pt}
 \titleformat{\subsubsection}{\bfseries\itshape\Large}{\thesubsubsection. }{0pt}{}
-\titlespacing*{\subsubsection}{0pt}{10pt}{0pt}
+\titlespacing*{\subsubsection}{0pt}{10pt}{-6pt plus 0pt minus 0pt}
+
 \titleformat{\paragraph}{\bfseries\large}{\theparagraph. }{0pt}{}
-\titlespacing*{\paragraph}{0pt}{10pt}{0pt}
+\titlespacing*{\paragraph}{0pt}{10pt}{-6pt plus 0pt minus 0pt}
+
 \titleformat{\subparagraph}{\bfseries\itshape\large}{\thesubparagraph. }{0pt}{}
-\titlespacing*{\subparagraph}{0pt}{10pt}{0pt}
+\titlespacing*{\subparagraph}{0pt}{10pt}{-6pt plus 0pt minus 0pt}
 
 % changemargin definition
 \def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
