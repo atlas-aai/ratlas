@@ -165,7 +165,7 @@ $endif$
 
 % table and figure numbering
 \usepackage{pdflscape}
-\usepackage{threeparttable}
+\usepackage[flushleft]{threeparttable}
 \usepackage{threeparttablex}
 
 $if(manual)$
@@ -175,8 +175,9 @@ $if(manual)$
 $endif$
 \usepackage[singlelinecheck=false]{caption}
 \DeclareCaptionFormat{tabformat}{#1#2\par#3}
-\captionsetup[figure]{name={Figure},labelfont=it,labelsep=period}
-\captionsetup[table]{name={Table},format=tabformat,labelsep=none,textfont=it,parskip=6pt plus 0pt minus 0pt}
+\DeclareCaptionFormat{figformat}{#1#2\par#3}
+\captionsetup[figure]{name={Figure},format=figformat,labelsep=none,labelfont=bf,textfont=it,parskip=6pt plus 0pt minus 0pt}
+\captionsetup[table]{name={Table},format=tabformat,labelsep=none,labelfont=bf,textfont=it,parskip=6pt plus 0pt minus 0pt}
 
 % toc formatting
 \usepackage{subfig}
