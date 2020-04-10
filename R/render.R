@@ -120,6 +120,8 @@ techreport_pdf <- function(...) {
   base$knitr$opts_chunk$fig.show <- "hold"
   # nolint end
 
+  base$knitr$knit_hooks$plot <- hook_plot_rat
+
   base
 }
 
