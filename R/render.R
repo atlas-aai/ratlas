@@ -122,7 +122,11 @@ techreport_pdf <- function(apa6 = FALSE, ...) {
   base$knitr$opts_chunk$fig.show <- "hold"
   # nolint end
 
-  base$knitr$knit_hooks$plot <- hook_plot_rat
+  if (tolower(apa6) %in% c("true", "yes")) {
+    base$knitr$knit_hooks$plot <- knitr::hook_plot_tex
+  } else {
+    base$knitr$knit_hooks$plot <- hook_plot_rat
+  }
 
   base
 }
