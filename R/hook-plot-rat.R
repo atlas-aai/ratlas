@@ -7,7 +7,6 @@ hook_plot_rat <- function(x, options) {
   # as needed), and an impression of their (possible) contents.
   #
   #     fig1,                   # \begin{...}[...]
-  #     fig2,                   # \caption[...]{...\label{...}}
   #       align1,               #   {\centering
   #         sub1,               #     \subfloat[...]{
   #           resize1,          #       \resizebox{...}{...}{
@@ -17,8 +16,8 @@ hook_plot_rat <- function(x, options) {
   #           resize2,          #       }
   #         sub2,               #     }
   #       align2,               #   }
-  #     note                    # \caption[...]{...}
-  #                             # \end{...}
+  #     fig2                    #   \caption[...]{...\label{...}}
+  #                             # \end{...} % still fig2
   # nolint end
 
   rw <- options$resize.width
@@ -80,7 +79,16 @@ hook_plot_rat <- function(x, options) {
     if (plot1) {
       pos <- options$fig.pos
       if (pos != "" && !grepl("^[[{]", pos)) pos <- sprintf("[%s]", pos)
-      fig1 <- sprintf("\\begin{%s}%s", options$fig.env, pos)
+      if (is.null(scap) && !grepl("[{].*?[:.;].*?[}]", cap)) {
+        scap <- strsplit(cap, "[:.;]( |\\\\|$)")[[1L]][1L]
+      }
+      scap <- if (is.null(scap) || is.na(scap)) "" else sprintf("[%s]", scap)
+      cap <- if (cap == "") "" else sprintf(
+        "\\caption%s{%s}%s\n", scap, cap,
+        create_label(lab, if (mcap) fig_cur, latex = TRUE)
+      )
+
+      fig1 <- sprintf("\\begin{%s}%s\n%s", options$fig.env, pos, cap)
     }
     # Add subfloat code if needed
     if (usesub) {
@@ -94,15 +102,7 @@ hook_plot_rat <- function(x, options) {
     # * place caption with label
     # * close figure environment
     if (plot2) {
-      if (is.null(scap) && !grepl("[{].*?[:.;].*?[}]", cap)) {
-        scap <- strsplit(cap, "[:.;]( |\\\\|$)")[[1L]][1L]
-      }
-      scap <- if (is.null(scap) || is.na(scap)) "" else sprintf("[%s]", scap)
-      cap <- if (cap == "") "" else sprintf(
-        "\\caption%s{%s}%s\n", scap, cap,
-        create_label(lab, if (mcap) fig_cur, latex = TRUE)
-      )
-      fig2 <- sprintf("%s\n", cap)
+      fig2 <- sprintf("\\end{%s}\n", options$fig.env)
       note <- sprintf("%s\n", note)
     }
   } else if (pandoc_to(c("latex", "beamer"))) {
@@ -127,7 +127,7 @@ hook_plot_rat <- function(x, options) {
                   options$out.extra), collapse = ",")
 
   paste0(
-    fig1, fig2, align1, sub1, resize1,
+    fig1, align1, sub1, resize1,
     if (tikz) {
       sprintf("\\input{%s}", x)
     } else if (animate) {
@@ -155,7 +155,6 @@ hook_plot_rat <- function(x, options) {
         sprintf("\\href{%s}{%s}", lnk, res)
       }
     },
-    resize2, sub2, sep_cur, align2, note,
-    sprintf("\\end{%s}\n", options$fig.env)
+    resize2, sub2, sep_cur, align2, note, fig2
   )
 }
