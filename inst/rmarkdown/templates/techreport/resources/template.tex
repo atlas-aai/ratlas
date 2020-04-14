@@ -168,6 +168,8 @@ $endif$
 \usepackage[flushleft]{threeparttable}
 \usepackage{threeparttablex}
 
+
+\usepackage{subcaption}
 $if(manual)$
   \numberwithin{figure}{section}
   \numberwithin{table}{section}
@@ -176,12 +178,14 @@ $endif$
 \usepackage[singlelinecheck=false]{caption}
 \DeclareCaptionFormat{tabformat}{#1#2\par#3}
 \DeclareCaptionFormat{figformat}{#1#2\par#3}
+\DeclareCaptionFormat{subformat}{#1#2#3}
+\renewcommand\thesubfigure{\Alph{subfigure}}
 \captionsetup[figure]{name={Figure},format=figformat,labelsep=none,labelfont=bf,textfont=it,parskip=6pt plus 0pt minus 0pt}
 \captionsetup[table]{name={Table},format=tabformat,labelsep=none,labelfont=bf,textfont=it,parskip=6pt plus 0pt minus 0pt}
+\captionsetup[subfigure]{format=subformat,labelformat=simple,labelsep=space,labelfont=normalfont}
 
-% toc formatting
-\usepackage{subfig}
-\usepackage[subfigure]{tocloft}
+% toc formattin
+\usepackage{tocloft}
 \tocloftpagestyle{front}
 \renewcommand{\cfttoctitlefont}{\hfill\LARGE\bfseries}
 \renewcommand{\cftaftertoctitle}{\hfill}
