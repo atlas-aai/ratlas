@@ -85,6 +85,7 @@ topicguide_pdf <- function(...) {
 #' This is a function called in the output of the yaml of the Rmd file to
 #' specify using the standard DLM tech report pdf document formatting.
 #'
+#' @param apa6 Should the old
 #' @param ... Arguments to be passed to `[bookdown::pdf_document2]`
 #'
 #' @return A modified `pdf_document2` with the standard tech report formatting.
@@ -94,8 +95,9 @@ topicguide_pdf <- function(...) {
 #' \dontrun{
 #'   output: ratlas::techreport_pdf
 #' }
-techreport_pdf <- function(...) {
-  tech_report_template <- find_resource("techreport", "template.tex")
+techreport_pdf <- function(apa6 = FALSE, ...) {
+  template_name <- ifelse(apa6, "apa6-template.tex", "template.tex")
+  tech_report_template <- find_resource("techreport", template_name)
   base <- bookdown::pdf_document2(template = tech_report_template,
                                   latex_engine = "xelatex",
                                   citation_package = "biblatex",
