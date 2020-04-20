@@ -259,6 +259,20 @@ $endif$
   \rfoot{}
   $if(internal)$
     \fancyfoot[L]{FOR INTERNAL CONSORTIUM REVIEW ONLY}
+  $else$
+    \fancyfoot[C]{$copyright$}
+  $endif$
+}
+\fancypagestyle{ack}{%
+  \lhead{}
+  \chead{}
+  \rhead{}
+  \renewcommand{\headrulewidth}{0pt}
+  \lfoot{}
+  \cfoot{}
+  \rfoot{}
+  $if(internal)$
+    \fancyfoot[L]{FOR INTERNAL CONSORTIUM REVIEW ONLY}
   $endif$
 }
 \fancypagestyle{front}{%
@@ -323,6 +337,8 @@ $endif$
 \includegraphics[width=\textwidth]{figures/pre-generated/$program$.png}
 {\let\newpage\relax\maketitle}
 
+\newpage
+\pagestyle{ack}
 $if(acknowledgements)$
   $acknowledgements$
 $endif$
