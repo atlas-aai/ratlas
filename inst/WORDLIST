@@ -12,6 +12,7 @@ eps
 extrafont
 geoms
 ggplot
+ggproto
 Grolemund
 Hadley
 Healy
