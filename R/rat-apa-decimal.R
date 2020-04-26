@@ -16,7 +16,7 @@ rat_apa_decimal <- function(x, digits = 3) {
   value <- stringr::str_replace_all(sprintf(glue::glue("%.{digits}f"), x),
     "^(-?)0.", "\\1.")
 
-  if (!str_detect(value, "[1-9]")) {
+  if (!stringr::str_detect(value, "[1-9]")) {
     value <- glue("<{str_sub(value, start = 1L, end = -2L)}1")
   }
 
