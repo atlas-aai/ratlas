@@ -66,7 +66,7 @@ hook_plot_rat <- function(x, options) {
   # figure environment: caption, short caption, label
   cap <- options$fig.cap
   scap <- options$fig.scap
-  note <- options$fig.note
+  note <- ""
   fig1 <- fig2 <- ""
   mcap <- fig_num > 1L && options$fig.show == "asis" && !length(subcap)
   # initialize subfloat strings
@@ -103,7 +103,7 @@ hook_plot_rat <- function(x, options) {
     # * close figure environment
     if (plot2) {
       fig2 <- sprintf("\\end{%s}\n", options$fig.env)
-      note <- sprintf("%s\n", note)
+      note <- sprintf("%s\n", options$fig.note)
     }
   } else if (pandoc_to(c("latex", "beamer"))) {
     # use alignment environments for R Markdown latex output
