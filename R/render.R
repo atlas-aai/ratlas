@@ -71,9 +71,11 @@ topicguide_pdf <- function(...) {
   base$knitr$opts_chunk$fig.path <- "figures/"
   base$knitr$opts_chunk$fig.pos <- "H"
   base$knitr$opts_chunk$out.extra <- ""
-  base$knitr$opts_chunk$out.width <- "90%"
+  base$knitr$opts_chunk$out.width <- "100%"
   base$knitr$opts_chunk$fig.show <- "hold"
   # nolint end
+
+  base$knitr$knit_hooks$plot <- hook_plot_rat
 
   base
 }
