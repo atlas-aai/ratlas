@@ -16,7 +16,6 @@
     $if(mainfont)$
       \setmainfont[]{$mainfont$}
     $endif$
-
 \fi
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -67,6 +66,7 @@
 %%% Change title format to be more compact
 \usepackage{titling}
 \usepackage{xcolor}
+\usepackage{moresize}
 
 % Create subtitle command for use in maketitle
 %\newcommand{\HRule}[1][\medskipamount]{\par
@@ -140,19 +140,7 @@
 % footnote formatting
 \interfootnotelinepenalty=10000
 \usepackage[bottom]{footmisc}
-
-% \makeatletter
-%     \renewcommand\@makefntext[1]{\raggedright\@makefnmark#1}
-% \makeatother
-
-% \makeatletter
-% \renewcommand\@makefntext[1]{%
-%   \raggedright
-%   \leavevmode
-%   \rlap{\hss\@thefnmark\enspace}%
-%   #1%
-% }
-% \makeatother
+\setlength\footnotemargin{1em}
 
 % references
 \usepackage[style=apa]{biblatex}
@@ -175,7 +163,8 @@ $endfor$
 % watermark
 $if(watermark)$
   \usepackage{draftwatermark}
-  \SetWatermarkLightness{.9}
+  \SetWatermarkColor[HTML]{FE7E7E}
+  % \SetWatermarkLightness{.9}
   \SetWatermarkText{$watermark$}
 $endif$
 
@@ -190,20 +179,20 @@ $endif$
 \usepackage{pdflscape}
 \usepackage{threeparttable}
 \usepackage{threeparttablex}
-% \usepackage{chngcntr}
-% \counterwithin{table}{section}
-% \counterwithin{figure}{section}
-% \numberwithin{figure}{section}
-% \numberwithin{table}{section}
-% \numberwithin{equation}{section}
+
+\usepackage{subcaption}
 \usepackage[singlelinecheck=false]{caption}
 \DeclareCaptionFormat{tabformat}{#1#2\par#3}
-\captionsetup[figure]{name={Figure},labelfont=it,labelsep=period}
-\captionsetup[table]{name={Table},format=tabformat,labelsep=none,textfont=it,parskip=6pt plus 0pt minus 0pt}
+\DeclareCaptionFormat{figformat}{#1#2\par#3}
+\DeclareCaptionFormat{subformat}{#1#2#3}
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\captionsetup[figure]{name={Figure},format=figformat,labelsep=none,labelfont=bf,textfont=it,parskip=6pt plus 0pt minus 0pt}
+\captionsetup[table]{name={Table},format=tabformat,labelsep=none,labelfont=bf,textfont=it,parskip=6pt plus 0pt minus 0pt}
+\captionsetup[subfigure]{format=subformat,labelformat=simple,labelsep=space,labelfont=normalfont}
+\renewcommand{\eqref}[1]{\textup{\ref{#1}}}
 
 % toc formatting
-\usepackage{subfig}
-\usepackage[subfigure]{tocloft}
+\usepackage{tocloft}
 \tocloftpagestyle{front}
 \renewcommand{\cfttoctitlefont}{\hfill\LARGE\bfseries}
 \renewcommand{\cftaftertoctitle}{\hfill}
@@ -225,7 +214,7 @@ $endif$
 
 % title styles
 \titleformat{\section}{\color{dlmcolor2}\Large\bfseries}{}{0pt}{}
-\titlespacing*{\section}{0pt}{-4pt plus 0pt minus 0pt}{-6pt plus 0pt minus 0pt}
+\titlespacing*{\section}{0pt}{2pt plus 0pt minus 0pt}{-6pt plus 0pt minus 0pt}
 
 \titleformat{\subsection}{\color{dlmcolor}\large\bfseries}{}{0pt}{}
 \titlespacing*{\subsection}{0pt}{2pt plus 0pt minus 0pt}{-6pt plus 0pt minus 0pt}
