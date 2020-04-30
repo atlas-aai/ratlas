@@ -7,16 +7,18 @@
 #'
 #' @param x A numeric value
 #' @param digits Number of decimal places. Defaults to 3.
+#' @param bound Stop return from being, e.g. `.000`. Rather return `<.001`.
+#'   `TRUE` by default.
 #' @return A character string of the formatted and rounded number
 #' @export
-rat_apa_decimal <- function(x, digits = 3) {
+rat_apa_decimal <- function(x, digits = 3, bound = TRUE) {
   x <- check_apa_decimal(x)
   digits <- check_digits(digits)
 
   value <- stringr::str_replace_all(sprintf(glue::glue("%.{digits}f"), x),
     "^(-?)0.", "\\1.")
 
-  if (!stringr::str_detect(value, "[1-9]")) {
+  if (!stringr::str_detect(value, "[1-9]") & bound) {
     value <- glue("<{str_sub(value, start = 1L, end = -2L)}1")
   }
 
