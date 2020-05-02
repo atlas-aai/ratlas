@@ -37,7 +37,7 @@ vapply(needed_packages, load_packages, logical(1))
 
 options(knitr.kable.NA = "")
 options(knitr.table.format = "latex")
-set_theme(font = "Arial Narrow", plot_margin = margin(0, 10, 10, 10))
+set_theme(font = "Arial Narrow", plot_margin = ggplot2::margin(0, 10, 10, 10))
 ```
 
 
