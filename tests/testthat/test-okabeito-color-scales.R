@@ -1,4 +1,3 @@
-context("okabeito-colors")
 library(ggplot2)
 
 test_that("Okabe Ito colors work", {

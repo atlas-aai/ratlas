@@ -1,5 +1,3 @@
-context("test-rat-cap-words")
-
 test_that("x must be a valid value", {
   expect_error(check_cap_words(1), "length one character vector")
   expect_error(check_cap_words(TRUE), "length one character vector")

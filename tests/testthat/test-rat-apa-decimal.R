@@ -1,5 +1,3 @@
-context("test-rat_apa_decimal")
-
 test_that("x must be a valid value", {
   expect_error(check_apa_decimal("a"), "length one numeric vector")
   expect_error(check_apa_decimal(1:10), "length one numeric vector")

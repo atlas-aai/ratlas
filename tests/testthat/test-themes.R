@@ -1,4 +1,3 @@
-context("themes")
 library(ggplot2)
 
 test_that("themes are correct", {

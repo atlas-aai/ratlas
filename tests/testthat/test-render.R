@@ -1,5 +1,3 @@
-context("rmarkdown renderers")
-
 test_that("unknown template errors", {
   expect_error(find_resource("topicguide", "template2.docx"),
                "Couldn't find template")
