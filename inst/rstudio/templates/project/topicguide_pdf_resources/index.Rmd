@@ -13,7 +13,7 @@ internal: true
 lot: true
 lof: true
 subparagraph: yes
-mainfont: Calibri
+mainfont: Arial
 fontsize: 11pt
 ---
 
@@ -29,7 +29,8 @@ load_packages <- function(x) {
 vapply(needed_packages, load_packages, logical(1))
 
 options(knitr.kable.NA = "")
-set_theme(font = "Montserrat")
+options(knitr.table.format = "latex")
+set_theme(font = "Arial Narrow", plot_margin = ggplot2::margin(0, 10, 10, 10))
 ```
 
 

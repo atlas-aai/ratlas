@@ -1,8 +1,7 @@
-^\.travis\.yml$
 ^README\.Rmd$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^codecov\.yml$
-^appveyor\.yml$
 ^\.lintr$
 hex-logo
+^\.github$

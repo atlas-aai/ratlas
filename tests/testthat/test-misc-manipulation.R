@@ -1,5 +1,3 @@
-context("test-data_frame_manipulation")
-
 test_that("only_if works", {
   d <- tibble::as_tibble(mtcars)
 

@@ -75,7 +75,7 @@ Right text
 
 # R Plots
 
-```{r cars, fig.height=3, fig.width = 5, dev='svg'}
+```{r cars, fig.height=3, fig.width = 5}
 par(mar = c(4, 4, 1, .1))
 plot(cars, pch = 19, col = 'darkgray', las = 1) #<<
 ```

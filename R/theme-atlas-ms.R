@@ -250,9 +250,9 @@ import_montserrat <- function() {
 #' @export
 update_geom_font_ms_defaults <- function(family = "Montserrat", face = "plain",
                                          size = 3.5, color = "#2b2b2b") {
-  ggplot2::update_geom_defaults("text", list(family = family, face = face,
+  ggplot2::update_geom_defaults("text", list(family = family, fontface = face,
                                              size = size, color = color))
-  ggplot2::update_geom_defaults("label", list(family = family, face = face,
+  ggplot2::update_geom_defaults("label", list(family = family, fontface = face,
                                               size = size, color = color))
 }
 

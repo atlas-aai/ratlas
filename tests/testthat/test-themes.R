@@ -1,4 +1,4 @@
-context("themes")
+context("test-themes")
 library(ggplot2)
 
 test_that("themes are correct", {

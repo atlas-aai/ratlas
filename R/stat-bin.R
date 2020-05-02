@@ -25,8 +25,9 @@ StatBin2 <- ggplot2::ggproto("StatBin2", ggplot2::Stat,
 
     x <- flipped_names(params$flipped_aes)$x
     if (is.integer(data[[x]])) {
-      rlang::abort(glue("StatBin requires a continuous {x} variable: the {x} variable is discrete.",
-                 "Perhaps you want stat=\"count\"?"))
+      rlang::abort(glue::glue("StatBin requires a continuous {x} variable: ",
+                              "the {x} variable is discrete. ",
+                              "Perhaps you want stat=\"count\"?"))
     }
 
     if (!is.null(params$drop)) {

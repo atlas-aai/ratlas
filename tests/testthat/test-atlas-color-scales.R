@@ -1,4 +1,4 @@
-context("atlas-colors")
+context("test-atlas-color-scales")
 library(ggplot2)
 
 test_that("atlas colors work", {

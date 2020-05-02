@@ -1,4 +1,3 @@
-context("theme_atlas")
 thm <- theme_atlas()
 
 test_that("theme_atlas is a theme", {

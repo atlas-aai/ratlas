@@ -3,12 +3,13 @@
 
 # ratlas <img src="man/figures/ratlas-large.png" align="right" width="120" />
 
-[![Travis build
-status](https://travis-ci.org/atlas-aai/ratlas.svg?branch=master)](https://travis-ci.org/atlas-aai/ratlas)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/atlas-aai/ratlas?branch=master&svg=true)](https://ci.appveyor.com/project/atlas-aai/ratlas)
+<!-- badges: start -->
+
+[![R build
+status](https://github.com/atlas-aai/ratlas/workflows/R-CMD-check/badge.svg)](https://github.com/atlas-aai/ratlas/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/atlas-aai/ratlas/branch/master/graph/badge.svg)](https://codecov.io/gh/atlas-aai/ratlas?branch=master)
+<!-- badges: end -->
 
 The goal of ratlas is to provide uniform [R
 Markdown](https://bookdown.org/yihui/rmarkdown/) templates for creating
