@@ -35,8 +35,6 @@ load_packages <- function(x) {
 }
 vapply(needed_packages, load_packages, logical(1))
 
-extrafont::loadfonts(quiet = TRUE)
-
 options(knitr.kable.NA = "")
 options(knitr.table.format = "latex")
 set_theme(font = "Arial Narrow", plot_margin = margin(0, 10, 10, 10))

@@ -21,7 +21,7 @@ load_packages <- function(x) {
 vapply(needed_packages, load_packages, logical(1))
 
 options(knitr.kable.NA = "")
-set_theme(font = "Montserrat")
+set_theme(font = "Arial Narrow", plot_margin = margin(0, 10, 10, 10))
 ```
 
 
