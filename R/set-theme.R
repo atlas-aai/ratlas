@@ -18,7 +18,7 @@
 #' set_theme("Montserrat")
 #'
 #' @export
-set_theme <- function(font = c("Arial Narrow", "Montserrat", "Palatino"),
+set_theme <- function(font = c("Arial Narrow", "Montserrat", "default"),
                       discrete = "okabeito", continuous = "viridis", ...) {
   font <- match.arg(font)
   cont_option <- switch(continuous,
@@ -37,9 +37,12 @@ set_theme <- function(font = c("Arial Narrow", "Montserrat", "Palatino"),
   } else if (font == "Montserrat") {
     ggplot2::theme_set(theme_atlas_ms(...))
     update_geom_font_ms_defaults()
-  } else if (font == "Palatino") {
-    ggplot2::theme_set(theme_atlas_pl(...))
-    update_geom_font_pl_defaults()
+  } else if (font == "default") {
+    ggplot2::theme_set(ggplot2::theme_grey())
+    ggplot2::update_geom_defaults("text", list(family = "", fontface = "plain",
+                                               size = 3.88, color = "black"))
+    ggplot2::update_geom_defaults("label", list(family = "", fontface = "plain",
+                                                size = 3.88, color = "black"))
   }
 
   pos <- 1
