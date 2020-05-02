@@ -176,12 +176,14 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
       axis.title.x = ggplot2::element_text(
         hjust = xj, size = axis_title_size,
         family = axis_title_family,
-        face = axis_title_face
+        face = axis_title_face,
+        margin = ggplot2::margin(t = 10, r = 0, b = 0, l = 0)
       ),
       axis.title.y = ggplot2::element_text(
         hjust = yj, size = axis_title_size,
         family = axis_title_family,
-        face = axis_title_face
+        face = axis_title_face,
+        margin = ggplot2::margin(t = 0, r = 10, b = 0, l = 0)
       ),
       axis.title.y.right = ggplot2::element_text(
         hjust = yj, size = axis_title_size,
@@ -225,9 +227,9 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
 #' @export
 update_geom_font_defaults <- function(family = "Arial Narrow", face = "plain",
                                       size = 3.5, color = "#2b2b2b") {
-  ggplot2::update_geom_defaults("text", list(family = family, face = face,
+  ggplot2::update_geom_defaults("text", list(family = family, fontface = face,
                                              size = size, color = color))
-  ggplot2::update_geom_defaults("label", list(family = family, face = face,
+  ggplot2::update_geom_defaults("label", list(family = family, fontface = face,
                                               size = size, color = color))
 }
 

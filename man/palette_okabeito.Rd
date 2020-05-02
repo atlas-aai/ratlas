@@ -5,7 +5,11 @@
 \alias{palette_okabeito}
 \alias{palette_okabeito_black}
 \title{Color palette proposed by Okabe and Ito}
-\format{An object of class \code{character} of length 8.}
+\format{
+An object of class \code{character} of length 8.
+
+An object of class \code{character} of length 8.
+}
 \usage{
 palette_okabeito
 

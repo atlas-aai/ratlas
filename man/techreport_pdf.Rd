@@ -4,10 +4,12 @@
 \alias{techreport_pdf}
 \title{Create an R Markdown PDF Document Tech Report}
 \usage{
-techreport_pdf(...)
+techreport_pdf(apa6 = FALSE, ...)
 }
 \arguments{
-\item{...}{Arguments to be passed to \code{[bookdown::pdf_document2]}}
+\item{apa6}{Should the old}
+
+\item{...}{Arguments to be passed to \verb{[bookdown::pdf_document2]}}
 }
 \value{
 A modified \code{pdf_document2} with the standard tech report formatting.

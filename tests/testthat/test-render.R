@@ -1,5 +1,3 @@
-context("rmarkdown renderers")
-
 test_that("unknown template errors", {
   expect_error(find_resource("topicguide", "template2.docx"),
                "Couldn't find template")
@@ -7,34 +5,67 @@ test_that("unknown template errors", {
                "Couldn't find template")
 })
 
-test_that("topicguide-docx renders", {
-  testthat::skip_on_cran()
-  testthat::skip_on_travis()
-  testthat::skip_on_appveyor()
-
-  # work in a temp directory
-  dir <- tempfile()
-  dir.create(dir)
-  oldwd <- setwd(dir)
-  on.exit(setwd(oldwd), add = TRUE)
-
-  topicguide_skeleton(dir)
-  rmarkdown::render("index.Rmd")
-  expect_true(file.exists("index.docx"))
-})
-
 test_that("techreport-pdf renders", {
   testthat::skip_on_cran()
-  testthat::skip_on_travis()
-  testthat::skip_on_appveyor()
 
   # work in a temp directory
-  dir <- tempfile()
-  dir.create(dir)
-  oldwd <- setwd(dir)
-  on.exit(setwd(oldwd), add = TRUE)
+  dir <- create_local_rmd_dir()
 
   techreport_skeleton(dir)
-  suppressWarnings(rmarkdown::render("index.Rmd"))
-  expect_true(file.exists("index.pdf"))
+  rmd_name <- tolower(basename(dir))
+  suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
+                                         clean_envir = FALSE))
+  expect_true(file.exists(paste0("_report/", rmd_name, ".pdf")))
+})
+
+test_that("topicguide-docx renders", {
+  testthat::skip_on_cran()
+
+  # work in a temp directory
+  dir <- create_local_rmd_dir()
+
+  topicguide_docx_skeleton(dir)
+  rmd_name <- tolower(basename(dir))
+  suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
+                                         clean_envir = FALSE))
+  expect_true(file.exists(paste0("_report/", rmd_name, ".docx")))
+})
+
+test_that("topicguide-pdf renders", {
+  testthat::skip_on_cran()
+
+  # work in a temp directory
+  dir <- create_local_rmd_dir()
+
+  topicguide_pdf_skeleton(dir)
+  rmd_name <- tolower(basename(dir))
+  suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
+                                         clean_envir = FALSE))
+  expect_true(file.exists(paste0("_report/", rmd_name, ".pdf")))
+})
+
+test_that("slides-html renders", {
+  testthat::skip_on_cran()
+
+  resources <- ratlas_file("rmarkdown", "templates", "atlas-presentation",
+                           "skeleton")
+
+  sub_dirs <- list.dirs(resources, recursive = TRUE, full.names = FALSE)
+  sub_dirs <- sub_dirs[-which(sub_dirs == "")]
+  files <- list.files(resources, recursive = TRUE, include.dirs = FALSE)
+
+  # work in a temp directory
+  dir <- create_local_rmd_dir()
+  new_dir <- c(dir, file.path(dir, sub_dirs))
+  fs::dir_create(new_dir)
+
+  source <- file.path(resources, files)
+  target <- file.path(dir, files)
+  file.copy(source, target)
+  suppressWarnings(rmarkdown::render("skeleton.Rmd", quiet = TRUE))
+  expect_true(file.exists("skeleton.html"))
+
+  render1 <- slides_html()
+  render2 <- slides_html(nature = list(navigation = list(click = TRUE)))
+  expect_false(identical(render1, render2))
 })

@@ -4,10 +4,12 @@
 \alias{append_summary}
 \title{Append row and/or column summaries}
 \usage{
-append_summary(df, row = TRUE, col = TRUE, .f = sum)
+append_summary(df, ..., row = TRUE, col = TRUE, .f = sum, args = NULL)
 }
 \arguments{
 \item{df}{A data frame to append summaries to.}
+
+\item{...}{Unquoted names of columns to be included in the summary}
 
 \item{row}{logical indicating whether a summary row should be added (i.e.,
 summarizing each column)}
@@ -16,6 +18,8 @@ summarizing each column)}
 summarizing each row)}
 
 \item{.f}{Function to use for calculating summaries}
+
+\item{args}{A named list of arguments to pass to \code{.f}}
 }
 \value{
 A data frame with the summary row and/or column appended
@@ -26,6 +30,6 @@ Add row and/or column summaries (e.g., total counts) to a data frame.
 \examples{
 set.seed(9416)
 df <- tibble::tibble(char = letters[1:5], x = rnorm(5), y = rnorm(5))
-append_summary(df, row = TRUE, col = TRUE, .f = sum)
-append_summary(df, row = FALSE, .f = mean)
+append_summary(df, x, y, row = TRUE, col = TRUE, .f = sum)
+append_summary(df, x, y, row = FALSE, .f = mean)
 }

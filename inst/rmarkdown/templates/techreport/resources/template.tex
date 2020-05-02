@@ -66,6 +66,7 @@
 %%% Change title format to be more compact
 \usepackage{titling}
 \usepackage{xcolor}
+\usepackage{moresize}
 
 % Create subtitle command for use in maketitle
 \newcommand{\HRule}[1][\medskipamount]{\par
@@ -103,7 +104,7 @@
 \setlength{\droptitle}{-2em}
 
   \title{$title$}
-    \pretitle{\vspace{\droptitle}\centering\Huge\bfseries\emph}
+    \pretitle{\vspace{\droptitle}\centering\HUGE\bfseries\emph}
   \posttitle{\par}
 
   \subtitle{$subtitle$}
@@ -128,30 +129,20 @@
 
 % page breaks before each section
 \usepackage{titlesec}
-%\newcommand{\sectionbreak}{\clearpage}
+$if(manual)$
+  \newcommand{\sectionbreak}{\clearpage}
+$endif$
 
 % footnote formatting
 \interfootnotelinepenalty=10000
-\usepackage[bottom]{footmisc}
-
-% \makeatletter
-%     \renewcommand\@makefntext[1]{\raggedright\@makefnmark#1}
-% \makeatother
-
-% \makeatletter
-% \renewcommand\@makefntext[1]{%
-%   \raggedright
-%   \leavevmode
-%   \rlap{\hss\@thefnmark\enspace}%
-%   #1%
-% }
-% \makeatother
+\usepackage[bottom,hang,ragged]{footmisc}
+\setlength\footnotemargin{1em}
 
 % references
 \usepackage[style=apa]{biblatex}
 \ExecuteBibliographyOptions{sortcites}
 \DeclareFieldFormat{doi}{%
-  doi\addcolon\nolinkurl{#1}}
+  \url{https://doi.org/#1}}
 \DeclareFieldFormat{eprint:arXiv}{%
   arXiv\addcolon\nolinkurl{#1}}
 
@@ -167,35 +158,36 @@ $endfor$
 
 % watermark
 $if(watermark)$
-  \usepackage{draftwatermark}
-  \SetWatermarkLightness{.9}
+  \usepackage[firstpage]{draftwatermark}
+  \SetWatermarkColor[HTML]{FE7E7E}
+  % \SetWatermarkLightness{.9}
   \SetWatermarkText{$watermark$}
 $endif$
 
-% $if(internal)$
-%   \usepackage[firstpage]{draftwatermark}
-%   \SetWatermarkLightness{.8}
-%   \SetWatermarkFontSize{3cm}
-%   \SetWatermarkText{\shortstack{DO NOT\\DISTRIBUTE}}
-% $endif$
-
 % table and figure numbering
 \usepackage{pdflscape}
-\usepackage{threeparttable}
+\usepackage[flushleft]{threeparttable}
 \usepackage{threeparttablex}
-% \usepackage{chngcntr}
-% \counterwithin{table}{section}
-% \counterwithin{figure}{section}
-% \numberwithin{figure}{section}
-% \numberwithin{table}{section}
-% \numberwithin{equation}{section}
+
+
+\usepackage{subcaption}
+$if(manual)$
+  \numberwithin{figure}{section}
+  \numberwithin{table}{section}
+  \numberwithin{equation}{section}
+$endif$
 \usepackage[singlelinecheck=false]{caption}
-\captionsetup[figure]{name={Figure},labelfont=it,labelsep=period}
-\captionsetup[table]{name={Table},labelsep=period}
+\DeclareCaptionFormat{tabformat}{#1#2\par#3}
+\DeclareCaptionFormat{figformat}{#1#2\par#3}
+\DeclareCaptionFormat{subformat}{#1#2#3}
+\renewcommand\thesubfigure{\Alph{subfigure}}
+\captionsetup[figure]{name={Figure},format=figformat,labelsep=none,labelfont=bf,textfont=it,parskip=6pt plus 0pt minus 0pt}
+\captionsetup[table]{name={Table},format=tabformat,labelsep=none,labelfont=bf,textfont=it,parskip=6pt plus 0pt minus 0pt}
+\captionsetup[subfigure]{format=subformat,labelformat=simple,labelsep=space,labelfont=normalfont}
+\renewcommand{\eqref}[1]{\textup{\ref{#1}}}
 
 % toc formatting
-\usepackage{subfig}
-\usepackage[subfigure]{tocloft}
+\usepackage{tocloft}
 \tocloftpagestyle{front}
 \renewcommand{\cfttoctitlefont}{\hfill\LARGE\bfseries}
 \renewcommand{\cftaftertoctitle}{\hfill}
@@ -216,17 +208,11 @@ $endif$
 \makeatletter
 
 % title styles
-% \titleformat{\section}{\bfseries\LARGE}{}{0pt}{}
-% \titlespacing*{\section}{0pt}{6pt}{0pt}
-% \titleformat{\subsection}{\bfseries\Large}{}{0pt}{}
-% \titlespacing*{\subsection}{0pt}{10pt}{0pt}
-% \titleformat{\subsubsection}{\bfseries\itshape\Large}{}{0pt}{}
-% \titlespacing*{\subsubsection}{0pt}{10pt}{0pt}
-% \titleformat{\paragraph}{\bfseries\large}{}{0pt}{}
-% \titlespacing*{\paragraph}{0pt}{10pt}{0pt}
-% \titleformat{\subparagraph}{\bfseries\itshape\large}{}{0pt}{}
-% \titlespacing*{\subparagraph}{0pt}{10pt}{0pt}
-\titleformat{\section}{\bfseries\LARGE}{\thesection. }{0pt}{}
+$if(manual)$
+  \titleformat{\section}{\bfseries\LARGE\center}{\thesection. }{0pt}{}
+$else$
+  \titleformat{\section}{\bfseries\LARGE}{\thesection. }{0pt}{}
+$endif$
 \titlespacing*{\section}{0pt}{6pt}{0pt}
 \titleformat{\subsection}{\bfseries\Large}{\thesubsection. }{0pt}{}
 \titlespacing*{\subsection}{0pt}{10pt}{0pt}
@@ -275,6 +261,20 @@ $endif$
   \rfoot{}
   $if(internal)$
     \fancyfoot[L]{FOR INTERNAL CONSORTIUM REVIEW ONLY}
+  $else$
+    \fancyfoot[C]{$copyright$}
+  $endif$
+}
+\fancypagestyle{ack}{%
+  \lhead{}
+  \chead{}
+  \rhead{}
+  \renewcommand{\headrulewidth}{0pt}
+  \lfoot{}
+  \cfoot{}
+  \rfoot{}
+  $if(internal)$
+    \fancyfoot[L]{FOR INTERNAL CONSORTIUM REVIEW ONLY}
   $endif$
 }
 \fancypagestyle{front}{%
@@ -302,12 +302,21 @@ $endif$
   $if(internal)$
     \fancyfoot[L]{FOR INTERNAL CONSORTIUM REVIEW ONLY}
   $endif$
-  % \fancyfoot[L]{Chapter \rightmark}
+  $if(manual)$
+    \fancyfoot[L]{Chapter \rightmark}
+  $endif$
+
   \fancyfoot[R]{Page \thepage}
   \fancyhead[L]{\includegraphics[width=2in]{figures/pre-generated/letterhead.jpg}}
-  \fancyhead[R]{$shorttitle$\\\progName{}\\$subtitle$}
+
+  $if(manual)$
+    \fancyhead[R]{$title$\\\progName{}\\Alternate Assessment System -- $subtitle$}
+  $else$
+    \fancyhead[R]{$shorttitle$\\\progName{}\\$subtitle$}
+  $endif$
 }
 
+% other things
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}{Lemma}[section]
@@ -323,11 +332,15 @@ $endif$
 \newtheorem*{remark}{Remark}
 \newtheorem*{solution}{Solution}
 
+
+% start document
 \begin{document}
 \pagestyle{plain}
-\includegraphics[width=6.5in]{figures/pre-generated/$program$.png}
+\includegraphics[width=\textwidth]{figures/pre-generated/$program$.png}
 {\let\newpage\relax\maketitle}
 
+\newpage
+\pagestyle{ack}
 $if(acknowledgements)$
   $acknowledgements$
 $endif$
@@ -339,11 +352,16 @@ $endif$
 \setcounter{tocdepth}{3}
 \tableofcontents
 }
-\clearpage
-\listoftables
 
 \clearpage
-\listoffigures
+$if(lot)$
+  \listoftables
+$endif$
+
+\clearpage
+$if(lof)$
+  \listoffigures
+$endif$
 
 \end{romanpages}
 \pagenumbering{arabic}

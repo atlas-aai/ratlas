@@ -1,5 +1,5 @@
 Package: ratlas
-Title: ATLAS formatting functions and templates
+Title: ATLAS Formatting Functions and Templates
 Version: 0.0.0.9000
 Authors@R: 
     c(person(given = "W. Jake",
@@ -23,27 +23,29 @@ Description: This package contains various template and
     templates, formatting functions, and ggplot2 themes.
 License: GPL-3
 VignetteBuilder: knitr
+URL: https://github.com/atlas-aai/ratlas
+BugReports: https://github.com/atlas-aai/ratlas/issues
 Depends:
-    R (>= 3.4.0)
+    R (>= 3.5.0)
 Imports:
     bookdown (>= 0.9),
     colorspace (>= 1.4.1),
     dplyr (>= 0.8.1),
     extrafont (>= 0.17),
     fs (>= 1.2.7),
-    ggplot2 (>= 3.2.0),
+    ggplot2 (>= 3.3.0),
     glue (>= 1.3.1),
     grDevices,
     hrbrthemes (>= 0.6.0),
-    hunspell (>= 3.0),
     knitr (>= 1.22),
     magrittr (>= 1.5),
     rlang (>= 0.3.4),
-    rmarkdown (>= 1.12),
     scales (>= 1.0.0),
     stringr (>= 1.4.0),
     tibble (>= 2.1.3),
-    tidyr (>= 0.8.3)
+    tidyr (>= 0.8.3),
+    xaringan (>= 0.11),
+    xfun (>= 0.12)
 Suggests: 
     covr (>= 3.2.1),
     cowplot (>= 1.0.0),
@@ -53,13 +55,16 @@ Suggests:
     kableExtra (>= 1.1.0),
     lintr (>= 1.0.3),
     magick (>= 2.2),
+    rmarkdown (>= 1.12),
     spelling (>= 2.1),
     testthat (>= 2.1.0),
     tinytex (>= 0.13),
-    vdiffr (>= 0.3.0),
-    viridis (>= 0.5.1)
+    usethis (>= 1.6.0),
+    vdiffr (>= 0.3.1),
+    viridis (>= 0.5.1),
+    withr (>= 2.2.0)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Language: en-US

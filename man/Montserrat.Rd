@@ -4,7 +4,9 @@
 \name{font_ms}
 \alias{font_ms}
 \title{Montserrat font name R variable aliases}
-\format{length 1 character vector}
+\format{
+length 1 character vector
+}
 \usage{
 font_ms
 }

@@ -3,6 +3,7 @@ linters: with_defaults(
   )
 exclusions: list(
     "R/zzz.R",
+    "R/hook-plot-rat.R",
     "man/append_summary.Rd",
     "man/ArialNarrow.Rd",
     "man/figures/icon-192.png",

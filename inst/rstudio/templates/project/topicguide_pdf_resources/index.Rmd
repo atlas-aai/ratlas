@@ -1,0 +1,53 @@
+---
+title: "Topic Guide Title"
+date: "`r format(Sys.Date(), '%B %Y')`"
+knit: bookdown::render_book
+output: ratlas::topicguide_pdf
+bibliography: ["bib/refs.bib", "bib/packages.bib"]
+biblio-style: apalike2
+biblatexoptions:
+  - sortcites
+csl: csl/apa.csl
+link-citations: yes
+internal: true
+lot: true
+lof: true
+subparagraph: yes
+mainfont: Arial
+fontsize: 11pt
+---
+
+```{r setup, include=FALSE}
+needed_packages <- c("ratlas", "knitr", "english")
+load_packages <- function(x) {
+  if (!(x %in% installed.packages())) {
+    install.packages(x, repos = "https://cran.rstudio.com/")
+  }
+  
+  suppressPackageStartupMessages(require(x, character.only = TRUE))
+}
+vapply(needed_packages, load_packages, logical(1))
+
+options(knitr.kable.NA = "")
+options(knitr.table.format = "latex")
+set_theme(font = "Arial Narrow", plot_margin = ggplot2::margin(0, 10, 10, 10))
+```
+
+
+
+
+\newpage
+
+# References
+
+```{r write-packages, include = FALSE}
+if (!file.exists("bib/packages.bib")) file.create("bib/packages.bib")
+suppressWarnings(
+  knitr::write_bib(c(.packages()), "bib/packages.bib")
+)
+```
+
+\printbibliography[heading=none]
+
+\setlength{\parindent}{15pt}
+\setlength{\leftskip}{0pt}

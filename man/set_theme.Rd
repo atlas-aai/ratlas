@@ -4,8 +4,12 @@
 \alias{set_theme}
 \title{Set default ggplot2 theme}
 \usage{
-set_theme(font = c("Arial Narrow", "Montserrat", "Palatino"),
-  discrete = "okabeito", continuous = "viridis")
+set_theme(
+  font = c("Arial Narrow", "Montserrat", "default"),
+  discrete = "okabeito",
+  continuous = "viridis",
+  ...
+)
 }
 \arguments{
 \item{font}{One of "Arial Narrow" (default) or "Montserrat".}
@@ -15,6 +19,8 @@ set_theme(font = c("Arial Narrow", "Montserrat", "Palatino"),
 
 \item{continuous}{Color palette for continuous scales. One of "magma",
 "inferno", "plasma", "viridis" (default), or "cividis", or "ggplot2".}
+
+\item{...}{Additional arguments to pass to theme functions.}
 }
 \description{
 Sets the default color schemes, fonts, and theme for ggplot2 plots. The

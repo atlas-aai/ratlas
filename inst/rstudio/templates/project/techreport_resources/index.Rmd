@@ -2,10 +2,12 @@
 title: "Tech Report Title"
 shorttitle: "A Short Title"
 subtitle: "Technical Report #XX-XX"
-date: "`r format(Sys.Date(), '%B, %Y')`"
+date: "`r format(Sys.Date(), '%B %Y')`"
 program: "DLM"
+knit: bookdown::render_book
 output: ratlas::techreport_pdf
 internal: false
+manual: false
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
 biblio-style: apa
 biblatexoptions:
@@ -15,10 +17,11 @@ link-citations: yes
 lot: true
 lof: true
 subparagraph: yes
-mainfont: Palatino LT Std
+mainfont: Arial
 fontsize: 11pt
 acknowledgements: >
   `r if (knitr::is_latex_output()) ratlas::inc("front-matter/preface.Rmd")`
+copyright: "Copyright \\copyright\\ 2020 Accessible Teaching, Learning, and Assessment Systems (ATLAS)"
 ---
 
 ```{r setup, include = FALSE}
@@ -32,12 +35,9 @@ load_packages <- function(x) {
 }
 vapply(needed_packages, load_packages, logical(1))
 
-extrafont::loadfonts(quiet = TRUE)
-set_theme(font = "Montserrat")
-
 options(knitr.kable.NA = "")
 options(knitr.table.format = "latex")
-set_theme(font = "Montserrat")
+set_theme(font = "Arial Narrow", plot_margin = ggplot2::margin(0, 10, 10, 10))
 ```
 
 

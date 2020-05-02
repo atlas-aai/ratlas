@@ -4,12 +4,15 @@
 \alias{rat_apa_decimal}
 \title{Format decimals in APA style}
 \usage{
-rat_apa_decimal(x, digits = 3)
+rat_apa_decimal(x, digits = 3, bound = TRUE)
 }
 \arguments{
 \item{x}{A numeric value}
 
 \item{digits}{Number of decimal places. Defaults to 3.}
+
+\item{bound}{Stop return from being, e.g. \code{.000}. Rather return \verb{<.001}.
+\code{TRUE} by default.}
 }
 \value{
 A character string of the formatted and rounded number

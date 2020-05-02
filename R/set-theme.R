@@ -11,14 +11,15 @@
 #'   (default), "atlas", or "ggplot2".
 #' @param continuous Color palette for continuous scales. One of "magma",
 #'   "inferno", "plasma", "viridis" (default), or "cividis", or "ggplot2".
+#' @param ... Additional arguments to pass to theme functions.
 #'
 #' @examples
 #' set_theme("Arial Narrow")
 #' set_theme("Montserrat")
 #'
 #' @export
-set_theme <- function(font = c("Arial Narrow", "Montserrat", "Palatino"),
-                      discrete = "okabeito", continuous = "viridis") {
+set_theme <- function(font = c("Arial Narrow", "Montserrat", "default"),
+                      discrete = "okabeito", continuous = "viridis", ...) {
   font <- match.arg(font)
   cont_option <- switch(continuous,
                         magma = "A",
@@ -31,14 +32,17 @@ set_theme <- function(font = c("Arial Narrow", "Montserrat", "Palatino"),
                         atlas = palette_atlas)
 
   if (font == "Arial Narrow") {
-    ggplot2::theme_set(theme_atlas())
+    ggplot2::theme_set(theme_atlas(...))
     update_geom_font_defaults()
   } else if (font == "Montserrat") {
-    ggplot2::theme_set(theme_atlas_ms())
+    ggplot2::theme_set(theme_atlas_ms(...))
     update_geom_font_ms_defaults()
-  } else if (font == "Palatino") {
-    ggplot2::theme_set(theme_atlas_pl())
-    update_geom_font_pl_defaults()
+  } else if (font == "default") {
+    ggplot2::theme_set(ggplot2::theme_grey())
+    ggplot2::update_geom_defaults("text", list(family = "", fontface = "plain",
+                                               size = 3.88, color = "black"))
+    ggplot2::update_geom_defaults("label", list(family = "", fontface = "plain",
+                                                size = 3.88, color = "black"))
   }
 
   pos <- 1
