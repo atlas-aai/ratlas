@@ -13,7 +13,7 @@ internal: true
 lot: true
 lof: true
 subparagraph: yes
-mainfont: Calibri
+mainfont: Arial
 fontsize: 11pt
 ---
 
