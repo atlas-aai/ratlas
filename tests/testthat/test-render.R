@@ -5,6 +5,19 @@ test_that("unknown template errors", {
                "Couldn't find template")
 })
 
+test_that("techreport-pdf renders", {
+  testthat::skip_on_cran()
+
+  # work in a temp directory
+  dir <- create_local_rmd_dir()
+
+  techreport_skeleton(dir)
+  rmd_name <- tolower(basename(dir))
+  suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
+                                         clean_envir = FALSE))
+  expect_true(file.exists(paste0("_report/", rmd_name, ".pdf")))
+})
+
 test_that("topicguide-docx renders", {
   testthat::skip_on_cran()
 
@@ -13,8 +26,9 @@ test_that("topicguide-docx renders", {
 
   topicguide_docx_skeleton(dir)
   rmd_name <- tolower(basename(dir))
-  suppressWarnings(rmarkdown::render(paste0(rmd_name, ".Rmd"), quiet = TRUE))
-  expect_true(file.exists(paste0(rmd_name, ".docx")))
+  suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
+                                         clean_envir = FALSE))
+  expect_true(file.exists(paste0("_report/", rmd_name, ".docx")))
 })
 
 test_that("topicguide-pdf renders", {
@@ -25,20 +39,9 @@ test_that("topicguide-pdf renders", {
 
   topicguide_pdf_skeleton(dir)
   rmd_name <- tolower(basename(dir))
-  suppressWarnings(rmarkdown::render(paste0(rmd_name, ".Rmd"), quiet = TRUE))
-  expect_true(file.exists(paste0(rmd_name, ".pdf")))
-})
-
-test_that("techreport-pdf renders", {
-  testthat::skip_on_cran()
-
-  # work in a temp directory
-  dir <- create_local_rmd_dir()
-
-  techreport_skeleton(dir)
-  rmd_name <- tolower(basename(dir))
-  suppressWarnings(rmarkdown::render(paste0(rmd_name, ".Rmd"), quiet = TRUE))
-  expect_true(file.exists(paste0(rmd_name, ".pdf")))
+  suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
+                                         clean_envir = FALSE))
+  expect_true(file.exists(paste0("_report/", rmd_name, ".pdf")))
 })
 
 test_that("slides-html renders", {
