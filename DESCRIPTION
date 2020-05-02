@@ -60,8 +60,6 @@ Suggests:
     tinytex (>= 0.13),
     vdiffr (>= 0.3.1),
     viridis (>= 0.5.1)
-Remotes:
-    tidyverse/ggplot2
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
