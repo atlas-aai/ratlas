@@ -8,7 +8,7 @@ output:
 pkgdown:
   as_is: true
 vignette: >
-  %\VignetteIndexEntry{plotting-vignette}
+  %\VignetteIndexEntry{plotting}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -39,21 +39,21 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette walks through how to create consistent graphics that meet ATLAS formatting standards using [**ggplot2**](https://ggplot2.tidyverse.org). The **ggplot2** package uses the grammar of graphics to create elegant and reproducible plots that are publication ready. The **ratlas** package provides an extension to **ggplot2** by customizing the default theme to match brand requirements.
+This vignette walks through how to create consistent graphics that meet ATLAS formatting standards using [{ggplot2}](https://ggplot2.tidyverse.org). The {ggplot2} package uses the grammar of graphics to create elegant and reproducible plots that are publication ready. The {ratlas} package provides an extension to {ggplot2} by customizing the default theme to match brand requirements.
 
 ## Introduction to ggplot2
 
-A full tutorial of how to use **ggplot2** is beyond the scope of this vignette. If you are new to **ggplot2**, we recommend you start with these resources:
+A full tutorial of how to use {ggplot2} is beyond the scope of this vignette. If you are new to {ggplot2}, we recommend you start with these resources:
 
 * [Data Visualisation](https://r4ds.had.co.nz/data-visualisation.html) in *R for Data Science*, by Hadley Wickham & Garrett Grolemund
 * [*Data Visualization*](http://socviz.co), by Kieran Healy
 * [*R Graphics Cookbook*](https://r-graphics.org), by Winston Chang
 
-These resources walk through how **ggplot2** works, and provide examples with code for creating different types of plots. For a more in depth description of how **ggplot2** works, we recommend [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org), by Hadley Wickham. The second edition can be purchased from [Amazon](https://www.amazon.com/ggplot2-Elegant-Graphics-Data-Analysis/dp/331924275X/ref=sr_1_1?keywords=ggplot2&qid=1568726727&sr=8-1); however, the third edition is currently under development, and can be accessed for free at [ggplot2-book.org](https://ggplot2-book.org).
+These resources walk through how {ggplot2} works, and provide examples with code for creating different types of plots. For a more in depth description of how {ggplot2} works, we recommend [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org), by Hadley Wickham. The second edition can be purchased from [Amazon](https://www.amazon.com/ggplot2-Elegant-Graphics-Data-Analysis/dp/331924275X/ref=sr_1_1?keywords=ggplot2&qid=1568726727&sr=8-1); however, the third edition is currently under development, and can be accessed for free at [ggplot2-book.org](https://ggplot2-book.org).
 
-To demonstrate how to use the ATLAS theme for **ggplot2**, we will use the following example plot of the `mtcars` data set (Figure \@ref(fig:init-plot)).
+To demonstrate how to use the ATLAS theme for {ggplot2}, we will use the following example plot of the `mtcars` data set (Figure \@ref(fig:init-plot)).
 
-(ref:init-plot-cap) Default **ggplot2** theme.
+(ref:init-plot-cap) Default {ggplot2} theme.
 
 ```{r init-plot, fig.cap = "(ref:init-plot-cap)"}
 library(ggplot2)
@@ -65,7 +65,7 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
 
 ## Setting up your system
 
-The ATLAS **ggplot2** themes use different fonts from the default theme in Figure \@ref(fig:init-plot). In order for **ggplot2** to be able to use other fonts on your computer, we need to use the **extrafont** package.
+The ATLAS {ggplot2} themes use different fonts from the default theme in Figure \@ref(fig:init-plot). In order for {ggplot2} to be able to use other fonts on your computer, we need to use the {extrafont} package.
 
 ```{r exfnt, eval = FALSE}
 library(extrafont)
@@ -73,7 +73,7 @@ library(extrafont)
 extrafont::font_import()
 ```
 
-This will import all TrueType fonts (`.ttf`) into a font database that can be accessed by **ggplot2**. If you later install new fonts to your system, you will need to call `extrafont::font_import()` again to add the new fonts to the database. To use the fonts, you simply have to load the database when you start your *R* session.
+This will import all TrueType fonts (`.ttf`) into a font database that can be accessed by {ggplot2}. If you later install new fonts to your system, you will need to call `extrafont::font_import()` again to add the new fonts to the database. To use the fonts, you simply have to load the database when you start your *R* session.
 
 ```{r ldfnt, eval = FALSE}
 # For windows
@@ -84,7 +84,7 @@ extrafont::loadfonts("pdf")
 extrafont::loadfonts("postscript")
 ```
 
-Alternatively, you can set a global option in your `.Rprofile` to always load the font database when you attach the **ratlas** package with `library(ratlas)`. To edit your `.Rprofile`, use `usethis::edit_r_profile()`. This will open your `.Rprofile`, which is used to set global options. An example `.Rprofile` might look like this:
+Alternatively, you can set a global option in your `.Rprofile` to always load the font database when you attach the {ratlas} package with `library(ratlas)`. To edit your `.Rprofile`, use `usethis::edit_r_profile()`. This will open your `.Rprofile`, which is used to set global options. An example `.Rprofile` might look like this:
 
 ```{r rprof, eval = FALSE}
 options(
@@ -93,11 +93,11 @@ options(
 )
 ```
 
-Here, two options have been set. The first defines which CRAN repository to use when installing new packages. The second indicates that the font database should be loaded when **ratlas** is attached. We recommend setting this option in your `.Rprofile` so that you don't have to always remember to load the font database manually.
+Here, two options have been set. The first defines which CRAN repository to use when installing new packages. The second indicates that the font database should be loaded when {ratlas} is attached. We recommend setting this option in your `.Rprofile` so that you don't have to always remember to load the font database manually.
 
 ## Using `theme_atlas()`
 
-The ATLAS **ggplot2** theme can be applied by adding a `ratlas::theme_atlas()` layer to plot, just as you would add any other theme. The result is shown in Figure \@ref(fig:theme-atlas-ex).
+The ATLAS {ggplot2} theme can be applied by adding a `ratlas::theme_atlas()` layer to plot, just as you would add any other theme. The result is shown in Figure \@ref(fig:theme-atlas-ex).
 
 (ref:theme-atlas-ex-cap) The result of applying `ratlas::theme_atlas()` to a plot.
 
@@ -129,9 +129,9 @@ Notice that Figure \@ref(fig:theme-atlas-ms-ex) is identical to Figure \@ref(fig
 
 ## Colors
 
-One potential issue with graphics created with **ggplot2** is that the default color scales are not colorblind friendly. For example, Figure \@ref(fig:disc-cvd) shows our working example simulated with different types of color blindness.
+One potential issue with graphics created with {ggplot2} is that the default color scales are not colorblind friendly. For example, Figure \@ref(fig:disc-cvd) shows our working example simulated with different types of color blindness.
 
-(ref:disc-cvd-cap) The default **ggplot2** color palette for discrete scales with different types of color blindness.
+(ref:disc-cvd-cap) The default {ggplot2} color palette for discrete scales with different types of color blindness.
 
 ```{r colorblindr-funcs, include = FALSE}
 # This is a placeholder until colorblindr is on CRAN. When that happens,
@@ -212,9 +212,9 @@ p <- ggplot(mtcars, aes(x = mpg, y = disp)) +
 cvd_grid(p)
 ```
 
-Figure \@ref(fig:disc-cvd) shows that most types of color blindness make it hard to distinguish between the different level of the `cyl` variable when using the default color palette. The palette for continuous variables has similar problems. Figure \@ref(fig:cont-ex) shows the default color palette for continuous variables in **ggplot2**.
+Figure \@ref(fig:disc-cvd) shows that most types of color blindness make it hard to distinguish between the different level of the `cyl` variable when using the default color palette. The palette for continuous variables has similar problems. Figure \@ref(fig:cont-ex) shows the default color palette for continuous variables in {ggplot2}.
 
-(ref:cont-ex-cap) Default color palette for continuous variables in **ggplot2**.
+(ref:cont-ex-cap) Default color palette for continuous variables in {ggplot2}.
 
 ```{r for_repeat, include = FALSE}
 n_col <- 128
@@ -232,7 +232,7 @@ img(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
 
 The simulated color blindness for this scale is shown in Figure \@ref(fig:cont-cvd). Here, several types of color blindness result in large sections of the palette where it is difficult to differentiate values.
 
-(ref:cont-cvd-cap) The default **ggplot2** color palette for continuous scales with different types of color blindness.
+(ref:cont-cvd-cap) The default {ggplot2} color palette for continuous scales with different types of color blindness.
 
 ```{r cont-cvd, echo = FALSE, fig.asp = 0.5, fig.cap = "(ref:cont-cvd-cap)"}
 par(mfrow=c(4, 1), mar=rep(1, 4))
@@ -252,7 +252,7 @@ img(desaturate(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
 
 ### Using color blind safe palettes
 
-For discrete color scales, the **ratlas** package includes the Okabe Ito color palette developed by [Masataka Okabe and Kei Ito](https://jfly.uni-koeln.de/color/). This can be used with the `ratlas::scale_color_okabeito()` function.
+For discrete color scales, the {ratlas} package includes the Okabe Ito color palette developed by [Masataka Okabe and Kei Ito](https://jfly.uni-koeln.de/color/). This can be used with the `ratlas::scale_color_okabeito()` function.
 
 ```{r okabeito-compare, out.width = "47%", fig.asp = 1.618, fig.show = "hold", fig.cap = "Comparison plot using the default (left) and Okabe Ito (right) discrete color palettes."}
 ggplot(mtcars, aes(x = mpg, y = disp)) +
@@ -291,7 +291,7 @@ ggplot(faithfuld, aes(x = eruptions, y = waiting)) +
 
 ### Brand colors
 
-In additional to palettes that are color blind safe, the **ratlas** package also include brand specific color palettes. For example, a plot can be created using the official ATLAS color palette by using the `ratlas::scale_color_atlas()` function, as shown in Figure \@ref(fig:atlas-colors).
+In additional to palettes that are color blind safe, the {ratlas} package also include brand specific color palettes. For example, a plot can be created using the official ATLAS color palette by using the `ratlas::scale_color_atlas()` function, as shown in Figure \@ref(fig:atlas-colors).
 
 (ref:atlas-colors-cap) Plot with the official ATLAS colors using `ratlas::scale_color_atlas()`.
 
@@ -304,7 +304,7 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
 
 ## Setting a global theme
 
-If you have several plots in a document, it can be a hassle to always remember to add `+ theme_atlas()` to every plot and to switch to a non-default color palette. To make the formatting of plots easier, **ratlas** includes a wrapper function, `ratlas::set_theme()` which will change the **ggplot2** defaults so that `theme_atlas()` is always used, and the default color scales are changed to the Okabe Ito palette for discrete scales and the viridis palette for continuous scales.
+If you have several plots in a document, it can be a hassle to always remember to add `+ theme_atlas()` to every plot and to switch to a non-default color palette. To make the formatting of plots easier, {ratlas} includes a wrapper function, `ratlas::set_theme()` which will change the {ggplot2} defaults so that `theme_atlas()` is always used, and the default color scales are changed to the Okabe Ito palette for discrete scales and the viridis palette for continuous scales.
 
 For example, once `set_theme()` has been called, the `scale_color_okabeito()` and `theme_atlas()` lines no longer need to be added. Instead, they are applied by default (Figure \@ref(fig:default-theme)). 
 
@@ -321,7 +321,7 @@ The `set_theme()` function also provides flexibility for which defaults are set.
 
 ## Saving plots
 
-Finally, it is often useful to save plots to a file. This can be done with `ratlas::ggsave2()`. This is a wrapper around `ggplot2::ggsave()`. The `ggsave2()` version applies some defaults to all ATLAS plots. Specifically, the plot labels and titles are automatically spell checked, the aspect ratio of plots is set to a reasonable default (rather than using the current size of your current graphics device), and embeds the fonts when saving to a PDF format, allowing the plots to render correctly on any system.
+Finally, it is often useful to save plots to a file. This can be done with `ratlas::ggsave2()`. This is a wrapper around `ggplot2::ggsave()`. The `ggsave2()` version applies some defaults to all ATLAS plots. Specifically, the plot labels and titles are automatically spell checked, the aspect ratio of plots is set to a reasonable default (rather than using the current size of your graphics device), and embeds the fonts when saving to a PDF format, allowing the plots to render correctly on any system.
 
 ```{r eval = FALSE}
 p <- ggplot(mtcars, aes(x = mpg, y = disp)) +

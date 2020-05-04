@@ -8,7 +8,7 @@ output:
 pkgdown:
   as_is: true
 vignette: >
-  %\VignetteIndexEntry{report-writing-vignette}
+  %\VignetteIndexEntry{report-writing}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -34,7 +34,7 @@ knitr::opts_chunk$set(
   fig.width = 6,
   fig.asp = 0.618,
   fig.align = "center",
-  out.width = "90%"
+  out.width = "100%"
 )
 ```
 
@@ -42,7 +42,14 @@ This vignette walks through the process of creating a new topic guide, technical
 
 ## System Setup
 
+In order to generate a report using the {ratlas}, you must have the necessary output software installed on your computer. For Microsoft Word output (e.g., `ratlas::topicguide_docx()`), you will need Word installed. For PDF output (e.g., `ratlas::techreport_pdf()`), you will need a $\LaTeX$ distribution. For an easy way to manage this, we recommend using the [{tinytex} package](https://yihui.org/tinytex/). If you have another $\LaTeX$ distribution already installed on your computer (e.g., MacTex on a Mac or MiKTeX on Windows), you should uninstall/delete that program before install {tinytex}. You can then be set up for PDF output by running this code (you only need to run it once after install {tinytex}):
 
+```{r setup-tinytex, eval = FALSE}
+install.packages("tinytex")
+tinytex::install_tinytex()
+```
+
+We also assume that you are using [RStudio](https://rstudio.com/products/rstudio/download/#download). This is not required, but RStudio provides many shortcuts that make the process of writing and generating reports much smoother.
 
 ## Creating a New Tech Report or Topic Guide
 
@@ -50,44 +57,33 @@ When beginning a new report, the first step is to create a new project in RStudi
   
 <center> **File > New Project > New Directory > Tech Report using ratlas** </center>
 
-Please note, this example will use the terminology for creating a new tech report, but the same steps can be used to create a new topic guide.
+You can then choose a name for your project, and specify the location to save the project on your computer. To lessen confusion later, we recommend saving each report as a new project in its own directory so that you can quickly and easily find the report at a later date. Please note, this example will use the terminology for creating a new tech report, but the same steps can be used to create a new topic guide.
 
-```{r menu-sc, echo = FALSE}
-knitr::include_graphics(here("vignettes", "images", "new-project.png"))
+```{r create-report, echo = FALSE, out.width = "80%", fig.subcap = c("Create a new project.", "Create project in a new directory.",  "Choose the type of report."), fig.cap = "Process for creating a new report with {ratlas}."}
+include_graphics(c(here("vignettes", "images", "01-new-project.png"),
+                   here("vignettes", "images", "02-new-directory.png"),
+                   here("vignettes", "images", "03-techreport.png"),
+                   here("vignettes", "images", "04-name-report.png")))
 ```
 
-```{r new-dir-sc, echo = FALSE}
-knitr::include_graphics(here("vignettes/images/new-directory.png"))
+Your new project should open automatically. You can then open the R Markdown document by clicking the `.Rmd` file in the Files pane of the RStudio window. The `.Rmd` document will automatically be named with the name you gave your project. This will open up a document that looks similar to Figure \@ref(fig:name-report).
+
+```{r name-report, echo = FALSE, out.width = "80%", fig.cap = "Open the R Markdown file."}
+include_graphics(here("vignettes", "images", "05-open-rmd.png"))
 ```
 
-```{r new-proj-sc, echo = FALSE}
-knitr::include_graphics(here("vignettes", "images", "selection.png"))
+At this point, it's good practice to try generating the template report. We haven't made any changes, so generating the document using this template file ensures that your system is set up correctly. You can generate the document by pressing the `Knit` button in RStudio, as shown in Figure \@ref(fig:knit-doc).
+
+(ref:knit-doc-cap) Generate your document using the `Knit` button.
+
+```{r knit-doc, echo = FALSE, out.width = "80%", fig.cap = "(ref:knit-doc-cap)"}
+include_graphics(here("vignettes", "images", "06-knit-doc.png"))
 ```
 
-Then, specify the project name and the directory where you would like to save the project for the new report. To lessen confusion later, it is usually worthwhile to save each report as a new project in its own directory so that you can quickly and easily find the report at a later date.
+## Editing the Report
 
-## Knitting the R Markdown File
 
-Before altering the template file, knit the template R markdown file to ensure the system is working correctly. The R markdown file can be knitted by clicking the "Knit" button (displayed below).
 
-```{r knit-sc, echo = FALSE}
-    knitr::include_graphics(here("vignettes/images/knit_sc.PNG"))
-```
-
-## Altering the Setup Chunk
-
-The Setup Chunk (displayed below) is where the default settings for your report are specified. 
-
-```{r setup-chunk-sc, echo = FALSE}
-    knitr::include_graphics(here("vignettes/images/setup_chunk_sc.PNG"))
-```
-
-The Setup Chunk will be automatically created for you. The only editing of the Setup Chunk will be to
-
-- Add necessary packages to the `needed_packages` variable
-- Set a global ggplot2 theme using the `set_theme()` function
-
-Setting a global ggplot2 theme using the `set_theme()` function can be done by adding a function such as `set_theme("Arial Narrow")` or `set_theme("Montserrat")` to the Setup Chunk.
 
 ## Create and Cross Reference Tables
 
