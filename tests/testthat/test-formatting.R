@@ -104,7 +104,7 @@ test_that("fmt_prop", {
 
   check2 <- test %>%
     fmt_prop(digits = 2)
-  expect_equal(check2, c(  ".85", "1.00", ".85",    NA,   ".69",
+  expect_equal(check2, c(".85",   "1.00", ".85",    NA,   ".69",
                          "< .01",  ".13", ".87", ".17", "< .01"))
 
   check3 <- test %>%

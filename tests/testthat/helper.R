@@ -7,17 +7,14 @@ create_local_rmd_dir <- function(dir = fs::file_temp(pattern = "testproj"),
   }
 
   old_project <- proj_get_()
-  withr::defer(
-    {
-      usethis::ui_silence({
-        usethis::proj_set(old_project, force = TRUE)
-      })
-      setwd(old_project)
-      fs::dir_delete(dir)
-      set_theme(font = "default", continuous = "ggplot2", discrete = "ggplot2")
-    },
-    envir = env
-  )
+  withr::defer({
+    usethis::ui_silence({
+      usethis::proj_set(old_project, force = TRUE)
+    })
+    setwd(old_project)
+    fs::dir_delete(dir)
+    set_theme(font = "default", continuous = "ggplot2", discrete = "ggplot2")
+  }, envir = env)
 
   usethis::ui_silence({
     usethis::create_project(dir, rstudio = FALSE, open = FALSE)
