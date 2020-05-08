@@ -106,14 +106,21 @@ fmt_leading_zero <- function(x) {
 
 #' @export
 #' @rdname formatting
-fmt_minus <- function(x) {
+fmt_minus <- function(x, output = c("latex", "html")) {
   x <- check_character(x)
 
-  x %>%
+  new_minus <- x %>%
     stringr::str_replace("^-", "&minus;") %>%
     # Remove signed zero
     stringr::str_replace("^(&minus;)(0)$", "\\2") %>%
     stringr::str_replace("^(&minus;)(0[.]0+)$", "\\2")
+
+  if (output == "latex") {
+    new_minus <- stringr::str_replace_all(new_minus, stringr::fixed("&minus;"),
+                                          "--")
+  }
+
+  return(new_minus)
 }
 
 #' @export
@@ -124,14 +131,14 @@ fmt_replace_na <- function(x, replacement = "&mdash;") {
 
 #' @export
 #' @rdname formatting
-fmt_corr <- function(x, digits) {
+fmt_corr <- function(x, digits, output = c("latex", "html")) {
   x <- check_bound_real(x, name = "x", lb = -1, ub = 1)
   digits <- check_pos_int(digits, name = "digits")
 
   x_chr <- x %>%
     fmt_digits(digits) %>%
     fmt_leading_zero() %>%
-    fmt_minus()
+    fmt_minus(output = output)
 
   return(x_chr)
 }
