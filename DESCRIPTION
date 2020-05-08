@@ -55,6 +55,7 @@ Suggests:
     kableExtra (>= 1.1.0),
     lintr (>= 1.0.3),
     magick (>= 2.2),
+    pluralize (>= 0.1.0),
     rmarkdown (>= 1.12),
     spelling (>= 2.1),
     testthat (>= 2.1.0),
@@ -63,6 +64,8 @@ Suggests:
     vdiffr (>= 0.3.1),
     viridis (>= 0.5.1),
     withr (>= 2.2.0)
+Remotes:
+    hrbrmstr/pluralize
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
