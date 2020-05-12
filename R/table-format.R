@@ -1,15 +1,22 @@
-#' Title
+#' Center and Decimal Align Tables
 #'
-#' @param df
-#' @param dec_dig
-#' @param prop_dig
-#' @param corr_dig
-#' @param output
+#' Automatic formatting for tables that should "just work" for most use cases.
+#' For more fine-grained control, see [ratlas::formatting] and
+#' [ratlas::padding].
 #'
-#' @return
+#' @param df A data frame or tibble to be formatted for printing in output.
+#' @param dec_dig The number of decimal places to include for numbers, e.g.,
+#'   `dec_dig = 1` for 16.5.
+#' @param prop_dig The number of decimal places to include for numbers bounded
+#'   between \[0,1\], e.g., `prop_dig = 2` for .35.
+#' @param corr_dig The number of decimal places to include for numbers bounded
+#'   between \[-1,1\], e.g., `corr_dig = 3` for .205.
+#' @param output The output format of the table. One of "latex" or "html".
+#'   Automatically pulled from document output type if not specified.
+#'
+#' @return A tibble with the same rows and columns as `df`, with numbers
+#'   formatted consistently and padded for alignment when printed.
 #' @family formatters
-#'
-#' @examples
 #'
 #' @export
 fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
@@ -26,7 +33,6 @@ fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
                      pad_corr, digits = corr_dig, output = output) %>%
     dplyr::mutate_if(is.numeric, pad_decimal, digits = dec_dig)
 }
-
 
 
 #' Table Padding
