@@ -30,10 +30,15 @@ test_that("fmt_leading_zero", {
 })
 
 test_that("fmt_minus", {
-  expect_equal(fmt_minus("-3.90"), "&minus;3.90")
-  expect_equal(fmt_minus("-0.00001"), "&minus;0.00001")
-  expect_equal(fmt_minus("-0"), "0")
-  expect_equal(fmt_minus("-0.0"), "0.0")
+  expect_equal(fmt_minus("-3.90", output = "html"), "&minus;3.90")
+  expect_equal(fmt_minus("-0.00001", output = "html"), "&minus;0.00001")
+  expect_equal(fmt_minus("-0", output = "html"), "0")
+  expect_equal(fmt_minus("-0.0", output = "html"), "0.0")
+
+  expect_equal(fmt_minus("-3.90", output = "latex"), "--3.90")
+  expect_equal(fmt_minus("-0.00001", output = "latex"), "--0.00001")
+  expect_equal(fmt_minus("-0", output = "latex"), "0")
+  expect_equal(fmt_minus("-0.0", output = "latex"), "0.0")
 })
 
 test_that("fmt_replace_na", {
