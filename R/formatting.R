@@ -10,6 +10,8 @@
 #' @param replacement The value to use when replacing missing values
 #' @param fmt_small Indicator for replacing zero with `<` (e.g., `.000` becomes
 #'   `< .001`). Default is `TRUE`.
+#' @param output The output type for the rendered document. One of `"latex"` or
+#'   `"html"`.
 #'
 #' @details
 #' `fmt_digits()` is a wrapper for [base::sprintf()]. Prints a number with
@@ -80,7 +82,7 @@ fmt_digits <- function(x, digits = 3) {
 #' @export
 #' @rdname formatting
 fmt_leading_zero <- function(x) {
-  x <- check_character(x)
+  x <- check_character(x, name = "x")
 
   non_zero <- x %>%
     as.numeric() %>%
@@ -106,8 +108,9 @@ fmt_leading_zero <- function(x) {
 
 #' @export
 #' @rdname formatting
-fmt_minus <- function(x, output = c("latex", "html")) {
-  x <- check_character(x)
+fmt_minus <- function(x, output = NULL) {
+  x <- check_character(x, name = "x")
+  output <- check_output(output)
 
   new_minus <- x %>%
     stringr::str_replace("^-", "&minus;") %>%
@@ -131,9 +134,10 @@ fmt_replace_na <- function(x, replacement = "&mdash;") {
 
 #' @export
 #' @rdname formatting
-fmt_corr <- function(x, digits, output = c("latex", "html")) {
+fmt_corr <- function(x, digits, output = NULL) {
   x <- check_bound_real(x, name = "x", lb = -1, ub = 1)
   digits <- check_pos_int(digits, name = "digits")
+  output <- check_output(output)
 
   x_chr <- x %>%
     fmt_digits(digits) %>%

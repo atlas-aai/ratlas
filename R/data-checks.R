@@ -11,6 +11,28 @@ abort_bad_argument <- function(arg, must, not = NULL) {
                not = not)
 }
 
+check_output <- function(output) {
+  if (!is.null(output)) {
+    output <- match.arg(output, choices = c("latex", "html"))
+  } else {
+    output <- getOption("knitr.table.format", default = "error")
+    if (output == "error") {
+      msg <- glue::glue("`option` must be specified or defined",
+                        " globally with ",
+                        "`options(knitr.table.format = 'latex')`",
+                        " or",
+                        " `options(knitr.table.format = 'html')`.")
+      rlang::abort("error_bad_argument",
+                   message = message_wrap(msg),
+                   arg = "option",
+                   must = "be specified",
+                   not = NULL)
+    } else {
+      return(output)
+    }
+  }
+}
+
 check_pos_int <- function(x, name) {
   if (!is.numeric(x)) {
     abort_bad_argument(name, must = "be a numeric scalar", not = typeof(x))

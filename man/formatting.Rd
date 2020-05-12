@@ -14,11 +14,11 @@ fmt_digits(x, digits = 3)
 
 fmt_leading_zero(x)
 
-fmt_minus(x)
+fmt_minus(x, output = NULL)
 
 fmt_replace_na(x, replacement = "&mdash;")
 
-fmt_corr(x, digits)
+fmt_corr(x, digits, output = NULL)
 
 fmt_prop(x, digits, fmt_small = TRUE)
 }
@@ -26,6 +26,9 @@ fmt_prop(x, digits, fmt_small = TRUE)
 \item{x}{Number or number string to be formatted}
 
 \item{digits}{Number of decimal places to retain}
+
+\item{output}{The output type for the rendered document. One of \code{"latex"} or
+\code{"html"}.}
 
 \item{replacement}{The value to use when replacing missing values}
 
@@ -88,5 +91,10 @@ fmt_prop(c(0.001, 0.035, 0.683), digits = 2)
 American Psychological Association. (2020). \emph{Publication manual
 of the American Psychological Association} (7th ed.).
 \url{https://doi.org/10.1037/0000165-000}
+}
+\seealso{
+Other formatters: 
+\code{\link{fmt_table}()},
+\code{\link{padding}}
 }
 \concept{formatters}
