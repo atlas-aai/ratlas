@@ -283,5 +283,5 @@ new_data_frame <- function(x = list(), n = NULL) {
 message_wrap <- function(...) {
   msg <- paste(..., collapse = "", sep = "")
   wrapped <- strwrap(msg, width = getOption("width") - 2)
-  message(paste0(wrapped, collapse = "\n"))
+  return(wrapped)
 }
