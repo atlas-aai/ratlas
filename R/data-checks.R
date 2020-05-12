@@ -17,14 +17,15 @@ check_output <- function(output) {
   } else {
     output <- getOption("knitr.table.format", default = "error")
     if (output == "error") {
-      msg <- glue::glue("`option` must be specified or defined",
+      msg <- glue::glue("`output` must be specified or defined",
                         " globally with ",
                         "`options(knitr.table.format = 'latex')`",
                         " or",
                         " `options(knitr.table.format = 'html')`.")
+      msg <- message_wrap(msg)
       rlang::abort("error_bad_argument",
-                   message = message_wrap(msg),
-                   arg = "option",
+                   message = paste0(msg, collapse = "\n"),
+                   arg = "output",
                    must = "be specified",
                    not = NULL)
     } else {

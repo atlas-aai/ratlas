@@ -31,3 +31,10 @@ local_theme <- function(font, discrete, continuous, ..., env = parent.frame()) {
 
   set_theme(font = font, discrete = discrete, continuous = continuous, ...)
 }
+
+local_knitr_output <- function(output = NULL, env = parent.frame()) {
+  op <- options(ratlas.auto_format = FALSE,
+                kableExtra.auto_format = FALSE,
+                knitr.table.format = output)
+  withr::defer(options(op), envir = env)
+}
