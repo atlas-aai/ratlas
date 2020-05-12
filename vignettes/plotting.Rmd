@@ -337,3 +337,12 @@ p %>%
   ggsave2(filename = "my-plot.png", path = "where/to/save") %>%
   ggsave2(filename = "my-plot.pdf", path = "where/to/save")
 ```
+
+## Keep Learning
+
+There are many resources available for learning more about how to make data visualizations with R and {ggplot2}. Here are a few **free** resources that I have found particularly helpful:
+
+* For an introduction to {ggplot2}, see [Data Visualisation](https://r4ds.had.co.nz/data-visualisation.html), from *R for Data Science*, by Hadley Wickham and Garrett Grolemund
+* For simple recipes for creating different types of plots with {ggplot2}, see the [*R Graphics Cookbook*](https://r-graphics.org/), by Winston Chang
+* For more details on how to customize {ggplot2} graphcis to fit your specific use case, see [*Data Visualization: A Practical Introduction*](https://socviz.co/), by Kieran Healy
+* Finally, for a discussion of best principles for data visualization, see [*Fundamentals of Data Visualization*](https://serialmentor.com/dataviz/), by Claus Wilke
