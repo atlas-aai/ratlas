@@ -195,7 +195,7 @@ pad_decimal <- function(x, digits, output = NULL) {
 
   if (any(x < 0)) {
     search <- ifelse(output == "latex", "--", "&minus;")
-    pad <- ifelse(output == "latex", 4, 2)
+    pad <- ifelse(output == "latex", 2, 2)
     new_x <- dplyr::case_when(stringr::str_detect(new_x, search) ~
                                 paste0(new_x,
                                        paste(rep("\\ ", pad), collapse = "")),
