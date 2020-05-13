@@ -171,14 +171,36 @@ pad_corr <- function(x, digits, output = NULL) {
 
 #' @export
 #' @rdname padding
-pad_decimal <- function(x, digits) {
-  new_x <- fmt_digits(x, digits = digits)
+pad_decimal <- function(x, digits, output = NULL) {
+  digits <- check_pos_int(digits)
+  output <- check_output(output)
 
-  new_x <- stringr::str_pad(new_x, width = max(nchar(new_x)), side = "left")
+  left_spaces <- x %>%
+    abs() %>%
+    fmt_digits(digits) %>%
+    stringr::str_pad(width = max(nchar(.)), side = "left") %>%
+    stringr::str_count(" ")
+
+  new_x <- x %>%
+    fmt_digits(digits = digits) %>%
+    fmt_minus(output = output)
+
+  new_x <- map2_chr(new_x, left_spaces, function(num, space) {
+    paste0(paste0(rep(" ", space), collapse = ""), num, collapse = "")
+  })
 
   new_x <- new_x %>%
     stringr::str_replace_all("  ", paste(rep("\\\\ ", 4), collapse = "")) %>%
     stringr::str_replace_all("^ ", paste(rep("\\\\ ", 2), collapse = ""))
+
+  if (any(x < 0)) {
+    search <- ifelse(output == "latex", "--", "&minus;")
+    pad <- ifelse(output == "latex", 4, 2)
+    new_x <- dplyr::case_when(stringr::str_detect(new_x, search) ~
+                                paste0(new_x,
+                                       paste(rep("\\ ", pad), collapse = "")),
+                              TRUE ~ new_x)
+  }
 
   new_x[is.na(x)] <- NA_character_
   return(new_x)
