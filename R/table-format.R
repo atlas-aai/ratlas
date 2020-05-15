@@ -82,7 +82,7 @@ fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
 pad_counts <- function(x) {
   max_dig <- max(nchar(abs(x)), na.rm = TRUE)
 
-  new_x <- format(x[!is.na(x)], big.mark = ",")
+  new_x <- format(x, big.mark = ",")
 
   if (max_dig == 6) {
     new_x <- new_x %>%
