@@ -24,7 +24,8 @@
 \usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\usepackage[margin=1in]{geometry}
+\usepackage[usegeometry]{typearea}
+\usepackage[margin=1in,footskip=0.5in]{geometry}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
             pdftitle={$title$},
@@ -139,7 +140,7 @@
 
 % footnote formatting
 \interfootnotelinepenalty=10000
-\usepackage[bottom]{footmisc}
+\usepackage[bottom,hang,ragged]{footmisc}
 \setlength\footnotemargin{1em}
 
 % references
@@ -296,6 +297,19 @@ $endif$
   $endif$
   \fancyfoot[R]{\thepage}
   \fancyhead[R]{\progName{}}
+}
+
+\newcommand*{\useportrait}{%
+  \clearpage
+  \KOMAoptions{paper=portrait,DIV=current}%switch to portrait
+  \newgeometry{margin=1in,footskip=0.5in}%
+  \fancyhfoffset{0pt}% <- recalculate head and foot width for fancyhdr
+}
+\newcommand*{\uselandscape}{%
+  \clearpage
+  \KOMAoptions{paper=landscape,DIV=current}%switch to landscape
+  \newgeometry{margin=1in,footskip=0.5in}%
+  \fancyhfoffset{0pt}% recalculate head and foot width for fancyhdr
 }
 
 \usepackage{amsthm}
