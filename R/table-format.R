@@ -178,14 +178,15 @@ pad_decimal <- function(x, digits, output = NULL) {
   left_spaces <- x %>%
     abs() %>%
     fmt_digits(digits) %>%
-    stringr::str_pad(width = max(nchar(.)), side = "left") %>%
-    stringr::str_count(" ")
+    stringr::str_pad(width = max(nchar(.), na.rm = TRUE), side = "left") %>%
+    stringr::str_count(" ") %>%
+    tidyr::replace_na(0)
 
   new_x <- x %>%
     fmt_digits(digits = digits) %>%
     fmt_minus(output = output)
 
-  new_x <- map2_chr(new_x, left_spaces, function(num, space) {
+  new_x <- purrr::map2_chr(new_x, left_spaces, function(num, space) {
     paste0(paste0(rep(" ", space), collapse = ""), num, collapse = "")
   })
 
@@ -193,7 +194,7 @@ pad_decimal <- function(x, digits, output = NULL) {
     stringr::str_replace_all("  ", paste(rep("\\\\ ", 4), collapse = "")) %>%
     stringr::str_replace_all("^ ", paste(rep("\\\\ ", 2), collapse = ""))
 
-  if (any(x < 0)) {
+  if (any(x < 0, na.rm = TRUE)) {
     search <- ifelse(output == "latex", "--", "&minus;")
     pad <- ifelse(output == "latex", 2, 2)
     new_x <- dplyr::case_when(stringr::str_detect(new_x, search) ~
