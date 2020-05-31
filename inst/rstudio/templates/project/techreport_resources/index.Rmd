@@ -25,7 +25,8 @@ copyright: "Copyright \\copyright\\ 2020 Accessible Teaching, Learning, and Asse
 ---
 
 ```{r setup, include = FALSE}
-needed_packages <- c("ratlas", "knitr", "english")
+needed_packages <- c("ratlas", "here", "fs", "glue", "pluralize", "english", 
+                     "knitr", "kableExtra", "ggplot2")
 load_packages <- function(x) {
   if (!(x %in% installed.packages())) {
     install.packages(x, repos = "https://cran.rstudio.com/")
@@ -36,8 +37,7 @@ load_packages <- function(x) {
 vapply(needed_packages, load_packages, logical(1))
 
 options(knitr.kable.NA = "")
-options(knitr.table.format = "latex")
-set_theme(font = "Arial Narrow", plot_margin = ggplot2::margin(0, 10, 10, 10))
+set_theme(font = "Arial Narrow", plot_margin = margin(0, 10, 10, 10))
 ```
 
 

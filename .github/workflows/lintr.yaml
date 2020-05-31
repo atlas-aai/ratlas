@@ -1,0 +1,60 @@
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+name: lint
+
+jobs:
+  lint:
+    runs-on: macOS-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@master
+
+      - name: Query dependencies
+        run: |
+          install.packages('remotes')
+          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
+        shell: Rscript {0}
+
+      - name: Cache R packages
+        uses: actions/cache@v1
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: macOS-r-4.0-1-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: macOS-r-4.0-1-
+
+      - name: Install macOS dependencies
+        # the xml2 thing is a hack due to
+        # https://github.com/r-lib/xml2/pull/297
+        # this entire step can go away once that's released on CRAN
+        # xml2 is necessary to install spelling
+        run: |
+          Rscript -e "remotes::install_github('r-lib/xml2')"
+
+      - name: Set up V8
+        run: |
+          brew install V8
+
+      - name: Set up ImageMagick 6
+        run: |
+          brew install pkg-config
+          brew install imagemagick@6
+
+      - name: Install dependencies
+        run: |
+          install.packages(c("remotes"))
+          remotes::install_deps(dependencies = TRUE)
+          remotes::install_cran("lintr")
+        shell: Rscript {0}
+
+      - name: Lint
+        run: lintr::lint_package()
+        shell: Rscript {0}

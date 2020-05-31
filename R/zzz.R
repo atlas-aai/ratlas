@@ -1,4 +1,9 @@
 # nocov start
+.onLoad <- function(libname, pkgname) {
+  auto_format <- getOption("ratlas.auto_format", default = TRUE)
+  if (auto_format) auto_set_format()
+}
+
 .onAttach <- function(libname, pkgname) {
   if (.Platform$OS.type == "windows") {
     if (interactive()) {

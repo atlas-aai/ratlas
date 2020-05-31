@@ -20,7 +20,6 @@ jobs:
         config:
           - {os: macOS-latest,   r: 'devel'}
           - {os: macOS-latest,   r: '4.0'}
-          - {os: windows-latest, r: '4.0'}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
@@ -61,13 +60,18 @@ jobs:
           sudo -s eval "$sysreqs"
 
       - name: Install macOS dependencies
-        if: matrix.config.os == 'macOS-latest' && matrix.config.r == 'devel'
+        if: matrix.config.os == 'macOS-latest'
         # the xml2 thing is a hack due to
         # https://github.com/r-lib/xml2/pull/297
         # this entire step can go away once that's released on CRAN
         # xml2 is necessary to install spelling
         run: |
           Rscript -e "remotes::install_github('r-lib/xml2')"
+
+      - name: Set up V8
+        if: matrix.config.os == 'macOS-latest'
+        run: |
+          brew install V8
 
       - name: Set up ImageMagick 6
         if: matrix.config.os == 'macOS-latest'

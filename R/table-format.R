@@ -1,0 +1,209 @@
+#' Center and Decimal Align Tables
+#'
+#' Automatic formatting for tables that should "just work" for most use cases.
+#' For more fine-grained control, see [ratlas::formatting] and
+#' [ratlas::padding].
+#'
+#' @param df A data frame or tibble to be formatted for printing in output.
+#' @param dec_dig The number of decimal places to include for numbers, e.g.,
+#'   `dec_dig = 1` for 16.5.
+#' @param prop_dig The number of decimal places to include for numbers bounded
+#'   between \[0,1\], e.g., `prop_dig = 2` for .35.
+#' @param corr_dig The number of decimal places to include for numbers bounded
+#'   between \[-1,1\], e.g., `corr_dig = 3` for .205.
+#' @param output The output format of the table. One of "latex" or "html".
+#'   Automatically pulled from document output type if not specified.
+#'
+#' @return A tibble with the same rows and columns as `df`, with numbers
+#'   formatted consistently and padded for alignment when printed.
+#' @family formatters
+#'
+#' @export
+fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
+                      output = NULL) {
+  dec_dig <- check_pos_int(dec_dig, name = "dec_dig")
+  prop_dig <- check_pos_int(prop_dig, name = "prop_dig")
+  corr_dig <- check_pos_int(corr_dig, name = "corr_dig")
+
+  df %>%
+    dplyr::mutate_if(is.integer, pad_counts) %>%
+    dplyr::mutate_if(~ is.numeric(.x) && all(dplyr::between(.x, 0, 1)),
+                     pad_prop, digits = prop_dig, output = output) %>%
+    dplyr::mutate_if(~ is.numeric(.x) && all(dplyr::between(.x, -1, 1)),
+                     pad_corr, digits = corr_dig, output = output) %>%
+    dplyr::mutate_if(is.numeric, pad_decimal, digits = dec_dig)
+}
+
+
+#' Table Padding
+#'
+#' A family of functions for formatting numbers and then padding with spaces so
+#' that table columns can be both centered and decimal aligned.
+#'
+#' @param x Number or number string to be formatted
+#' @param digits Number of decimal places to retain
+#' @param fmt_small Indicator for replacing zero with `<` (e.g., `.000` becomes
+#'   `< .001`). Default is `TRUE`.
+#' @param output The output type for the rendered document. One of `"latex"` or
+#'   `"html"`.
+#'
+#' @return A character vector of the same length as `x`.
+#'
+#' @details
+#' `pad_counts` should be used to pad integer numbers. This wraps
+#' [base::format()] to add a comma separator.
+#'
+#' `pad_prop` should be used to pad decimal numbers between \[0,1\]. This wraps
+#' [fmt_prop()] to round to a specified number of `digits` and optionally
+#' remove the leading zero.
+#'
+#' `pad_corr` should be used to pad decimal numbers between \[-1,1\]. This wraps
+#' [fmt_corr()], and is similar to `pad_prop`, but accounts for negative numbers
+#' when adding padding.
+#'
+#' `pad_decimal` should be used to pad decimal number that are not bounded. This
+#' wraps [fmt_digits()] to round to a specified number of decimal places.
+#'
+#' @name padding
+#' @family formatters
+#'
+#' @examples
+#' pad_counts(sample(1:1000, size = 20))
+#'
+#' pad_prop(c(0.001, runif(5)), digits = 2)
+#'
+#' pad_corr(runif(10, -1, 1), digits = 2)
+#'
+#' pad_decimal(runif(10, 1, 100), digits = 1)
+
+# nolint start
+#' @export
+#' @rdname padding
+pad_counts <- function(x) {
+  max_dig <- max(nchar(abs(x)), na.rm = TRUE)
+
+  new_x <- format(x, big.mark = ",")
+
+  if (max_dig == 6) {
+    new_x <- new_x %>%
+      stringr::str_replace_all("      ", paste(rep("\\\\ ", 11), collapse  = "")) %>%
+      stringr::str_replace_all("     ", paste(rep("\\\\ ", 9), collapse = "")) %>%
+      stringr::str_replace_all("    ", paste(rep("\\\\ ", 7), collapse = "")) %>%
+      stringr::str_replace_all("  ", paste(rep("\\\\ ", 4), collapse = "")) %>%
+      stringr::str_replace_all("^ ", paste(rep("\\\\ ", 2), collapse = ""))
+  } else if (max_dig == 5) {
+    new_x <- new_x %>%
+      stringr::str_replace_all("     ", paste(rep("\\\\ ", 9), collapse = "")) %>%
+      stringr::str_replace_all("    ", paste(rep("\\\\ ", 7), collapse = "")) %>%
+      stringr::str_replace_all("   ", paste(rep("\\\\ ", 5), collapse = "")) %>%
+      stringr::str_replace_all("^ ", paste(rep("\\\\ ", 2), collapse = ""))
+  } else if (max_dig == 4) {
+    new_x <- new_x %>%
+      stringr::str_replace_all("    ", paste(rep("\\\\ ", 7), collapse = "")) %>%
+      stringr::str_replace_all("   ", paste(rep("\\\\ ", 5), collapse = "")) %>%
+      stringr::str_replace_all("  ", paste(rep("\\\\ ", 3), collapse = ""))
+  } else if (max_dig == 3) {
+    new_x <- new_x %>%
+      stringr::str_replace_all("  ", paste(rep("\\\\ ", 4), collapse = "")) %>%
+      stringr::str_replace_all("^ ", paste(rep("\\\\ ", 2), collapse = ""))
+  } else if (max_dig == 2) {
+    new_x <- new_x %>%
+      stringr::str_replace_all(" ", paste(rep("\\\\ ", 2), collapse = ""))
+  }
+
+  new_x[is.na(x)] <- NA_character_
+  return(new_x)
+}
+
+#' @export
+#' @rdname padding
+pad_prop <- function(x, digits, fmt_small = TRUE, output = NULL) {
+  digits <- check_pos_int(digits)
+  output <- check_output(output)
+  new_x <- fmt_prop(x, digits = digits, fmt_small = fmt_small)
+
+
+  if (any(stringr::str_detect(new_x, "^<"))) {
+    pad <- ifelse(output == "latex", 5, 3)
+    new_x <- dplyr::case_when(stringr::str_detect(new_x, "^<") ~
+                                paste0(new_x, paste(rep("\\ ", pad),
+                                                    collapse = "")),
+                              TRUE ~ new_x)
+  }
+
+  if (any(x == 1)) {
+    new_x <- dplyr::case_when(stringr::str_detect(new_x, "^1\\.") ~ new_x,
+                              TRUE ~ paste0(paste(rep("\\ ", 2), collapse = ""),
+                                            new_x))
+  }
+
+  new_x[is.na(x)] <- NA_character_
+  return(new_x)
+}
+
+#' @export
+#' @rdname padding
+pad_corr <- function(x, digits, output = NULL) {
+  digits <- check_pos_int(digits)
+  output <- check_output(output)
+  new_x <- fmt_corr(x, digits = digits, output = output)
+
+  if (any(x < 0)) {
+    search <- ifelse(output == "latex", "^-", "&minus;")
+    pad <- ifelse(output == "latex", 5, 2)
+    new_x <- dplyr::case_when(stringr::str_detect(new_x, search) ~
+                                paste0(new_x,
+                                       paste(rep("\\ ", pad), collapse = "")),
+                              TRUE ~ new_x)
+  }
+
+  bound <- stringr::str_detect(new_x, glue::glue(".+\\.{paste(rep(0, digits),
+                                                 collapse = '')}"))
+  if (any(bound)) {
+    new_x <- dplyr::case_when(bound ~ new_x,
+                              TRUE ~ paste0(paste(rep("\\ ", 2), collapse = ""),
+                                            new_x))
+  }
+
+  new_x[is.na(x)] <- NA_character_
+  return(new_x)
+}
+
+#' @export
+#' @rdname padding
+pad_decimal <- function(x, digits, output = NULL) {
+  digits <- check_pos_int(digits)
+  output <- check_output(output)
+
+  left_spaces <- x %>%
+    abs() %>%
+    fmt_digits(digits) %>%
+    stringr::str_pad(width = max(nchar(.), na.rm = TRUE), side = "left") %>%
+    stringr::str_count(" ") %>%
+    tidyr::replace_na(0)
+
+  new_x <- x %>%
+    fmt_digits(digits = digits) %>%
+    fmt_minus(output = output)
+
+  new_x <- purrr::map2_chr(new_x, left_spaces, function(num, space) {
+    paste0(paste0(rep(" ", space), collapse = ""), num, collapse = "")
+  })
+
+  new_x <- new_x %>%
+    stringr::str_replace_all("  ", paste(rep("\\\\ ", 4), collapse = "")) %>%
+    stringr::str_replace_all("^ ", paste(rep("\\\\ ", 2), collapse = ""))
+
+  if (any(x < 0, na.rm = TRUE)) {
+    search <- ifelse(output == "latex", "--", "&minus;")
+    pad <- ifelse(output == "latex", 2, 2)
+    new_x <- dplyr::case_when(stringr::str_detect(new_x, search) ~
+                                paste0(new_x,
+                                       paste(rep("\\ ", pad), collapse = "")),
+                              TRUE ~ new_x)
+  }
+
+  new_x[is.na(x)] <- NA_character_
+  return(new_x)
+}
+# nolint end

@@ -172,8 +172,7 @@ bin_breaks_bins <- function(x_range, bins = 30, center = NULL,
 }
 
 
-# Compute bins ------------------------------------------------------------
-
+# Compute bins -----------------------------------------------------------------
 bin_vector <- function(x, bins, weight = NULL, pad = FALSE) {
   if (!is_bins(bins)) rlang::abort("`bins` must be a ggplot2_bins object")
 
@@ -277,4 +276,12 @@ new_data_frame <- function(x = list(), n = NULL) {
 
   attr(x, "row.names") <- .set_row_names(n)
   x
+}
+
+
+# Utilities --------------------------------------------------------------------
+message_wrap <- function(...) {
+  msg <- paste(..., collapse = "", sep = "")
+  wrapped <- strwrap(msg, width = getOption("width") - 2)
+  return(wrapped)
 }
