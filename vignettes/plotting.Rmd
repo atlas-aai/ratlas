@@ -2,9 +2,9 @@
 title: "Plotting in ratlas"
 output:
   bookdown::html_document2:
-    base_format: rmarkdown::html_vignette
     number_sections: false
     toc: true
+    toc_float: true
 pkgdown:
   as_is: true
 vignette: >
