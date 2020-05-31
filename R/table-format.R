@@ -76,7 +76,7 @@ fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
 #'
 #' pad_decimal(runif(10, 1, 100), digits = 1)
 
-
+# nolint start
 #' @export
 #' @rdname padding
 pad_counts <- function(x) {
@@ -206,3 +206,4 @@ pad_decimal <- function(x, digits, output = NULL) {
   new_x[is.na(x)] <- NA_character_
   return(new_x)
 }
+# nolint end
