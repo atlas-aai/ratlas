@@ -1,13 +1,19 @@
+Allaire
 APA
 Arial
+Bibtex
 bmp
 bookdown
+Christophe
 cividis
 Codecov
 cvd
 der
+Dervieux
 DLM
 drob
+EndNote
+english
 eps
 extrafont
 formatters
@@ -21,6 +27,7 @@ http
 https
 iam
 init
+Ismay
 jfly
 jp
 jpeg
@@ -32,6 +39,7 @@ MacTex
 Mahr's
 Masataka
 MiKTeX
+ModernDive
 Okabe
 okabeito
 pictex
@@ -45,6 +53,8 @@ svg
 Teetor
 tex
 th
+tibble
+tidyverse
 tinytex
 TJ
 tokyo
@@ -59,3 +69,4 @@ Xie
 yaml
 YAML
 Yihui
+Zotero
