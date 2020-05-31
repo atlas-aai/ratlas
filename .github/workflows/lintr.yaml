@@ -31,6 +31,26 @@ jobs:
           key: macOS-r-4.0-1-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: macOS-r-4.0-1-
 
+      - name: Install macOS dependencies
+        if: matrix.config.os == 'macOS-latest'
+        # the xml2 thing is a hack due to
+        # https://github.com/r-lib/xml2/pull/297
+        # this entire step can go away once that's released on CRAN
+        # xml2 is necessary to install spelling
+        run: |
+          Rscript -e "remotes::install_github('r-lib/xml2')"
+
+      - name: Set up V8
+        if: matrix.config.os == 'macOS-latest'
+        run: |
+          brew install V8
+
+      - name: Set up ImageMagick 6
+        if: matrix.config.os == 'macOS-latest'
+        run: |
+          brew install pkg-config
+          brew install imagemagick@6
+
       - name: Install dependencies
         run: |
           install.packages(c("remotes"))
