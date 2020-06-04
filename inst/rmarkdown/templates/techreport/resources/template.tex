@@ -315,6 +315,19 @@ $endif$
   $endif$
 }
 
+\newcommand*{\useportrait}{%
+  \clearpage
+  \KOMAoptions{paper=portrait,DIV=current}%switch to portrait
+  \newgeometry{margin=1in,footskip=0.5in}%
+  \fancyhfoffset{0pt}% <- recalculate head and foot width for fancyhdr
+}
+\newcommand*{\uselandscape}{%
+  \clearpage
+  \KOMAoptions{paper=landscape,DIV=current}%switch to landscape
+  \newgeometry{margin=1in,footskip=0.5in}%
+  \fancyhfoffset{0pt}% recalculate head and foot width for fancyhdr
+}
+
 % other things
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[section]
