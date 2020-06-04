@@ -23,6 +23,7 @@
 \usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+\usepackage[usegeometry]{typearea}
 \usepackage[includeheadfoot,hmargin=1in,vmargin=0.5in,headheight=0.6in,headsep=11pt,footskip=0.5in]{geometry}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
@@ -318,13 +319,13 @@ $endif$
 \newcommand*{\useportrait}{%
   \clearpage
   \KOMAoptions{paper=portrait,DIV=current}%switch to portrait
-  \newgeometry{margin=1in,footskip=0.5in}%
+  \newgeometry{includeheadfoot,hmargin=1in,vmargin=0.5in,headheight=0.6in,headsep=11pt,footskip=0.5in}%
   \fancyhfoffset{0pt}% <- recalculate head and foot width for fancyhdr
 }
 \newcommand*{\uselandscape}{%
   \clearpage
   \KOMAoptions{paper=landscape,DIV=current}%switch to landscape
-  \newgeometry{margin=1in,footskip=0.5in}%
+  \newgeometry{includeheadfoot,hmargin=1in,vmargin=0.5in,headheight=0.6in,headsep=11pt,footskip=0.5in}%
   \fancyhfoffset{0pt}% recalculate head and foot width for fancyhdr
 }
 
