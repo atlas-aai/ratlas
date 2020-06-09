@@ -4,7 +4,6 @@ output:
   bookdown::html_document2:
     number_sections: false
     toc: true
-    toc_float: true
 csl: bib/apa.csl
 bibliography: ["bib/example-bib.bib", "bib/packages.bib"]
 biblio-style: apa
@@ -26,6 +25,7 @@ library(knitr)
 library(kableExtra)
 library(here)
 library(tibble)
+library(stringr)
 
 knitr::opts_chunk$set(
   error = FALSE,
@@ -35,9 +35,6 @@ knitr::opts_chunk$set(
   eval = TRUE,
   collapse = TRUE,
   comment = "#>",
-  fig.retina = 3,
-  fig.width = 6,
-  fig.asp = 0.618,
   fig.align = "center",
   out.width = "100%"
 )
@@ -350,4 +347,9 @@ if (!file.exists("bib/packages.bib")) file.create("bib/packages.bib")
 suppressWarnings(
   knitr::write_bib(c(.packages()), "bib/packages.bib")
 )
+
+# Correct capitalization in packages
+readLines("bib/packages.bib") %>%
+  str_replace_all("ratlas:", "{ratlas}:") %>%
+  writeLines("bib/packages.bib")
 ```
