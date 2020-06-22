@@ -95,8 +95,8 @@
   \fi
 \fi
 
-\definecolor{dlmcolor}{RGB}{91,155,213}
-\definecolor{dlmcolor2}{RGB}{22,91,126}
+\definecolor{dlmcolor}{RGB}{54,95,145}
+\definecolor{dlmcolor2}{RGB}{79,129,189}
 
 %\newcommand{\subtitle}[1]{
 %  \posttitle{
@@ -108,7 +108,7 @@
 \setlength{\droptitle}{-2em}
 
   \title{$title$}
-    \pretitle{\vspace{\droptitle}\color{dlmcolor2}\LARGE\bfseries}
+    \pretitle{\vspace{\droptitle}\color{dlmcolor}\LARGE\bfseries}
     %\pretitle{\vspace{\droptitle}\centering\Huge\bfseries\emph}
   \posttitle{\par}
 
@@ -213,14 +213,14 @@ $endif$
 \makeatletter
 
 % title styles
-\titleformat{\section}{\color{dlmcolor2}\Large\bfseries}{}{0pt}{}
+\titleformat{\section}{\color{dlmcolor}\Large\bfseries}{}{0pt}{}
 \titlespacing*{\section}{0pt}{2pt plus 0pt minus 0pt}{-6pt plus 0pt minus 0pt}
 
-\titleformat{\subsection}{\color{dlmcolor}\large\bfseries}{}{0pt}{}
+\titleformat{\subsection}{\color{dlmcolor2}\large\bfseries}{}{0pt}{}
 \titlespacing*{\subsection}{0pt}{2pt plus 0pt minus 0pt}{-6pt plus 0pt minus 0pt}
 
-\titleformat{\subsubsection}{\bfseries\itshape\Large}{\thesubsubsection. }{0pt}{}
-\titlespacing*{\subsubsection}{0pt}{10pt}{-6pt plus 0pt minus 0pt}
+\titleformat{\subsubsection}{\color{dlmcolor}\bfseries\normalsize}{}{0pt}{}
+\titlespacing*{\subsubsection}{0pt}{2pt plus 0pt minus 0pt}{-6pt plus 0pt minus 0pt}
 
 \titleformat{\paragraph}{\bfseries\large}{\theparagraph. }{0pt}{}
 \titlespacing*{\paragraph}{0pt}{10pt}{-6pt plus 0pt minus 0pt}
