@@ -7,10 +7,15 @@ create_local_rmd_dir <- function(dir = fs::file_temp(pattern = "testproj"),
   }
 
   old_project <- proj_get_()
+  old_dir <- getwd()
   withr::defer({
     usethis::ui_silence({
       usethis::proj_set(old_project, force = TRUE)
     })
+    logs <- fs::dir_ls(dir, regexp = "\\.log")
+    if (length(logs) > 0) {
+      fs::file_copy(logs, paste0(old_dir, "/", basename(logs)))
+    }
     setwd(old_project)
     fs::dir_delete(dir)
     set_theme(font = "default", continuous = "ggplot2", discrete = "ggplot2")

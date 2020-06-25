@@ -2,7 +2,7 @@ test_that("copying topicguide docx files works", {
   testthat::skip_on_cran()
 
   # work in a temp directory
-  dir <- create_local_rmd_dir()
+  dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "copytpgdocx"))
 
   topicguide_docx_skeleton(dir)
   check_files <- list.files(dir, recursive = TRUE)
@@ -17,7 +17,7 @@ test_that("copying topicguide pdf files works", {
   testthat::skip_on_cran()
 
   # work in a temp directory
-  dir <- create_local_rmd_dir()
+  dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "copytpgpdf"))
 
   topicguide_pdf_skeleton(dir)
   check_files <- list.files(dir, recursive = TRUE)
@@ -36,7 +36,7 @@ test_that("copying techreport pdf files works", {
   testthat::skip_on_cran()
 
   # work in a temp directory
-  dir <- create_local_rmd_dir()
+  dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "copytrpdf"))
 
   techreport_skeleton(dir)
   check_files <- list.files(dir, recursive = TRUE)
