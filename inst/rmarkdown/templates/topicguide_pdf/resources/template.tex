@@ -9,7 +9,9 @@
 \else % if luatex or xelatex
   \ifxetex
     \usepackage[math-style=french]{unicode-math}
-    \setmathfont{Fira Math}[Scale=MatchLowercase]
+    $if(mathfont)$
+      \setmathfont{$mathfont$}[Scale=MatchLowercase]
+    $endif$
   \else
     \usepackage{fontspec}
   \fi
