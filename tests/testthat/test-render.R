@@ -5,19 +5,6 @@ test_that("unknown template errors", {
                "Couldn't find template")
 })
 
-test_that("topicguide-pdf renders", {
-  testthat::skip_on_cran()
-
-  # work in a temp directory
-  dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "tpgpdf"))
-
-  topicguide_pdf_skeleton(dir)
-  rmd_name <- tolower(basename(dir))
-  suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
-                                         clean_envir = FALSE))
-  expect_true(file.exists(paste0("_report/", rmd_name, ".pdf")))
-})
-
 test_that("techreport-pdf renders", {
   testthat::skip_on_cran()
 
@@ -25,6 +12,19 @@ test_that("techreport-pdf renders", {
   dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "trpdf"))
 
   techreport_skeleton(dir)
+  rmd_name <- tolower(basename(dir))
+  suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
+                                         clean_envir = FALSE))
+  expect_true(file.exists(paste0("_report/", rmd_name, ".pdf")))
+})
+
+test_that("topicguide-pdf renders", {
+  testthat::skip_on_cran()
+
+  # work in a temp directory
+  dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "tpgpdf"))
+
+  topicguide_pdf_skeleton(dir)
   rmd_name <- tolower(basename(dir))
   suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
                                          clean_envir = FALSE))
