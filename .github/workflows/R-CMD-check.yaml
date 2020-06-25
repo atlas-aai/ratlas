@@ -18,7 +18,6 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: macOS-latest,   r: 'devel'}
           - {os: macOS-latest,   r: '4.0'}
 
     env:
@@ -97,11 +96,6 @@ jobs:
           _R_CHECK_CRAN_INCOMING_: false
         run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--ignore-vignettes", "--no-examples"), error_on = "warning", build_args = "--no-build-vignettes", check_dir = "check")
         shell: Rscript {0}
-
-      - uses: actions/upload-artifact@master
-        with:
-          name: log-files
-          path: /**/*.log
 
       - name: Upload check results
         if: failure()
