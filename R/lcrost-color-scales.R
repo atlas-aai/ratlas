@@ -17,7 +17,7 @@ scale_fill_lcrost <- function(aesthetics = "fill", ...) {
   scale_lcrost(aesthetics, ...)
 }
 
-#' Lisa Charlote Rost color scale
+#' Lisa Charlotte Rost color scale
 #'
 #' This is a color-blind friendly, qualitative scale with eight different
 #' colors. See [palette_lcrost] for details. The palette was first described in

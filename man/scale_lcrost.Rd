@@ -5,7 +5,7 @@
 \alias{scale_color_lcrost}
 \alias{scale_fill_lcrost}
 \alias{scale_lcrost}
-\title{Lisa Charlote Rost color scale}
+\title{Lisa Charlotte Rost color scale}
 \arguments{
 \item{...}{common discrete scale parameters: \code{name}, \code{breaks}, \code{labels},
 \code{na.value}, \code{limits}, \code{guide}, and \code{aesthetics}. See \link{discrete_scale} for
