@@ -11,7 +11,7 @@ test_that("ggsave2 checks spelling", {
     theme_atlas(grid = "XY")
 
   # work in a temp directory
-  dir <- create_local_rmd_dir()
+  dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "ggplotspell"))
 
   expect_warning(ggsave2(plot, filename = "spell.png", dir = "h"), "title")
   expect_warning(ggsave2(plot, filename = "spell.png", dir = "h"), "subtitle")
@@ -28,7 +28,7 @@ test_that("orientation works correctly", {
     theme_atlas()
 
   # work in a temp directory
-  dir <- create_local_rmd_dir()
+  dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "plotorient"))
 
   ggsave2(plot, filename = "horz.png", dir = "h")
   ggsave2(plot, filename = "vert.png", dir = "v")
