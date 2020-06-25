@@ -101,7 +101,7 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: log-files
-          path: *.log
+          path: /**/*.log
 
       - name: Upload check results
         if: failure()
