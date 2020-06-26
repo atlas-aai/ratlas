@@ -26,6 +26,10 @@
 #' useful for formatting tables, when blanks are not desired. The default
 #' behavior is to replace missing values with an em-dash (`&mdash;`).
 #'
+#' `fmt_prop_pct()` formats proportions as percentages. This takes a number
+#' bounded between 0 and 1, multiplies it by 100, and then rounds to the
+#' specified number of digits using `fmt_digits()`.
+#'
 #' Two additional formatters are provided to format numbers according to the
 #' American Psychological Association (APA) style guide. The 7th edition of the
 #' APA style guide specifies that numbers bounded between \[-1, 1\] should not
@@ -70,7 +74,7 @@
 #' @rdname formatting
 fmt_digits <- function(x, digits = 3) {
   x <- check_number(x, name = "x")
-  digits <- check_pos_int(digits, name = "digits")
+  digits <- check_0_int(digits, name = "digits")
 
   round_x <- round(x, digits)
   to_print <- sprintf("%.*f", digits, round_x)
@@ -165,6 +169,27 @@ fmt_prop <- function(x, digits, fmt_small = TRUE) {
       paste0_after(.first = "< ")
 
     x_chr[x < small] <- small_text
+  }
+
+  return(x_chr)
+}
+
+#' @export
+#' @rdname formatting
+fmt_prop_pct <- function(x, digits = 0, fmt_small = TRUE) {
+  x <- check_bound_real(x, name = "x", lb = 0, ub = 1)
+  digits <- check_0_int(digits, name = "digits")
+
+  x_chr <- (x * 100) %>%
+    fmt_digits(digits)
+
+  if (fmt_small) {
+    small <- 1 / (10 ^ digits)
+    small_text <- small %>%
+      fmt_digits(digits) %>%
+      paste0_after(.first = "< ")
+
+    x_chr[round(x * 100) < small] <- small_text
   }
 
   return(x_chr)
