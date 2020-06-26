@@ -8,6 +8,7 @@
 \alias{fmt_replace_na}
 \alias{fmt_corr}
 \alias{fmt_prop}
+\alias{fmt_prop_pct}
 \title{Text and Number Formatting}
 \usage{
 fmt_digits(x, digits = 3)
@@ -21,6 +22,8 @@ fmt_replace_na(x, replacement = "&mdash;")
 fmt_corr(x, digits, output = NULL)
 
 fmt_prop(x, digits, fmt_small = TRUE)
+
+fmt_prop_pct(x, digits = 0, fmt_small = TRUE)
 }
 \arguments{
 \item{x}{Number or number string to be formatted}
@@ -53,6 +56,10 @@ with \code{\link[base:round]{base::round()}}.
 \code{fmt_replace_na()} replaces \code{NA} values with a specified replacement. This is
 useful for formatting tables, when blanks are not desired. The default
 behavior is to replace missing values with an em-dash (\verb{&mdash;}).
+
+\code{fmt_prop_pct()} formats proportions as percentages. This takes a number
+bounded between 0 and 1, multiplies it by 100, and then rounds to the
+specified number of digits using \code{fmt_digits()}.
 
 Two additional formatters are provided to format numbers according to the
 American Psychological Association (APA) style guide. The 7th edition of the

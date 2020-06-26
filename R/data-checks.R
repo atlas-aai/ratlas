@@ -55,6 +55,27 @@ check_pos_int <- function(x, name) {
   }
 }
 
+check_0_int <- function(x, name) {
+  if (!is.numeric(x)) {
+    abort_bad_argument(name, must = "be a numeric scalar", not = typeof(x))
+  }
+  x <- as.integer(x)
+
+  if (length(x) != 1) {
+    abort_bad_argument(name, must = "be of length 1", not = length(x))
+  }
+
+  if (is.na(x)) {
+    abort_bad_argument(name, must = "be non-missing")
+  }
+
+  if (x < 0) {
+    abort_bad_argument(name, must = "be greater than or equal to zero")
+  } else {
+    x
+  }
+}
+
 check_bound_real <- function(x, name, lb, ub) {
   if (!is.numeric(x)) {
     abort_bad_argument(name, must = "be numeric", not = typeof(x))

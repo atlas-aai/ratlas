@@ -39,8 +39,41 @@ test_that("check_pos_int", {
   expect_equal(err$arg, "check1")
   expect_match(err$message, "greater than zero")
 
+  err <- rlang::catch_cnd(check_pos_int(0, "check1"))
+  expect_s3_class(err, "error_bad_argument")
+  expect_equal(err$arg, "check1")
+  expect_match(err$message, "greater than zero")
+
   expect_identical(check_pos_int(3, "check1"), 3L)
   expect_identical(check_pos_int(4L, "check1"), 4L)
+})
+
+test_that("check_0_int", {
+  err <- rlang::catch_cnd(check_0_int("a", "check1"))
+  expect_s3_class(err, "error_bad_argument")
+  expect_equal(err$arg, "check1")
+  expect_match(err$message, "numeric scalar")
+  expect_equal(err$not, "character")
+
+  err <- rlang::catch_cnd(check_0_int(1:2, "check1"))
+  expect_s3_class(err, "error_bad_argument")
+  expect_equal(err$arg, "check1")
+  expect_match(err$message, "length 1")
+  expect_equal(err$not, 2L)
+
+  err <- rlang::catch_cnd(check_0_int(NA_real_, "check1"))
+  expect_s3_class(err, "error_bad_argument")
+  expect_equal(err$arg, "check1")
+  expect_match(err$message, "non-missing")
+
+  err <- rlang::catch_cnd(check_0_int(-2, "check1"))
+  expect_s3_class(err, "error_bad_argument")
+  expect_equal(err$arg, "check1")
+  expect_match(err$message, "greater than or equal to zero")
+
+  expect_identical(check_0_int(0L, "check1"), 0L)
+  expect_identical(check_0_int(3, "check1"), 3L)
+  expect_identical(check_0_int(4L, "check1"), 4L)
 })
 
 test_that("check_bound_real", {
