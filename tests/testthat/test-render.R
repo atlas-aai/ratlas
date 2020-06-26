@@ -9,9 +9,22 @@ test_that("techreport-pdf renders", {
   testthat::skip_on_cran()
 
   # work in a temp directory
-  dir <- create_local_rmd_dir()
+  dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "trpdf"))
 
   techreport_skeleton(dir)
+  rmd_name <- tolower(basename(dir))
+  suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
+                                         clean_envir = FALSE))
+  expect_true(file.exists(paste0("_report/", rmd_name, ".pdf")))
+})
+
+test_that("topicguide-pdf renders", {
+  testthat::skip_on_cran()
+
+  # work in a temp directory
+  dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "tpgpdf"))
+
+  topicguide_pdf_skeleton(dir)
   rmd_name <- tolower(basename(dir))
   suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
                                          clean_envir = FALSE))
@@ -22,26 +35,13 @@ test_that("topicguide-docx renders", {
   testthat::skip_on_cran()
 
   # work in a temp directory
-  dir <- create_local_rmd_dir()
+  dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "tpgdocx"))
 
   topicguide_docx_skeleton(dir)
   rmd_name <- tolower(basename(dir))
   suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
                                          clean_envir = FALSE))
   expect_true(file.exists(paste0("_report/", rmd_name, ".docx")))
-})
-
-test_that("topicguide-pdf renders", {
-  testthat::skip_on_cran()
-
-  # work in a temp directory
-  dir <- create_local_rmd_dir()
-
-  topicguide_pdf_skeleton(dir)
-  rmd_name <- tolower(basename(dir))
-  suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
-                                         clean_envir = FALSE))
-  expect_true(file.exists(paste0("_report/", rmd_name, ".pdf")))
 })
 
 test_that("slides-html renders", {
@@ -55,7 +55,7 @@ test_that("slides-html renders", {
   files <- list.files(resources, recursive = TRUE, include.dirs = FALSE)
 
   # work in a temp directory
-  dir <- create_local_rmd_dir()
+  dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "xgnhtml"))
   new_dir <- c(dir, file.path(dir, sub_dirs))
   fs::dir_create(new_dir)
 

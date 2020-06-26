@@ -4,9 +4,6 @@ date: "`r format(Sys.Date(), '%B %Y')`"
 knit: bookdown::render_book
 output: ratlas::topicguide_pdf
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
-biblio-style: apalike2
-biblatexoptions:
-  - sortcites
 csl: csl/apa.csl
 link-citations: yes
 internal: true
