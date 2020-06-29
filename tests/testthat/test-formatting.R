@@ -1,9 +1,10 @@
 test_that("fmt_digits", {
   rand <- runif(5)
+  int_rand <- runif(5, min = 1, max = 99)
   err <- rlang::catch_cnd(fmt_digits(rand, digits = -1))
   expect_s3_class(err, "error_bad_argument")
   expect_equal(err$arg, "digits")
-  expect_match(err$message, "greater than zero")
+  expect_match(err$message, "greater than or equal to zero")
 
   expect_equal(fmt_digits(rand), sprintf("%0.3f", rand))
   expect_equal(fmt_digits(rand, digits = 2), sprintf("%0.2f", rand))
@@ -11,6 +12,29 @@ test_that("fmt_digits", {
   expect_equal(fmt_digits(1.45038), "1.450")
   expect_equal(fmt_digits(c(1.2309, 0.3819, NA_real_, 0.0417), digits = 2),
                c("1.23", "0.38", NA_character_, "0.04"))
+
+  expect_equal(fmt_digits(int_rand, digits = 0), sprintf("%0.0f", int_rand))
+})
+
+test_that("fmt_prop_pct", {
+  rand <- runif(5)
+
+  err <- rlang::catch_cnd(fmt_prop_pct(rand, digits = -1))
+  expect_s3_class(err, "error_bad_argument")
+  expect_equal(err$arg, "digits")
+  expect_match(err$message, "greater than or equal to zero")
+
+  err <- rlang::catch_cnd(fmt_prop_pct(rand * 100, digits = 1))
+  expect_s3_class(err, "error_bad_argument")
+  expect_equal(err$arg, "x")
+  expect_match(err$message, "between 0 and 1")
+
+  expect_equal(fmt_prop_pct(rand), sprintf("%0.0f", rand * 100))
+  expect_equal(fmt_prop_pct(rand, digits = 2), sprintf("%0.2f", rand * 100))
+
+  expect_equal(fmt_prop_pct(c(0.012, 0.009, 0.004)), c("1", "1", "< 1"))
+  expect_equal(fmt_prop_pct(c(0.829, 0.080, NA_real_, 0.313), digits = 1),
+               c("82.9", "8.0", NA_character_, "31.3"))
 })
 
 test_that("fmt_leading_zero", {
