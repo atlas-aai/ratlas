@@ -168,7 +168,14 @@ fmt_prop <- function(x, digits, fmt_small = TRUE) {
       fmt_leading_zero() %>%
       paste0_after(.first = "< ")
 
+    large <- 1 - small
+    large_text <- large %>%
+      fmt_digits(digits) %>%
+      fmt_leading_zero() %>%
+      paste0_after(.first = "> ")
+
     x_chr[x < small] <- small_text
+    x_chr[x > large] <- large_text
   }
 
   return(x_chr)
