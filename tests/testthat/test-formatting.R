@@ -128,13 +128,23 @@ test_that("fmt_prop", {
 
   check1 <- test %>%
     fmt_prop(digits = 3)
-  expect_equal(check1, c(".853", "1.000", ".855",     NA,   ".690",
+  expect_equal(check1, c(".853", "> .999", ".855",     NA,   ".690",
                          ".001",  ".129", ".869", ".169", "< .001"))
+
+  check1_2 <- test %>%
+    fmt_prop(digits = 3, fmt_small = FALSE)
+  expect_equal(check1_2, c(".853", "1.000", ".855",     NA,   ".690",
+                           ".001",  ".129", ".869", ".169", ".000"))
 
   check2 <- test %>%
     fmt_prop(digits = 2)
-  expect_equal(check2, c(".85",   "1.00", ".85",    NA,   ".69",
+  expect_equal(check2, c(".85",   "> .99", ".85",    NA,   ".69",
                          "< .01",  ".13", ".87", ".17", "< .01"))
+
+  check2_2 <- test %>%
+    fmt_prop(digits = 2, fmt_small = FALSE)
+  expect_equal(check2_2, c(".85",   "1.00", ".85",    NA,   ".69",
+                           ".00",  ".13", ".87", ".17", ".00"))
 
   check3 <- test %>%
     fmt_prop(digits = 2, fmt_small = FALSE)

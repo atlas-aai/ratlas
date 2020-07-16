@@ -8,7 +8,7 @@
 \alias{pad_decimal}
 \title{Table Padding}
 \usage{
-pad_counts(x)
+pad_counts(x, digits = 0L)
 
 pad_prop(x, digits, fmt_small = TRUE, output = NULL)
 

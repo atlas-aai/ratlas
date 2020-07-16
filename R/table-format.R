@@ -79,12 +79,12 @@ fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
 # nolint start
 #' @export
 #' @rdname padding
-pad_counts <- function(x, nsmall = 0L) {
-  x <- round(x, digits = nsmall)
+pad_counts <- function(x, digits = 0L) {
+  x <- round(x, digits = digits)
   max_dig <- max(nchar(stringr::str_replace_all(abs(x), "\\.", "")),
                  na.rm = TRUE)
 
-  new_x <- format(x, big.mark = ",", nsmall = nsmall)
+  new_x <- format(x, big.mark = ",", nsmall = digits)
 
   if (max_dig == 7) {
     new_x <- new_x %>%
@@ -123,7 +123,7 @@ pad_counts <- function(x, nsmall = 0L) {
       stringr::str_replace_all(" ", paste(rep("\\\\ ", 2), collapse = ""))
   }
 
-  if (any(stringr::str_detect(new_x, ",")) & nsmall > 0L) {
+  if (any(stringr::str_detect(new_x, ",")) & digits > 0L) {
     new_x <- dplyr::case_when(stringr::str_detect(new_x, ",") ~ new_x,
                               TRUE ~ paste0("\\ ", new_x))
   }
