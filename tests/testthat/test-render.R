@@ -11,7 +11,7 @@ test_that("techreport-pdf renders", {
   # work in a temp directory
   dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "trpdf"))
 
-  techreport_skeleton(dir)
+  techreport_pdf_skeleton(dir)
   rmd_name <- tolower(basename(dir))
   suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
                                          clean_envir = FALSE))

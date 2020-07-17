@@ -38,7 +38,7 @@ test_that("copying techreport pdf files works", {
   # work in a temp directory
   dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "copytrpdf"))
 
-  techreport_skeleton(dir)
+  techreport_pdf_skeleton(dir)
   check_files <- list.files(dir, recursive = TRUE)
 
   expect_equal(sort(check_files),

@@ -70,10 +70,10 @@ topicguide_pdf_skeleton <- function(path) {
   TRUE
 }
 
-techreport_skeleton <- function(path) {
+techreport_pdf_skeleton <- function(path) {
   # copy 'techreport_resources' folder to path
   resources <- ratlas_file("rstudio", "templates", "project",
-                           "techreport_resources")
+                           "techreport_pdf_resources")
 
   sub_dirs <- list.dirs(resources, recursive = TRUE, full.names = FALSE)
   sub_dirs <- sub_dirs[-which(sub_dirs == "")]
