@@ -1,0 +1,91 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+.book .book-header h1 {
+  opacity: 1;
+}
+
+#header h1.title {
+  text-align: center;
+}
+
+
+#dummy-title h1 {
+  visibility: hidden;
+}
+
+#acknowledgements h1 {
+  display: none;
+}
+
+h1.blank {
+  display: none;
+}
+
+#dummy-title p {
+  text-align: center;
+}
+
+h2.subtitle {
+  text-align: center;
+  font-style: italic;
+}
+
+p.date {
+  text-align: center;
+  font-weight: bold;
+  font-style: normal;
+}
+
+#acknowledgements table tbody tr td {
+  border:0;
+}
+
+.hangingindent {
+  padding-left: 27pt;
+  text-indent: -27pt;
+}
+
+#references p {
+  padding-left: 27pt;
+  text-indent: -27pt;
+}
+
+.disclaimer p {
+  color: rgb(91,155,213);
+  text-align: center;
+  font-style: italic;
+  margin-left:auto;
+  margin-right:auto;
+  width: 80%;
+}
+
+#assessment hr {
+  background-color: rgb(91,155,213);
+}
+
+/* Footnote formatting */
+label sup {
+  color: #4183c4;
+}
+
+#fn-content {
+  font-size: 80%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left:auto;
+  margin-right:auto;
+  width: 90%;
+}

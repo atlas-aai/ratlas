@@ -1,0 +1,102 @@
+---
+title: "Tech Report Title"
+shorttitle: "A Short Title"
+subtitle: "Technical Report #XX-XX"
+date: "`r format(Sys.Date(), '%B %Y')`"
+program: "DLM"
+knit: bookdown::render_book
+output:
+  ratlas::techreport_gitbook: default
+  ratlas::techreport_pdf: default
+internal: false
+manual: false
+bibliography: ["bib/refs.bib", "bib/packages.bib"]
+biblio-style: apa
+biblatexoptions:
+  - sortcites
+csl: csl/apa.csl
+link-citations: yes
+lot: true
+lof: true
+subparagraph: yes
+mainfont: Arial
+fontsize: 11pt
+acknowledgements: >
+  `r if (knitr::is_latex_output()) ratlas::inc("front-matter/preface-latex.Rmd")`
+copyright: "Copyright \\copyright\\ 2020 Accessible Teaching, Learning, and Assessment Systems (ATLAS)"
+---
+
+```{r setup, include = FALSE}
+needed_packages <- c("ratlas", "here", "fs", "glue", "pluralize", "english", 
+                     "knitr", "kableExtra", "tidyverse", "conflicted")
+load_packages <- function(x) {
+  if (!(x %in% installed.packages())) {
+    install.packages(x, repos = "https://cran.rstudio.com/")
+  }
+  
+  suppressPackageStartupMessages(require(x, character.only = TRUE))
+}
+vapply(needed_packages, load_packages, logical(1))
+
+conflict_prefer("filter", "dplyr")
+conflict_prefer("group_rows", "kableExtra")
+
+options(knitr.kable.NA = "")
+set_theme(font = "Arial Narrow", plot_margin = margin(0, 10, 10, 10))
+```
+
+`r if (knitr::is_html_output()) "# Dummy Title {.unlisted .unnumbered .blank}"`
+
+`r if (knitr::is_html_output()) glue("Copyright &copy; {year} Accessible Teaching, Learning, and Assessment Systems (ATLAS)")`
+
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="figures/pre-generated/DLM.png" alt="DLM Logo">' + title.innerHTML
+```
+
+`r if (knitr::is_html_output()) "# Acknowledgements {.unnumbered .blank}"`
+
+```{r html-ack, eval = knitr::is_html_output(), child=here("front-matter", "preface-html.Rmd")}
+```
+
+# Executive Summary  {-}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum diam metus, tempus eget lacus eu, placerat commodo felis. Integer eget eros velit. Mauris risus mi, vehicula vitae viverra a, pharetra ac neque. Nunc finibus metus sed congue convallis. Mauris vehicula nunc eu lorem convallis mollis. Integer at quam a lacus venenatis pellentesque sed id mi. Fusce lacus lorem, consequat in neque vitae, facilisis finibus enim. Proin ut nunc id massa lobortis condimentum sit amet et diam. Sed aliquam aliquet rutrum. Mauris elementum justo leo, nec egestas nisi consectetur et.
+
+The key findings from this report are:
+
+* Donec mattis enim nec augue tincidunt laoreet.
+* Vivamus in est ac risus consectetur sollicitudin.
+* Nullam sit amet augue id massa sagittis eleifend.
+* Phasellus a ipsum venenatis ex ullamcorper interdum.
+
+Proin erat sem, euismod semper massa ut, scelerisque mattis nulla. Aliquam vel vulputate est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus aliquet faucibus arcu sed imperdiet. Nulla consectetur maximus eros. Ut dui risus, auctor non lacus nec, vulputate tincidunt tortor. Donec at risus lacus. Vestibulum malesuada sodales rhoncus. Nullam tincidunt magna et rutrum imperdiet. Nulla facilisi. Aenean posuere ipsum vitae sapien dictum, non laoreet elit rutrum. Duis nec feugiat risus. Nam condimentum feugiat laoreet. Duis hendrerit ante vulputate magna vehicula fringilla.
+
+\newpage
+
+# Purpose of the Report
+
+Morbi faucibus ex vel lacus suscipit, vitae ultrices nibh maximus. Mauris viverra lorem in eleifend faucibus. Curabitur consequat vel est eget placerat. Nunc pharetra non enim eget posuere. Mauris interdum pretium velit, vitae molestie quam tempor laoreet. Nulla ut cursus elit. Sed lacus nunc, dapibus sagittis nunc vitae, pretium tristique erat. Praesent condimentum facilisis velit. Nam id felis a massa luctus malesuada sed id quam. Suspendisse at commodo dolor. Nullam luctus vulputate est eget venenatis. Phasellus sagittis consectetur orci, pretium bibendum arcu sagittis non. Fusce eu nunc viverra, consectetur orci accumsan, tincidunt ante. Etiam congue, mauris a suscipit accumsan, neque turpis hendrerit sapien, sit amet eleifend tortor lectus et ex.
+
+
+\newpage
+
+# References
+
+```{r write-packages, include = FALSE}
+if (!file.exists("bib/packages.bib")) file.create("bib/packages.bib")
+suppressWarnings(
+  knitr::write_bib(c(.packages()), "bib/packages.bib")
+)
+
+if (knitr::is_latex_output()) {
+  bib_output <- glue("\\printbibliography[heading=none]
+                     
+                     \\setlength{{\\parindent}}{{0pt}}
+                     \\setlength{{\\leftskip}}{{0pt}}")
+} else {
+  bib_output <- glue("<div id='refs'></div>")
+}
+```
+
+`r bib_output`
