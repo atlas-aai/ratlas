@@ -5,6 +5,7 @@ subtitle: "Technical Report #XX-XX"
 date: "`r format(Sys.Date(), '%B %Y')`"
 program: "DLM"
 knit: bookdown::render_book
+site: bookdown::bookdown_site
 output:
   ratlas::techreport_gitbook: default
   ratlas::techreport_pdf: default
@@ -22,7 +23,7 @@ subparagraph: yes
 mainfont: Arial
 fontsize: 11pt
 acknowledgements: >
-  `r if (knitr::is_latex_output()) ratlas::inc("front-matter/preface-latex.Rmd")`
+  `r if (knitr::is_latex_output()) ratlas::inc("front-matter/preface-latex.Rmd")  else "Filler"`
 copyright: "Copyright \\copyright\\ 2020 Accessible Teaching, Learning, and Assessment Systems (ATLAS)"
 ---
 
@@ -38,8 +39,8 @@ load_packages <- function(x) {
 }
 vapply(needed_packages, load_packages, logical(1))
 
-conflict_prefer("filter", "dplyr")
-conflict_prefer("group_rows", "kableExtra")
+conflict_prefer("filter", "dplyr", quiet = TRUE)
+conflict_prefer("group_rows", "kableExtra", quiet = TRUE)
 
 options(knitr.kable.NA = "")
 set_theme(font = "Arial Narrow", plot_margin = margin(0, 10, 10, 10))
@@ -47,7 +48,7 @@ set_theme(font = "Arial Narrow", plot_margin = margin(0, 10, 10, 10))
 
 `r if (knitr::is_html_output()) "# Dummy Title {.unlisted .unnumbered .blank}"`
 
-`r if (knitr::is_html_output()) glue("Copyright &copy; {year} Accessible Teaching, Learning, and Assessment Systems (ATLAS)")`
+`r if (knitr::is_html_output()) glue("Copyright &copy; 2020 Accessible Teaching, Learning, and Assessment Systems (ATLAS)")`
 
 ```{js, echo = FALSE}
 title=document.getElementById('header');
@@ -56,7 +57,7 @@ title.innerHTML = '<img src="figures/pre-generated/DLM.png" alt="DLM Logo">' + t
 
 `r if (knitr::is_html_output()) "# Acknowledgements {.unnumbered .blank}"`
 
-```{r html-ack, eval = knitr::is_html_output(), child=here("front-matter", "preface-html.Rmd")}
+```{r html-ack, eval = knitr::is_html_output(), child="front-matter/preface-html.Rmd"}
 ```
 
 # Executive Summary  {-}
