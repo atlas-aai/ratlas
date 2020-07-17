@@ -1,4 +1,4 @@
-hook_plot_rat <- function(x, options) {
+hook_tex_plot_rat <- function(x, options) {
   # nolint start
   # This function produces the image inclusion code for LaTeX.
   # optionally wrapped in code that resizes it, aligns it, handles it
