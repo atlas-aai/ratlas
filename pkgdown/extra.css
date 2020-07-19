@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display:400,700");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+@import url("https://fonts.googleapis.com/css?family=Inconsolata");
+
+body {
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+}
+
+pre, code {
+  font-family: Inconsolata, monospace;
+  font-size: 100%;
+}
+
+.navbar-default .navbar-link {
+  color: rgb(22,92,125);
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: rgb(22,92,125);
+  background-color: transparent;
+}
+
+a {
+  color: rgb(22,92,125);
+}
+
+a:hover, a:focus {
+  color: rgb(242,169,0);
+}
+
+.navbar-brand {
+  font-size: 25px;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-link:hover {
+    color: rgb(242,169,0);
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover, .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus{
+  color: rgb(242,169,0);
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+  color: rgb(242,169,0);
+  background-color:transparent;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a, .navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover, .navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus {
+  background-color: rgb(242,169,0);
+}
+
+.label-danger {
+  background-color: rgb(242,169,0);
+}
+
+.label-warning {
+  background-color: rgb(242,169,0);
+}
+
+.label-info {
+  background-color: rgb(242,169,0);
+}
+
+.label {
+  font-size: 50%;
+  vertical-align: middle;
+}
+
+.btn-primary, .btn-primary:hover {
+  background-color: rgb(22,92,125);
+  background-image: linear-gradient(rgb(22,92,125), rgb(22,92,125));
+  border-color: rgb(22,92,125);
+}

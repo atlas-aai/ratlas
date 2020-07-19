@@ -1,0 +1,38 @@
+template:
+  params:
+    bootswatch: simplex
+  opengraph:
+    image:
+      src: man/figures/ratlas-large.png
+      alt: "Hex logo for the ratlas package"
+    twitter:
+      creator: "@wjakethompson"
+      site: "@atlas4learning"
+      card: summary_large_image
+
+development:
+  mode: auto
+
+home:
+  title: Custom Graphics and Report Templates for ATLAS
+  description: >
+    An R package for making customized reports and graphics that conform to APA
+    and ATLAS style.
+
+navbar:
+  structure:
+    right: [twitter, github]
+  components:
+    twitter:
+      icon: "fab fa-twitter fa-lg"
+      href: https://twitter.com/atlas4learning
+
+figures:
+  fig.retina: 3
+
+authors:
+  W. Jake Thompson:
+    href: "https://wjakethompson.com"
+  ATLAS:
+    html: "<img src='https://www.wjakethompson.com/prof-logo/atlas.png' alt='ATLAS' height='35' />"
+    href: "https://atlas.ku.edu/"
