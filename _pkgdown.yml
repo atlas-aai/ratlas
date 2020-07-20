@@ -1,3 +1,5 @@
+url: https://atlas-aai.github.io/ratlas
+
 template:
   params:
     bootswatch: simplex
