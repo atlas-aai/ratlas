@@ -20,7 +20,7 @@
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Writing a Report With ratlas">
 <meta property="og:description" content="ratlas">
-<meta property="og:image" content="https://atlas-aai.github.io/ratlas/reference/figures/ratlas-large.png">
+<meta property="og:image" content="https://ratlas.netlify.app/reference/figures/ratlas-large.png">
 <meta property="og:image:alt" content="Hex logo for the ratlas package">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@wjakethompson">
@@ -115,8 +115,10 @@
 <h2 class="hasAnchor">
 <a href="#system-setup" class="anchor"></a>System Setup</h2>
 <p>In order to generate a report using the {ratlas}, you must have the necessary output software installed on your computer. For Microsoft Word output (e.g., <code><a href="../reference/topicguide_docx.html">ratlas::topicguide_docx()</a></code>), you will need Word installed. For PDF output (e.g., <code><a href="../reference/techreport_pdf.html">ratlas::techreport_pdf()</a></code>), you will need a <span class="math inline">\(\LaTeX\)</span> distribution. For an easy way to manage this, we recommend using the <a href="https://yihui.org/tinytex/">{tinytex} package</a>. If you have another <span class="math inline">\(\LaTeX\)</span> distribution already installed on your computer (e.g., MacTex on a Mac or MiKTeX on Windows), you should uninstall/delete that program before install {tinytex}. You can then be set up for PDF output by running this code (you only need to run it once after install {tinytex}):</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"tinytex"</span>)
-<span class="kw pkg">tinytex</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"tinytex"</span>)
+<span class="kw">tinytex</span>::<span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span>()
+</pre></div>
 <p>We also assume that you are using <a href="https://rstudio.com/products/rstudio/download/#download">RStudio</a>. This is not required, but RStudio provides many shortcuts that make the process of writing and generating reports much smoother.</p>
 </div>
 <div id="create-new" class="section level2">
@@ -220,36 +222,42 @@ Figure 5: The default <code>setup</code> chunk for a new report.
 <h2 class="hasAnchor">
 <a href="#add-table" class="anchor"></a>Adding Tables</h2>
 <p>There are many ways to create professional tables in R Markdown. We recommend using <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable()</a></code> and the <a href="https://haozhu233.github.io/kableExtra/">{kableExtra}</a> package. The first step is to your data into data frame. You can either read the data in from a file or create the data manually.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">my_data</span> <span class="kw">&lt;-</span> <span class="fu">tribble</span>(
-  ~<span class="no">label</span>,     ~<span class="no">count</span>,  ~<span class="no">percent</span>,  ~<span class="no">correlation</span>, ~<span class="no">pvalue</span>,
-  <span class="st">"Group 1"</span>,    <span class="fl">103L</span>,      <span class="fl">0.92</span>,        -<span class="fl">0.895</span>,   <span class="fl">0.120</span>,
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span>(
+  <span class="op">~</span><span class="kw">label</span>,     <span class="op">~</span><span class="kw">count</span>,  <span class="op">~</span><span class="kw">percent</span>,  <span class="op">~</span><span class="kw">correlation</span>, <span class="op">~</span><span class="kw">pvalue</span>,
+  <span class="st">"Group 1"</span>,    <span class="fl">103L</span>,      <span class="fl">0.92</span>,        <span class="op">-</span><span class="fl">0.895</span>,   <span class="fl">0.120</span>,
   <span class="st">"Group 2"</span>,   <span class="fl">1064L</span>,      <span class="fl">32.1</span>,         <span class="fl">0.051</span>,   <span class="fl">0.030</span>,
   <span class="st">"Group 3"</span>,  <span class="fl">79205L</span>,      <span class="fl">95.4</span>,         <span class="fl">0.927</span>,   <span class="fl">0.001</span>
 )
-<span class="no">my_data</span>
+<span class="kw">my_data</span>
 <span class="co">#&gt; # A tibble: 3 x 5</span>
 <span class="co">#&gt;   label   count percent correlation pvalue</span>
 <span class="co">#&gt;   &lt;chr&gt;   &lt;int&gt;   &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 Group 1   103    0.92      -0.895  0.12 </span>
 <span class="co">#&gt; 2 Group 2  1064   32.1        0.051  0.03 </span>
-<span class="co">#&gt; 3 Group 3 79205   95.4        0.927  0.001</span></pre></body></html></div>
+<span class="co">#&gt; 3 Group 3 79205   95.4        0.927  0.001</span>
+</pre></div>
 <p>The next step is to format the table for printing. The <code><a href="../reference/fmt_table.html">fmt_table()</a></code> function will apply default formatting and work in most cases. Notice the formatting that has been applied below. Commas have been added to integer values, decimal digits have been rounded to the same number of decimal places, and leading zeros have been removed from values that are bounded between -1 and 1. Leading and trailing spaces have also been added so that values will be centered and decimal aligned in the table. See <code><a href="../reference/formatting.html">?ratlas::formatting</a></code> for specific formatting options that are wrapped by <code><a href="../reference/fmt_table.html">fmt_table()</a></code>. These formatting functions can be used to specific styling of columns that do not conform to the defaults specified in <code><a href="../reference/fmt_table.html">fmt_table()</a></code>.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">my_data</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/fmt_table.html">fmt_table</a></span>(<span class="kw">corr_dig</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">prop_dig</span> <span class="kw">=</span> <span class="fl">2</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">my_data</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/fmt_table.html">fmt_table</a></span>(corr_dig = <span class="fl">2</span>, prop_dig = <span class="fl">2</span>)
 <span class="co">#&gt; # A tibble: 3 x 5</span>
 <span class="co">#&gt;   label   count                percent     correlation        pvalue          </span>
 <span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;                &lt;chr&gt;       &lt;chr&gt;              &lt;chr&gt;           </span>
 <span class="co">#&gt; 1 Group 1 "\\ \\ \\ \\ \\ 103" "\\ \\ 0.9" "&amp;minus;.90\\ \\ " ".12"           </span>
 <span class="co">#&gt; 2 Group 2 "\\ \\ 1,064"        "32.1"      ".05"              ".03"           </span>
-<span class="co">#&gt; 3 Group 3 "79,205"             "95.4"      ".93"              "&lt; .01\\ \\ \\ "</span></pre></body></html></div>
+<span class="co">#&gt; 3 Group 3 "79,205"             "95.4"      ".93"              "&lt; .01\\ \\ \\ "</span>
+</pre></div>
 <p>The table can then be created using <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable()</a></code>. There are several arguments supplied to the <code>kable()</code> function. The <code>align</code> argument specifies the alignment of each column. Because we formatted the table with <code><a href="../reference/fmt_table.html">fmt_table()</a></code>, we can set the alignment of all the numeric columns to <code>"c"</code> (centered). The <code>booktabs</code> and <code>linesep</code> arguments control the appearance of the table. By setting <code>escape = FALSE</code>, we tell the <code>kable()</code> function to not escape special characters, allowing for the padding spaces we added to remain in tact. Additionally, column names for the table and a caption are specified. The last step is to add additional styling from the {kableExtra} package. In this example, we use the <code><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kableExtra::kable_styling()</a></code> function to set some <span class="math inline">\(\LaTeX\)</span> options. Specifically, the <code>"HOLD_position"</code> setting ensures that the table will appear in the exact position of the code chunk (i.e., the <span class="math inline">\(\LaTeX\)</span> engine is not allowed to float the table above or below additional paragraphs in order to avoid extraneous white space). For more customization options with the {kableExtra} package, see the package vignettes for <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html">HTML</a> and <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf">PDF</a> tables.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">my_data</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/fmt_table.html">fmt_table</a></span>(<span class="kw">corr_dig</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">prop_dig</span> <span class="kw">=</span> <span class="fl">2</span>) <span class="kw">%&gt;%</span>
-  <span class="fu">kable</span>(<span class="kw">align</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"c"</span>, <span class="fl">4</span>)), <span class="kw">booktabs</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">linesep</span> <span class="kw">=</span> <span class="st">""</span>,
-        <span class="kw">escape</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-        <span class="kw">col.names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Group"</span>, <span class="st">"Students (*n*)"</span>, <span class="st">"\\%"</span>, <span class="st">"*r*"</span>, <span class="st">"*p*-value"</span>),
-        <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"An example table"</span>) <span class="kw">%&gt;%</span>
- <span class="fu">kable_styling</span>(<span class="kw">latex_options</span> <span class="kw">=</span> <span class="st">"HOLD_position"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">my_data</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/fmt_table.html">fmt_table</a></span>(corr_dig = <span class="fl">2</span>, prop_dig = <span class="fl">2</span>) <span class="op">%&gt;%</span>
+  <span class="fu">kable</span>(align = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"c"</span>, <span class="fl">4</span>)), booktabs = <span class="fl">TRUE</span>, linesep = <span class="st">""</span>,
+        escape = <span class="fl">FALSE</span>,
+        col.names = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Group"</span>, <span class="st">"Students (*n*)"</span>, <span class="st">"\\%"</span>, <span class="st">"*r*"</span>, <span class="st">"*p*-value"</span>),
+        caption = <span class="st">"An example table"</span>) <span class="op">%&gt;%</span>
+ <span class="fu">kable_styling</span>(latex_options = <span class="st">"HOLD_position"</span>)
+</pre></div>
 <table class="table table">
 <caption>
 <span id="tab:example-table">Table 1: </span>An example table
@@ -339,11 +347,13 @@ Group 3
 <h2 class="hasAnchor">
 <a href="#add-figure" class="anchor"></a>Adding Figures</h2>
 <p>Figures can be created using the <code>ggplot2</code> package in R. For example, we can use the <code>iris</code> data set that is built into <em>R</em> to create a scatter plot, which is shown in Figure <a href="#fig:example-figure">6</a>. For additional details on creating figures with {ratlas}, see <code><a href="../articles/plotting.html">vignette("plotting")</a></code>.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="no">iris</span>, <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">Petal.Length</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">Sepal.Length</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">Species</span>)) +
-  <span class="fu">geom_point</span>() +
-  <span class="fu">labs</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="st">"Petal Length"</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="st">"Sepal Length"</span>) +
-  <span class="fu"><a href="../reference/scale_okabeito.html">scale_color_okabeito</a></span>() +
-  <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">iris</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">Petal.Length</span>, y = <span class="kw">Sepal.Length</span>, color = <span class="kw">Species</span>)) <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(x = <span class="st">"Petal Length"</span>, y = <span class="st">"Sepal Length"</span>) <span class="op">+</span>
+  <span class="fu"><a href="../reference/scale_colour_okabeito.html">scale_color_okabeito</a></span>() <span class="op">+</span>
+  <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span>()
+</pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:example-figure"></span>
 <img src="report-writing_files/figure-html/example-figure-1.png" alt="An example figure." width="100%"><p class="caption">
@@ -483,7 +493,8 @@ Renders as…
 <h3 class="hasAnchor">
 <a href="#in-line-output" class="anchor"></a>In-Line Output</h3>
 <p>If at all possible, you should avoid the hard coding of numbers. For example, let’s say we have some data on cars and estimate the following model:</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">my_data</span>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="kw">my_data</span>
 <span class="co">#&gt; # A tibble: 32 x 3</span>
 <span class="co">#&gt;      mpg  disp   cyl</span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
@@ -499,32 +510,37 @@ Renders as…
 <span class="co">#&gt; 10  19.2  168.     6</span>
 <span class="co">#&gt; # … with 22 more rows</span>
 
-<span class="no">lm_mod</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">mpg</span> ~ <span class="no">disp</span> + <span class="no">cyl</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">my_data</span>)
-<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(<span class="no">lm_mod</span>)
+<span class="kw">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="kw">mpg</span> <span class="op">~</span> <span class="kw">disp</span> <span class="op">+</span> <span class="kw">cyl</span>, data = <span class="kw">my_data</span>)
+<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(<span class="kw">lm_mod</span>)
 <span class="co">#&gt; (Intercept)        disp         cyl </span>
-<span class="co">#&gt; 34.66099474 -0.02058363 -1.58727681</span></pre></body></html></div>
+<span class="co">#&gt; 34.66099474 -0.02058363 -1.58727681</span>
+</pre></div>
 <p>When reporting the coefficient for <code>cyl</code> we might say, “Keeping displacement constant, an additional cylinder is associated with a loss of about 1.6 miles-per-gallon.” But now let’s say that the data file gets updated:</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">my_new_data</span>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="kw">my_new_data</span>
 <span class="co">#&gt; # A tibble: 48 x 3</span>
 <span class="co">#&gt;      mpg  disp   cyl</span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1  18.1 225       6</span>
-<span class="co">#&gt;  2  19.2 168.      6</span>
-<span class="co">#&gt;  3  15   301       8</span>
-<span class="co">#&gt;  4  15   301       8</span>
-<span class="co">#&gt;  5  33.9  71.1     4</span>
+<span class="co">#&gt;  1  15.2 304       8</span>
+<span class="co">#&gt;  2  15.5 318       8</span>
+<span class="co">#&gt;  3  24.4 147.      4</span>
+<span class="co">#&gt;  4  10.4 460       8</span>
+<span class="co">#&gt;  5  19.7 145       6</span>
 <span class="co">#&gt;  6  33.9  71.1     4</span>
-<span class="co">#&gt;  7  22.8 141.      4</span>
-<span class="co">#&gt;  8  16.4 276.      8</span>
-<span class="co">#&gt;  9  21   160       6</span>
-<span class="co">#&gt; 10  16.4 276.      8</span>
-<span class="co">#&gt; # … with 38 more rows</span></pre></body></html></div>
+<span class="co">#&gt;  7  14.7 440       8</span>
+<span class="co">#&gt;  8  15.2 304       8</span>
+<span class="co">#&gt;  9  26   120.      4</span>
+<span class="co">#&gt; 10  32.4  78.7     4</span>
+<span class="co">#&gt; # … with 38 more rows</span>
+</pre></div>
 <p>Notice that we now have 48 rows instead of 32. If we re-estimate the model, we can see the coefficients have changed:</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">lm_mod</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">mpg</span> ~ <span class="no">disp</span> + <span class="no">cyl</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">my_new_data</span>)
-<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(<span class="no">lm_mod</span>)
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="kw">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="kw">mpg</span> <span class="op">~</span> <span class="kw">disp</span> <span class="op">+</span> <span class="kw">cyl</span>, data = <span class="kw">my_new_data</span>)
+<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(<span class="kw">lm_mod</span>)
 <span class="co">#&gt; (Intercept)        disp         cyl </span>
-<span class="co">#&gt; 35.91240983 -0.02292719 -1.70348204</span></pre></body></html></div>
-<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -1.7. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
+<span class="co">#&gt;  36.1404205  -0.0192436  -1.8343012</span>
+</pre></div>
+<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -1.8. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
 </div>
 <div id="additional-helpers" class="section level3">
 <h3 class="hasAnchor">
@@ -579,7 +595,7 @@ Renders as…
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

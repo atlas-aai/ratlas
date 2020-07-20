@@ -53,7 +53,7 @@
 consistent manner. This is useful for printing numbers inline with text, as
 well as for formatting tables. Many of the included formatting functions were
 adapted from TJ Mahr's printy package." />
-<meta property="og:image" content="https://atlas-aai.github.io/ratlas/reference/figures/ratlas-large.png" />
+<meta property="og:image" content="https://ratlas.netlify.app/reference/figures/ratlas-large.png" />
 <meta property="og:image:alt" content="Hex logo for the ratlas package" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@wjakethompson" />
@@ -158,19 +158,19 @@ well as for formatting tables. Many of the included formatting functions were
 adapted from TJ Mahr's <a href='https://github.com/tjmahr/printy'>printy</a> package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fmt_digits</span>(<span class='no'>x</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>)
+    <pre class="usage"><span class='fu'>fmt_digits</span>(<span class='kw'>x</span>, digits = <span class='fl'>3</span>)
 
-<span class='fu'>fmt_leading_zero</span>(<span class='no'>x</span>)
+<span class='fu'>fmt_leading_zero</span>(<span class='kw'>x</span>)
 
-<span class='fu'>fmt_minus</span>(<span class='no'>x</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>fmt_minus</span>(<span class='kw'>x</span>, output = <span class='kw'>NULL</span>)
 
-<span class='fu'>fmt_replace_na</span>(<span class='no'>x</span>, <span class='kw'>replacement</span> <span class='kw'>=</span> <span class='st'>"&amp;mdash;"</span>)
+<span class='fu'>fmt_replace_na</span>(<span class='kw'>x</span>, replacement = <span class='st'>"&amp;mdash;"</span>)
 
-<span class='fu'>fmt_corr</span>(<span class='no'>x</span>, <span class='no'>digits</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>fmt_corr</span>(<span class='kw'>x</span>, <span class='kw'>digits</span>, output = <span class='kw'>NULL</span>)
 
-<span class='fu'>fmt_prop</span>(<span class='no'>x</span>, <span class='no'>digits</span>, <span class='kw'>fmt_small</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>fmt_prop</span>(<span class='kw'>x</span>, <span class='kw'>digits</span>, fmt_small = <span class='fl'>TRUE</span>)
 
-<span class='fu'>fmt_prop_pct</span>(<span class='no'>x</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>fmt_small</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+<span class='fu'>fmt_prop_pct</span>(<span class='kw'>x</span>, digits = <span class='fl'>0</span>, fmt_small = <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -237,17 +237,16 @@ of the American Psychological Association</em> (7th ed.).
 <code><a href='padding.html'>padding</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>test_cor</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mtcars</span>[, <span class='fl'>1</span>:<span class='fl'>4</span>])
-<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='no'>test_cor</span>[<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='fl'>3</span>], <span class='fl'>2</span>))</div><div class='output co'>#&gt; [1] "-0.85" "0.9"   "1"     "0.79" </div><div class='input'><span class='fu'>fmt_digits</span>(<span class='no'>test_cor</span>[<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='fl'>3</span>], <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] "-0.85" "0.90"  "1.00"  "0.79" </div><div class='input'>
-<span class='fu'>fmt_digits</span>(<span class='no'>test_cor</span>[<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='fl'>3</span>], <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
+    <pre class="examples"><div class='input'><span class='kw'>test_cor</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='kw'>mtcars</span>[, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>])
+<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='kw'>test_cor</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>3</span>], <span class='fl'>2</span>))</div><div class='output co'>#&gt; [1] "-0.85" "0.9"   "1"     "0.79" </div><div class='input'><span class='fu'>fmt_digits</span>(<span class='kw'>test_cor</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>3</span>], <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] "-0.85" "0.90"  "1.00"  "0.79" </div><div class='input'>
+<span class='fu'>fmt_digits</span>(<span class='kw'>test_cor</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>3</span>], <span class='fl'>2</span>) <span class='op'>%&gt;%</span>
   <span class='fu'>fmt_leading_zero</span>()</div><div class='output co'>#&gt; [1] "-.85" ".90"  "1.00" ".79" </div><div class='input'>
-<span class='fu'>fmt_digits</span>(<span class='no'>test_cor</span>[<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='fl'>3</span>], <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'>fmt_digits</span>(<span class='kw'>test_cor</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>3</span>], <span class='fl'>2</span>) <span class='op'>%&gt;%</span>
   <span class='fu'>fmt_minus</span>()</div><div class='output co'>#&gt; [1] "&amp;minus;0.85" "0.90"        "1.00"        "0.79"       </div><div class='input'>
-<span class='fu'>fmt_digits</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>test_cor</span>[<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='fl'>3</span>], <span class='fl'>NA_real_</span>), <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>fmt_replace_na</span>(<span class='kw'>replacement</span> <span class='kw'>=</span> <span class='st'>"&amp;mdash;"</span>)</div><div class='output co'>#&gt; [1] "-0.85"   "0.90"    "1.00"    "0.79"    "&amp;mdash;"</div><div class='input'>
-<span class='fu'>fmt_corr</span>(<span class='no'>test_cor</span>[<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='fl'>3</span>], <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] "&amp;minus;.85" ".90"        "1.00"       ".79"       </div><div class='input'>
-<span class='fu'>fmt_prop</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.001</span>, <span class='fl'>0.035</span>, <span class='fl'>0.683</span>), <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] "&lt; .01" ".04"   ".68"  </div><div class='input'>
-</div></pre>
+<span class='fu'>fmt_digits</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>test_cor</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>3</span>], <span class='fl'>NA_real_</span>), <span class='fl'>2</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>fmt_replace_na</span>(replacement = <span class='st'>"&amp;mdash;"</span>)</div><div class='output co'>#&gt; [1] "-0.85"   "0.90"    "1.00"    "0.79"    "&amp;mdash;"</div><div class='input'>
+<span class='fu'>fmt_corr</span>(<span class='kw'>test_cor</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>3</span>], <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] "&amp;minus;.85" ".90"        "1.00"       ".79"       </div><div class='input'>
+<span class='fu'>fmt_prop</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.001</span>, <span class='fl'>0.035</span>, <span class='fl'>0.683</span>), digits = <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] "&lt; .01" ".04"   ".68"  </div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -263,7 +262,7 @@ of the American Psychological Association</em> (7th ed.).
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

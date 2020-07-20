@@ -1,102 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/index.html</loc>
+    <loc>https://ratlas.netlify.app/index.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/ArialNarrow.html</loc>
+    <loc>https://ratlas.netlify.app/reference/ArialNarrow.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/Montserrat.html</loc>
+    <loc>https://ratlas.netlify.app/reference/Montserrat.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/append_summary.html</loc>
+    <loc>https://ratlas.netlify.app/reference/append_summary.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/fmt_table.html</loc>
+    <loc>https://ratlas.netlify.app/reference/fmt_table.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/formatting.html</loc>
+    <loc>https://ratlas.netlify.app/reference/formatting.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/ggsave2.html</loc>
+    <loc>https://ratlas.netlify.app/reference/ggsave2.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/import_montserrat.html</loc>
+    <loc>https://ratlas.netlify.app/reference/import_montserrat.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/inc.html</loc>
+    <loc>https://ratlas.netlify.app/reference/inc.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/only_if.html</loc>
+    <loc>https://ratlas.netlify.app/reference/only_if.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/padding.html</loc>
+    <loc>https://ratlas.netlify.app/reference/padding.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/palette_atlas.html</loc>
+    <loc>https://ratlas.netlify.app/reference/palette_atlas.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/palette_lcrost.html</loc>
+    <loc>https://ratlas.netlify.app/reference/palette_lcrost.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/palette_okabeito.html</loc>
+    <loc>https://ratlas.netlify.app/reference/palette_okabeito.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/pipe.html</loc>
+    <loc>https://ratlas.netlify.app/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/rat_cap_words.html</loc>
+    <loc>https://ratlas.netlify.app/reference/rat_cap_words.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/ratlas-ggproto.html</loc>
+    <loc>https://ratlas.netlify.app/reference/ratlas-ggproto.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/ratlas-package.html</loc>
+    <loc>https://ratlas.netlify.app/reference/ratlas-package.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/reexports.html</loc>
+    <loc>https://ratlas.netlify.app/reference/reexports.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/scale_atlas.html</loc>
+    <loc>https://ratlas.netlify.app/reference/scale_atlas.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/scale_lcrost.html</loc>
+    <loc>https://ratlas.netlify.app/reference/scale_lcrost.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/scale_okabeito.html</loc>
+    <loc>https://ratlas.netlify.app/reference/scale_okabeito.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/set_theme.html</loc>
+    <loc>https://ratlas.netlify.app/reference/set_theme.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/slides_html.html</loc>
+    <loc>https://ratlas.netlify.app/reference/slides_html.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/techreport_pdf.html</loc>
+    <loc>https://ratlas.netlify.app/reference/techreport_pdf.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/theme_atlas.html</loc>
+    <loc>https://ratlas.netlify.app/reference/theme_atlas.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/theme_atlas_ms.html</loc>
+    <loc>https://ratlas.netlify.app/reference/theme_atlas_ms.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/topicguide_docx.html</loc>
+    <loc>https://ratlas.netlify.app/reference/topicguide_docx.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/topicguide_pdf.html</loc>
+    <loc>https://ratlas.netlify.app/reference/topicguide_pdf.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/update_geom_font_defaults.html</loc>
+    <loc>https://ratlas.netlify.app/reference/update_geom_font_defaults.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/reference/update_geom_font_ms_defaults.html</loc>
+    <loc>https://ratlas.netlify.app/reference/update_geom_font_ms_defaults.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/articles/plotting.html</loc>
+    <loc>https://ratlas.netlify.app/articles/plotting.html</loc>
   </url>
   <url>
-    <loc>https://atlas-aai.github.io/ratlas/articles/report-writing.html</loc>
+    <loc>https://ratlas.netlify.app/articles/report-writing.html</loc>
   </url>
 </urlset>

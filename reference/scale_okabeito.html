@@ -51,7 +51,7 @@
 <meta property="og:title" content="Okabe-Ito color scale — scale_colour_okabeito" />
 <meta property="og:description" content="This is a color-blind friendly, qualitative scale with eight different
 colors. See palette_okabeito for details." />
-<meta property="og:image" content="https://atlas-aai.github.io/ratlas/reference/figures/ratlas-large.png" />
+<meta property="og:image" content="https://ratlas.netlify.app/reference/figures/ratlas-large.png" />
 <meta property="og:image:alt" content="Hex logo for the ratlas package" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@wjakethompson" />
@@ -161,7 +161,7 @@ colors. See <a href='palette_okabeito.html'>palette_okabeito</a> for details.</p
     <tr>
       <th>...</th>
       <td><p>common discrete scale parameters: <code>name</code>, <code>breaks</code>, <code>labels</code>,
-<code>na.value</code>, <code>limits</code>, <code>guide</code>, and <code>aesthetics</code>. See discrete_scale for
+<code>na.value</code>, <code>limits</code>, <code>guide</code>, and <code>aesthetics</code>. See <a href='https://ggplot2.tidyverse.org/reference/discrete_scale.html'>discrete_scale</a> for
 more details.</p></td>
     </tr>
     <tr>
@@ -187,10 +187,10 @@ transparency.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>iris</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>Sepal.Length</span>, <span class='no'>Sepal.Width</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>Species</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() + <span class='fu'>scale_color_okabeito</span>()</div><div class='img'><img src='scale_okabeito-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>iris</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>Sepal.Length</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>Species</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_density.html'>geom_density</a></span>(<span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.7</span>) + <span class='fu'>scale_fill_okabeito</span>(<span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>5</span>))</div><div class='img'><img src='scale_okabeito-2.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span>)
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>iris</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>Sepal.Length</span>, <span class='kw'>Sepal.Width</span>, color = <span class='kw'>Species</span>)) <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() <span class='op'>+</span> <span class='fu'>scale_color_okabeito</span>()</div><div class='img'><img src='scale_okabeito-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>iris</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>Sepal.Length</span>, fill = <span class='kw'>Species</span>)) <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_density.html'>geom_density</a></span>(alpha = <span class='fl'>0.7</span>) <span class='op'>+</span> <span class='fu'>scale_fill_okabeito</span>(order = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>5</span>))</div><div class='img'><img src='scale_okabeito-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -206,7 +206,7 @@ transparency.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

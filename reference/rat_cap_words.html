@@ -52,7 +52,7 @@
 <meta property="og:description" content="Capitalize the first letters of words in a string. Can either use sentence
 case (i.e., only the first word capitalized; all = FALSE) or title case
 (i.e., all words capitalized; all = TRUE)." />
-<meta property="og:image" content="https://atlas-aai.github.io/ratlas/reference/figures/ratlas-large.png" />
+<meta property="og:image" content="https://ratlas.netlify.app/reference/figures/ratlas-large.png" />
 <meta property="og:image:alt" content="Hex logo for the ratlas package" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@wjakethompson" />
@@ -156,7 +156,7 @@ case (i.e., only the first word capitalized; <code>all = FALSE</code>) or title 
 (i.e., all words capitalized; <code>all = TRUE</code>).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rat_cap_words</span>(<span class='no'>x</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>rat_cap_words</span>(<span class='kw'>x</span>, all = <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,9 +177,9 @@ If <code>FALSE</code> (the default), only the first word is capitalized.</p></td
     <p>A character string with the specified capitalization.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>name</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"zip code"</span>, <span class='st'>"state"</span>, <span class='st'>"final count"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>vapply</a></span>(<span class='no'>name</span>, <span class='no'>rat_cap_words</span>, <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(<span class='fl'>1</span>))</div><div class='output co'>#&gt;      zip code         state   final count 
-#&gt;    "Zip code"       "State" "Final count" </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>vapply</a></span>(<span class='no'>name</span>, <span class='no'>rat_cap_words</span>, <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(<span class='fl'>1</span>), <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;      zip code         state   final count 
+    <pre class="examples"><div class='input'><span class='kw'>name</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"zip code"</span>, <span class='st'>"state"</span>, <span class='st'>"final count"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>vapply</a></span>(<span class='kw'>name</span>, <span class='kw'>rat_cap_words</span>, <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(<span class='fl'>1</span>))</div><div class='output co'>#&gt;      zip code         state   final count 
+#&gt;    "Zip code"       "State" "Final count" </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>vapply</a></span>(<span class='kw'>name</span>, <span class='kw'>rat_cap_words</span>, <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(<span class='fl'>1</span>), all = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;      zip code         state   final count 
 #&gt;    "Zip Code"       "State" "Final Count" </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -196,7 +196,7 @@ If <code>FALSE</code> (the default), only the first word is capitalized.</p></td
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>
