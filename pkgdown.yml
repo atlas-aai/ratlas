@@ -1,0 +1,11 @@
+pandoc: 2.7.3
+pkgdown: 1.5.1
+pkgdown_sha: ~
+articles:
+  plotting: plotting.html
+  report-writing: report-writing.html
+last_built: 2020-07-20T14:52Z
+urls:
+  reference: https://atlas-aai.github.io/ratlas/reference
+  article: https://atlas-aai.github.io/ratlas/articles
+
