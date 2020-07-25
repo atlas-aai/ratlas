@@ -69,15 +69,10 @@ jobs:
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
 
-      - name: Set up V8
+      - name: macOS system dependencies
         if: matrix.config.os == 'macOS-latest'
         run: |
           brew install V8
-
-      - name: Set up ImageMagick 6
-        if: matrix.config.os == 'macOS-latest'
-        run: |
-          brew install pkg-config
           brew install imagemagick@6
 
       - name: Install dependencies
