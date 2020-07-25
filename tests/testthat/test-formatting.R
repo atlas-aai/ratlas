@@ -29,12 +29,18 @@ test_that("fmt_prop_pct", {
   expect_equal(err$arg, "x")
   expect_match(err$message, "between 0 and 1")
 
-  expect_equal(fmt_prop_pct(rand), sprintf("%0.0f", rand * 100))
-  expect_equal(fmt_prop_pct(rand, digits = 2), sprintf("%0.2f", rand * 100))
+  rand <- runif(5)
+  expect_equal(fmt_prop_pct(rand, fmt_small = FALSE),
+               sprintf("%0.0f", rand * 100))
+  expect_equal(fmt_prop_pct(rand, digits = 2, fmt_small = FALSE),
+               sprintf("%0.2f", rand * 100))
 
-  expect_equal(fmt_prop_pct(c(0.012, 0.009, 0.004)), c("1", "1", "< 1"))
-  expect_equal(fmt_prop_pct(c(0.829, 0.080, NA_real_, 0.313), digits = 1),
-               c("82.9", "8.0", NA_character_, "31.3"))
+  expect_equal(fmt_prop_pct(c(0.012, 0.009, 0.004, 0.989, 0.994, 0.997)),
+               c("1", "1", "< 1", "99", "99", "> 99"))
+  expect_equal(fmt_prop_pct(c(0.829, 0.080, NA_real_, 0.313, 0.002, 0.0004,
+                              0.998, 0.9999), digits = 1),
+               c("82.9", "8.0", NA_character_, "31.3", "0.2", "< 0.1", "99.8",
+                 "> 99.9"))
 })
 
 test_that("fmt_leading_zero", {

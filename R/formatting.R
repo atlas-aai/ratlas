@@ -196,7 +196,13 @@ fmt_prop_pct <- function(x, digits = 0, fmt_small = TRUE) {
       fmt_digits(digits) %>%
       paste0_after(.first = "< ")
 
-    x_chr[round(x * 100) < small] <- small_text
+    large <- 100 - small
+    large_text <- large %>%
+      fmt_digits(digits) %>%
+      paste0_after(.first = "> ")
+
+    x_chr[round(x * 100, digits = digits) < small] <- small_text
+    x_chr[round(x * 100, digits = digits) > large] <- large_text
   }
 
   return(x_chr)
