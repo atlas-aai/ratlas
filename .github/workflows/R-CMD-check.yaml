@@ -37,8 +37,6 @@ jobs:
 
       - name: Setup tinytex
         uses: r-lib/actions/setup-tinytex@v1
-        run: |
-          tlmgr --version
 
       - name: Query dependencies
         run: |
