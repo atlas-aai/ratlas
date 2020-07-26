@@ -7,7 +7,7 @@
 
 [![R-CMD-check](https://github.com/atlas-aai/ratlas/workflows/R-CMD-check/badge.svg)](https://github.com/atlas-aai/ratlas/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/atlas-aai/ratlas/branch/master/graph/badge.svg)](https://codecov.io/gh/atlas-aai/ratlas?branch=master)
+coverage](https://codecov.io/gh/atlas-aai/ratlas/branch/main/graph/badge.svg)](https://codecov.io/gh/atlas-aai/ratlas?branch=main)
 <!-- badges: end -->
 
 The goal of ratlas is to provide uniform [R
