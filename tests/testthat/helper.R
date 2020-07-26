@@ -1,4 +1,5 @@
 create_local_rmd_dir <- function(dir = fs::file_temp(pattern = "testproj"),
+                                 copy = FALSE,
                                  env = parent.frame()) {
   if (fs::dir_exists(dir)) {
     usethis::ui_stop({
@@ -12,7 +13,9 @@ create_local_rmd_dir <- function(dir = fs::file_temp(pattern = "testproj"),
     usethis::ui_silence({
       usethis::proj_set(old_project, force = TRUE)
     })
-    fs::dir_copy(dir, old_dir)
+    if (copy) {
+      fs::dir_copy(dir, old_dir)
+    }
     setwd(old_project)
     fs::dir_delete(dir)
     set_theme(font = "default", continuous = "ggplot2", discrete = "ggplot2")

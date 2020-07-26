@@ -37,13 +37,15 @@ test_that("topicguide-docx renders", {
   testthat::skip_on_cran()
 
   # work in a temp directory
-  dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "tpgdocx"))
+  dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "tpgdocx"),
+                              copy = TRUE)
 
   topicguide_docx_skeleton(dir)
   rmd_name <- tolower(basename(dir))
   suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
                                          clean_envir = FALSE))
-  expect_true(file.exists(paste0("_report/", rmd_name, ".docx")))
+  expect_true(file.exists(paste0("_report/", stringr::str_to_title(rmd_name),
+                                 ".docx")))
 })
 
 test_that("slides-html renders", {
