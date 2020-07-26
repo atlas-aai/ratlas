@@ -15,7 +15,8 @@ test_that("techreport-pdf renders", {
   rmd_name <- tolower(basename(dir))
   suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
                                          clean_envir = FALSE))
-  expect_true(file.exists(paste0("_report/", rmd_name, ".pdf")))
+  expect_true(file.exists(paste0("_report/", stringr::str_to_title(rmd_name),
+                                 ".pdf")))
 })
 
 test_that("topicguide-pdf renders", {
@@ -28,7 +29,8 @@ test_that("topicguide-pdf renders", {
   rmd_name <- tolower(basename(dir))
   suppressWarnings(bookdown::render_book(paste0(rmd_name, ".Rmd"), quiet = TRUE,
                                          clean_envir = FALSE))
-  expect_true(file.exists(paste0("_report/", rmd_name, ".pdf")))
+  expect_true(file.exists(paste0("_report/", stringr::str_to_title(rmd_name),
+                                 ".pdf")))
 })
 
 test_that("topicguide-docx renders", {
