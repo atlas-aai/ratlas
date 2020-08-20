@@ -189,7 +189,7 @@ techreport_gitbook <- function(...) {
   base$knitr$opts_chunk$fig.topcaption <- TRUE
   # nolint end
 
-  # base$knitr$knit_hooks$plot <- hook_html_plot_rat
+  base$knitr$knit_hooks$plot <- hook_html_plot_rat
 
   base
 }
