@@ -1,23 +1,5 @@
 library(ggplot2)
 
-test_that("ggsave2 checks spelling", {
-  plot <- ggplot(mtcars, aes(mpg, wt)) +
-    geom_point() +
-    labs(x = "This is some txt",
-         y = "This is more text",
-         title = "Thisy is a titlle",
-         subtitle = "This is a subtitley",
-         caption = "This is a captien") +
-    theme_atlas(grid = "XY")
-
-  # work in a temp directory
-  dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "ggplotspell"))
-
-  expect_warning(ggsave2(plot, filename = "spell.png", dir = "h"), "title")
-  expect_warning(ggsave2(plot, filename = "spell.png", dir = "h"), "subtitle")
-  expect_warning(ggsave2(plot, filename = "spell.png", dir = "h"), "caption")
-})
-
 test_that("orientation works correctly", {
   df <- data.frame(x = 1:3, y = 1:3, z = c("a", "b", "a"), a = 1)
 
