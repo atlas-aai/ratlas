@@ -4,9 +4,10 @@ output:
   bookdown::html_document2:
     number_sections: false
     toc: true
-    toc_float: true
 pkgdown:
   as_is: true
+resource_files:
+  - images/
 vignette: >
   %\VignetteIndexEntry{Plotting in ratlas}
   %\VignetteEngine{knitr::rmarkdown}
@@ -31,11 +32,8 @@ knitr::opts_chunk$set(
   eval = TRUE,
   collapse = TRUE,
   comment = "#>",
-  fig.retina = 3,
-  fig.width = 6,
-  fig.asp = 0.618,
   fig.align = "center",
-  out.width = "90%"
+  out.width = "100%"
 )
 ```
 
@@ -115,17 +113,13 @@ There are a few points to draw attention to when comparing Figure \@ref(fig:them
 
 Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is [Gotham](https://brand.ku.edu/guidelines/typography). However, this font is expensive, and thus inaccessible to most users. [Montserrat](https://fonts.google.com/specimen/Montserrat) is a very similar font that is available for free through Google Fonts. We recommend that you download and install this font on your system directly from Google Fonts, and then call `extrafont::font_import()`. However, a convenience function has been provided, `ratlas::import_montserrat()`, that will do some of the work for you.
 
-Once the Montserrat font has been installed on your system, you can apply it to the ATLAS theme using `ratlas::theme_atlas_ms()`, as shown in Figure \@ref(fig:theme-atlas-ms-ex).
+Once the Montserrat font has been installed on your system, you can apply it to the ATLAS theme using `ratlas::theme_atlas_ms()`.
 
-(ref:theme-atlas-ms-ex-cap) Using the Montserrat font with `ratlas::theme_atlas_ms()`.
-
-```{r theme-atlas-ms-ex, fig.cap = "(ref:theme-atlas-ms-ex-cap)"}
+```{r theme-atlas-ms-ex-build, eval = FALSE}
 ggplot(mtcars, aes(x = mpg, y = disp)) +
   geom_point(aes(color = factor(cyl))) +
   theme_atlas_ms()
 ```
-
-Notice that Figure \@ref(fig:theme-atlas-ms-ex) is identical to Figure \@ref(fig:theme-atlas-ex), with the exception of a different font (i.e., all other theme changes are preserved).
 
 ## Colors
 
