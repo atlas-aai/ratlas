@@ -65,6 +65,7 @@ Suggests:
     vdiffr (>= 0.3.1),
     viridis (>= 0.5.1),
     withr (>= 2.2.0)
+Config/testthat/edition: 2
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
