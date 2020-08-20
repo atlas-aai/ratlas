@@ -27,8 +27,8 @@ formatted consistently and padded for alignment when printed.
 }
 \description{
 Automatic formatting for tables that should "just work" for most use cases.
-For more fine-grained control, see \link[ratlas:formatting]{ratlas::formatting} and
-\link[ratlas:padding]{ratlas::padding}.
+For more fine-grained control, see \link{formatting} and
+\link{padding}.
 }
 \seealso{
 Other formatters: 

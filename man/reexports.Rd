@@ -7,7 +7,6 @@
 \alias{scale_y_comma}
 \alias{scale_x_percent}
 \alias{scale_y_percent}
-\alias{gg_check}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -15,6 +14,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{hrbrthemes}{\code{\link[hrbrthemes]{gg_check}}, \code{\link[hrbrthemes]{scale_x_comma}}, \code{\link[hrbrthemes]{scale_x_percent}}, \code{\link[hrbrthemes]{scale_y_comma}}, \code{\link[hrbrthemes]{scale_y_percent}}}
+  \item{hrbrthemes}{\code{\link[hrbrthemes:scale_x_percent]{scale_x_comma}}, \code{\link[hrbrthemes]{scale_x_percent}}, \code{\link[hrbrthemes:scale_x_percent]{scale_y_comma}}, \code{\link[hrbrthemes:scale_x_percent]{scale_y_percent}}}
 }}
 

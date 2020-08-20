@@ -47,7 +47,7 @@ adapted from TJ Mahr's \href{https://github.com/tjmahr/printy}{printy} package.
 \details{
 \code{fmt_digits()} is a wrapper for \code{\link[base:sprintf]{base::sprintf()}}. Prints a number with
 \code{digits} number of decimal places, without losing trailing zeros, as happens
-with \code{\link[base:round]{base::round()}}.
+with \code{\link[base:Round]{base::round()}}.
 
 \code{fmt_leading_zero()} removes the leading zero for decimal values.
 
