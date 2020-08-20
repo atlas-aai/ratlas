@@ -91,7 +91,7 @@ fmt_leading_zero <- function(x) {
   non_zero <- x %>%
     as.numeric() %>%
     abs() %>%
-    `>`(1) %>%
+    `>`(., 1) %>%
     stats::na.omit()
 
   if (any(non_zero)) {
