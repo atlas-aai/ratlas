@@ -160,53 +160,57 @@ hook_tex_plot_rat <- function(x, options) {
 }
 
 hook_html_plot_rat <- function(x, options) {
-  if (options$fig.show == 'animate') return(knitr::hook_plot_html(x, options))
+  if (options$fig.show == "animate") return(knitr::hook_plot_html(x, options))
 
-  base <- knitr::opts_knit$get('base.url') %n% ''
-  cap <- .img.cap(options)
-  alt <- .img.cap(options, alt = TRUE)
+  base <- knitr::opts_knit$get("base.url") %n% ""
+  cap <- img_cap(options)
+  alt <- img_cap(options, alt = TRUE)
 
-  w <- options[['out.width']]; h <- options[['out.height']]
+  w <- options[["out.width"]]; h <- options[["out.height"]]
   s <- options$out.extra; a <- options$fig.align
-  ai <- options$fig.show == 'asis'
+  ai <- options$fig.show == "asis"
   lnk <- options$fig.link
-  pandoc_html <- cap != '' && knitr::is_html_output()
-  in_bookdown <- isTRUE(knitr::opts_knit$get('bookdown.internal.label'))
+  pandoc_html <- cap != "" && knitr::is_html_output()
+  in_bookdown <- isTRUE(knitr::opts_knit$get("bookdown.internal.label"))
   plot1 <- ai || options$fig.cur <= 1L
   plot2 <- ai || options$fig.cur == options$fig.num
   to <- pandoc_to(); from <- pandoc_from()
-  if (is.null(w) && is.null(h) && is.null(s) && a == 'default' && !(pandoc_html && in_bookdown)) {
+  if (is.null(w) && is.null(h) && is.null(s) && a == "default" &&
+      !(pandoc_html && in_bookdown)) {
     # append <!-- --> to ![]() to prevent the figure environment in these cases
-    nocap = cap == '' && !is.null(to) && !grepl('^markdown', to) &&
-      (options$fig.num == 1 || ai) && !grepl('-implicit_figures', from)
-    res = sprintf('![%s](%s%s)', cap, base, .upload.url(x))
-    if (!is.null(lnk) && !is.na(lnk)) res = sprintf('[%s](%s)', res, lnk)
-    res = paste0(res, if (nocap) '<!-- -->' else '', if (knitr::is_latex_output()) ' ' else '')
+    nocap <- cap == "" && !is.null(to) && !grepl("^markdown", to) &&
+      (options$fig.num == 1 || ai) && !grepl("-implicit_figures", from)
+    res <- sprintf("![%s](%s%s)", cap, base, upload_url(x))
+    if (!is.null(lnk) && !is.na(lnk)) res <- sprintf("[%s](%s)", res, lnk)
+    res <- paste0(res, if (nocap) "<!-- -->" else "",
+                  if (knitr::is_latex_output()) " " else "")
     return(res)
   }
-  add_link = function(x) {
+  add_link <- function(x) {
     if (is.null(lnk) || is.na(lnk)) return(x)
     sprintf('<a href="%s" target="_blank">%s</a>', lnk, x)
   }
   # use HTML syntax <img src=...>
-  if (pandoc_html && !isTRUE(grepl('-implicit_figures', from))) {
-    d1 = if (plot1) sprintf('<div class="figure"%s>\n', css_text_align(a))
-    d2 = sprintf('<p class="caption">%s</p>', cap)
-    note <- if (plot2) sprintf('<p class="fignote"><em>Note.</em> %s</p>', options$fig.note)
-    img = sprintf(
+  if (pandoc_html && !isTRUE(grepl("-implicit_figures", from))) {
+    d1 <- if (plot1) sprintf('<div class="figure"%s>\n', css_text_align(a))
+    d2 <- sprintf('<p class="caption">%s</p>', cap)
+    note <- if (plot2) sprintf('<p class="fignote"><em>Note.</em> %s</p>',
+                               options$fig.note)
+    img <- sprintf(
       '<img src="%s" alt="%s" %s />',
-      paste0(knitr::opts_knit$get('base.url'), .upload.url(x)), alt, .img.attr(w, h, s)
+      paste0(knitr::opts_knit$get("base.url"), upload_url(x)), alt,
+      img_attr(w, h, s)
     )
-    img = add_link(img)
+    img <- add_link(img)
     # whether to place figure caption at the top or bottom of a figure
     if (isTRUE(options$fig.topcaption)) {
-      paste0(d1, if (ai || options$fig.cur <= 1) d2, img, "<br/>", note, if (plot2) '</div>')
+      paste0(d1, if (ai || options$fig.cur <= 1) d2, img, "<br/>", note,
+             if (plot2) "</div>")
     } else {
-      paste0(d1, img, "<br/>", note, if (plot2) paste0('\n', d2, '\n</div>'))
+      paste0(d1, img, "<br/>", note, if (plot2) paste0("\n", d2, "\n</div>"))
     }
-  } else add_link(.img.tag(
-    .upload.url(x), w, h, alt,
+  } else add_link(img_tag(
+    upload_url(x), w, h, alt,
     c(s, sprintf('style="%s"', css_align(a)))
   ))
 }
-
