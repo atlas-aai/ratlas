@@ -1,0 +1,11 @@
+citHeader("To cite ratlas in publications use:")
+
+citEntry(
+  entry = "Manual",
+  title = "ratlas: ATLAS formatting functions and templates",
+  author = "W Jake Thompson, Noelle Pablo, Jeffrey Hoover",
+  year = 2020,
+  note = "R package version 0.0.0.9000",
+  url = "https://ratlas.netlify.app",
+  textVersion = paste("Thompson, WJ, Pablo, N, Hoover, J (2020). ratlas: ATLAS formatting functions and templates. R package version 0.0.0.9000. https://ratlas.netlify.app/.")
+)
