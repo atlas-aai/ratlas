@@ -103,9 +103,9 @@ fmt_leading_zero <- function(x) {
 
   non_zero <- x %>%
     as.numeric() %>%
-    abs() %>%
-    `>`(., 1) %>%
-    stats::na.omit()
+    abs()
+  non_zero <- non_zero > 1
+  non_zero <- stats::na.omit(non_zero)
 
   if (any(non_zero)) {
     rlang::warn("unexpected_data",
