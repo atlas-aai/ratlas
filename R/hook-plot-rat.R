@@ -194,8 +194,7 @@ hook_html_plot_rat <- function(x, options) {
   if (pandoc_html && !isTRUE(grepl("-implicit_figures", from))) {
     d1 <- if (plot1) sprintf('<div class="figure"%s>\n', css_text_align(a))
     d2 <- sprintf('<p class="caption">%s</p>', cap)
-    note <- if (plot2) sprintf('<p class="fignote"><em>Note.</em> %s</p>',
-                               options$fig.note)
+    note <- if (plot2) sprintf('<p class="fignote">%s</p>', options$fig.note)
     img <- sprintf(
       '<img src="%s" alt="%s" %s />',
       paste0(knitr::opts_knit$get("base.url"), upload_url(x)), alt,

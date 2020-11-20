@@ -52,7 +52,7 @@ img_cap <- function(options, alt = FALSE) {
     options$fig.lp, options$label,
     if (options$fig.num > 1L && options$fig.show == "asis") c("-",
                                                               options$fig.cur)
-  ), "</strong><br/><em>", cap, "</em>")
+  ), "</strong><em> ", cap, "</em>")
 }
 upload_url <- function(x) {
   knitr::opts_knit$get("upload.fun")(x)
