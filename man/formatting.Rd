@@ -2,6 +2,7 @@
 % Please edit documentation in R/formatting.R
 \name{formatting}
 \alias{formatting}
+\alias{fmt_count}
 \alias{fmt_digits}
 \alias{fmt_leading_zero}
 \alias{fmt_minus}
@@ -11,6 +12,8 @@
 \alias{fmt_prop_pct}
 \title{Text and Number Formatting}
 \usage{
+fmt_count(x, big_interval = 3L, big_mark = ",")
+
 fmt_digits(x, digits = 3)
 
 fmt_leading_zero(x)
@@ -27,6 +30,11 @@ fmt_prop_pct(x, digits = 0, fmt_small = TRUE)
 }
 \arguments{
 \item{x}{Number or number string to be formatted}
+
+\item{big_interval}{Interval indicating where to place numeric dividers}
+
+\item{big_mark}{Character used as mark between big interval before the
+decimal}
 
 \item{digits}{Number of decimal places to retain}
 

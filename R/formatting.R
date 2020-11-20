@@ -6,6 +6,9 @@
 #' adapted from TJ Mahr's [printy](https://github.com/tjmahr/printy) package.
 #'
 #' @param x Number or number string to be formatted
+#' @param big_interval Interval indicating where to place numeric dividers
+#' @param big_mark Character used as mark between big interval before the
+#'   decimal
 #' @param digits Number of decimal places to retain
 #' @param replacement The value to use when replacing missing values
 #' @param fmt_small Indicator for replacing zero with `<` (e.g., `.000` becomes
@@ -69,6 +72,16 @@
 #'   of the American Psychological Association* (7th ed.).
 #'   \url{https://doi.org/10.1037/0000165-000}
 
+
+#' @export
+#' @rdname formatting
+fmt_count <- function(x, big_interval = 3L, big_mark = ",") {
+  x <- check_0_int(x, name = "x")
+  big_interval <- check_pos_int(big_interval, name = "big_interval")
+  big_mark <- check_character(big_mark, name = "big_mark")
+
+  prettyNum(x, big.mark = big_mark, big.interval = big_interval)
+}
 
 #' @export
 #' @rdname formatting

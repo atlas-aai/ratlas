@@ -148,7 +148,7 @@ $endif$
 \DeclareFieldFormat{doi}{%
   \url{https://doi.org/#1}}
 \DeclareFieldFormat{eprint:arXiv}{%
-  arXiv\addcolon\nolinkurl{#1}}
+  arXiv\addperiod\space\url{https://arxiv.org/abs/#1}}
 
 $for(bibliography)$
 \addbibresource{$bibliography$}
