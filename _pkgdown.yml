@@ -3,7 +3,7 @@ url: https://ratlas.netlify.app
 template:
   params:
     bootswatch: simplex
-   ganalytics: G-M7GZY05J5E
+    ganalytics: G-M7GZY05J5E
   opengraph:
     image:
       src: man/figures/logo.png
