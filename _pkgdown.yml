@@ -3,9 +3,10 @@ url: https://ratlas.netlify.app
 template:
   params:
     bootswatch: simplex
+   ganalytics: G-M7GZY05J5E
   opengraph:
     image:
-      src: man/figures/ratlas-large.png
+      src: man/figures/logo.png
       alt: "Hex logo for the ratlas package"
     twitter:
       creator: "@wjakethompson"
