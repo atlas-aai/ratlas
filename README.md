@@ -1,13 +1,14 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ratlas <img src="man/figures/ratlas-large.png" align="right" width="120" />
+# ratlas <img src="man/figures/logo.png" align="right" width="120"/>
 
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/atlas-aai/ratlas/workflows/R-CMD-check/badge.svg)](https://github.com/atlas-aai/ratlas/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/atlas-aai/ratlas/branch/main/graph/badge.svg)](https://codecov.io/gh/atlas-aai/ratlas?branch=main)
+
 <!-- badges: end -->
 
 The goal of ratlas is to provide uniform [R
