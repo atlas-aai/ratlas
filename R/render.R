@@ -75,11 +75,10 @@ topicguide_pdf <- function(...) {
   base$knitr$opts_chunk$fig.show <- "hold"
   # nolint end
 
-  base$knitr$knit_hooks$plot <- hook_plot_rat
+  base$knitr$knit_hooks$plot <- hook_tex_plot_rat
 
   base
 }
-
 
 
 #' Create an R Markdown PDF Document Tech Report
@@ -127,8 +126,70 @@ techreport_pdf <- function(apa6 = FALSE, ...) {
   if (tolower(apa6) %in% c("true", "yes")) {
     base$knitr$knit_hooks$plot <- knitr::hook_plot_tex
   } else {
-    base$knitr$knit_hooks$plot <- hook_plot_rat
+    base$knitr$knit_hooks$plot <- hook_tex_plot_rat
   }
+
+  base
+}
+
+
+#' Create an R Markdown GitBook Tech Report
+#'
+#' This is a function called in the output of the yaml of the Rmd file to
+#' specify using the standard DLM tech report pdf document formatting.
+#'
+#' @param ... Arguments to be passed to `[bookdown::gitbook]`
+#'
+#' @return A modified `gitbook` with the standard tech report formatting.
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#'   output: ratlas::techreport_gitbook
+#' }
+techreport_gitbook <- function(...) {
+  base <-
+    bookdown::gitbook(css = "assets/style.css",
+                      split_by = "chapter+number",
+                      split_bib = FALSE,
+                      pandoc_args = "--lua-filter=assets/footnote.lua",
+                      includes = list(in_header = "assets/style.html"),
+                      config = list(
+                        toc = list(
+                          collapse = "section",
+                          scroll_highlight = TRUE,
+                          before = glue::glue("<li>",
+                                                "<strong>",
+                                                  "<a href=\"./\">",
+                                                    "Dynamic Learning Maps",
+                                                  "</a>",
+                                                "</strong>",
+                                              "</li>")
+                        ),
+                        download = "pdf"
+                      ), ...)
+
+  # nolint start
+  base$knitr$opts_chunk$comment <- "#>"
+  base$knitr$opts_chunk$message <- FALSE
+  base$knitr$opts_chunk$warning <- FALSE
+  base$knitr$opts_chunk$error <- FALSE
+  base$knitr$opts_chunk$echo <- FALSE
+  base$knitr$opts_chunk$cache <- FALSE
+  base$knitr$opts_chunk$fig.width <- 8
+  base$knitr$opts_chunk$fig.asp <- 0.618
+  base$knitr$opts_chunk$fig.ext <- "png"
+  base$knitr$opts_chunk$fig.align <- "center"
+  base$knitr$opts_chunk$fig.retina <- 3
+  base$knitr$opts_chunk$fig.path <- "figures/"
+  base$knitr$opts_chunk$fig.pos <- "H"
+  base$knitr$opts_chunk$out.extra <- ""
+  base$knitr$opts_chunk$out.width <- "100%"
+  base$knitr$opts_chunk$fig.show <- "hold"
+  base$knitr$opts_chunk$fig.topcaption <- TRUE
+  # nolint end
+
+  base$knitr$knit_hooks$plot <- hook_html_plot_rat
 
   base
 }

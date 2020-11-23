@@ -45,7 +45,7 @@ test_that("fmt_prop_pct", {
 
 test_that("fmt_leading_zero", {
   expect_warning(fmt_leading_zero("1.34"), "Non-zero")
-  expect_warning(fmt_leading_zero("a"), "coercion")
+  expect_warning(expect_warning(fmt_leading_zero("a"), "coercion"), "coercion")
 
   expect_equal(fmt_leading_zero("0.4958"), ".4958")
   expect_equal(fmt_leading_zero("-0.4081"), "-.4081")

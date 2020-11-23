@@ -19,8 +19,13 @@
 #'
 #' @export
 set_theme <- function(font = c("Arial Narrow", "Montserrat", "default"),
-                      discrete = "okabeito", continuous = "viridis", ...) {
+                      discrete = c("okabeito", "atlas", "ggplot2"),
+                      continuous = c("viridis", "magma", "inferno", "plasma",
+                                     "cividis", "ggplot2"),
+                      ...) {
   font <- match.arg(font)
+  discrete <- match.arg(discrete)
+  continuous <- match.arg(continuous)
   cont_option <- switch(continuous,
                         magma = "A",
                         inferno = "B",
@@ -45,30 +50,30 @@ set_theme <- function(font = c("Arial Narrow", "Montserrat", "default"),
                                                 size = 3.88, color = "black"))
   }
 
-  pos <- 1
-  envir <- as.environment(pos)
   if (!is.null(disc_option)) {
-    assign("scale_colour_discrete", function(..., values = disc_option)
-      ggplot2::scale_colour_manual(..., values = values), envir = envir)
-    assign("scale_fill_discrete", function(..., values = disc_option)
-      ggplot2::scale_fill_manual(..., values = values), envir = envir)
+    disc_fill <- switch(discrete,
+                       okabeito = scale_fill_okabeito,
+                       atlas = scale_fill_atlas)
+    disc_colr <- switch(discrete,
+                        okabeito = scale_colour_okabeito,
+                        atlas = scale_colour_atlas)
+    options(ggplot2.discrete.fill = disc_fill)
+    options(ggplot2.discrete.colour = disc_colr)
   } else {
-    assign("scale_colour_discrete", ggplot2::scale_colour_discrete(),
-           envir = envir)
-    assign("scale_fill_discrete", ggplot2::scale_fill_discrete(),
-           envir = envir)
+    options(ggplot2.discrete.fill = NULL)
+    options(ggplot2.discrete.colour = NULL)
   }
   if (!is.null(cont_option)) {
-    assign("scale_fill_continuous", function(..., option = cont_option)
-      ggplot2::scale_fill_continuous(..., option = option, type = "viridis"),
-      envir = envir)
-    assign("scale_colour_continuous", function(..., option = cont_option)
-      ggplot2::scale_colour_continuous(..., option = option, type = "viridis"),
-      envir = envir)
+    cont_fill <- function(..., option = cont_option) {
+      ggplot2::scale_fill_continuous(..., option = option, type = "viridis")
+    }
+    cont_colr <- function(..., option = cont_option) {
+      ggplot2::scale_colour_continuous(..., option = option, type = "viridis")
+    }
+    options(ggplot2.continuous.fill = cont_fill)
+    options(ggplot2.continuous.colour = cont_colr)
   } else {
-    assign("scale_fill_continuous", ggplot2::scale_fill_continuous(),
-           envir = envir)
-    assign("scale_colour_continuous", ggplot2::scale_colour_continuous(),
-           envir = envir)
+    options(ggplot2.continuous.fill = NULL)
+    options(ggplot2.continuous.colour = NULL)
   }
 }

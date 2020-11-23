@@ -12,13 +12,13 @@ test_that("apa7 fig hook works", {
   x <- c("figures/fig-1.png", "figures/fig-2.png", "figures/fig-3.png")
 
   opt$fig.cur <- 1
-  chunk1 <- hook_plot_rat(x[1], opt)
+  chunk1 <- hook_tex_plot_rat(x[1], opt)
 
   opt$fig.cur <- 2
-  chunk2 <- hook_plot_rat(x[2], opt)
+  chunk2 <- hook_tex_plot_rat(x[2], opt)
 
   opt$fig.cur <- 3
-  chunk3 <- hook_plot_rat(x[3], opt)
+  chunk3 <- hook_tex_plot_rat(x[3], opt)
 
   expect_equal(chunk1, "\\begin{figure}[H]\n\\caption[A Short Caption]{A Caption}\\label{}\n\n\n{\\centering \\subfloat[\\label{1}]{\\includegraphics[width=100%,]{figures/fig-1} }")
   expect_equal(chunk2, "\\subfloat[\\label{2}]{\\includegraphics[width=100%,]{figures/fig-2} }\\newline")

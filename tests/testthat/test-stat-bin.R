@@ -67,7 +67,11 @@ test_that("trimmed histrogram works", {
   vdiffr::expect_doppelganger("no_color_hist", plot1)
   vdiffr::expect_doppelganger("trimmed_hist_bound0", plot2)
   vdiffr::expect_doppelganger("trimmed_hist_center0", plot3)
-  expect_warning(ggplot_build(plot4), "bins must be less than 1,000,000")
+  expect_warning(
+    expect_warning(
+      expect_warning(ggplot_build(plot4), "bins must be less than 1,000,000"),
+      "bins must be less than 1,000,000"),
+    "bins must be less than 1,000,000")
   vdiffr::expect_doppelganger("bins30_bound0", plot5)
   vdiffr::expect_doppelganger("one_bin", plot6)
 })

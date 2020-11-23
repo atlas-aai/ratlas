@@ -21,12 +21,6 @@ ggsave2 <- function(plot = ggplot2::last_plot(), filename, device = NULL,
                     dir = c("h", "v"), dpi = "retina", ...) {
   dir <- match.arg(dir)
 
-  # Check spelling of labels and titles
-  spell_check <- quiet_gg_check(plot)
-  if (length(spell_check$messages) !=  0) {
-    warning(spell_check$messages)
-  }
-
   # Calculate aspect ratio if not fixed
   if (is.null(height)) {
     asp <- ifelse(dir == "h", 0.618, 1.618)
@@ -51,5 +45,3 @@ ggsave2 <- function(plot = ggplot2::last_plot(), filename, device = NULL,
   # return plot invisibly
   invisible(plot)
 }
-
-quiet_gg_check <- purrr::quietly(gg_check)

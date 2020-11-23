@@ -1,0 +1,5 @@
+<center>**All rights reserved.** Any or all portions of this document may be reproduced and distributed without prior permission provided the source is cited as:</center></br>
+
+<p class="hangingindent">
+Last, F. M. (Year). *Report Title* (Technical Report No. YY-##). University of Kansas, Accessible Teaching, Learning, and Assessment Systems.
+</p>

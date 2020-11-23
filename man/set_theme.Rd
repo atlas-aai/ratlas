@@ -6,8 +6,8 @@
 \usage{
 set_theme(
   font = c("Arial Narrow", "Montserrat", "default"),
-  discrete = "okabeito",
-  continuous = "viridis",
+  discrete = c("okabeito", "atlas", "ggplot2"),
+  continuous = c("viridis", "magma", "inferno", "plasma", "cividis", "ggplot2"),
   ...
 )
 }
