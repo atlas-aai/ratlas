@@ -75,6 +75,7 @@ check_0_int <- function(x, name) {
     x
   }
 }
+check_0_int <- Vectorize(check_0_int, USE.NAMES = FALSE)
 
 check_bound_real <- function(x, name, lb, ub) {
   if (!is.numeric(x)) {

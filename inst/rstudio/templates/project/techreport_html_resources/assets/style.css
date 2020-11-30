@@ -1,6 +1,6 @@
 p.caption {
-  color: #777;
   margin-top: 10px;
+  text-align: left;
 }
 p.fignote {
   text-align: left;
@@ -34,7 +34,7 @@ pre code {
 }
 
 
-#dummy-title h1 {
+#placeholder-title h1 {
   visibility: hidden;
 }
 
@@ -46,7 +46,7 @@ h1.blank {
   display: none;
 }
 
-#dummy-title p {
+#placeholder-title p {
   text-align: center;
 }
 
