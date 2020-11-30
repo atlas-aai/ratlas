@@ -61,10 +61,6 @@ check_0_int <- function(x, name) {
   }
   x <- as.integer(x)
 
-  if (length(x) != 1) {
-    abort_bad_argument(name, must = "be of length 1", not = length(x))
-  }
-
   if (is.na(x)) {
     abort_bad_argument(name, must = "be non-missing")
   }
