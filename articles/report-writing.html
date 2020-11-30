@@ -519,24 +519,24 @@ Renders as…
 <span class="co">#&gt; # A tibble: 48 x 3</span>
 <span class="co">#&gt;      mpg  disp   cyl</span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1  32.4  78.7     4</span>
-<span class="co">#&gt;  2  24.4 147.      4</span>
-<span class="co">#&gt;  3  15.2 304       8</span>
-<span class="co">#&gt;  4  30.4  95.1     4</span>
-<span class="co">#&gt;  5  21   160       6</span>
-<span class="co">#&gt;  6  10.4 472       8</span>
-<span class="co">#&gt;  7  14.3 360       8</span>
-<span class="co">#&gt;  8  15.8 351       8</span>
-<span class="co">#&gt;  9  17.8 168.      6</span>
-<span class="co">#&gt; 10  21.4 258       6</span>
+<span class="co">#&gt;  1  19.2  168.     6</span>
+<span class="co">#&gt;  2  15.2  276.     8</span>
+<span class="co">#&gt;  3  15.8  351      8</span>
+<span class="co">#&gt;  4  13.3  350      8</span>
+<span class="co">#&gt;  5  14.7  440      8</span>
+<span class="co">#&gt;  6  21.4  258      6</span>
+<span class="co">#&gt;  7  26    120.     4</span>
+<span class="co">#&gt;  8  22.8  108      4</span>
+<span class="co">#&gt;  9  14.3  360      8</span>
+<span class="co">#&gt; 10  21.4  121      4</span>
 <span class="co">#&gt; # … with 38 more rows</span></code></pre></div>
 <p>Notice that we now have 48 rows instead of 32. If we re-estimate the model, we can see the coefficients have changed:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">my_new_data</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span>
 <span class="co">#&gt; (Intercept)        disp         cyl </span>
-<span class="co">#&gt; 35.37925208 -0.02701518 -1.48238192</span></code></pre></div>
-<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -1.5. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
+<span class="co">#&gt; 33.31232663 -0.02768729 -1.20829628</span></code></pre></div>
+<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -1.2. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
 </div>
 <div id="additional-helpers" class="section level3">
 <h3 class="hasAnchor">
