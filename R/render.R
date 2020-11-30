@@ -166,7 +166,8 @@ techreport_gitbook <- function(...) {
                                                 "</strong>",
                                               "</li>")
                         ),
-                        download = "pdf"
+                        download = "pdf",
+                        sharing = "no"
                       ), ...)
 
   # nolint start
