@@ -95,7 +95,11 @@
     \if\instring{ATLAS}{$program$}
     \definecolor{progcolor}{RGB}{22,91,126}
     \else
-    \definecolor{progcolor}{RGB}{0,0,0}
+      \if\instring{DCPS}{$program$}
+      \definecolor{progcolor}{RGB}{56,122,88}
+      \else
+      \definecolor{progcolor}{RGB}{0,0,0}
+      \fi
     \fi
   \fi
 \fi
@@ -253,7 +257,11 @@ $endif$
 \if\instring{DLM}{$program$}
 \newcommand{\progName}{Dynamic Learning Maps}
 \else
-\newcommand{\progName}{$program$}
+  \if\instring{DCPS}{$program$}
+  \newcommand{\progName}{Delaware Communication Portfolio Summary}
+  \else
+  \newcommand{\progName}{$program$}
+  \fi
 \fi
 
 \fancypagestyle{plain}{%
@@ -315,7 +323,11 @@ $endif$
   \fancyhead[L]{\includegraphics[width=2in]{figures/pre-generated/letterhead.jpg}}
 
   $if(manual)$
-    \fancyhead[R]{$title$\\\progName{}\\Alternate Assessment System -- $subtitle$}
+    \if\instring{DLM}{$program$}
+    \fancyhead[R]{$title$\\\progName{} Alternate Assessment System\\$subtitle$}
+    \else
+    \fancyhead[R]{$title$\\$subtitle$}
+    \fi
   $else$
     \fancyhead[R]{$shorttitle$\\\progName{}\\$subtitle$}
   $endif$
