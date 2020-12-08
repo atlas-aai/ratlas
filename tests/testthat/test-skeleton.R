@@ -53,3 +53,27 @@ test_that("copying techreport pdf files works", {
                       "figures/pre-generated/I-SMART.png",
                       "front-matter/preface.Rmd")))
 })
+
+test_that("copying techreport html files works", {
+  testthat::skip_on_cran()
+
+  # work in a temp directory
+  dir <- create_local_rmd_dir(dir = fs::file_temp(pattern = "copytrhtml"))
+
+  techreport_html_skeleton(dir)
+  check_files <- list.files(dir, recursive = TRUE)
+
+  expect_equal(sort(check_files),
+               sort(c("_bookdown.yml", "assets/footnote.lua",
+                      "assets/style.css", "assets/style.html",
+                      "bib/refs.bib", "csl/apa.csl",
+                      "index.Rmd",
+                      "figures/pre-generated/letterhead.png",
+                      "figures/pre-generated/letterhead.jpg",
+                      "figures/pre-generated/ATLAS.png",
+                      "figures/pre-generated/DLM.png",
+                      "figures/pre-generated/DCPS.png",
+                      "figures/pre-generated/I-SMART.png",
+                      "front-matter/preface-html.Rmd",
+                      "front-matter/preface-latex.Rmd")))
+})

@@ -1,3 +1,15 @@
+test_that("fmt_count", {
+  rand <- sample(100:10000, size = 50)
+  err <- rlang::catch_cnd(fmt_count("345"))
+  expect_s3_class(err, "error_bad_argument")
+  expect_equal(err$arg, "x")
+  expect_match(err$message, "numeric scalar")
+
+  expect_equal(fmt_count(rand), prettyNum(rand, big.mark = ","))
+  expect_equal(fmt_count(15), "15")
+  expect_equal(fmt_count(1694L), "1,694")
+})
+
 test_that("fmt_digits", {
   rand <- runif(5)
   int_rand <- runif(5, min = 1, max = 99)
