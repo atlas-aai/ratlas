@@ -105,3 +105,16 @@ check_character <- function(x, name) {
   }
 }
 check_character <- Vectorize(check_character, USE.NAMES = FALSE)
+
+check_logical <- function(x, name) {
+  if (!is.logical(x)) {
+    abort_bad_argument(name, must = "be a logical", not = typeof(x))
+  }
+
+  if (is.na(x)) {
+    abort_bad_argument(name, must = "be non-missing")
+  } else {
+    x
+  }
+}
+check_logical <- Vectorize(check_logical, USE.NAMES = FALSE)
