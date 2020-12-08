@@ -29,6 +29,7 @@ test_that("copying topicguide pdf files works", {
                       "figures/pre-generated/letterhead.jpg",
                       "figures/pre-generated/ATLAS.png",
                       "figures/pre-generated/DLM.png",
+                      "figures/pre-generated/DCPS.png",
                       "figures/pre-generated/I-SMART.png")))
 })
 
@@ -48,6 +49,7 @@ test_that("copying techreport pdf files works", {
                       "figures/pre-generated/letterhead.jpg",
                       "figures/pre-generated/ATLAS.png",
                       "figures/pre-generated/DLM.png",
+                      "figures/pre-generated/DCPS.png",
                       "figures/pre-generated/I-SMART.png",
                       "front-matter/preface.Rmd")))
 })
