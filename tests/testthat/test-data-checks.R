@@ -120,3 +120,19 @@ test_that("check_character", {
   expect_equal(check_character(c("jake")), "jake")
   expect_equal(check_character(letters), letters)
 })
+
+test_that("check_logical", {
+  err <- rlang::catch_cnd(check_logical(4L, "check1"))
+  expect_s3_class(err, "error_bad_argument")
+  expect_equal(err$arg, "check1")
+  expect_match(err$message, "logical")
+  expect_equal(err$not, "integer")
+
+  err <- rlang::catch_cnd(check_logical(NA, "check1"))
+  expect_s3_class(err, "error_bad_argument")
+  expect_equal(err$arg, "check1")
+  expect_match(err$message, "non-missing")
+
+  expect_equal(check_logical(TRUE), TRUE)
+  expect_equal(check_logical(c(TRUE, FALSE)), c(TRUE, FALSE))
+})
