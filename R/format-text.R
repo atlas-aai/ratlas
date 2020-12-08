@@ -9,8 +9,8 @@
 #' @export
 #'
 #' @examples
-#' fmt_italics("Make *this* italic.", html = TRUE)
-#' fmt_italics("Make *this* italic.", html = FALSE)
+#' fmt_italic("Make *this* italic.", html = TRUE)
+#' fmt_italic("Make *this* italic.", html = FALSE)
 fmt_italic <- function(string, indicator = "*", html = TRUE) {
   string <- check_character(string, name = "string")
   indicator <- check_character(indicator, name = "indicator")

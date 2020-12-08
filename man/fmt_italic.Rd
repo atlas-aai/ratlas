@@ -21,6 +21,6 @@ A character vector
 Format a String with Italics for HTML or Latex Output
 }
 \examples{
-fmt_italics("Make *this* italic.", html = TRUE)
-fmt_italics("Make *this* italic.", html = FALSE)
+fmt_italic("Make *this* italic.", html = TRUE)
+fmt_italic("Make *this* italic.", html = FALSE)
 }
