@@ -16,4 +16,5 @@ dlm_ll <- c("Initial Precursor", "Initial", "Distal Precursor", "Precursor",
 
 #' @rdname dlmalias
 #' @export
-dlm_grades <- c(3:12, "9-10", "11-12", "9-12", "Biology")
+dlm_grades <- c(3:5, "3-5", 6:8, "6-8", 9:12, "9-10", "11-12", "9-12",
+                "Biology")
