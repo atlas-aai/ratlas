@@ -8,3 +8,4 @@ hex-logo
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^data-raw$
