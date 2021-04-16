@@ -37,6 +37,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -76,14 +78,14 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://twitter.com/atlas4learning">
-    <span class="fab fa fab fa-twitter fa-lg"></span>
+  <a href="https://twitter.com/atlas4learning" class="external-link">
+    <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="https://github.com/atlas-aai/ratlas/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/atlas-aai/ratlas/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -99,15 +101,23 @@
 
       </header><script src="report-writing_files/jquery-1.11.3/jquery.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="report-writing_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
-<script src="report-writing_files/bootstrap-3.3.5/js/bootstrap.min.js"></script><script src="report-writing_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script><script src="report-writing_files/bootstrap-3.3.5/shim/respond.min.js"></script><script src="report-writing_files/navigation-1.1/tabsets.js"></script><script src="report-writing_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="report-writing_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="report-writing_files/anchor-sections-1.0/anchor-sections.js"></script><script src="report-writing_files/kePrint-0.0.1/kePrint.js"></script><link href="report-writing_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="report-writing_files/bootstrap-3.3.5/js/bootstrap.min.js"></script><script src="report-writing_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script><script src="report-writing_files/bootstrap-3.3.5/shim/respond.min.js"></script><style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="report-writing_files/navigation-1.1/tabsets.js"></script><script src="report-writing_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="report-writing_files/kePrint-0.0.1/kePrint.js"></script><link href="report-writing_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Writing a Report With ratlas</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/master/vignettes/report-writing.Rmd"><code>vignettes/report-writing.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/master/vignettes/report-writing.Rmd" class="external-link"><code>vignettes/report-writing.Rmd</code></a></small>
       <div class="hidden name"><code>report-writing.Rmd</code></div>
 
     </div>
@@ -118,11 +128,11 @@
 <div id="system-setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#system-setup" class="anchor"></a>System Setup</h2>
-<p>In order to generate a report using the {ratlas}, you must have the necessary output software installed on your computer. For Microsoft Word output (e.g., <code><a href="../reference/topicguide_docx.html">ratlas::topicguide_docx()</a></code>), you will need Word installed. For PDF output (e.g., <code><a href="../reference/techreport_pdf.html">ratlas::techreport_pdf()</a></code>), you will need a <span class="math inline">\(\LaTeX\)</span> distribution. For an easy way to manage this, we recommend using the <a href="https://yihui.org/tinytex/">{tinytex} package</a>. If you have another <span class="math inline">\(\LaTeX\)</span> distribution already installed on your computer (e.g., MacTex on a Mac or MiKTeX on Windows), you should uninstall/delete that program before install {tinytex}. You can then be set up for PDF output by running this code (you only need to run it once after install {tinytex}):</p>
+<p>In order to generate a report using the {ratlas}, you must have the necessary output software installed on your computer. For Microsoft Word output (e.g., <code><a href="../reference/topicguide_docx.html">ratlas::topicguide_docx()</a></code>), you will need Word installed. For PDF output (e.g., <code><a href="../reference/techreport_pdf.html">ratlas::techreport_pdf()</a></code>), you will need a <span class="math inline">\(\LaTeX\)</span> distribution. For an easy way to manage this, we recommend using the <a href="https://yihui.org/tinytex/" class="external-link">{tinytex} package</a>. If you have another <span class="math inline">\(\LaTeX\)</span> distribution already installed on your computer (e.g., MacTex on a Mac or MiKTeX on Windows), you should uninstall/delete that program before install {tinytex}. You can then be set up for PDF output by running this code (you only need to run it once after install {tinytex}):</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tinytex"</span><span class="op">)</span>
-<span class="fu">tinytex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>We also assume that you are using <a href="https://rstudio.com/products/rstudio/download/#download">RStudio</a>. This is not required, but RStudio provides many shortcuts that make the process of writing and generating reports much smoother.</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tinytex"</span><span class="op">)</span>
+<span class="fu">tinytex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html" class="external-link">install_tinytex</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>We also assume that you are using <a href="https://rstudio.com/products/rstudio/download/#download" class="external-link">RStudio</a>. This is not required, but RStudio provides many shortcuts that make the process of writing and generating reports much smoother.</p>
 </div>
 <div id="create-new" class="section level2">
 <h2 class="hasAnchor">
@@ -157,7 +167,7 @@ Figure 3: Generate your document using the <code>Knit</code> button.
 <div id="editing-the-report" class="section level2">
 <h2 class="hasAnchor">
 <a href="#editing-the-report" class="anchor"></a>Editing the Report</h2>
-<p>Once the document successfully generates, you’re ready to begin editing the template. The first place to start is the meta data at the top of the <code>.Rmd</code> file. This is known as the YAML header, because this information follows YAML (<a href="https://yaml.org/">YAML Ain’t Markup Language</a>) syntax. The default YAML header for a technical report is shown in Figure <a href="#fig:yaml-header">4</a>.</p>
+<p>Once the document successfully generates, you’re ready to begin editing the template. The first place to start is the meta data at the top of the <code>.Rmd</code> file. This is known as the YAML header, because this information follows YAML (<a href="https://yaml.org/" class="external-link">YAML Ain’t Markup Language</a>) syntax. The default YAML header for a technical report is shown in Figure <a href="#fig:yaml-header">4</a>.</p>
 <div class="figure" style="text-align: center">
 <span id="fig:yaml-header"></span>
 <img src="images/07-yaml.png" alt="The default YAML header for a technical report." width="80%"><p class="caption">
@@ -201,7 +211,7 @@ Figure 4: The default YAML header for a technical report.
 Figure 5: The default <code>setup</code> chunk for a new report.
 </p>
 </div>
-<p>In most cases, only the first line of the <code>setup</code> chunk will need to be edited. This defines the R packages that are needed for your report. If you are just writing text and not doing any analysis, you can probably leave this as is. However, if you are including your analysis in this document (<em>highly recommended</em>), or plan make <a href="#add-table">tables</a> or <a href="#add-figure">figures</a>, you may need to add additional packages here. The rest of the <code>setup</code> chunk loads the specified packages, sets some default options for table output, and sets a default theme for any plots made with <a href="https://ggplot2.tidyverse.org">ggplot2</a>. If there are other options or settings you need to apply to your whole report, this is the place to them.</p>
+<p>In most cases, only the first line of the <code>setup</code> chunk will need to be edited. This defines the R packages that are needed for your report. If you are just writing text and not doing any analysis, you can probably leave this as is. However, if you are including your analysis in this document (<em>highly recommended</em>), or plan make <a href="#add-table">tables</a> or <a href="#add-figure">figures</a>, you may need to add additional packages here. The rest of the <code>setup</code> chunk loads the specified packages, sets some default options for table output, and sets a default theme for any plots made with <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>. If there are other options or settings you need to apply to your whole report, this is the place to them.</p>
 </div>
 <div id="writing-in-markdown" class="section level2">
 <h2 class="hasAnchor">
@@ -219,14 +229,14 @@ Figure 5: The default <code>setup</code> chunk for a new report.
 <span id="cb2-2"><a href="#cb2-2"></a><span class="st">- item 2</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="st">    - item 2.1</span></span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="st">    - item 2.2</span></span></code></pre></div>
-<p>For more in-depth descriptions of Markdown formatting, check out <a href="https://bookdown.org/yihui/bookdown/components.html">Chapter 2 of <em>bookdown: Authoring Books and Technical Documents with R Markdown</em></a> and the <a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown reference guide</a>.</p>
+<p>For more in-depth descriptions of Markdown formatting, check out <a href="https://bookdown.org/yihui/bookdown/components.html" class="external-link">Chapter 2 of <em>bookdown: Authoring Books and Technical Documents with R Markdown</em></a> and the <a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf" class="external-link">R Markdown reference guide</a>.</p>
 </div>
 <div id="add-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#add-table" class="anchor"></a>Adding Tables</h2>
-<p>There are many ways to create professional tables in R Markdown. We recommend using <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable()</a></code> and the <a href="https://haozhu233.github.io/kableExtra/">{kableExtra}</a> package. The first step is to your data into data frame. You can either read the data in from a file or create the data manually.</p>
+<p>There are many ways to create professional tables in R Markdown. We recommend using <code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable()</a></code> and the <a href="https://haozhu233.github.io/kableExtra/" class="external-link">{kableExtra}</a> package. The first step is to your data into data frame. You can either read the data in from a file or create the data manually.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span>
   <span class="op">~</span><span class="va">label</span>,     <span class="op">~</span><span class="va">count</span>,  <span class="op">~</span><span class="va">percent</span>,  <span class="op">~</span><span class="va">correlation</span>, <span class="op">~</span><span class="va">pvalue</span>,
   <span class="st">"Group 1"</span>,    <span class="fl">103L</span>,      <span class="fl">0.92</span>,        <span class="op">-</span><span class="fl">0.895</span>,   <span class="fl">0.120</span>,
   <span class="st">"Group 2"</span>,   <span class="fl">1064L</span>,      <span class="fl">32.1</span>,         <span class="fl">0.051</span>,   <span class="fl">0.030</span>,
@@ -249,16 +259,16 @@ Figure 5: The default <code>setup</code> chunk for a new report.
 <span class="co">#&gt; 1 Group 1 "\\ \\ \\ \\ \\ 103" "\\ \\ 0.9" "&amp;minus;.90\\ \\ " ".12"           </span>
 <span class="co">#&gt; 2 Group 2 "\\ \\ 1,064"        "32.1"      ".05"              ".03"           </span>
 <span class="co">#&gt; 3 Group 3 "79,205"             "95.4"      ".93"              "&lt; .01\\ \\ \\ "</span></code></pre></div>
-<p>The table can then be created using <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable()</a></code>. There are several arguments supplied to the <code>kable()</code> function. The <code>align</code> argument specifies the alignment of each column. Because we formatted the table with <code><a href="../reference/fmt_table.html">fmt_table()</a></code>, we can set the alignment of all the numeric columns to <code>"c"</code> (centered). The <code>booktabs</code> and <code>linesep</code> arguments control the appearance of the table. By setting <code>escape = FALSE</code>, we tell the <code>kable()</code> function to not escape special characters, allowing for the padding spaces we added to remain in tact. Additionally, column names for the table and a caption are specified. The last step is to add additional styling from the {kableExtra} package. In this example, we use the <code><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kableExtra::kable_styling()</a></code> function to set some <span class="math inline">\(\LaTeX\)</span> options. Specifically, the <code>"HOLD_position"</code> setting ensures that the table will appear in the exact position of the code chunk (i.e., the <span class="math inline">\(\LaTeX\)</span> engine is not allowed to float the table above or below additional paragraphs in order to avoid extraneous white space). For more customization options with the {kableExtra} package, see the package vignettes for <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html">HTML</a> and <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf">PDF</a> tables.</p>
+<p>The table can then be created using <code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable()</a></code>. There are several arguments supplied to the <code>kable()</code> function. The <code>align</code> argument specifies the alignment of each column. Because we formatted the table with <code><a href="../reference/fmt_table.html">fmt_table()</a></code>, we can set the alignment of all the numeric columns to <code>"c"</code> (centered). The <code>booktabs</code> and <code>linesep</code> arguments control the appearance of the table. By setting <code>escape = FALSE</code>, we tell the <code>kable()</code> function to not escape special characters, allowing for the padding spaces we added to remain in tact. Additionally, column names for the table and a caption are specified. The last step is to add additional styling from the {kableExtra} package. In this example, we use the <code><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kableExtra::kable_styling()</a></code> function to set some <span class="math inline">\(\LaTeX\)</span> options. Specifically, the <code>"HOLD_position"</code> setting ensures that the table will appear in the exact position of the code chunk (i.e., the <span class="math inline">\(\LaTeX\)</span> engine is not allowed to float the table above or below additional paragraphs in order to avoid extraneous white space). For more customization options with the {kableExtra} package, see the package vignettes for <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html" class="external-link">HTML</a> and <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf" class="external-link">PDF</a> tables.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_data</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/fmt_table.html">fmt_table</a></span><span class="op">(</span>corr_dig <span class="op">=</span> <span class="fl">2</span>, prop_dig <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">kable</span><span class="op">(</span>align <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span>, linesep <span class="op">=</span> <span class="st">""</span>,
+  <span class="fu">kable</span><span class="op">(</span>align <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span>, linesep <span class="op">=</span> <span class="st">""</span>,
         escape <span class="op">=</span> <span class="cn">FALSE</span>,
-        col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Group"</span>, <span class="st">"Students (*n*)"</span>, <span class="st">"\\%"</span>, <span class="st">"*r*"</span>, <span class="st">"*p*-value"</span><span class="op">)</span>,
+        col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Group"</span>, <span class="st">"Students (*n*)"</span>, <span class="st">"\\%"</span>, <span class="st">"*r*"</span>, <span class="st">"*p*-value"</span><span class="op">)</span>,
         caption <span class="op">=</span> <span class="st">"An example table"</span><span class="op">)</span> <span class="op">%&gt;%</span>
  <span class="fu">kable_styling</span><span class="op">(</span>latex_options <span class="op">=</span> <span class="st">"HOLD_position"</span><span class="op">)</span></code></pre></div>
-<table class="table table">
+<table class="table table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:example-table">Table 1: </span>An example table
 </caption>
@@ -333,7 +343,7 @@ Group 3
 </tr>
 </tbody>
 </table>
-<p>Finally, we can cross reference the table using the chunk label. For example, the full code chunk to create Table <a href="#tab:example-table">1</a> is shown below. Cross references for tables are created using the syntax <code>\@ref(tab:chunk-label)</code>. For example, <code>Table \@ref(tab:example-table)</code> renders as Table <a href="#tab:example-table">1</a>. For more on cross references see <a href="https://bookdown.org/yihui/bookdown/cross-references.html">this section</a> from <em>bookdown: Authoring Books and Technical Documents with R Markdown</em> and <a href="https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html">this section</a> from the <em>R Markdown Cookbook</em>.</p>
+<p>Finally, we can cross reference the table using the chunk label. For example, the full code chunk to create Table <a href="#tab:example-table">1</a> is shown below. Cross references for tables are created using the syntax <code>\@ref(tab:chunk-label)</code>. For example, <code>Table \@ref(tab:example-table)</code> renders as Table <a href="#tab:example-table">1</a>. For more on cross references see <a href="https://bookdown.org/yihui/bookdown/cross-references.html" class="external-link">this section</a> from <em>bookdown: Authoring Books and Technical Documents with R Markdown</em> and <a href="https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html" class="external-link">this section</a> from the <em>R Markdown Cookbook</em>.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="bn">```{r example-table}</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="bn">my_data %&gt;%</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="bn">  fmt_table(corr_dig = 2, prop_dig = 2) %&gt;%</span></span>
@@ -348,10 +358,10 @@ Group 3
 <a href="#add-figure" class="anchor"></a>Adding Figures</h2>
 <p>Figures can be created using the <code>ggplot2</code> package in R. For example, we can use the <code>iris</code> data set that is built into <em>R</em> to create a scatter plot, which is shown in Figure <a href="#fig:example-figure">6</a>. For additional details on creating figures with {ratlas}, see <code><a href="../articles/plotting.html">vignette("plotting")</a></code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">iris</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Petal.Length</span>, y <span class="op">=</span> <span class="va">Sepal.Length</span>, color <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Petal Length"</span>, y <span class="op">=</span> <span class="st">"Sepal Length"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="../reference/scale_colour_okabeito.html">scale_color_okabeito</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">iris</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Petal.Length</span>, y <span class="op">=</span> <span class="va">Sepal.Length</span>, color <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Petal Length"</span>, y <span class="op">=</span> <span class="st">"Sepal Length"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/scale_okabeito.html">scale_color_okabeito</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:example-figure"></span>
@@ -371,7 +381,7 @@ Figure 6: An example figure.
 <div id="refs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#refs" class="anchor"></a>Citations</h2>
-<p>The last major category of features for report writing is citations. The first step for including citations is to format your references into a <code>.bib</code> file. Reference managers such as EndNote or Zotero offer the option to export references to a <code>.bib</code> file (e.g., Bibtex), making this step easier. Entries in a <code>.bib</code> file should look like the following example. The first line contains important metadata. The <code>@article</code> specifies the type of reference and will control what type of information is included in the printed bibliography. The string directly after the opening brace (i.e., <code>lcdm</code>) is the citation key. This is what we’ll use to actually make a citation. Both of these pieces of metadata will be automatically generated by your reference manager. If you are writing your own <code>.bib</code> file, or need to manually insert an entry, you can find many examples <a href="https://verbosus.com/bibtex-style-examples.html">here</a>.</p>
+<p>The last major category of features for report writing is citations. The first step for including citations is to format your references into a <code>.bib</code> file. Reference managers such as EndNote or Zotero offer the option to export references to a <code>.bib</code> file (e.g., Bibtex), making this step easier. Entries in a <code>.bib</code> file should look like the following example. The first line contains important metadata. The <code>@article</code> specifies the type of reference and will control what type of information is included in the printed bibliography. The string directly after the opening brace (i.e., <code>lcdm</code>) is the citation key. This is what we’ll use to actually make a citation. Both of these pieces of metadata will be automatically generated by your reference manager. If you are writing your own <code>.bib</code> file, or need to manually insert an entry, you can find many examples <a href="https://verbosus.com/bibtex-style-examples.html" class="external-link">here</a>.</p>
 <pre><code>@article{lcdm,
   author = {Henson, Robert A. and Templin, Jonathan L. and Willse, John T.},
   year = {2009},
@@ -381,7 +391,7 @@ Figure 6: An example figure.
   pages = {191--210},
   doi = {10.1007/S11336-008-9089-5}
 }</code></pre>
-<p>The next step is to tell R Markdown about your <code>.bib</code> files. The YAML header includes a bibliography field, where we specify the <code>.bib</code> files. In the template file, we assume that <code>.bib</code> files are kept in a <code>bib/</code> directory. Your references are saved in <code>bib/refs.bib</code>. By default, the template will write out a separate <code>.bib</code> file, <code>bib/packages.bib</code> that includes the citation information for all the <em>R</em> packages you have loaded, making it easy to cite your software. You can add more <code>.bib</code> files if that makes organizing easier. The YAML header also includes extra metadata about how references should be formatted. The default is to use APA style. You can find <code>.csl</code> files for other citation files <a href="https://www.zotero.org/styles">here</a> if APA is not suitable.</p>
+<p>The next step is to tell R Markdown about your <code>.bib</code> files. The YAML header includes a bibliography field, where we specify the <code>.bib</code> files. In the template file, we assume that <code>.bib</code> files are kept in a <code>bib/</code> directory. Your references are saved in <code>bib/refs.bib</code>. By default, the template will write out a separate <code>.bib</code> file, <code>bib/packages.bib</code> that includes the citation information for all the <em>R</em> packages you have loaded, making it easy to cite your software. You can add more <code>.bib</code> files if that makes organizing easier. The YAML header also includes extra metadata about how references should be formatted. The default is to use APA style. You can find <code>.csl</code> files for other citation files <a href="https://www.zotero.org/styles" class="external-link">here</a> if APA is not suitable.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="pp">---</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="co">...</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a><span class="co">bibliography: ["bib/refs.bib", "bib/packages.bib"]</span></span>
@@ -390,7 +400,7 @@ Figure 6: An example figure.
 <span id="cb10-6"><a href="#cb10-6"></a><span class="co">...</span></span>
 <span id="cb10-7"><a href="#cb10-7"></a><span class="co">---</span></span></code></pre></div>
 <p>We are then ready to start making citations. Citations are made using the syntax <code>@citation-key</code>. For <em>R</em> packages, the citation key is always <code>R-pkgname</code> (e.g., <code>R-ratlas</code>). To make a parenthetical citation, place the citation key within brackets (e.g., <code>[@R-ratlas]</code>). In-text citations can be made by remove the brackets. The author can be suppressed by adding a minus sign before the key (e.g., <code>-@R-ratlas</code>). Multiple citations are separate by semicolons. Finally, additional text can be added before or after a citation by using a semicolon or commas as appropriate. Table <a href="#tab:cite-style">2</a> shows some common citation styles, along with the code to generate the style.</p>
-<table class="table table">
+<table class="table table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:cite-style">Table 2: </span>Citation Styles
 </caption>
@@ -461,7 +471,7 @@ Renders as…
 </tr>
 </tbody>
 </table>
-<p>Full references for all citations that have mentioned in the text are automatically added to the end of the document. This means that you only need to worry about making your citations within the text. The bibliography is handled automatically by R Markdown. For more information on citations, see the <a href="https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html">R Markdown website</a> and the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html"><em>R Markdown Cookbook</em></a>.</p>
+<p>Full references for all citations that have mentioned in the text are automatically added to the end of the document. This means that you only need to worry about making your citations within the text. The bibliography is handled automatically by R Markdown. For more information on citations, see the <a href="https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html" class="external-link">R Markdown website</a> and the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html" class="external-link"><em>R Markdown Cookbook</em></a>.</p>
 </div>
 <div id="best-practices" class="section level2">
 <h2 class="hasAnchor">
@@ -470,7 +480,7 @@ Renders as…
 <div id="file-paths" class="section level3">
 <h3 class="hasAnchor">
 <a href="#file-paths" class="anchor"></a>File paths</h3>
-<p>Nothing is worse than getting some code from a collaborator, attempting to run it, and seeing an error that says the data file does not exist. This is most likely due to file path issues. For example, the file <code>/Users/myname/Documents/my-project/some-data.csv</code> will not exist on your computer, because you have a different name. If you use a different operating system, the beginning of the file path may be completely different (i.e., <code>C:\</code> vs. <code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code>). This is problematic for two reasons:</p>
+<p>Nothing is worse than getting some code from a collaborator, attempting to run it, and seeing an error that says the data file does not exist. This is most likely due to file path issues. For example, the file <code>/Users/myname/Documents/my-project/some-data.csv</code> will not exist on your computer, because you have a different name. If you use a different operating system, the beginning of the file path may be completely different (i.e., <code>C:\</code> vs. <code><a href="https://rdrr.io/r/base/Arithmetic.html" class="external-link">/</a></code>). This is problematic for two reasons:</p>
 <ol style="list-style-type: decimal">
 <li>I have to go through and replace all the file paths before I can run your code.</li>
 <li>When I send the code back, you have to change all the files paths back.</li>
@@ -486,7 +496,7 @@ Renders as…
 │   └── all-output.rds
 ├── R
 │   └── simulation.R</code></pre>
-<p>In this project, there is a <code>data/</code> directory with raw data, an <code>R/</code> directory where the analysis code lives, and an <code>output/</code> directory, where the results from the analysis are saved. The report lives in the <code>my-report.Rmd</code> file. When writing the report, I will likely need to read in the results. One option is to use <code>read_rds("/Users/jake/GIT/projects/simulation-study/output/all-output.rds")</code>. However, we know that this will break on other machines. Instead, we can use <code>read_rds(here("output", "all-output.rds"))</code>. This will look for the <code>.Rproj</code> file, and from there, look for an <code>output</code> directory with an <code>all-output.rds</code> file. This way, when another collaborator downloads the project, the file paths will “just work.” For more information on file paths and why the {here} package is important, see <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">this blog post</a> from Jenny Bryan.</p>
+<p>In this project, there is a <code>data/</code> directory with raw data, an <code>R/</code> directory where the analysis code lives, and an <code>output/</code> directory, where the results from the analysis are saved. The report lives in the <code>my-report.Rmd</code> file. When writing the report, I will likely need to read in the results. One option is to use <code>read_rds("/Users/jake/GIT/projects/simulation-study/output/all-output.rds")</code>. However, we know that this will break on other machines. Instead, we can use <code>read_rds(here("output", "all-output.rds"))</code>. This will look for the <code>.Rproj</code> file, and from there, look for an <code>output</code> directory with an <code>all-output.rds</code> file. This way, when another collaborator downloads the project, the file paths will “just work.” For more information on file paths and why the {here} package is important, see <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/" class="external-link">this blog post</a> from Jenny Bryan.</p>
 </div>
 <div id="in-line-output" class="section level3">
 <h3 class="hasAnchor">
@@ -509,8 +519,8 @@ Renders as…
 <span class="co">#&gt; 10  19.2  168.     6</span>
 <span class="co">#&gt; # … with 22 more rows</span>
 
-<span class="va">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">my_data</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span>
+<span class="va">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">my_data</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span>
 <span class="co">#&gt; (Intercept)        disp         cyl </span>
 <span class="co">#&gt; 34.66099474 -0.02058363 -1.58727681</span></code></pre></div>
 <p>When reporting the coefficient for <code>cyl</code> we might say, “Keeping displacement constant, an additional cylinder is associated with a loss of about 1.6 miles-per-gallon.” But now let’s say that the data file gets updated:</p>
@@ -519,30 +529,30 @@ Renders as…
 <span class="co">#&gt; # A tibble: 48 x 3</span>
 <span class="co">#&gt;      mpg  disp   cyl</span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1  18.7  360      8</span>
-<span class="co">#&gt;  2  14.7  440      8</span>
-<span class="co">#&gt;  3  15    301      8</span>
-<span class="co">#&gt;  4  15.2  276.     8</span>
-<span class="co">#&gt;  5  17.8  168.     6</span>
-<span class="co">#&gt;  6  15.8  351      8</span>
-<span class="co">#&gt;  7  15.2  276.     8</span>
-<span class="co">#&gt;  8  22.8  108      4</span>
-<span class="co">#&gt;  9  19.2  400      8</span>
-<span class="co">#&gt; 10  27.3   79      4</span>
+<span class="co">#&gt;  1  21.4 258       6</span>
+<span class="co">#&gt;  2  14.7 440       8</span>
+<span class="co">#&gt;  3  27.3  79       4</span>
+<span class="co">#&gt;  4  19.2 400       8</span>
+<span class="co">#&gt;  5  14.3 360       8</span>
+<span class="co">#&gt;  6  18.1 225       6</span>
+<span class="co">#&gt;  7  15.8 351       8</span>
+<span class="co">#&gt;  8  33.9  71.1     4</span>
+<span class="co">#&gt;  9  10.4 460       8</span>
+<span class="co">#&gt; 10  30.4  75.7     4</span>
 <span class="co">#&gt; # … with 38 more rows</span></code></pre></div>
 <p>Notice that we now have 48 rows instead of 32. If we re-estimate the model, we can see the coefficients have changed:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">my_new_data</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">my_new_data</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span>
 <span class="co">#&gt; (Intercept)        disp         cyl </span>
-<span class="co">#&gt; 34.68182535 -0.01335301 -1.91386733</span></code></pre></div>
-<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -1.9. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
+<span class="co">#&gt; 35.23827191 -0.02363808 -1.53996016</span></code></pre></div>
+<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -1.5. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
 </div>
 <div id="additional-helpers" class="section level3">
 <h3 class="hasAnchor">
 <a href="#additional-helpers" class="anchor"></a>Additional Helpers</h3>
-<p>There are two additional helpers that may be useful for automatically populating the text of a report. First, <code><a href="https://rdrr.io/pkg/knitr/man/combine_words.html">knitr::combine_words()</a></code> can be used to create a comma separated character string from a vector of values. For example, <code>`r combine_words(c("one", "two", "three"))`</code> becomes one, two, and three.</p>
-<p>Finally, APA style specifies that integer values less than ten should be spelled out (i.e., “two” instead of 2). The {english} package can be used to translate numbers to words. For example <code>`r words(3)`</code> becomes three. For more details on the {english} package, see <code><a href="https://cran.rstudio.com/web/packages/english/vignettes/the-english-patient.pdf">vignette("the-english-patient", package = "english")</a></code>.</p>
+<p>There are two additional helpers that may be useful for automatically populating the text of a report. First, <code><a href="https://rdrr.io/pkg/knitr/man/combine_words.html" class="external-link">knitr::combine_words()</a></code> can be used to create a comma separated character string from a vector of values. For example, <code>`r combine_words(c("one", "two", "three"))`</code> becomes one, two, and three.</p>
+<p>Finally, APA style specifies that integer values less than ten should be spelled out (i.e., “two” instead of 2). The {english} package can be used to translate numbers to words. For example <code>`r words(3)`</code> becomes three. For more details on the {english} package, see <code><a href="https://cran.rstudio.com/web/packages/english/vignettes/the-english-patient.pdf" class="external-link">vignette("the-english-patient", package = "english")</a></code>.</p>
 </div>
 </div>
 <div id="keep-learning" class="section level2">
@@ -550,16 +560,16 @@ Renders as…
 <a href="#keep-learning" class="anchor"></a>Keep Learning</h2>
 <p>There are many resources available for learning more about writing reports with R Markdown. Here are a few <strong>free</strong> resources that I have found particularly helpful:</p>
 <ul>
-<li>For a high-level overview of everything you could ever want to know about R Markdown, see <a href="https://bookdown.org/yihui/rmarkdown/"><em>R Markdown: The Definitive Guide</em></a>, by Yihui Xie, J. J. Allaire, and Garrett Grolemund.</li>
-<li>For more details and help with {bookdown}, the R Markdown extension used by {ratlas}, see <a href="https://bookdown.org/yihui/bookdown/"><em>bookdown: Authoring books and technical documents with R Markdown</em></a>, by Yihui Xie.</li>
-<li>For quick recipes for formatting and customizing R Markdown documents, see the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/"><em>R Markdown Cookbook</em></a>, by Yihui Xie and Christophe Dervieux.</li>
+<li>For a high-level overview of everything you could ever want to know about R Markdown, see <a href="https://bookdown.org/yihui/rmarkdown/" class="external-link"><em>R Markdown: The Definitive Guide</em></a>, by Yihui Xie, J. J. Allaire, and Garrett Grolemund.</li>
+<li>For more details and help with {bookdown}, the R Markdown extension used by {ratlas}, see <a href="https://bookdown.org/yihui/bookdown/" class="external-link"><em>bookdown: Authoring books and technical documents with R Markdown</em></a>, by Yihui Xie.</li>
+<li>For quick recipes for formatting and customizing R Markdown documents, see the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/" class="external-link"><em>R Markdown Cookbook</em></a>, by Yihui Xie and Christophe Dervieux.</li>
 </ul>
 <p>There are also many resources for getting started with data analysis and programming in <em>R</em>:</p>
 <ul>
-<li>For a friendly introduction to <em>R</em>, see <a href="https://rstudio-education.github.io/hopr/"><em>Hands-On Programming With R</em></a>, by Garrett Grolemund.</li>
-<li>For a general introduction to doing data science in <em>R</em>, see <a href="https://r4ds.had.co.nz/">R for Data Science</a> (including a section specifically on <a href="https://r4ds.had.co.nz/communicate-intro.html">communicating with R Markdown</a>), by Hadley Wickham and Garrett Grolemund.</li>
-<li>For quick recipes to accomplish various tasks in <em>R</em>, see the <a href="https://rc2e.com/"><em>R Cookbook</em></a>, by JD Long and Paul Teetor</li>
-<li>For an introduction to statistical inference in <em>R</em>, see <a href="https://moderndive.com/"><em>Statistical Inference via Data Science: A ModernDive into R and the tidyverse</em></a>, by Chester Ismay and Albert Y. Kim.</li>
+<li>For a friendly introduction to <em>R</em>, see <a href="https://rstudio-education.github.io/hopr/" class="external-link"><em>Hands-On Programming With R</em></a>, by Garrett Grolemund.</li>
+<li>For a general introduction to doing data science in <em>R</em>, see <a href="https://r4ds.had.co.nz/" class="external-link">R for Data Science</a> (including a section specifically on <a href="https://r4ds.had.co.nz/communicate-intro.html" class="external-link">communicating with R Markdown</a>), by Hadley Wickham and Garrett Grolemund.</li>
+<li>For quick recipes to accomplish various tasks in <em>R</em>, see the <a href="https://rc2e.com/" class="external-link"><em>R Cookbook</em></a>, by JD Long and Paul Teetor</li>
+<li>For an introduction to statistical inference in <em>R</em>, see <a href="https://moderndive.com/" class="external-link"><em>Statistical Inference via Data Science: A ModernDive into R and the tidyverse</em></a>, by Chester Ismay and Albert Y. Kim.</li>
 </ul>
 </div>
 <div id="references" class="section level2 unnumbered">
@@ -567,10 +577,10 @@ Renders as…
 <a href="#references" class="anchor"></a>References</h2>
 <div id="refs" class="references">
 <div id="ref-lcdm">
-<p>Henson, R. A., Templin, J. L., &amp; Willse, J. T. (2009). Defining a family of cognitive diagnosis models using log-linear models with latent variables. <em>Psychometrika</em>, <em>74</em>, 191–210. <a href="https://doi.org/10.1007/S11336-008-9089-5">https://doi.org/10.1007/S11336-008-9089-5</a></p>
+<p>Henson, R. A., Templin, J. L., &amp; Willse, J. T. (2009). Defining a family of cognitive diagnosis models using log-linear models with latent variables. <em>Psychometrika</em>, <em>74</em>, 191–210. <a href="https://doi.org/10.1007/S11336-008-9089-5" class="external-link">https://doi.org/10.1007/S11336-008-9089-5</a></p>
 </div>
 <div id="ref-R-ratlas">
-<p>Thompson, W. J., Pablo, N., &amp; Hoover, J. (2020). <em>ratlas: ATLAS formatting functions and templates</em>. <a href="https://github.com/atlas-aai/ratlas">https://github.com/atlas-aai/ratlas</a></p>
+<p>Thompson, W. J., Pablo, N., &amp; Hoover, J. (2020). <em>ratlas: ATLAS formatting functions and templates</em>. <a href="https://github.com/atlas-aai/ratlas" class="external-link">https://github.com/atlas-aai/ratlas</a></p>
 </div>
 </div>
 </div>
@@ -587,11 +597,13 @@ Renders as…
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://wjakethompson.com">W. Jake Thompson</a>, Noelle Pablo, Jeffrey Hoover, <a href="https://atlas.ku.edu/"><img src="https://www.wjakethompson.com/prof-logo/atlas.png" alt="ATLAS" height="35"></a>.</p>
+  <p></p>
+<p>Developed by <a href="https://wjakethompson.com" class="external-link external-link">W. Jake Thompson</a>, Noelle Pablo, Jeffrey Hoover, <a href="https://atlas.ku.edu/" class="external-link external-link"><img src="https://www.wjakethompson.com/prof-logo/atlas.png" alt="ATLAS" height="35"></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
 </div>
 
       </footer>
@@ -599,6 +611,8 @@ Renders as…
 
   
 
+
+  
 
   </body>
 </html>
