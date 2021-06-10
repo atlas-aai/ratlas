@@ -18,3 +18,7 @@ dlm_ll <- c("Initial Precursor", "Initial", "Distal Precursor", "Precursor",
 #' @export
 dlm_grades <- c(3:5, "3-5", 6:8, "6-8", 9:12, "9-10", "11-12", "9-12",
                 "Biology")
+
+#' @rdname dlmalias
+#' @export
+dlm_complexity <- c("Foundational", "Band 1", "Band 2", "Band 3")
