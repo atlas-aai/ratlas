@@ -7,6 +7,9 @@
 #'
 #' `dlm_grades` contains all DLM grade levels.
 #'
+#' `dlm_complexity` contains all complexity band names for ELA, mathematics,
+#' science, writing, and communication.
+#'
 #' @name dlmalias
 
 #' @rdname dlmalias
