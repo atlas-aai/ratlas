@@ -23,7 +23,7 @@ ggsave2(
 \item{filename}{File name to create on disk.}
 
 \item{device}{Device to use. Can either be a device function
-(e.g. \code{\link[=png]{png()}}), or one of "eps", "ps", "tex" (pictex),
+(e.g. \link{png}), or one of "eps", "ps", "tex" (pictex),
 "pdf", "jpeg", "tiff", "png", "bmp", "svg" or "wmf" (windows only).}
 
 \item{path}{Path of the directory to save plot to: \code{path} and \code{filename}
@@ -35,7 +35,7 @@ working directory.}
 \item{height}{Plot size in \code{units} ("in", "cm", or "mm"). If not supplied,
 uses \code{0.618 * width} when \code{dir = "h"} and \code{1.618 * width} when \code{dir = "v"}.}
 
-\item{units}{Plot size in \code{units} ("in", "cm", or "mm").
+\item{units}{Plot size in \code{units} ("in", "cm", "mm", or "px").
 If not supplied, uses the size of current graphics device.}
 
 \item{dir}{Orientation of the plot. One of \code{h} (default) for horizontal or

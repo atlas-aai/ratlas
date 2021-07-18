@@ -35,6 +35,71 @@ topicguide_docx <- function(...) {
 }
 
 
+#' Create an R Markdown Word Document Topic Guide
+#'
+#' This is a function called in the output of the yaml of the Rmd file to
+#' specify using the standard DLM topic guide word document formatting.
+#'
+#' @param ... Arguments to be passed to `[bookdown::word_document2]`
+#'
+#' @return A modified `word_document2` with the standard topic guide formatting.
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#'   output: ratlas::topicguide_rdocx
+#' }
+topicguide_rdocx <- function(...) {
+  template <- find_resource("topicguide_rdocx", "template.docx")
+  base <- officedown::rdocx_document(base_format = "bookdown::word_document2",
+                                     reference_docx = template,
+                                     number_sections = FALSE,
+                                     page_size = list(
+                                       width = 8.5, height = 11,
+                                       orient = "portrait"
+                                     ),
+                                     page_margins = list(
+                                       top = 1, right = 1, bottom = 1, left = .5
+                                     ),
+                                     plots = list(
+                                       align = "left", topcaption = TRUE,
+                                       caption = list(
+                                         style = "Image Caption",
+                                         pre = "Figure ",
+                                         sep = ": "
+                                       )
+                                     ),
+                                     tables = list(
+                                       align = "center",
+                                       caption = list(
+                                         style = "Table Caption",
+                                         pre = "Table ",
+                                         sep = ": "
+                                       )
+                                     ),
+                                     ...)
+
+  # nolint start
+  base$knitr$opts_chunk$comment <- "#>"
+  base$knitr$opts_chunk$message <- FALSE
+  base$knitr$opts_chunk$warning <- FALSE
+  base$knitr$opts_chunk$error <- FALSE
+  base$knitr$opts_chunk$echo <- FALSE
+  base$knitr$opts_chunk$cache <- FALSE
+  base$knitr$opts_chunk$fig.width <- 6.4
+  base$knitr$opts_chunk$fig.asp <- 0.618
+  base$knitr$opts_chunk$fig.ext <- "png"
+  base$knitr$opts_chunk$fig.retina <- 3
+  base$knitr$opts_chunk$fig.path <- "figures/"
+  base$knitr$opts_chunk$fig.pos <- "H"
+  base$knitr$opts_chunk$ft.align <- "left"
+  base$knitr$opts_chunk$ft.split <- FALSE
+  # nolint end
+
+  base
+}
+
+
 #' Create an R Markdown PDF Topic Guide
 #'
 #' This is a function called in the output of the yaml of the Rmd file to
