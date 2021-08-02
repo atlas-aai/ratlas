@@ -177,7 +177,7 @@ pad_corr <- function(x, digits, output = NULL) {
 
   bound <- stringr::str_detect(new_x, glue::glue(".+\\.{paste(rep(0, digits),
                                                  collapse = '')}"))
-  if (any(bound)) {
+  if (any(bound, na.rm = TRUE)) {
     new_x <- dplyr::case_when(bound ~ new_x,
                               TRUE ~ paste0(paste(rep("\\ ", 2), collapse = ""),
                                             new_x))

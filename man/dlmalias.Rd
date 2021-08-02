@@ -5,16 +5,21 @@
 \alias{dlmalias}
 \alias{dlm_ll}
 \alias{dlm_grades}
+\alias{dlm_complexity}
 \title{DLM Aliases}
 \format{
 An object of class \code{character} of length 7.
 
-An object of class \code{character} of length 14.
+An object of class \code{character} of length 16.
+
+An object of class \code{character} of length 4.
 }
 \usage{
 dlm_ll
 
 dlm_grades
+
+dlm_complexity
 }
 \description{
 R variable aliases for commonly used vector and values.
@@ -23,5 +28,8 @@ R variable aliases for commonly used vector and values.
 \code{dlm_ll} contains all linkage level names for ELA, mathematics, and science.
 
 \code{dlm_grades} contains all DLM grade levels.
+
+\code{dlm_complexity} contains all complexity band names for ELA, mathematics,
+science, writing, and communication.
 }
 \keyword{datasets}
