@@ -145,7 +145,7 @@
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:init-plot"></span>
+<span style="display:block;" id="fig:init-plot"></span>
 <img src="plotting_files/figure-html/init-plot-1.png" alt="Default {ggplot2} theme." width="100%"><p class="caption">
 Figure 1: Default {ggplot2} theme.
 </p>
@@ -188,7 +188,7 @@ Figure 1: Default {ggplot2} theme.
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:theme-atlas-ex"></span>
+<span style="display:block;" id="fig:theme-atlas-ex"></span>
 <img src="plotting_files/figure-html/theme-atlas-ex-1.png" alt="The result of applying ratlas::theme_atlas() to a plot." width="100%"><p class="caption">
 Figure 2: The result of applying <code><a href="../reference/theme_atlas.html">ratlas::theme_atlas()</a></code> to a plot.
 </p>
@@ -211,7 +211,7 @@ Figure 2: The result of applying <code><a href="../reference/theme_atlas.html">r
 <p>One potential issue with graphics created with {ggplot2} is that the default color scales are not colorblind friendly. For example, Figure <a href="#fig:disc-cvd">3</a> shows our working example simulated with different types of color blindness.</p>
 
 <div class="figure" style="text-align: center">
-<span id="fig:disc-cvd"></span>
+<span style="display:block;" id="fig:disc-cvd"></span>
 <img src="plotting_files/figure-html/disc-cvd-1.png" alt="The default {ggplot2} color palette for discrete scales with different types of color blindness." width="100%"><p class="caption">
 Figure 3: The default {ggplot2} color palette for discrete scales with different types of color blindness.
 </p>
@@ -219,7 +219,7 @@ Figure 3: The default {ggplot2} color palette for discrete scales with different
 <p>Figure <a href="#fig:disc-cvd">3</a> shows that most types of color blindness make it hard to distinguish between the different level of the <code>cyl</code> variable when using the default color palette. The palette for continuous variables has similar problems. Figure <a href="#fig:cont-ex">4</a> shows the default color palette for continuous variables in {ggplot2}.</p>
 
 <div class="figure" style="text-align: center">
-<span id="fig:cont-ex"></span>
+<span style="display:block;" id="fig:cont-ex"></span>
 <img src="plotting_files/figure-html/cont-ex-1.png" alt="Default color palette for continuous variables in {ggplot2}." width="100%"><p class="caption">
 Figure 4: Default color palette for continuous variables in {ggplot2}.
 </p>
@@ -227,7 +227,7 @@ Figure 4: Default color palette for continuous variables in {ggplot2}.
 <p>The simulated color blindness for this scale is shown in Figure <a href="#fig:cont-cvd">5</a>. Here, several types of color blindness result in large sections of the palette where it is difficult to differentiate values.</p>
 
 <div class="figure" style="text-align: center">
-<span id="fig:cont-cvd"></span>
+<span style="display:block;" id="fig:cont-cvd"></span>
 <img src="plotting_files/figure-html/cont-cvd-1.png" alt="The default {ggplot2} color palette for continuous scales with different types of color blindness." width="100%"><p class="caption">
 Figure 5: The default {ggplot2} color palette for continuous scales with different types of color blindness.
 </p>
@@ -246,14 +246,14 @@ Figure 5: The default {ggplot2} color palette for continuous scales with differe
   <span class="fu"><a href="../reference/scale_okabeito.html">scale_color_okabeito</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:okabeito-compare"></span>
+<span style="display:block;" id="fig:okabeito-compare"></span>
 <img src="plotting_files/figure-html/okabeito-compare-1.png" alt="Comparison plot using the default (left) and Okabe Ito (right) discrete color palettes." width="47%"><img src="plotting_files/figure-html/okabeito-compare-2.png" alt="Comparison plot using the default (left) and Okabe Ito (right) discrete color palettes." width="47%"><p class="caption">
 Figure 6: Comparison plot using the default (left) and Okabe Ito (right) discrete color palettes.
 </p>
 </div>
 <p>For continuous color scales, the viridis family of color palettes should be used. These palettes were created by <a href="https://github.com/stefanv" class="external-link">Stéfan van der Walt</a> and <a href="https://github.com/njsmith" class="external-link">Nathaniel Smith</a> and are shown in Figure <a href="#fig:show-viridis">7</a>.</p>
 <div class="figure" style="text-align: center">
-<span id="fig:show-viridis"></span>
+<span style="display:block;" id="fig:show-viridis"></span>
 <img src="plotting_files/figure-html/show-viridis-1.png" alt="The viridis color scales." width="100%"><p class="caption">
 Figure 7: The viridis color scales.
 </p>
@@ -269,7 +269,7 @@ Figure 7: The viridis color scales.
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_c</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:viridis-compare"></span>
+<span style="display:block;" id="fig:viridis-compare"></span>
 <img src="plotting_files/figure-html/viridis-compare-1.png" alt="Comparison plot with default (left) and viridis (right) continuous color palettes." width="47%"><img src="plotting_files/figure-html/viridis-compare-2.png" alt="Comparison plot with default (left) and viridis (right) continuous color palettes." width="47%"><p class="caption">
 Figure 8: Comparison plot with default (left) and viridis (right) continuous color palettes.
 </p>
@@ -286,7 +286,7 @@ Figure 8: Comparison plot with default (left) and viridis (right) continuous col
   <span class="fu"><a href="../reference/scale_atlas.html">scale_color_atlas</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:atlas-colors"></span>
+<span style="display:block;" id="fig:atlas-colors"></span>
 <img src="plotting_files/figure-html/atlas-colors-1.png" alt="Plot with the official ATLAS colors using ratlas::scale_color_atlas()." width="100%"><p class="caption">
 Figure 9: Plot with the official ATLAS colors using <code><a href="../reference/scale_atlas.html">ratlas::scale_color_atlas()</a></code>.
 </p>
@@ -305,7 +305,7 @@ Figure 9: Plot with the official ATLAS colors using <code><a href="../reference/
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:default-theme"></span>
+<span style="display:block;" id="fig:default-theme"></span>
 <img src="plotting_files/figure-html/default-theme-1.png" alt="Plot generated after using set_theme() to set new defaults globally." width="100%"><p class="caption">
 Figure 10: Plot generated after using <code><a href="../reference/set_theme.html">set_theme()</a></code> to set new defaults globally.
 </p>

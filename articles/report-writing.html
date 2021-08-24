@@ -143,14 +143,14 @@
 </center>
 <p>You can then choose a name for your project, and specify the location to save the project on your computer. To lessen confusion later, we recommend saving each report as a new project in its own directory so that you can quickly and easily find the report at a later date. Please note, this example will use the terminology for creating a new tech report, but the same steps can be used to create a new topic guide.</p>
 <div class="figure" style="text-align: center">
-<span id="fig:create-report"></span>
+<span style="display:block;" id="fig:create-report"></span>
 <img src="images/01-new-project.png" alt="Process for creating a new report with {ratlas}." width="80%"><img src="images/02-new-directory.png" alt="Process for creating a new report with {ratlas}." width="80%"><img src="images/03-techreport.png" alt="Process for creating a new report with {ratlas}." width="80%"><img src="images/04-name-report.png" alt="Process for creating a new report with {ratlas}." width="80%"><p class="caption">
 Figure 1: Process for creating a new report with {ratlas}.
 </p>
 </div>
 <p>Your new project should open automatically. You can then open the R Markdown document by clicking the <code>.Rmd</code> file in the Files pane of the RStudio window. The <code>.Rmd</code> document will automatically be named with the name you gave your project. This will open up a document that looks similar to Figure <a href="#fig:name-report">2</a>.</p>
 <div class="figure" style="text-align: center">
-<span id="fig:name-report"></span>
+<span style="display:block;" id="fig:name-report"></span>
 <img src="images/05-open-rmd.png" alt="Open the R Markdown file." width="80%"><p class="caption">
 Figure 2: Open the R Markdown file.
 </p>
@@ -158,7 +158,7 @@ Figure 2: Open the R Markdown file.
 <p>At this point, it’s good practice to try generating the template report. We haven’t made any changes, so generating the document using this template file ensures that your system is set up correctly. You can generate the document by pressing the <code>Knit</code> button in RStudio, as shown in Figure <a href="#fig:knit-doc">3</a>.</p>
 
 <div class="figure" style="text-align: center">
-<span id="fig:knit-doc"></span>
+<span style="display:block;" id="fig:knit-doc"></span>
 <img src="images/06-knit-doc.png" alt="Generate your document using the Knit button." width="80%"><p class="caption">
 Figure 3: Generate your document using the <code>Knit</code> button.
 </p>
@@ -169,7 +169,7 @@ Figure 3: Generate your document using the <code>Knit</code> button.
 <a href="#editing-the-report" class="anchor" aria-hidden="true"></a>Editing the Report</h2>
 <p>Once the document successfully generates, you’re ready to begin editing the template. The first place to start is the meta data at the top of the <code>.Rmd</code> file. This is known as the YAML header, because this information follows YAML (<a href="https://yaml.org/" class="external-link">YAML Ain’t Markup Language</a>) syntax. The default YAML header for a technical report is shown in Figure <a href="#fig:yaml-header">4</a>.</p>
 <div class="figure" style="text-align: center">
-<span id="fig:yaml-header"></span>
+<span style="display:block;" id="fig:yaml-header"></span>
 <img src="images/07-yaml.png" alt="The default YAML header for a technical report." width="80%"><p class="caption">
 Figure 4: The default YAML header for a technical report.
 </p>
@@ -206,7 +206,7 @@ Figure 4: The default YAML header for a technical report.
 <p>Directly beneath the YAML header is an R code chunk called <code>setup</code>, which is shown in Figure <a href="#fig:setup-chunk">5</a>.</p>
 
 <div class="figure" style="text-align: center">
-<span id="fig:setup-chunk"></span>
+<span style="display:block;" id="fig:setup-chunk"></span>
 <img src="images/08-setup.png" alt="The default setup chunk for a new report." width="100%"><p class="caption">
 Figure 5: The default <code>setup</code> chunk for a new report.
 </p>
@@ -364,7 +364,7 @@ Group 3
   <span class="fu"><a href="../reference/scale_okabeito.html">scale_color_okabeito</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:example-figure"></span>
+<span style="display:block;" id="fig:example-figure"></span>
 <img src="report-writing_files/figure-html/example-figure-1.png" alt="An example figure." width="100%"><p class="caption">
 Figure 6: An example figure.
 </p>
@@ -529,24 +529,24 @@ Renders as…
 <span class="co">#&gt; # A tibble: 48 × 3</span>
 <span class="co">#&gt;      mpg  disp   cyl</span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1  19.7 145       6</span>
-<span class="co">#&gt;  2  15.5 318       8</span>
-<span class="co">#&gt;  3  10.4 460       8</span>
-<span class="co">#&gt;  4  19.2 168.      6</span>
-<span class="co">#&gt;  5  30.4  95.1     4</span>
-<span class="co">#&gt;  6  18.1 225       6</span>
-<span class="co">#&gt;  7  21   160       6</span>
-<span class="co">#&gt;  8  19.2 400       8</span>
-<span class="co">#&gt;  9  17.3 276.      8</span>
-<span class="co">#&gt; 10  22.8 108       4</span>
+<span class="co">#&gt;  1  30.4  95.1     4</span>
+<span class="co">#&gt;  2  17.3 276.      8</span>
+<span class="co">#&gt;  3  33.9  71.1     4</span>
+<span class="co">#&gt;  4  19.2 400       8</span>
+<span class="co">#&gt;  5  13.3 350       8</span>
+<span class="co">#&gt;  6  10.4 472       8</span>
+<span class="co">#&gt;  7  17.3 276.      8</span>
+<span class="co">#&gt;  8  26   120.      4</span>
+<span class="co">#&gt;  9  17.8 168.      6</span>
+<span class="co">#&gt; 10  18.7 360       8</span>
 <span class="co">#&gt; # … with 38 more rows</span></code></pre></div>
 <p>Notice that we now have 48 rows instead of 32. If we re-estimate the model, we can see the coefficients have changed:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">my_new_data</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span>
 <span class="co">#&gt; (Intercept)        disp         cyl </span>
-<span class="co">#&gt; 36.80766597 -0.01324139 -2.12360950</span></code></pre></div>
-<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -2.1. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
+<span class="co">#&gt; 34.80866496 -0.02126971 -1.50983029</span></code></pre></div>
+<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -1.5. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
 </div>
 <div id="additional-helpers" class="section level3">
 <h3 class="hasAnchor">
