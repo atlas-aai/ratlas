@@ -40,6 +40,7 @@ Imports:
     hrbrthemes (>= 0.6.0),
     knitr (>= 1.22),
     magrittr (>= 1.5),
+    officedown (>= 0.2.2),
     purrr (>= 0.3.4),
     rlang (>= 0.3.4),
     scales (>= 1.0.0),
