@@ -26,12 +26,18 @@ fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
   corr_dig <- check_pos_int(corr_dig, name = "corr_dig")
 
   df %>%
-    dplyr::mutate_if(is.integer, pad_counts) %>%
-    dplyr::mutate_if(~ is.numeric(.x) && all(dplyr::between(.x, 0, 1)),
-                     pad_prop, digits = prop_dig, output = output) %>%
-    dplyr::mutate_if(~ is.numeric(.x) && all(dplyr::between(.x, -1, 1)),
-                     pad_corr, digits = corr_dig, output = output) %>%
-    dplyr::mutate_if(is.numeric, pad_decimal, digits = dec_dig)
+    dplyr::mutate(dplyr::across(where(is.integer), pad_counts)) %>%
+    dplyr::mutate(dplyr::across(where(~(is.numeric(.x) &&
+                                          all(dplyr::between(.x, 0, 1),
+                                              na.rm = TRUE))),
+                                pad_prop, digits = prop_dig,
+                                output = output)) %>%
+    dplyr::mutate(dplyr::across(where(~(is.numeric(.x) &&
+                                          all(dplyr::between(.x, 0, 1),
+                                              na.rm = TRUE))),
+                                pad_corr, digits = corr_dig,
+                                output = output)) %>%
+    dplyr::mutate(across(is.numeric, pad_decimal, digits = dec_dig))
 }
 
 
@@ -138,7 +144,7 @@ pad_prop <- function(x, digits, fmt_small = TRUE, output = NULL) {
   digits <- check_pos_int(digits)
   output <- check_output(output)
   new_x <- fmt_prop(x, digits = digits, fmt_small = fmt_small)
-
+  new_x[is.na(new_x)] <- "NA"
 
   if (any(stringr::str_detect(new_x, "^<|^>")) &
       !all(stringr::str_detect(new_x, "^<|^>"))) {
@@ -149,7 +155,7 @@ pad_prop <- function(x, digits, fmt_small = TRUE, output = NULL) {
                               TRUE ~ new_x)
   }
 
-  if (any(x == 1)) {
+  if (any(x == 1, na.rm = TRUE)) {
     new_x <- dplyr::case_when(stringr::str_detect(new_x, "^1\\.") ~ new_x,
                               TRUE ~ paste0(paste(rep("\\ ", 2), collapse = ""),
                                             new_x))
@@ -165,8 +171,9 @@ pad_corr <- function(x, digits, output = NULL) {
   digits <- check_pos_int(digits)
   output <- check_output(output)
   new_x <- fmt_corr(x, digits = digits, output = output)
+  new_x[is.na(new_x)] <- "NA"
 
-  if (any(x < 0)) {
+  if (any(x < 0, na.rm = TRUE)) {
     search <- ifelse(output == "latex", "^-", "&minus;")
     pad <- ifelse(output == "latex", 5, 2)
     new_x <- dplyr::case_when(stringr::str_detect(new_x, search) ~
