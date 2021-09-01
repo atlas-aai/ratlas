@@ -37,7 +37,7 @@ fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
                                               na.rm = TRUE))),
                                 pad_corr, digits = corr_dig,
                                 output = output)) %>%
-    dplyr::mutate(dplyr::across(is.numeric, pad_decimal, digits = dec_dig))
+    dplyr::mutate(dplyr::across(where(is.numeric), pad_decimal, digits = dec_dig))
 }
 
 
