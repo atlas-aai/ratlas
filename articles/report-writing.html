@@ -99,19 +99,7 @@
 
       
 
-      </header><script src="report-writing_files/jquery-1.11.3/jquery.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="report-writing_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
-<script src="report-writing_files/bootstrap-3.3.5/js/bootstrap.min.js"></script><script src="report-writing_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script><script src="report-writing_files/bootstrap-3.3.5/shim/respond.min.js"></script><style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
-<script src="report-writing_files/navigation-1.1/tabsets.js"></script><script src="report-writing_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="report-writing_files/kePrint-0.0.1/kePrint.js"></script><link href="report-writing_files/lightable-0.0.1/lightable.css" rel="stylesheet">
-<div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Writing a Report With ratlas</h1>
@@ -125,18 +113,18 @@
     
     
 <p>This vignette walks through the process of creating a new topic guide, technical report, or research report using R Markdown. We also suggest best practices for organizing your report files, and give some tips and tricks for formatting text.</p>
-<div id="system-setup" class="section level2">
-<h2 class="hasAnchor">
-<a href="#system-setup" class="anchor" aria-hidden="true"></a>System Setup</h2>
+<div class="section level2">
+<h2 id="system-setup">System Setup<a class="anchor" aria-label="anchor" href="#system-setup"></a>
+</h2>
 <p>In order to generate a report using the {ratlas}, you must have the necessary output software installed on your computer. For Microsoft Word output (e.g., <code><a href="../reference/topicguide_docx.html">ratlas::topicguide_docx()</a></code>), you will need Word installed. For PDF output (e.g., <code><a href="../reference/techreport_pdf.html">ratlas::techreport_pdf()</a></code>), you will need a <span class="math inline">\(\LaTeX\)</span> distribution. For an easy way to manage this, we recommend using the <a href="https://yihui.org/tinytex/" class="external-link">{tinytex} package</a>. If you have another <span class="math inline">\(\LaTeX\)</span> distribution already installed on your computer (e.g., MacTex on a Mac or MiKTeX on Windows), you should uninstall/delete that program before install {tinytex}. You can then be set up for PDF output by running this code (you only need to run it once after install {tinytex}):</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tinytex"</span><span class="op">)</span>
 <span class="fu">tinytex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html" class="external-link">install_tinytex</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>We also assume that you are using <a href="https://rstudio.com/products/rstudio/download/#download" class="external-link">RStudio</a>. This is not required, but RStudio provides many shortcuts that make the process of writing and generating reports much smoother.</p>
 </div>
-<div id="create-new" class="section level2">
-<h2 class="hasAnchor">
-<a href="#create-new" class="anchor" aria-hidden="true"></a>Creating a New Tech Report or Topic Guide</h2>
+<div class="section level2">
+<h2 id="create-new">Creating a New Tech Report or Topic Guide<a class="anchor" aria-label="anchor" href="#create-new"></a>
+</h2>
 <p>When beginning a new report, the first step is to create a new project in RStudio. This can be done by clicking:</p>
 <center>
 <strong>File &gt; New Project &gt; New Directory &gt; Tech Report using ratlas</strong>
@@ -164,9 +152,9 @@ Figure 3: Generate your document using the <code>Knit</code> button.
 </p>
 </div>
 </div>
-<div id="editing-the-report" class="section level2">
-<h2 class="hasAnchor">
-<a href="#editing-the-report" class="anchor" aria-hidden="true"></a>Editing the Report</h2>
+<div class="section level2">
+<h2 id="editing-the-report">Editing the Report<a class="anchor" aria-label="anchor" href="#editing-the-report"></a>
+</h2>
 <p>Once the document successfully generates, you’re ready to begin editing the template. The first place to start is the meta data at the top of the <code>.Rmd</code> file. This is known as the YAML header, because this information follows YAML (<a href="https://yaml.org/" class="external-link">YAML Ain’t Markup Language</a>) syntax. The default YAML header for a technical report is shown in Figure <a href="#fig:yaml-header">4</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:yaml-header"></span>
@@ -213,9 +201,9 @@ Figure 5: The default <code>setup</code> chunk for a new report.
 </div>
 <p>In most cases, only the first line of the <code>setup</code> chunk will need to be edited. This defines the R packages that are needed for your report. If you are just writing text and not doing any analysis, you can probably leave this as is. However, if you are including your analysis in this document (<em>highly recommended</em>), or plan make <a href="#add-table">tables</a> or <a href="#add-figure">figures</a>, you may need to add additional packages here. The rest of the <code>setup</code> chunk loads the specified packages, sets some default options for table output, and sets a default theme for any plots made with <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>. If there are other options or settings you need to apply to your whole report, this is the place to them.</p>
 </div>
-<div id="writing-in-markdown" class="section level2">
-<h2 class="hasAnchor">
-<a href="#writing-in-markdown" class="anchor" aria-hidden="true"></a>Writing in Markdown</h2>
+<div class="section level2">
+<h2 id="writing-in-markdown">Writing in Markdown<a class="anchor" aria-label="anchor" href="#writing-in-markdown"></a>
+</h2>
 <p>Now that all of the setup is complete, it’s time to start writing! R Markdown uses the Markdown language for formatting text. The only difference between writing in Markdown and a more traditional editor (e.g., Microsoft Word) is that in Markdown all of the formatting is included directly in the text. For example, if you want to put a word in italics, you wrap the word in asterisks so that <code>*here are some italics*</code> becomes <em>here are some italics</em>. The most common formatting options are:</p>
 <ul>
 <li>Make headings with <code>#</code> (e.g., <code># Level 1 Heading</code>, <code>## Level 2 Heading</code>, etc.)</li>
@@ -231,9 +219,9 @@ Figure 5: The default <code>setup</code> chunk for a new report.
 <span id="cb2-4"><a href="#cb2-4"></a><span class="st">    - item 2.2</span></span></code></pre></div>
 <p>For more in-depth descriptions of Markdown formatting, check out <a href="https://bookdown.org/yihui/bookdown/components.html" class="external-link">Chapter 2 of <em>bookdown: Authoring Books and Technical Documents with R Markdown</em></a> and the <a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf" class="external-link">R Markdown reference guide</a>.</p>
 </div>
-<div id="add-table" class="section level2">
-<h2 class="hasAnchor">
-<a href="#add-table" class="anchor" aria-hidden="true"></a>Adding Tables</h2>
+<div class="section level2">
+<h2 id="add-table">Adding Tables<a class="anchor" aria-label="anchor" href="#add-table"></a>
+</h2>
 <p>There are many ways to create professional tables in R Markdown. We recommend using <code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable()</a></code> and the <a href="https://haozhu233.github.io/kableExtra/" class="external-link">{kableExtra}</a> package. The first step is to your data into data frame. You can either read the data in from a file or create the data manually.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span>
@@ -243,22 +231,22 @@ Figure 5: The default <code>setup</code> chunk for a new report.
   <span class="st">"Group 3"</span>,  <span class="fl">79205L</span>,      <span class="fl">95.4</span>,         <span class="fl">0.927</span>,   <span class="fl">0.001</span>
 <span class="op">)</span>
 <span class="va">my_data</span>
-<span class="co">#&gt; # A tibble: 3 × 5</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 5</span></span>
 <span class="co">#&gt;   label   count percent correlation pvalue</span>
-<span class="co">#&gt;   &lt;chr&gt;   &lt;int&gt;   &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 Group 1   103    0.92      -0.895  0.12 </span>
-<span class="co">#&gt; 2 Group 2  1064   32.1        0.051  0.03 </span>
-<span class="co">#&gt; 3 Group 3 79205   95.4        0.927  0.001</span></code></pre></div>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Group 1   103    0.92      -<span style="color: #BB0000;">0.895</span>  0.12 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Group 2  <span style="text-decoration: underline;">1</span>064   32.1        0.051  0.03 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Group 3 <span style="text-decoration: underline;">79</span>205   95.4        0.927  0.001</span></code></pre></div>
 <p>The next step is to format the table for printing. The <code><a href="../reference/fmt_table.html">fmt_table()</a></code> function will apply default formatting and work in most cases. Notice the formatting that has been applied below. Commas have been added to integer values, decimal digits have been rounded to the same number of decimal places, and leading zeros have been removed from values that are bounded between -1 and 1. Leading and trailing spaces have also been added so that values will be centered and decimal aligned in the table. See <code><a href="../reference/formatting.html">?ratlas::formatting</a></code> for specific formatting options that are wrapped by <code><a href="../reference/fmt_table.html">fmt_table()</a></code>. These formatting functions can be used to specific styling of columns that do not conform to the defaults specified in <code><a href="../reference/fmt_table.html">fmt_table()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_data</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/fmt_table.html">fmt_table</a></span><span class="op">(</span>corr_dig <span class="op">=</span> <span class="fl">2</span>, prop_dig <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 3 × 5</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 5</span></span>
 <span class="co">#&gt;   label   count                percent     correlation        pvalue          </span>
-<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;                &lt;chr&gt;       &lt;chr&gt;              &lt;chr&gt;           </span>
-<span class="co">#&gt; 1 Group 1 "\\ \\ \\ \\ \\ 103" "\\ \\ 0.9" "&amp;minus;0.9\\ \\ " ".12"           </span>
-<span class="co">#&gt; 2 Group 2 "\\ \\ 1,064"        "32.1"      "0.1"              ".03"           </span>
-<span class="co">#&gt; 3 Group 3 "79,205"             "95.4"      "0.9"              "&lt; .01\\ \\ \\ "</span></code></pre></div>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Group 1 <span style="color: #949494;">"</span>\\ \\ \\ \\ \\ 103<span style="color: #949494;">"</span> <span style="color: #949494;">"</span>\\ \\ 0.9<span style="color: #949494;">"</span> <span style="color: #949494;">"</span>&amp;minus;0.9\\ \\ <span style="color: #949494;">"</span> <span style="color: #949494;">"</span>.12<span style="color: #949494;">"</span>           </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Group 2 <span style="color: #949494;">"</span>\\ \\ 1,064<span style="color: #949494;">"</span>        <span style="color: #949494;">"</span>32.1<span style="color: #949494;">"</span>      <span style="color: #949494;">"</span>0.1<span style="color: #949494;">"</span>              <span style="color: #949494;">"</span>.03<span style="color: #949494;">"</span>           </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Group 3 <span style="color: #949494;">"</span>79,205<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>95.4<span style="color: #949494;">"</span>      <span style="color: #949494;">"</span>0.9<span style="color: #949494;">"</span>              <span style="color: #949494;">"</span>&lt; .01\\ \\ \\ <span style="color: #949494;">"</span></span></code></pre></div>
 <p>The table can then be created using <code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable()</a></code>. There are several arguments supplied to the <code>kable()</code> function. The <code>align</code> argument specifies the alignment of each column. Because we formatted the table with <code><a href="../reference/fmt_table.html">fmt_table()</a></code>, we can set the alignment of all the numeric columns to <code>"c"</code> (centered). The <code>booktabs</code> and <code>linesep</code> arguments control the appearance of the table. By setting <code>escape = FALSE</code>, we tell the <code>kable()</code> function to not escape special characters, allowing for the padding spaces we added to remain in tact. Additionally, column names for the table and a caption are specified. The last step is to add additional styling from the {kableExtra} package. In this example, we use the <code><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kableExtra::kable_styling()</a></code> function to set some <span class="math inline">\(\LaTeX\)</span> options. Specifically, the <code>"HOLD_position"</code> setting ensures that the table will appear in the exact position of the code chunk (i.e., the <span class="math inline">\(\LaTeX\)</span> engine is not allowed to float the table above or below additional paragraphs in order to avoid extraneous white space). For more customization options with the {kableExtra} package, see the package vignettes for <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html" class="external-link">HTML</a> and <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf" class="external-link">PDF</a> tables.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_data</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
@@ -353,9 +341,9 @@ Group 3
 <span id="cb6-7"><a href="#cb6-7"></a><span class="bn">        caption = "An example table")</span></span>
 <span id="cb6-8"><a href="#cb6-8"></a><span class="bn">```</span></span></code></pre></div>
 </div>
-<div id="add-figure" class="section level2">
-<h2 class="hasAnchor">
-<a href="#add-figure" class="anchor" aria-hidden="true"></a>Adding Figures</h2>
+<div class="section level2">
+<h2 id="add-figure">Adding Figures<a class="anchor" aria-label="anchor" href="#add-figure"></a>
+</h2>
 <p>Figures can be created using the <code>ggplot2</code> package in R. For example, we can use the <code>iris</code> data set that is built into <em>R</em> to create a scatter plot, which is shown in Figure <a href="#fig:example-figure">6</a>. For additional details on creating figures with {ratlas}, see <code><a href="../articles/plotting.html">vignette("plotting")</a></code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">iris</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Petal.Length</span>, y <span class="op">=</span> <span class="va">Sepal.Length</span>, color <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -378,9 +366,9 @@ Figure 6: An example figure.
 <span id="cb8-6"><a href="#cb8-6"></a><span class="bn">  theme_atlas()</span></span>
 <span id="cb8-7"><a href="#cb8-7"></a><span class="bn">```</span></span></code></pre></div>
 </div>
-<div id="refs" class="section level2">
-<h2 class="hasAnchor">
-<a href="#refs" class="anchor" aria-hidden="true"></a>Citations</h2>
+<div class="section level2">
+<h2 id="refs">Citations<a class="anchor" aria-label="anchor" href="#refs"></a>
+</h2>
 <p>The last major category of features for report writing is citations. The first step for including citations is to format your references into a <code>.bib</code> file. Reference managers such as EndNote or Zotero offer the option to export references to a <code>.bib</code> file (e.g., Bibtex), making this step easier. Entries in a <code>.bib</code> file should look like the following example. The first line contains important metadata. The <code>@article</code> specifies the type of reference and will control what type of information is included in the printed bibliography. The string directly after the opening brace (i.e., <code>lcdm</code>) is the citation key. This is what we’ll use to actually make a citation. Both of these pieces of metadata will be automatically generated by your reference manager. If you are writing your own <code>.bib</code> file, or need to manually insert an entry, you can find many examples <a href="https://verbosus.com/bibtex-style-examples.html" class="external-link">here</a>.</p>
 <pre><code>@article{lcdm,
   author = {Henson, Robert A. and Templin, Jonathan L. and Willse, John T.},
@@ -473,13 +461,13 @@ Renders as…
 </table>
 <p>Full references for all citations that have mentioned in the text are automatically added to the end of the document. This means that you only need to worry about making your citations within the text. The bibliography is handled automatically by R Markdown. For more information on citations, see the <a href="https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html" class="external-link">R Markdown website</a> and the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html" class="external-link"><em>R Markdown Cookbook</em></a>.</p>
 </div>
-<div id="best-practices" class="section level2">
-<h2 class="hasAnchor">
-<a href="#best-practices" class="anchor" aria-hidden="true"></a>Best Practices</h2>
+<div class="section level2">
+<h2 id="best-practices">Best Practices<a class="anchor" aria-label="anchor" href="#best-practices"></a>
+</h2>
 <p>In the final section, we include some recommendations and best practices for writing reports in R Markdown that will make life for you and your collaborators easier.</p>
-<div id="file-paths" class="section level3">
-<h3 class="hasAnchor">
-<a href="#file-paths" class="anchor" aria-hidden="true"></a>File paths</h3>
+<div class="section level3">
+<h3 id="file-paths">File paths<a class="anchor" aria-label="anchor" href="#file-paths"></a>
+</h3>
 <p>Nothing is worse than getting some code from a collaborator, attempting to run it, and seeing an error that says the data file does not exist. This is most likely due to file path issues. For example, the file <code>/Users/myname/Documents/my-project/some-data.csv</code> will not exist on your computer, because you have a different name. If you use a different operating system, the beginning of the file path may be completely different (i.e., <code>C:\</code> vs. <code>/</code>). This is problematic for two reasons:</p>
 <ol style="list-style-type: decimal">
 <li>I have to go through and replace all the file paths before I can run your code.</li>
@@ -498,26 +486,26 @@ Renders as…
 │   └── simulation.R</code></pre>
 <p>In this project, there is a <code>data/</code> directory with raw data, an <code>R/</code> directory where the analysis code lives, and an <code>output/</code> directory, where the results from the analysis are saved. The report lives in the <code>my-report.Rmd</code> file. When writing the report, I will likely need to read in the results. One option is to use <code>read_rds("/Users/jake/GIT/projects/simulation-study/output/all-output.rds")</code>. However, we know that this will break on other machines. Instead, we can use <code>read_rds(here("output", "all-output.rds"))</code>. This will look for the <code>.Rproj</code> file, and from there, look for an <code>output</code> directory with an <code>all-output.rds</code> file. This way, when another collaborator downloads the project, the file paths will “just work.” For more information on file paths and why the {here} package is important, see <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/" class="external-link">this blog post</a> from Jenny Bryan.</p>
 </div>
-<div id="in-line-output" class="section level3">
-<h3 class="hasAnchor">
-<a href="#in-line-output" class="anchor" aria-hidden="true"></a>In-Line Output</h3>
+<div class="section level3">
+<h3 id="in-line-output">In-Line Output<a class="anchor" aria-label="anchor" href="#in-line-output"></a>
+</h3>
 <p>If at all possible, you should avoid the hard coding of numbers. For example, let’s say we have some data on cars and estimate the following model:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_data</span>
-<span class="co">#&gt; # A tibble: 32 × 3</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 32 × 3</span></span>
 <span class="co">#&gt;      mpg  disp   cyl</span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1  21    160      6</span>
-<span class="co">#&gt;  2  21    160      6</span>
-<span class="co">#&gt;  3  22.8  108      4</span>
-<span class="co">#&gt;  4  21.4  258      6</span>
-<span class="co">#&gt;  5  18.7  360      8</span>
-<span class="co">#&gt;  6  18.1  225      6</span>
-<span class="co">#&gt;  7  14.3  360      8</span>
-<span class="co">#&gt;  8  24.4  147.     4</span>
-<span class="co">#&gt;  9  22.8  141.     4</span>
-<span class="co">#&gt; 10  19.2  168.     6</span>
-<span class="co">#&gt; # … with 22 more rows</span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  21    160      6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  21    160      6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  22.8  108      4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  21.4  258      6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  18.7  360      8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  18.1  225      6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  14.3  360      8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  24.4  147.     4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  22.8  141.     4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  19.2  168.     6</span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 22 more rows</span></span>
 
 <span class="va">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">my_data</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span>
@@ -526,38 +514,38 @@ Renders as…
 <p>When reporting the coefficient for <code>cyl</code> we might say, “Keeping displacement constant, an additional cylinder is associated with a loss of about 1.6 miles-per-gallon.” But now let’s say that the data file gets updated:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_new_data</span>
-<span class="co">#&gt; # A tibble: 48 × 3</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 48 × 3</span></span>
 <span class="co">#&gt;      mpg  disp   cyl</span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1  17.8 168.      6</span>
-<span class="co">#&gt;  2  17.3 276.      8</span>
-<span class="co">#&gt;  3  27.3  79       4</span>
-<span class="co">#&gt;  4  33.9  71.1     4</span>
-<span class="co">#&gt;  5  16.4 276.      8</span>
-<span class="co">#&gt;  6  19.2 400       8</span>
-<span class="co">#&gt;  7  15.2 276.      8</span>
-<span class="co">#&gt;  8  15.2 276.      8</span>
-<span class="co">#&gt;  9  17.3 276.      8</span>
-<span class="co">#&gt; 10  22.8 108       4</span>
-<span class="co">#&gt; # … with 38 more rows</span></code></pre></div>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  30.4  95.1     4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  27.3  79       4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  32.4  78.7     4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  21.5 120.      4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  19.7 145       6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  21   160       6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  19.2 400       8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  22.8 141.      4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  18.7 360       8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  21.5 120.      4</span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 38 more rows</span></span></code></pre></div>
 <p>Notice that we now have 48 rows instead of 32. If we re-estimate the model, we can see the coefficients have changed:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">my_new_data</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span>
 <span class="co">#&gt; (Intercept)        disp         cyl </span>
-<span class="co">#&gt; 34.27749013 -0.02357411 -1.41638916</span></code></pre></div>
-<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -1.4. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
+<span class="co">#&gt; 34.87045895 -0.01909245 -1.71261158</span></code></pre></div>
+<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -1.7. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
 </div>
-<div id="additional-helpers" class="section level3">
-<h3 class="hasAnchor">
-<a href="#additional-helpers" class="anchor" aria-hidden="true"></a>Additional Helpers</h3>
+<div class="section level3">
+<h3 id="additional-helpers">Additional Helpers<a class="anchor" aria-label="anchor" href="#additional-helpers"></a>
+</h3>
 <p>There are two additional helpers that may be useful for automatically populating the text of a report. First, <code><a href="https://rdrr.io/pkg/knitr/man/combine_words.html" class="external-link">knitr::combine_words()</a></code> can be used to create a comma separated character string from a vector of values. For example, <code>`r combine_words(c("one", "two", "three"))`</code> becomes one, two, and three.</p>
 <p>Finally, APA style specifies that integer values less than ten should be spelled out (i.e., “two” instead of 2). The {english} package can be used to translate numbers to words. For example <code>`r words(3)`</code> becomes three. For more details on the {english} package, see <code><a href="https://cran.rstudio.com/web/packages/english/vignettes/the-english-patient.pdf" class="external-link">vignette("the-english-patient", package = "english")</a></code>.</p>
 </div>
 </div>
-<div id="keep-learning" class="section level2">
-<h2 class="hasAnchor">
-<a href="#keep-learning" class="anchor" aria-hidden="true"></a>Keep Learning</h2>
+<div class="section level2">
+<h2 id="keep-learning">Keep Learning<a class="anchor" aria-label="anchor" href="#keep-learning"></a>
+</h2>
 <p>There are many resources available for learning more about writing reports with R Markdown. Here are a few <strong>free</strong> resources that I have found particularly helpful:</p>
 <ul>
 <li>For a high-level overview of everything you could ever want to know about R Markdown, see <a href="https://bookdown.org/yihui/rmarkdown/" class="external-link"><em>R Markdown: The Definitive Guide</em></a>, by Yihui Xie, J. J. Allaire, and Garrett Grolemund.</li>
@@ -572,9 +560,9 @@ Renders as…
 <li>For an introduction to statistical inference in <em>R</em>, see <a href="https://moderndive.com/" class="external-link"><em>Statistical Inference via Data Science: A ModernDive into R and the tidyverse</em></a>, by Chester Ismay and Albert Y. Kim.</li>
 </ul>
 </div>
-<div id="references" class="section level2 unnumbered">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor" aria-hidden="true"></a>References</h2>
+<div class="section level2 unnumbered">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <div id="refs" class="references">
 <div id="ref-lcdm">
 <p>Henson, R. A., Templin, J. L., &amp; Willse, J. T. (2009). Defining a family of cognitive diagnosis models using log-linear models with latent variables. <em>Psychometrika</em>, <em>74</em>, 191–210. <a href="https://doi.org/10.1007/S11336-008-9089-5" class="external-link">https://doi.org/10.1007/S11336-008-9089-5</a></p>
@@ -603,7 +591,7 @@ Renders as…
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.9000.9000.9000.</p>
 </div>
 
       </footer>

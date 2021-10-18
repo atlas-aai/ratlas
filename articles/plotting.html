@@ -99,18 +99,7 @@
 
       
 
-      </header><script src="plotting_files/jquery-1.11.3/jquery.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="plotting_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
-<script src="plotting_files/bootstrap-3.3.5/js/bootstrap.min.js"></script><script src="plotting_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script><script src="plotting_files/bootstrap-3.3.5/shim/respond.min.js"></script><style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
-<script src="plotting_files/navigation-1.1/tabsets.js"></script><script src="plotting_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Plotting in ratlas</h1>
@@ -124,9 +113,9 @@
     
     
 <p>This vignette walks through how to create consistent graphics that meet ATLAS formatting standards using <a href="https://ggplot2.tidyverse.org" class="external-link">{ggplot2}</a>. The {ggplot2} package uses the grammar of graphics to create elegant and reproducible plots that are publication ready. The {ratlas} package provides an extension to {ggplot2} by customizing the default theme to match brand requirements.</p>
-<div id="introduction-to-ggplot2" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction-to-ggplot2" class="anchor" aria-hidden="true"></a>Introduction to ggplot2</h2>
+<div class="section level2">
+<h2 id="introduction-to-ggplot2">Introduction to ggplot2<a class="anchor" aria-label="anchor" href="#introduction-to-ggplot2"></a>
+</h2>
 <p>A full tutorial of how to use {ggplot2} is beyond the scope of this vignette. If you are new to {ggplot2}, we recommend you start with these resources:</p>
 <ul>
 <li>
@@ -151,9 +140,9 @@ Figure 1: Default {ggplot2} theme.
 </p>
 </div>
 </div>
-<div id="setting-up-your-system" class="section level2">
-<h2 class="hasAnchor">
-<a href="#setting-up-your-system" class="anchor" aria-hidden="true"></a>Setting up your system</h2>
+<div class="section level2">
+<h2 id="setting-up-your-system">Setting up your system<a class="anchor" aria-label="anchor" href="#setting-up-your-system"></a>
+</h2>
 <p>The ATLAS {ggplot2} themes use different fonts from the default theme in Figure <a href="#fig:init-plot">1</a>. In order for {ggplot2} to be able to use other fonts on your computer, we need to use the {extrafont} package.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wch/extrafont" class="external-link">extrafont</a></span><span class="op">)</span>
@@ -175,9 +164,8 @@ Figure 1: Default {ggplot2} theme.
 <span class="op">)</span></code></pre></div>
 <p>Here, two options have been set. The first defines which CRAN repository to use when installing new packages. The second indicates that the font database should be loaded when {ratlas} is attached. We recommend setting this option in your <code>.Rprofile</code> so that you don’t have to always remember to load the font database manually.</p>
 </div>
-<div id="using-theme_atlas" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-theme_atlas" class="anchor" aria-hidden="true"></a>Using <code>theme_atlas()</code>
+<div class="section level2">
+<h2 id="using-theme_atlas">Using <code>theme_atlas()</code><a class="anchor" aria-label="anchor" href="#using-theme_atlas"></a>
 </h2>
 <p>The ATLAS {ggplot2} theme can be applied by adding a <code><a href="../reference/theme_atlas.html">ratlas::theme_atlas()</a></code> layer to plot, just as you would add any other theme. The result is shown in Figure <a href="#fig:theme-atlas-ex">2</a>.</p>
 
@@ -195,9 +183,9 @@ Figure 2: The result of applying <code><a href="../reference/theme_atlas.html">r
 </div>
 <p>There are a few points to draw attention to when comparing Figure <a href="#fig:theme-atlas-ex">2</a> back to Figure <a href="#fig:init-plot">1</a>. First, the gray background has been removed, and the grid lines have been changed from white to gray. Second, the legend has been moved from a vertical orientation on the right-hand side of the plot to a horizontal orientation below the plot. Finally, the font has been changed to Arial Narrow, which should be available on all systems and provides a more modern look.</p>
 </div>
-<div id="changing-the-font" class="section level2">
-<h2 class="hasAnchor">
-<a href="#changing-the-font" class="anchor" aria-hidden="true"></a>Changing the font</h2>
+<div class="section level2">
+<h2 id="changing-the-font">Changing the font<a class="anchor" aria-label="anchor" href="#changing-the-font"></a>
+</h2>
 <p>Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is <a href="https://brand.ku.edu/guidelines/typography" class="external-link">Gotham</a>. However, this font is expensive, and thus inaccessible to most users. <a href="https://fonts.google.com/specimen/Montserrat" class="external-link">Montserrat</a> is a very similar font that is available for free through Google Fonts. We recommend that you download and install this font on your system directly from Google Fonts, and then call <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html" class="external-link">extrafont::font_import()</a></code>. However, a convenience function has been provided, <code><a href="../reference/import_montserrat.html">ratlas::import_montserrat()</a></code>, that will do some of the work for you.</p>
 <p>Once the Montserrat font has been installed on your system, you can apply it to the ATLAS theme using <code><a href="../reference/theme_atlas_ms.html">ratlas::theme_atlas_ms()</a></code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -205,9 +193,9 @@ Figure 2: The result of applying <code><a href="../reference/theme_atlas.html">r
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="../reference/theme_atlas_ms.html">theme_atlas_ms</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="colors" class="section level2">
-<h2 class="hasAnchor">
-<a href="#colors" class="anchor" aria-hidden="true"></a>Colors</h2>
+<div class="section level2">
+<h2 id="colors">Colors<a class="anchor" aria-label="anchor" href="#colors"></a>
+</h2>
 <p>One potential issue with graphics created with {ggplot2} is that the default color scales are not colorblind friendly. For example, Figure <a href="#fig:disc-cvd">3</a> shows our working example simulated with different types of color blindness.</p>
 
 <div class="figure" style="text-align: center">
@@ -232,9 +220,9 @@ Figure 4: Default color palette for continuous variables in {ggplot2}.
 Figure 5: The default {ggplot2} color palette for continuous scales with different types of color blindness.
 </p>
 </div>
-<div id="using-color-blind-safe-palettes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#using-color-blind-safe-palettes" class="anchor" aria-hidden="true"></a>Using color blind safe palettes</h3>
+<div class="section level3">
+<h3 id="using-color-blind-safe-palettes">Using color blind safe palettes<a class="anchor" aria-label="anchor" href="#using-color-blind-safe-palettes"></a>
+</h3>
 <p>For discrete color scales, the {ratlas} package includes the Okabe Ito color palette developed by <a href="https://jfly.uni-koeln.de/color/" class="external-link">Masataka Okabe and Kei Ito</a>. This can be used with the <code><a href="../reference/scale_okabeito.html">ratlas::scale_color_okabeito()</a></code> function.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -275,9 +263,9 @@ Figure 8: Comparison plot with default (left) and viridis (right) continuous col
 </p>
 </div>
 </div>
-<div id="brand-colors" class="section level3">
-<h3 class="hasAnchor">
-<a href="#brand-colors" class="anchor" aria-hidden="true"></a>Brand colors</h3>
+<div class="section level3">
+<h3 id="brand-colors">Brand colors<a class="anchor" aria-label="anchor" href="#brand-colors"></a>
+</h3>
 <p>In additional to palettes that are color blind safe, the {ratlas} package also include brand specific color palettes. For example, a plot can be created using the official ATLAS color palette by using the <code><a href="../reference/scale_atlas.html">ratlas::scale_color_atlas()</a></code> function, as shown in Figure <a href="#fig:atlas-colors">9</a>.</p>
 
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -293,9 +281,9 @@ Figure 9: Plot with the official ATLAS colors using <code><a href="../reference/
 </div>
 </div>
 </div>
-<div id="setting-a-global-theme" class="section level2">
-<h2 class="hasAnchor">
-<a href="#setting-a-global-theme" class="anchor" aria-hidden="true"></a>Setting a global theme</h2>
+<div class="section level2">
+<h2 id="setting-a-global-theme">Setting a global theme<a class="anchor" aria-label="anchor" href="#setting-a-global-theme"></a>
+</h2>
 <p>If you have several plots in a document, it can be a hassle to always remember to add <code>+ theme_atlas()</code> to every plot and to switch to a non-default color palette. To make the formatting of plots easier, {ratlas} includes a wrapper function, <code><a href="../reference/set_theme.html">ratlas::set_theme()</a></code> which will change the {ggplot2} defaults so that <code><a href="../reference/theme_atlas.html">theme_atlas()</a></code> is always used, and the default color scales are changed to the Okabe Ito palette for discrete scales and the viridis palette for continuous scales.</p>
 <p>For example, once <code><a href="../reference/set_theme.html">set_theme()</a></code> has been called, the <code><a href="../reference/scale_okabeito.html">scale_color_okabeito()</a></code> and <code><a href="../reference/theme_atlas.html">theme_atlas()</a></code> lines no longer need to be added. Instead, they are applied by default (Figure <a href="#fig:default-theme">10</a>).</p>
 
@@ -312,9 +300,9 @@ Figure 10: Plot generated after using <code><a href="../reference/set_theme.html
 </div>
 <p>The <code><a href="../reference/set_theme.html">set_theme()</a></code> function also provides flexibility for which defaults are set. For example, to use the Montserrat font by default, use <code>set_theme(font = "Montserrat")</code>. See <code>?set_theme()</code> for all options.</p>
 </div>
-<div id="saving-plots" class="section level2">
-<h2 class="hasAnchor">
-<a href="#saving-plots" class="anchor" aria-hidden="true"></a>Saving plots</h2>
+<div class="section level2">
+<h2 id="saving-plots">Saving plots<a class="anchor" aria-label="anchor" href="#saving-plots"></a>
+</h2>
 <p>Finally, it is often useful to save plots to a file. This can be done with <code><a href="../reference/ggsave2.html">ratlas::ggsave2()</a></code>. This is a wrapper around <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggplot2::ggsave()</a></code>. The <code><a href="../reference/ggsave2.html">ggsave2()</a></code> version applies some defaults to all ATLAS plots. Specifically, the plot labels and titles are automatically spell checked, the aspect ratio of plots is set to a reasonable default (rather than using the current size of your graphics device), and embeds the fonts when saving to a PDF format, allowing the plots to render correctly on any system.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -327,9 +315,9 @@ Figure 10: Plot generated after using <code><a href="../reference/set_theme.html
   <span class="fu"><a href="../reference/ggsave2.html">ggsave2</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"my-plot.png"</span>, path <span class="op">=</span> <span class="st">"where/to/save"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/ggsave2.html">ggsave2</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"my-plot.pdf"</span>, path <span class="op">=</span> <span class="st">"where/to/save"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="keep-learning" class="section level2">
-<h2 class="hasAnchor">
-<a href="#keep-learning" class="anchor" aria-hidden="true"></a>Keep Learning</h2>
+<div class="section level2">
+<h2 id="keep-learning">Keep Learning<a class="anchor" aria-label="anchor" href="#keep-learning"></a>
+</h2>
 <p>There are many resources available for learning more about how to make data visualizations with R and {ggplot2}. Here are a few <strong>free</strong> resources that I have found particularly helpful:</p>
 <ul>
 <li>For an introduction to {ggplot2}, see <a href="https://r4ds.had.co.nz/data-visualisation.html" class="external-link">Data Visualisation</a>, from <em>R for Data Science</em>, by Hadley Wickham and Garrett Grolemund</li>
@@ -357,7 +345,7 @@ Figure 10: Plot generated after using <code><a href="../reference/set_theme.html
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.9000.9000.9000.</p>
 </div>
 
       </footer>
