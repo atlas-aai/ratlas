@@ -346,6 +346,25 @@ $endif$
   \fancyhfoffset{0pt}% recalculate head and foot width for fancyhdr
 }
 
+% column environment for PLD tables
+\newenvironment{cols}[1][]{}{}
+
+\newenvironment{col}[1]{\begin{minipage}{#1}\ignorespaces}{%
+\end{minipage}
+\ifhmode\unskip\fi
+\aftergroup\useignorespacesandallpars}
+
+\def\useignorespacesandallpars#1\ignorespaces\fi{%
+#1\fi\ignorespacesandallpars}
+
+\makeatletter
+\def\ignorespacesandallpars{%
+  \@ifnextchar\par
+    {\expandafter\ignorespacesandallpars\@gobble}%
+    {}%
+}
+\makeatother
+
 % other things
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[section]
