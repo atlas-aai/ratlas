@@ -131,7 +131,7 @@ techreport_html_skeleton <- function(path) {
                      x,
                      "",
                      "rmd_files: [",
-                     sprintf('  "index.Rmd"', tolower(basename(path))),
+                     '  "index.Rmd"',
                      "]"),
                    f)
 
