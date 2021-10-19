@@ -517,24 +517,24 @@ Renders as…
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 48 × 3</span></span>
 <span class="co">#&gt;      mpg  disp   cyl</span>
 <span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  21.4 258       6</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  18.7 360       8</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  14.3 360       8</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  21.5 120.      4</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  32.4  78.7     4</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  30.4  75.7     4</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  21.5 120.      4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  14.3 360       8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  19.2 168.      6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  18.1 225       6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  24.4 147.      4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  30.4  75.7     4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  26   120.      4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  17.8 168.      6</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  10.4 460       8</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  14.3 360       8</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  15.2 276.      8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  10.4 460       8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  26   120.      4</span>
 <span class="co">#&gt; <span style="color: #949494;"># … with 38 more rows</span></span></code></pre></div>
 <p>Notice that we now have 48 rows instead of 32. If we re-estimate the model, we can see the coefficients have changed:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">my_new_data</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span>
 <span class="co">#&gt; (Intercept)        disp         cyl </span>
-<span class="co">#&gt; 35.46257591 -0.01745748 -1.81592546</span></code></pre></div>
-<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -1.8. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
+<span class="co">#&gt; 33.92904678 -0.02453616 -1.30343893</span></code></pre></div>
+<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -1.3. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
 </div>
 <div class="section level3">
 <h3 id="additional-helpers">Additional Helpers<a class="anchor" aria-label="anchor" href="#additional-helpers"></a>
