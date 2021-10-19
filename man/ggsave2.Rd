@@ -14,6 +14,7 @@ ggsave2(
   units = "in",
   dir = c("h", "v"),
   dpi = "retina",
+  embed_fonts = FALSE,
   ...
 )
 }
@@ -43,6 +44,8 @@ If not supplied, uses the size of current graphics device.}
 
 \item{dpi}{Plot resolution. Also accepts a string input: "retina" (320),
 "print" (300), or "screen" (72). Applies only to raster output types.}
+
+\item{embed_fonts}{Logical. Use Ghostscript to embed fonts in a PDF graphic?}
 
 \item{...}{Additional arguments passed to \code{\link[ggplot2:ggsave]{ggplot2::ggsave()}}}
 }

@@ -5,14 +5,14 @@
 \title{Set default ggplot2 theme}
 \usage{
 set_theme(
-  font = c("Arial Narrow", "Montserrat", "default"),
+  font = "Arial Narrow",
   discrete = c("okabeito", "atlas", "ggplot2"),
   continuous = c("viridis", "magma", "inferno", "plasma", "cividis", "ggplot2"),
   ...
 )
 }
 \arguments{
-\item{font}{One of "Arial Narrow" (default) or "Montserrat".}
+\item{font}{The base font family to be used in plots.}
 
 \item{discrete}{Color palette for discrete colors. One of "okabeito"
 (default), "atlas", or "ggplot2".}
@@ -31,6 +31,5 @@ color palette, and the default color scheme for discrete variables is the
 }
 \examples{
 set_theme("Arial Narrow")
-set_theme("Montserrat")
 
 }
