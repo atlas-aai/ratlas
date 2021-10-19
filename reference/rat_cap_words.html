@@ -47,13 +47,13 @@ case (i.e., only the first word capitalized; all = FALSE) or title case
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://twitter.com/atlas4learning">
+  <a href="https://twitter.com/atlas4learning" class="external-link">
     <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="https://github.com/atlas-aai/ratlas/">
+  <a href="https://github.com/atlas-aai/ratlas/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -68,7 +68,7 @@ case (i.e., only the first word capitalized; all = FALSE) or title case
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Capitalization of words</h1>
-    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/master/R/rat-cap-words.R"><code>R/rat-cap-words.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/master/R/rat-cap-words.R" class="external-link"><code>R/rat-cap-words.R</code></a></small>
     <div class="hidden name"><code>rat_cap_words.Rd</code></div>
     </div>
 
@@ -78,11 +78,12 @@ case (i.e., only the first word capitalized; <code>all = FALSE</code>) or title 
 (i.e., all words capitalized; <code>all = TRUE</code>).</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">rat_cap_words</span><span class="op">(</span><span class="va">x</span>, all <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/rat_cap_words.html">rat_cap_words</a></span><span class="op">(</span><span class="va">x</span>, all <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <table class="ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>x</th>
+    <table class="table ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>x</th>
       <td><p>A character string</p></td>
     </tr><tr><th>all</th>
       <td><p>Logical. If <code>TRUE</code>, the first letter of every word is capitalized.
@@ -96,13 +97,14 @@ If <code>FALSE</code> (the default), only the first word is capitalized.</p></td
 
     <div id="examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"zip code"</span>, <span class="st">"state"</span>, <span class="st">"final count"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">rat_cap_words</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      zip code         state   final count </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    "Zip code"       "State" "Final count" </span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">rat_cap_words</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      zip code         state   final count </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    "Zip Code"       "State" "Final Count" </span>
+    <div class="ref-examples sourceCode"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"zip code"</span>, <span class="st">"state"</span>, <span class="st">"final count"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">rat_cap_words</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;      zip code         state   final count </span>
+<span class="co">#&gt;    "Zip code"       "State" "Final count" </span>
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">rat_cap_words</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt;      zip code         state   final count </span>
+<span class="co">#&gt;    "Zip Code"       "State" "Final Count" </span>
 </code></pre></div>
     </div>
   </div>

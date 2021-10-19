@@ -47,13 +47,13 @@ writing.'><meta property="og:image" content="https://ratlas.netlify.app/referenc
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://twitter.com/atlas4learning">
+  <a href="https://twitter.com/atlas4learning" class="external-link">
     <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="https://github.com/atlas-aai/ratlas/">
+  <a href="https://github.com/atlas-aai/ratlas/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -68,7 +68,7 @@ writing.'><meta property="og:image" content="https://ratlas.netlify.app/referenc
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Write APA Words</h1>
-    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/master/R/format-text.R"><code>R/format-text.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/master/R/format-text.R" class="external-link"><code>R/format-text.R</code></a></small>
     <div class="hidden name"><code>apa_words.Rd</code></div>
     </div>
 
@@ -78,11 +78,12 @@ numerals ("5")? Use this function! Most useful for R Markdown in-text
 writing.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">apa_words</span><span class="op">(</span><span class="va">x</span>, ordinal <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/apa_words.html">apa_words</a></span><span class="op">(</span><span class="va">x</span>, ordinal <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <table class="ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>x</th>
+    <table class="table ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>x</th>
       <td><p>The number to be printed</p></td>
     </tr><tr><th>ordinal</th>
       <td><p>Do you want the ordinal numbering (e.g., 1st, 6th, etc.)</p></td>
@@ -95,12 +96,13 @@ writing.</p>
 
     <div id="examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">apa_words</span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "five"</span>
-<span class="r-in"><span class="fu">apa_words</span><span class="op">(</span><span class="fl">16</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "16"</span>
-<span class="r-in"><span class="fu">apa_words</span><span class="op">(</span><span class="fl">6</span>, ordinal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "6th"</span>
+    <div class="ref-examples sourceCode"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/apa_words.html">apa_words</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>
+<span class="co">#&gt; [1] "five"</span>
+<span class="fu"><a href="../reference/apa_words.html">apa_words</a></span><span class="op">(</span><span class="fl">16</span><span class="op">)</span>
+<span class="co">#&gt; [1] "16"</span>
+<span class="fu"><a href="../reference/apa_words.html">apa_words</a></span><span class="op">(</span><span class="fl">6</span>, ordinal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; [1] "6th"</span>
 </code></pre></div>
     </div>
   </div>

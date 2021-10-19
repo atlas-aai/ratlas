@@ -45,13 +45,13 @@
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://twitter.com/atlas4learning">
+  <a href="https://twitter.com/atlas4learning" class="external-link">
     <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="https://github.com/atlas-aai/ratlas/">
+  <a href="https://github.com/atlas-aai/ratlas/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -66,7 +66,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Append row and/or column summaries</h1>
-    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/master/R/misc-manipulation.R"><code>R/misc-manipulation.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/master/R/misc-manipulation.R" class="external-link"><code>R/misc-manipulation.R</code></a></small>
     <div class="hidden name"><code>append_summary.Rd</code></div>
     </div>
 
@@ -74,11 +74,12 @@
     <p>Add row and/or column summaries (e.g., total counts) to a data frame.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">append_summary</span><span class="op">(</span><span class="va">df</span>, <span class="va">...</span>, row <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="cn">TRUE</span>, .f <span class="op">=</span> <span class="va">sum</span>, args <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/append_summary.html">append_summary</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">...</span>, row <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="cn">TRUE</span>, .f <span class="op">=</span> <span class="va">sum</span>, args <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <table class="ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>df</th>
+    <table class="table ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>df</th>
       <td><p>A data frame to append summaries to.</p></td>
     </tr><tr><th>...</th>
       <td><p>Unquoted names of columns to be included in the summary</p></td>
@@ -101,27 +102,28 @@ summarizing each row)</p></td>
 
     <div id="examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">9416</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>char <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">append_summary</span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, <span class="va">y</span>, row <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="cn">TRUE</span>, .f <span class="op">=</span> <span class="va">sum</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   char       x      y    sum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     -<span style="color: #BB0000;">0.743</span> -<span style="color: #BB0000;">1.28</span>  -<span style="color: #BB0000;">2.02</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b      0.205 -<span style="color: #BB0000;">0.900</span> -<span style="color: #BB0000;">0.695</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     -<span style="color: #BB0000;">0.724</span>  1.54   0.811</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d      0.319  1.40   1.72 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e      0.141 -<span style="color: #BB0000;">0.645</span> -<span style="color: #BB0000;">0.504</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> <span style="color: #BB0000;">NA</span>    -<span style="color: #BB0000;">0.802</span>  0.116 -<span style="color: #BB0000;">0.686</span></span>
-<span class="r-in"><span class="fu">append_summary</span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, <span class="va">y</span>, row <span class="op">=</span> <span class="cn">FALSE</span>, .f <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   char       x      y   mean</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     -<span style="color: #BB0000;">0.743</span> -<span style="color: #BB0000;">1.28</span>  -<span style="color: #BB0000;">1.01</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b      0.205 -<span style="color: #BB0000;">0.900</span> -<span style="color: #BB0000;">0.348</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     -<span style="color: #BB0000;">0.724</span>  1.54   0.406</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d      0.319  1.40   0.861</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e      0.141 -<span style="color: #BB0000;">0.645</span> -<span style="color: #BB0000;">0.252</span></span>
+    <div class="ref-examples sourceCode"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">9416</span><span class="op">)</span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>char <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/append_summary.html">append_summary</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, <span class="va">y</span>, row <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="cn">TRUE</span>, .f <span class="op">=</span> <span class="va">sum</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 6 × 4</span>
+<span class="co">#&gt;   char       x      y    sum</span>
+<span class="co">#&gt;   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 a     -0.743 -1.28  -2.02 </span>
+<span class="co">#&gt; 2 b      0.205 -0.900 -0.695</span>
+<span class="co">#&gt; 3 c     -0.724  1.54   0.811</span>
+<span class="co">#&gt; 4 d      0.319  1.40   1.72 </span>
+<span class="co">#&gt; 5 e      0.141 -0.645 -0.504</span>
+<span class="co">#&gt; 6 NA    -0.802  0.116 -0.686</span>
+<span class="fu"><a href="../reference/append_summary.html">append_summary</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, <span class="va">y</span>, row <span class="op">=</span> <span class="cn">FALSE</span>, .f <span class="op">=</span> <span class="va">mean</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 5 × 4</span>
+<span class="co">#&gt;   char       x      y   mean</span>
+<span class="co">#&gt;   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 a     -0.743 -1.28  -1.01 </span>
+<span class="co">#&gt; 2 b      0.205 -0.900 -0.348</span>
+<span class="co">#&gt; 3 c     -0.724  1.54   0.406</span>
+<span class="co">#&gt; 4 d      0.319  1.40   0.861</span>
+<span class="co">#&gt; 5 e      0.141 -0.645 -0.252</span>
 </code></pre></div>
     </div>
   </div>

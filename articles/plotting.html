@@ -78,13 +78,13 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://twitter.com/atlas4learning" class="external-link">
+  <a href="https://twitter.com/atlas4learning" class="external-link external-link">
     <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="https://github.com/atlas-aai/ratlas/" class="external-link">
+  <a href="https://github.com/atlas-aai/ratlas/" class="external-link external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -105,7 +105,7 @@
       <h1 data-toc-skip>Plotting in ratlas</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/master/vignettes/plotting.Rmd" class="external-link"><code>vignettes/plotting.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/master/vignettes/plotting.Rmd" class="external-link external-link"><code>vignettes/plotting.Rmd</code></a></small>
       <div class="hidden name"><code>plotting.Rmd</code></div>
 
     </div>
@@ -186,12 +186,12 @@ Figure 2: The result of applying <code><a href="../reference/theme_atlas.html">r
 <div class="section level2">
 <h2 id="changing-the-font">Changing the font<a class="anchor" aria-label="anchor" href="#changing-the-font"></a>
 </h2>
-<p>Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is <a href="https://brand.ku.edu/guidelines/typography" class="external-link">Gotham</a>. However, this font is expensive, and thus inaccessible to most users. <a href="https://fonts.google.com/specimen/Montserrat" class="external-link">Montserrat</a> is a very similar font that is available for free through Google Fonts. We recommend that you download and install this font on your system directly from Google Fonts, and then call <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html" class="external-link">extrafont::font_import()</a></code>. However, a convenience function has been provided, <code><a href="../reference/import_montserrat.html">ratlas::import_montserrat()</a></code>, that will do some of the work for you.</p>
-<p>Once the Montserrat font has been installed on your system, you can apply it to the ATLAS theme using <code><a href="../reference/theme_atlas_ms.html">ratlas::theme_atlas_ms()</a></code>.</p>
+<p>Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is <a href="https://brand.ku.edu/guidelines/typography" class="external-link">Gotham</a>. However, this font is expensive, and thus inaccessible to most users. <a href="https://fonts.google.com/specimen/Montserrat" class="external-link">Montserrat</a> is a very similar font that is available for free through Google Fonts. We recommend that you download and install this font on your system directly from Google Fonts, and then call <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html" class="external-link">extrafont::font_import()</a></code>.</p>
+<p>Once the Montserrat font has been installed on your system, you can apply it to the ATLAS theme using <code>ratlas::theme_atlas(base_family = "Montserrat")</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="../reference/theme_atlas_ms.html">theme_atlas_ms</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Montserrat"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="colors">Colors<a class="anchor" aria-label="anchor" href="#colors"></a>

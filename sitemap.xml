@@ -22,9 +22,6 @@
     <loc>https://ratlas.netlify.app/reference/ArialNarrow.html</loc>
   </url>
   <url>
-    <loc>https://ratlas.netlify.app/reference/Montserrat.html</loc>
-  </url>
-  <url>
     <loc>https://ratlas.netlify.app/reference/apa_words.html</loc>
   </url>
   <url>
@@ -47,9 +44,6 @@
   </url>
   <url>
     <loc>https://ratlas.netlify.app/reference/ggsave2.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/import_montserrat.html</loc>
   </url>
   <url>
     <loc>https://ratlas.netlify.app/reference/inc.html</loc>
@@ -112,9 +106,6 @@
     <loc>https://ratlas.netlify.app/reference/theme_atlas.html</loc>
   </url>
   <url>
-    <loc>https://ratlas.netlify.app/reference/theme_atlas_ms.html</loc>
-  </url>
-  <url>
     <loc>https://ratlas.netlify.app/reference/topicguide_docx.html</loc>
   </url>
   <url>
@@ -125,8 +116,5 @@
   </url>
   <url>
     <loc>https://ratlas.netlify.app/reference/update_geom_font_defaults.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/update_geom_font_ms_defaults.html</loc>
   </url>
 </urlset>
