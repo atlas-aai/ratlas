@@ -1,4 +1,3 @@
-context("test-lcrost-color-scales")
 library(ggplot2)
 
 test_that("Lisa Charlotte Rost colors work", {
@@ -16,7 +15,6 @@ test_that("Lisa Charlotte Rost colors work", {
   plot2 <- ggplot(df, aes(x, y, fill = z)) +
     geom_col() +
     facet_wrap(~ a) +
-    scale_fill_lcrost(use_black = TRUE) +
     theme_atlas()
 
   plot3 <- ggplot(df2, aes(x, y, colour = z)) +
@@ -28,7 +26,8 @@ test_that("Lisa Charlotte Rost colors work", {
   expect_warning(ggplot2::ggplot_build(plot3), "Insufficient values")
   expect_warning(ggplot2::ggplot_build(plot3), "only 8 provided")
   vdiffr::expect_doppelganger("lcrost_color", plot)
-  vdiffr::expect_doppelganger("lcrost_fill", plot2)
+  vdiffr::expect_doppelganger("lcrost_fill",
+                              plot2 + scale_fill_lcrost(use_black = TRUE))
   vdiffr::expect_doppelganger("lcrost_darken",
                               plot2 + scale_fill_lcrost(darken = 0.2))
   vdiffr::expect_doppelganger("lcrost_lighten",

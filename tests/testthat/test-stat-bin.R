@@ -1,4 +1,3 @@
-context("test-stat-bin")
 library(ggplot2)
 
 test_that("bin_breaks_width errors", {

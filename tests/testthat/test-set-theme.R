@@ -1,4 +1,3 @@
-context("test-set-theme")
 library(ggplot2)
 
 # Arial Narrow -----------------------------------------------------------------
@@ -73,82 +72,11 @@ test_that("theme_atlas grids, axis, and ticks are correct", {
 })
 
 
-# Montserrat -------------------------------------------------------------------
-test_that("theme_atlas_ms is a theme", {
-  local_theme(font = "Montserrat", discrete = "okabeito",
-              continuous = "viridis")
-  thm <- theme_get()
-
-  expect_s3_class(thm, "theme")
-})
-
-test_that("theme_atlas_ms uses Montserrat font", {
-  local_theme(font = "Montserrat", discrete = "okabeito",
-              continuous = "viridis")
-  thm <- theme_get()
-
-  expect_equal(thm$text$family, "Montserrat")
-  expect_equal(thm$plot.title$family, "Montserrat")
-  expect_equal(thm$plot.subtitle$family, "Montserrat")
-  expect_equal(thm$plot.caption$family, "Montserrat")
-  expect_equal(thm$strip.text$family, "Montserrat")
-  expect_equal(thm$axis.title$family, "Montserrat")
-  expect_null(thm$axis.text$family)
-  expect_null(thm$legend.text$family)
-})
-
-test_that("theme_atlas_ms font sizes are correct", {
-  local_theme(font = "Montserrat", discrete = "okabeito",
-              continuous = "viridis")
-  thm <- theme_get()
-
-  expect_equal(thm$text$size, 11.5)
-  expect_equal(thm$plot.title$size, 18)
-  expect_equal(thm$plot.subtitle$size, 12)
-  expect_equal(thm$strip.text$size, 12)
-  expect_equal(thm$plot.caption$size, 9)
-  expect_equal(thm$axis.title$size, 11.5)
-})
-
-test_that("theme_atlas_ms font colors are correct", {
-  local_theme(font = "Montserrat", discrete = "okabeito",
-              continuous = "viridis")
-  thm <- theme_get()
-
-  expect_equal(thm$text$colour, "black")
-  expect_equal(thm$axis.text$colour, "grey30")
-})
-
-test_that("theme_atlas_ms grids, axis, and ticks are correct", {
-  local_theme(font = "Montserrat", discrete = "okabeito",
-              continuous = "viridis")
-  thm <- theme_get()
-
-  expect_equal(invisible(theme_atlas_ms(grid = FALSE)),
-               theme_atlas_ms(grid = FALSE))
-  expect_equal(invisible(theme_atlas_ms(grid = "XY")),
-               theme_atlas_ms(grid = "XY"))
-  expect_equal(invisible(theme_atlas_ms(grid = "xy")),
-               theme_atlas_ms(grid = "xy"))
-
-  expect_equal(invisible(theme_atlas_ms(axis = TRUE)),
-               theme_atlas_ms(axis = TRUE))
-
-  expect_equal(invisible(theme_atlas_ms(axis = FALSE)),
-               theme_atlas_ms(axis = FALSE))
-  expect_equal(invisible(theme_atlas_ms(axis = "xy")),
-               theme_atlas_ms(axis = "xy"))
-  expect_equal(invisible(theme_atlas_ms(axis = "")),
-               theme_atlas_ms(axis = ""))
-  expect_equal(invisible(theme_atlas_ms(ticks = TRUE)),
-               theme_atlas_ms(ticks = TRUE))
-})
-
 # Discrete colors --------------------------------------------------------------
 df_d <- data.frame(x = 1:5, y = 1:5, z = letters[1:5])
 
 test_that("okabeito works", {
-  local_theme(font = "Montserrat", discrete = "okabeito",
+  local_theme(font = "Arial Narrow", discrete = "okabeito",
               continuous = "viridis")
   thm <- theme_get()
 
@@ -156,11 +84,11 @@ test_that("okabeito works", {
     geom_label(aes(label = z), size = 3) +
     thm
 
-  vdiffr::expect_doppelganger("ms_okabeito", plot)
+  vdiffr::expect_doppelganger("an_okabeito", plot)
 })
 
 test_that("atlas works", {
-  local_theme(font = "Montserrat", discrete = "atlas",
+  local_theme(font = "Arial Narrow", discrete = "atlas",
               continuous = "viridis")
   thm <- theme_get()
 
@@ -168,7 +96,7 @@ test_that("atlas works", {
     geom_label(aes(label = z), size = 3) +
     thm
 
-  vdiffr::expect_doppelganger("ms_atlas", plot)
+  vdiffr::expect_doppelganger("an_atlas", plot)
 })
 
 test_that("ggplot2 works", {
@@ -188,7 +116,7 @@ test_that("ggplot2 works", {
 df_c <- data.frame(x = rep(1:3, times = 3), y = rep(1:3, each = 3), z = 1:9)
 
 test_that("magma works", {
-  local_theme(font = "Montserrat", discrete = "okabeito",
+  local_theme(font = "Arial Narrow", discrete = "okabeito",
               continuous = "magma")
   thm <- theme_get()
 
@@ -196,11 +124,11 @@ test_that("magma works", {
     geom_tile() +
     thm
 
-  vdiffr::expect_doppelganger("ms_magma", plot)
+  vdiffr::expect_doppelganger("an_magma", plot)
 })
 
 test_that("inferno works", {
-  local_theme(font = "Montserrat", discrete = "okabeito",
+  local_theme(font = "Arial Narrow", discrete = "okabeito",
               continuous = "inferno")
   thm <- theme_get()
 
@@ -208,11 +136,11 @@ test_that("inferno works", {
     geom_tile() +
     thm
 
-  vdiffr::expect_doppelganger("ms_inferno", plot)
+  vdiffr::expect_doppelganger("an_inferno", plot)
 })
 
 test_that("plasma works", {
-  local_theme(font = "Montserrat", discrete = "okabeito",
+  local_theme(font = "Arial Narrow", discrete = "okabeito",
               continuous = "plasma")
   thm <- theme_get()
 
@@ -220,7 +148,7 @@ test_that("plasma works", {
     geom_tile() +
     thm
 
-  vdiffr::expect_doppelganger("ms_plasma", plot)
+  vdiffr::expect_doppelganger("an_plasma", plot)
 })
 
 test_that("viridis works", {
