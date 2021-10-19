@@ -220,7 +220,7 @@ pad_decimal <- function(x, digits, output = NULL) {
     stringr::str_replace_all("^ ", paste(rep("\\\\ ", 2), collapse = ""))
 
   if (any(x < 0, na.rm = TRUE)) {
-    search <- ifelse(output == "latex", "--", "&minus;")
+    search <- ifelse(output == "latex", "-", "&minus;")
     pad <- ifelse(output == "latex", 3, 2)
     new_x <- dplyr::case_when(stringr::str_detect(new_x, search) ~
                                 paste0(new_x,
