@@ -1,10 +1,10 @@
 pandoc: 2.7.3
 pkgdown: 1.9000.9000.9000
-pkgdown_sha: cd888beda61ac8855bf823bd0664dd997a32a5f8
+pkgdown_sha: 58dcec4d980542bdf00b7ef4a5b1a36012c1d4d3
 articles:
   plotting: plotting.html
   report-writing: report-writing.html
-last_built: 2021-10-18T17:21Z
+last_built: 2021-10-19T15:25Z
 urls:
   reference: https://ratlas.netlify.app/reference
   article: https://ratlas.netlify.app/articles
