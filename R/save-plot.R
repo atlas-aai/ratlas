@@ -13,12 +13,14 @@
 #'   uses `0.618 * width` when `dir = "h"` and `1.618 * width` when `dir = "v"`.
 #' @param dir Orientation of the plot. One of `h` (default) for horizontal or
 #'   `v` for vertical.
+#' @param embed_fonts Logical. Use Ghostscript to embed fonts in a PDF graphic?
 #' @param ... Additional arguments passed to [ggplot2::ggsave()]
 #'
 #' @export
 ggsave2 <- function(plot = ggplot2::last_plot(), filename, device = NULL,
                     path = NULL, width = 8, height = NULL, units = "in",
-                    dir = c("h", "v"), dpi = "retina", ...) {
+                    dir = c("h", "v"), dpi = "retina", embed_fonts = FALSE,
+                    ...) {
   dir <- match.arg(dir)
 
   # Calculate aspect ratio if not fixed
@@ -34,7 +36,8 @@ ggsave2 <- function(plot = ggplot2::last_plot(), filename, device = NULL,
 
   # Embed fonts if pdf
   # nocov start
-  if (grepl("\\.pdf", filename) || (!is.null(device) && device == "pdf")) {
+  if ((grepl("\\.pdf", filename) || (!is.null(device) && device == "pdf")) &
+      embed_fonts) {
     if (!is.null(path)) {
       filename <- file.path(path, filename)
     }
