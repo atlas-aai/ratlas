@@ -6,7 +6,7 @@
 #' color palette, and the default color scheme for discrete variables is the
 #' [Okabe Ito](http://jfly.iam.u-tokyo.ac.jp/color/) palette.
 #'
-#' @param font One of "Arial Narrow" (default) or "Montserrat".
+#' @param font The base font family to be used in plots.
 #' @param discrete Color palette for discrete colors. One of "okabeito"
 #'   (default), "atlas", or "ggplot2".
 #' @param continuous Color palette for continuous scales. One of "magma",
@@ -15,15 +15,13 @@
 #'
 #' @examples
 #' set_theme("Arial Narrow")
-#' set_theme("Montserrat")
 #'
 #' @export
-set_theme <- function(font = c("Arial Narrow", "Montserrat", "default"),
+set_theme <- function(font = "Arial Narrow",
                       discrete = c("okabeito", "atlas", "ggplot2"),
                       continuous = c("viridis", "magma", "inferno", "plasma",
                                      "cividis", "ggplot2"),
                       ...) {
-  font <- match.arg(font)
   discrete <- match.arg(discrete)
   continuous <- match.arg(continuous)
   cont_option <- switch(continuous,
@@ -36,19 +34,8 @@ set_theme <- function(font = c("Arial Narrow", "Montserrat", "default"),
                         okabeito = palette_okabeito,
                         atlas = palette_atlas)
 
-  if (font == "Arial Narrow") {
-    ggplot2::theme_set(theme_atlas(...))
-    update_geom_font_defaults()
-  } else if (font == "Montserrat") {
-    ggplot2::theme_set(theme_atlas_ms(...))
-    update_geom_font_ms_defaults()
-  } else if (font == "default") {
-    ggplot2::theme_set(ggplot2::theme_grey())
-    ggplot2::update_geom_defaults("text", list(family = "", fontface = "plain",
-                                               size = 3.88, color = "black"))
-    ggplot2::update_geom_defaults("label", list(family = "", fontface = "plain",
-                                                size = 3.88, color = "black"))
-  }
+  ggplot2::theme_set(theme_atlas(base_family = font, ...))
+  update_geom_font_defaults(family = font)
 
   if (!is.null(disc_option)) {
     disc_fill <- switch(discrete,
