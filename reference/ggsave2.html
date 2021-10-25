@@ -82,8 +82,7 @@ returned if there are possible mistakes. Finally, plots saved as a pdf have
 the fonts embedded using <code><a href="https://rdrr.io/pkg/extrafont/man/embed_fonts.html" class="external-link">extrafont::embed_fonts()</a></code>.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/ggsave2.html">ggsave2</a></span><span class="op">(</span>
+    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">ggsave2</span><span class="op">(</span>
   plot <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/last_plot.html" class="external-link">last_plot</a></span><span class="op">(</span><span class="op">)</span>,
   <span class="va">filename</span>,
   device <span class="op">=</span> <span class="cn">NULL</span>,
@@ -97,40 +96,32 @@ the fonts embedded using <code><a href="https://rdrr.io/pkg/extrafont/man/embed_
   <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
 
+    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    <table class="table ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>plot</th>
-      <td><p>Plot to save, defaults to last plot displayed.</p></td>
-    </tr><tr><th>filename</th>
-      <td><p>File name to create on disk.</p></td>
-    </tr><tr><th>device</th>
-      <td><p>Device to use. Can either be a device function
-(e.g. <a href="https://rdrr.io/r/grDevices/png.html" class="external-link">png</a>), or one of "eps", "ps", "tex" (pictex),
-"pdf", "jpeg", "tiff", "png", "bmp", "svg" or "wmf" (windows only).</p></td>
-    </tr><tr><th>path</th>
-      <td><p>Path of the directory to save plot to: <code>path</code> and <code>filename</code>
-are combined to create the fully qualified file name. Defaults to the
-working directory.</p></td>
-    </tr><tr><th>width</th>
-      <td><p>Plot size in <code>units</code> ("in", "cm", or "mm").</p></td>
-    </tr><tr><th>height</th>
-      <td><p>Plot size in <code>units</code> ("in", "cm", or "mm"). If not supplied,
-uses <code>0.618 * width</code> when <code>dir = "h"</code> and <code>1.618 * width</code> when <code>dir = "v"</code>.</p></td>
-    </tr><tr><th>units</th>
-      <td><p>Plot size in <code>units</code> ("in", "cm", "mm", or "px").
-If not supplied, uses the size of current graphics device.</p></td>
-    </tr><tr><th>dir</th>
-      <td><p>Orientation of the plot. One of <code>h</code> (default) for horizontal or
-<code>v</code> for vertical.</p></td>
-    </tr><tr><th>dpi</th>
-      <td><p>Plot resolution. Also accepts a string input: "retina" (320),
-"print" (300), or "screen" (72). Applies only to raster output types.</p></td>
-    </tr><tr><th>embed_fonts</th>
-      <td><p>Logical. Use Ghostscript to embed fonts in a PDF graphic?</p></td>
-    </tr><tr><th>...</th>
-      <td><p>Additional arguments passed to <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggplot2::ggsave()</a></code></p></td>
-    </tr></table></div>
+    
 
+<dl><dt>plot</dt><dd><p>Plot to save, defaults to last plot displayed.</p></dd>
+</dl><dl><dt>filename</dt><dd><p>File name to create on disk.</p></dd>
+</dl><dl><dt>device</dt><dd><p>Device to use. Can either be a device function
+(e.g. <a href="https://rdrr.io/r/grDevices/png.html" class="external-link">png</a>), or one of "eps", "ps", "tex" (pictex),
+"pdf", "jpeg", "tiff", "png", "bmp", "svg" or "wmf" (windows only).</p></dd>
+</dl><dl><dt>path</dt><dd><p>Path of the directory to save plot to: <code>path</code> and <code>filename</code>
+are combined to create the fully qualified file name. Defaults to the
+working directory.</p></dd>
+</dl><dl><dt>width</dt><dd><p>Plot size in <code>units</code> ("in", "cm", or "mm").</p></dd>
+</dl><dl><dt>height</dt><dd><p>Plot size in <code>units</code> ("in", "cm", or "mm"). If not supplied,
+uses <code>0.618 * width</code> when <code>dir = "h"</code> and <code>1.618 * width</code> when <code>dir = "v"</code>.</p></dd>
+</dl><dl><dt>units</dt><dd><p>Plot size in <code>units</code> ("in", "cm", "mm", or "px").
+If not supplied, uses the size of current graphics device.</p></dd>
+</dl><dl><dt>dir</dt><dd><p>Orientation of the plot. One of <code>h</code> (default) for horizontal or
+<code>v</code> for vertical.</p></dd>
+</dl><dl><dt>dpi</dt><dd><p>Plot resolution. Also accepts a string input: "retina" (320),
+"print" (300), or "screen" (72). Applies only to raster output types.</p></dd>
+</dl><dl><dt>embed_fonts</dt><dd><p>Logical. Use Ghostscript to embed fonts in a PDF graphic?</p></dd>
+</dl><dl><dt>...</dt><dd><p>Additional arguments passed to <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggplot2::ggsave()</a></code></p></dd>
+</dl></div>
+    </div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

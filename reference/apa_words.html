@@ -78,31 +78,30 @@ numerals ("5")? Use this function! Most useful for R Markdown in-text
 writing.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/apa_words.html">apa_words</a></span><span class="op">(</span><span class="va">x</span>, ordinal <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">apa_words</span><span class="op">(</span><span class="va">x</span>, ordinal <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 
+    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    <table class="table ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>x</th>
-      <td><p>The number to be printed</p></td>
-    </tr><tr><th>ordinal</th>
-      <td><p>Do you want the ordinal numbering (e.g., 1st, 6th, etc.)</p></td>
-    </tr></table></div>
+    
 
+<dl><dt>x</dt><dd><p>The number to be printed</p></dd>
+</dl><dl><dt>ordinal</dt><dd><p>Do you want the ordinal numbering (e.g., 1st, 6th, etc.)</p></dd>
+</dl></div>
     <div id="value">
     <h2>Value</h2>
     <p>A character string</p>
     </div>
+    </div>
 
     <div id="examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/apa_words.html">apa_words</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>
-<span class="co">#&gt; [1] "five"</span>
-<span class="fu"><a href="../reference/apa_words.html">apa_words</a></span><span class="op">(</span><span class="fl">16</span><span class="op">)</span>
-<span class="co">#&gt; [1] "16"</span>
-<span class="fu"><a href="../reference/apa_words.html">apa_words</a></span><span class="op">(</span><span class="fl">6</span>, ordinal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; [1] "6th"</span>
+    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">apa_words</span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "five"</span>
+<span class="r-in"><span class="fu">apa_words</span><span class="op">(</span><span class="fl">16</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "16"</span>
+<span class="r-in"><span class="fu">apa_words</span><span class="op">(</span><span class="fl">6</span>, ordinal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "6th"</span>
 </code></pre></div>
     </div>
   </div>
