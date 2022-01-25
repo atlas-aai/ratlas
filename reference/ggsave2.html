@@ -70,7 +70,7 @@ the fonts embedded using extrafont::embed_fonts()."><meta property="og:image" co
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Save a ggplot2 graphic</h1>
-    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/master/R/save-plot.R" class="external-link"><code>R/save-plot.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/HEAD/R/save-plot.R" class="external-link"><code>R/save-plot.R</code></a></small>
     <div class="hidden name"><code>ggsave2.Rd</code></div>
     </div>
 
@@ -82,7 +82,8 @@ returned if there are possible mistakes. Finally, plots saved as a pdf have
 the fonts embedded using <code><a href="https://rdrr.io/pkg/extrafont/man/embed_fonts.html" class="external-link">extrafont::embed_fonts()</a></code>.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">ggsave2</span><span class="op">(</span>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ggsave2</span><span class="op">(</span>
   plot <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/last_plot.html" class="external-link">last_plot</a></span><span class="op">(</span><span class="op">)</span>,
   <span class="va">filename</span>,
   device <span class="op">=</span> <span class="cn">NULL</span>,
@@ -95,33 +96,41 @@ the fonts embedded using <code><a href="https://rdrr.io/pkg/extrafont/man/embed_
   embed_fonts <span class="op">=</span> <span class="cn">FALSE</span>,
   <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>plot</dt><dd><p>Plot to save, defaults to last plot displayed.</p></dd>
-</dl><dl><dt>filename</dt><dd><p>File name to create on disk.</p></dd>
-</dl><dl><dt>device</dt><dd><p>Device to use. Can either be a device function
+    <dl><dt>plot</dt>
+<dd><p>Plot to save, defaults to last plot displayed.</p></dd>
+<dt>filename</dt>
+<dd><p>File name to create on disk.</p></dd>
+<dt>device</dt>
+<dd><p>Device to use. Can either be a device function
 (e.g. <a href="https://rdrr.io/r/grDevices/png.html" class="external-link">png</a>), or one of "eps", "ps", "tex" (pictex),
 "pdf", "jpeg", "tiff", "png", "bmp", "svg" or "wmf" (windows only).</p></dd>
-</dl><dl><dt>path</dt><dd><p>Path of the directory to save plot to: <code>path</code> and <code>filename</code>
+<dt>path</dt>
+<dd><p>Path of the directory to save plot to: <code>path</code> and <code>filename</code>
 are combined to create the fully qualified file name. Defaults to the
 working directory.</p></dd>
-</dl><dl><dt>width</dt><dd><p>Plot size in <code>units</code> ("in", "cm", or "mm").</p></dd>
-</dl><dl><dt>height</dt><dd><p>Plot size in <code>units</code> ("in", "cm", or "mm"). If not supplied,
+<dt>width</dt>
+<dd><p>Plot size in <code>units</code> ("in", "cm", or "mm").</p></dd>
+<dt>height</dt>
+<dd><p>Plot size in <code>units</code> ("in", "cm", or "mm"). If not supplied,
 uses <code>0.618 * width</code> when <code>dir = "h"</code> and <code>1.618 * width</code> when <code>dir = "v"</code>.</p></dd>
-</dl><dl><dt>units</dt><dd><p>Plot size in <code>units</code> ("in", "cm", "mm", or "px").
+<dt>units</dt>
+<dd><p>Plot size in <code>units</code> ("in", "cm", "mm", or "px").
 If not supplied, uses the size of current graphics device.</p></dd>
-</dl><dl><dt>dir</dt><dd><p>Orientation of the plot. One of <code>h</code> (default) for horizontal or
+<dt>dir</dt>
+<dd><p>Orientation of the plot. One of <code>h</code> (default) for horizontal or
 <code>v</code> for vertical.</p></dd>
-</dl><dl><dt>dpi</dt><dd><p>Plot resolution. Also accepts a string input: "retina" (320),
+<dt>dpi</dt>
+<dd><p>Plot resolution. Also accepts a string input: "retina" (320),
 "print" (300), or "screen" (72). Applies only to raster output types.</p></dd>
-</dl><dl><dt>embed_fonts</dt><dd><p>Logical. Use Ghostscript to embed fonts in a PDF graphic?</p></dd>
-</dl><dl><dt>...</dt><dd><p>Additional arguments passed to <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggplot2::ggsave()</a></code></p></dd>
+<dt>embed_fonts</dt>
+<dd><p>Logical. Use Ghostscript to embed fonts in a PDF graphic?</p></dd>
+<dt>...</dt>
+<dd><p>Additional arguments passed to <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggplot2::ggsave()</a></code></p></dd>
 </dl></div>
-    </div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -135,7 +144,7 @@ If not supplied, uses the size of current graphics device.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
 </div>
 
       </footer></div>

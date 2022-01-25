@@ -66,7 +66,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Append row and/or column summaries</h1>
-    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/master/R/misc-manipulation.R" class="external-link"><code>R/misc-manipulation.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/HEAD/R/misc-manipulation.R" class="external-link"><code>R/misc-manipulation.R</code></a></small>
     <div class="hidden name"><code>append_summary.Rd</code></div>
     </div>
 
@@ -74,31 +74,35 @@
     <p>Add row and/or column summaries (e.g., total counts) to a data frame.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">append_summary</span><span class="op">(</span><span class="va">df</span>, <span class="va">...</span>, row <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="cn">TRUE</span>, .f <span class="op">=</span> <span class="va">sum</span>, args <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">append_summary</span><span class="op">(</span><span class="va">df</span>, <span class="va">...</span>, row <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="cn">TRUE</span>, .f <span class="op">=</span> <span class="va">sum</span>, args <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>df</dt><dd><p>A data frame to append summaries to.</p></dd>
-</dl><dl><dt>...</dt><dd><p>Unquoted names of columns to be included in the summary</p></dd>
-</dl><dl><dt>row</dt><dd><p>logical indicating whether a summary row should be added (i.e.,
+    <dl><dt>df</dt>
+<dd><p>A data frame to append summaries to.</p></dd>
+<dt>...</dt>
+<dd><p>Unquoted names of columns to be included in the summary</p></dd>
+<dt>row</dt>
+<dd><p>logical indicating whether a summary row should be added (i.e.,
 summarizing each column)</p></dd>
-</dl><dl><dt>col</dt><dd><p>logical indicating whether a summary column should be added (i.e.,
+<dt>col</dt>
+<dd><p>logical indicating whether a summary column should be added (i.e.,
 summarizing each row)</p></dd>
-</dl><dl><dt>.f</dt><dd><p>Function to use for calculating summaries</p></dd>
-</dl><dl><dt>args</dt><dd><p>A named list of arguments to pass to <code>.f</code></p></dd>
+<dt>.f</dt>
+<dd><p>Function to use for calculating summaries</p></dd>
+<dt>args</dt>
+<dd><p>A named list of arguments to pass to <code>.f</code></p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     <p>A data frame with the summary row and/or column appended</p>
     </div>
-    </div>
 
-    <div id="examples">
+    <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">9416</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">9416</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>char <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">append_summary</span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, <span class="va">y</span>, row <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="cn">TRUE</span>, .f <span class="op">=</span> <span class="va">sum</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 4</span></span>
@@ -133,7 +137,7 @@ summarizing each row)</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
 </div>
 
       </footer></div>

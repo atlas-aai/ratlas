@@ -67,7 +67,7 @@ that table columns can be both centered and decimal aligned."><meta property="og
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Table Padding</h1>
-    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/master/R/table-format.R" class="external-link"><code>R/table-format.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/HEAD/R/table-format.R" class="external-link"><code>R/table-format.R</code></a></small>
     <div class="hidden name"><code>padding.Rd</code></div>
     </div>
 
@@ -76,24 +76,27 @@ that table columns can be both centered and decimal aligned."><meta property="og
 that table columns can be both centered and decimal aligned.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">pad_counts</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">pad_counts</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span>
 
 <span class="fu">pad_prop</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, fmt_small <span class="op">=</span> <span class="cn">TRUE</span>, output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
 
 <span class="fu">pad_corr</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
 
 <span class="fu">pad_decimal</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>x</dt><dd><p>Number or number string to be formatted</p></dd>
-</dl><dl><dt>digits</dt><dd><p>Number of decimal places to retain</p></dd>
-</dl><dl><dt>fmt_small</dt><dd><p>Indicator for replacing zero with <code>&lt;</code> (e.g., <code>.000</code> becomes
+    <dl><dt>x</dt>
+<dd><p>Number or number string to be formatted</p></dd>
+<dt>digits</dt>
+<dd><p>Number of decimal places to retain</p></dd>
+<dt>fmt_small</dt>
+<dd><p>Indicator for replacing zero with <code>&lt;</code> (e.g., <code>.000</code> becomes
 <code>&lt; .001</code>). Default is <code>TRUE</code>.</p></dd>
-</dl><dl><dt>output</dt><dd><p>The output type for the rendered document. One of <code>"latex"</code> or
+<dt>output</dt>
+<dd><p>The output type for the rendered document. One of <code>"latex"</code> or
 <code>"html"</code>.</p></dd>
 </dl></div>
     <div id="value">
@@ -119,11 +122,10 @@ wraps <code><a href="formatting.html">fmt_digits()</a></code> to round to a spec
 <code><a href="fmt_table.html">fmt_table</a>()</code>,
 <code><a href="formatting.html">formatting</a></code></p></div>
     </div>
-    </div>
 
-    <div id="examples">
+    <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">pad_counts</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">pad_counts</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "885"      "435"      "270"      "794"      "\\ \\ 30" "\\ \\ 59"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "683"      "368"      "594"      "229"      "682"      "454"     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] "920"      "241"      "767"      "725"      "485"      "414"     </span>
@@ -155,7 +157,7 @@ wraps <code><a href="formatting.html">fmt_digits()</a></code> to round to a spec
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
 </div>
 
       </footer></div>

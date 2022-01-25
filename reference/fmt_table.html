@@ -68,7 +68,7 @@ padding.'><meta property="og:image" content="https://ratlas.netlify.app/referenc
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Center and Decimal Align Tables</h1>
-    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/master/R/table-format.R" class="external-link"><code>R/table-format.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/HEAD/R/table-format.R" class="external-link"><code>R/table-format.R</code></a></small>
     <div class="hidden name"><code>fmt_table.Rd</code></div>
     </div>
 
@@ -78,21 +78,25 @@ For more fine-grained control, see <a href="formatting.html">formatting</a> and
 <a href="padding.html">padding</a>.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">fmt_table</span><span class="op">(</span><span class="va">df</span>, dec_dig <span class="op">=</span> <span class="fl">1</span>, prop_dig <span class="op">=</span> <span class="fl">3</span>, corr_dig <span class="op">=</span> <span class="fl">3</span>, output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fmt_table</span><span class="op">(</span><span class="va">df</span>, dec_dig <span class="op">=</span> <span class="fl">1</span>, prop_dig <span class="op">=</span> <span class="fl">3</span>, corr_dig <span class="op">=</span> <span class="fl">3</span>, output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>df</dt><dd><p>A data frame or tibble to be formatted for printing in output.</p></dd>
-</dl><dl><dt>dec_dig</dt><dd><p>The number of decimal places to include for numbers, e.g.,
+    <dl><dt>df</dt>
+<dd><p>A data frame or tibble to be formatted for printing in output.</p></dd>
+<dt>dec_dig</dt>
+<dd><p>The number of decimal places to include for numbers, e.g.,
 <code>dec_dig = 1</code> for 16.5.</p></dd>
-</dl><dl><dt>prop_dig</dt><dd><p>The number of decimal places to include for numbers bounded
+<dt>prop_dig</dt>
+<dd><p>The number of decimal places to include for numbers bounded
 between [0,1], e.g., <code>prop_dig = 2</code> for .35.</p></dd>
-</dl><dl><dt>corr_dig</dt><dd><p>The number of decimal places to include for numbers bounded
+<dt>corr_dig</dt>
+<dd><p>The number of decimal places to include for numbers bounded
 between [-1,1], e.g., <code>corr_dig = 3</code> for .205.</p></dd>
-</dl><dl><dt>output</dt><dd><p>The output format of the table. One of "latex" or "html".
+<dt>output</dt>
+<dd><p>The output format of the table. One of "latex" or "html".
 Automatically pulled from document output type if not specified.</p></dd>
 </dl></div>
     <div id="value">
@@ -105,7 +109,6 @@ formatted consistently and padded for alignment when printed.</p>
     <div class="dont-index"><p>Other formatters: 
 <code><a href="formatting.html">formatting</a></code>,
 <code><a href="padding.html">padding</a></code></p></div>
-    </div>
     </div>
 
   </div>
@@ -120,7 +123,7 @@ formatted consistently and padded for alignment when printed.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
 </div>
 
       </footer></div>
