@@ -170,7 +170,7 @@
   \date{$date$}
     \predate{\normalsize\color{black}\raggedleft}
     %\predate{\centering\large\bfseries}
-  \postdate{\par}
+  \postdate{\par\vspace{-1.5em}}
 
 
 \usepackage{float}
@@ -357,8 +357,8 @@ $endif$
 
 \begin{document}
 \pagestyle{plain}
+\noindent\raisebox{0mm}[0pt][0pt]{\rlap{\makebox[\textwidth][l]{\includegraphics[width=3in]{figures/pre-generated/measr-letterhead.png}}}}
 {\let\newpage\relax\maketitle}
-\noindent\raisebox{23mm}[0pt][0pt]{\rlap{\makebox[\textwidth][l]{\includegraphics[width=3in]{figures/pre-generated/measr-letterhead.png}}}}
 
 \pagenumbering{arabic}
 
