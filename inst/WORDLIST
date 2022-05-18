@@ -14,7 +14,6 @@ Grolemund
 Hadley
 Healy
 Ismay
-Julieta
 Kei
 Kieran
 MacTex
@@ -30,7 +29,6 @@ Stéfan
 TJ
 Teetor
 TrueType
-Ulanovsky
 Visualisation
 Wickham
 Wilke
@@ -38,9 +36,12 @@ Xie
 YAML
 Yihui
 Zotero
+addlinespace
 bmp
 bookdown
+booktabs
 cividis
+css
 cvd
 der
 drob
@@ -58,7 +59,10 @@ init
 jfly
 jp
 jpeg
+kable
 kableExtra
+kbl
+longtable
 okabeito
 pictex
 png
