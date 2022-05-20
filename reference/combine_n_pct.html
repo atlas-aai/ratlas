@@ -75,7 +75,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">combine_n_pct</span><span class="op">(</span><span class="va">df</span>, <span class="va">n</span>, <span class="va">pct</span>, <span class="va">name</span>, remove <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">combine_n_pct</span><span class="op">(</span><span class="va">df</span>, <span class="va">n</span>, <span class="va">pct</span>, <span class="va">name</span>, remove <span class="op">=</span> <span class="cn">TRUE</span>, na_replace <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -90,6 +90,9 @@
 <dd><p>The name of the new combined column to be created</p></dd>
 <dt>remove</dt>
 <dd><p>Logical. Should the existing <code>n</code> and <code>pct</code> columns be removed?</p></dd>
+<dt>na_replace</dt>
+<dd><p>Character string representing how missing values should be
+represented.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
