@@ -18,7 +18,7 @@
 #'
 #' @export
 ggsave2 <- function(plot = ggplot2::last_plot(), filename, device = NULL,
-                    path = NULL, width = 8, height = NULL, units = "in",
+                    path = NULL, width = 7, height = NULL, units = "in",
                     dir = c("h", "v"), dpi = "retina", embed_fonts = FALSE,
                     ...) {
   dir <- match.arg(dir)

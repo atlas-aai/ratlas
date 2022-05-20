@@ -9,7 +9,7 @@ ggsave2(
   filename,
   device = NULL,
   path = NULL,
-  width = 8,
+  width = 7,
   height = NULL,
   units = "in",
   dir = c("h", "v"),

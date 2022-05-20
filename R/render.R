@@ -23,7 +23,7 @@ topicguide_docx <- function(...) {
   base$knitr$opts_chunk$error <- FALSE
   base$knitr$opts_chunk$echo <- FALSE
   base$knitr$opts_chunk$cache <- FALSE
-  base$knitr$opts_chunk$fig.width <- 8
+  base$knitr$opts_chunk$fig.width <- 7
   base$knitr$opts_chunk$fig.asp <- 0.618
   base$knitr$opts_chunk$fig.ext <- "png"
   base$knitr$opts_chunk$fig.retina <- 3
@@ -128,7 +128,7 @@ topicguide_pdf <- function(...) {
   base$knitr$opts_chunk$error <- FALSE
   base$knitr$opts_chunk$echo <- FALSE
   base$knitr$opts_chunk$cache <- FALSE
-  base$knitr$opts_chunk$fig.width <- 8
+  base$knitr$opts_chunk$fig.width <- 7
   base$knitr$opts_chunk$fig.asp <- 0.618
   base$knitr$opts_chunk$fig.ext <- "pdf"
   base$knitr$opts_chunk$fig.align <- "center"
@@ -176,7 +176,7 @@ techreport_pdf <- function(apa6 = FALSE, ...) {
   base$knitr$opts_chunk$error <- FALSE
   base$knitr$opts_chunk$echo <- FALSE
   base$knitr$opts_chunk$cache <- FALSE
-  base$knitr$opts_chunk$fig.width <- 8
+  base$knitr$opts_chunk$fig.width <- 7
   base$knitr$opts_chunk$fig.asp <- 0.618
   base$knitr$opts_chunk$fig.ext <- "pdf"
   base$knitr$opts_chunk$fig.align <- "center"
@@ -242,7 +242,7 @@ techreport_gitbook <- function(...) {
   base$knitr$opts_chunk$error <- FALSE
   base$knitr$opts_chunk$echo <- FALSE
   base$knitr$opts_chunk$cache <- FALSE
-  base$knitr$opts_chunk$fig.width <- 8
+  base$knitr$opts_chunk$fig.width <- 7
   base$knitr$opts_chunk$fig.asp <- 0.618
   base$knitr$opts_chunk$fig.ext <- "png"
   base$knitr$opts_chunk$fig.align <- "center"
