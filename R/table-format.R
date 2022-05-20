@@ -232,3 +232,29 @@ pad_decimal <- function(x, digits, output = NULL) {
   return(new_x)
 }
 # nolint end
+
+
+#' Combine N and Percent Columns for Accessibility
+#'
+#' @param df A data frame that has already been sent to [fmt_table()]
+#' @param n The unquoted name of the column containing count values
+#' @param pct The unquoted name of the column containing percentage values
+#' @param name The name of the new combined column to be created
+#' @param remove Logical. Should the existing `n` and `pct` columns be removed?
+#'
+#' @return A data frame.
+#' @export
+combine_n_pct <- function(df, n, pct, name, remove = TRUE) {
+  n <- rlang::enquo(n)
+  pct <- rlang::enquo(pct)
+
+  df |>
+    dplyr::mutate(col1 = !!n,
+                  col2 = !!pct,
+                  col2 = stringr::str_replace_all(.data$col2,
+                                                  "([0-9].*[0-9])",
+                                                  "(\\1)"),
+                  !!name := paste0(.data$col1, "\\ ", .data$col2)) |>
+    dplyr::select(-.data$col1, -.data$col2) |>
+    only_if(remove)(dplyr::select)(-!!n, -!!pct)
+}
