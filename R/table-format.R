@@ -241,10 +241,12 @@ pad_decimal <- function(x, digits, output = NULL) {
 #' @param pct The unquoted name of the column containing percentage values
 #' @param name The name of the new combined column to be created
 #' @param remove Logical. Should the existing `n` and `pct` columns be removed?
+#' @param na_replace Character string representing how missing values should be
+#'   represented.
 #'
 #' @return A data frame.
 #' @export
-combine_n_pct <- function(df, n, pct, name, remove = TRUE) {
+combine_n_pct <- function(df, n, pct, name, remove = TRUE, na_replace = NULL) {
   n <- rlang::enquo(n)
   pct <- rlang::enquo(pct)
 
@@ -254,7 +256,11 @@ combine_n_pct <- function(df, n, pct, name, remove = TRUE) {
                   col2 = stringr::str_replace_all(.data$col2,
                                                   "([0-9].*[0-9])",
                                                   "(\\1)"),
-                  !!name := paste0(.data$col1, "\\ ", .data$col2)) |>
-    dplyr::select(-.data$col1, -.data$col2) |>
+                  combined_col := paste0(.data$col1, "\\ ", .data$col2)) |>
+    only_if(!is.null(na_replace))(dplyr::mutate)(
+      combined_col = dplyr::case_when(is.na(.data$col1) ~ na_replace,
+                                      TRUE ~ .data$combined_col)) |>
+    dplyr::mutate(!!name := .data$combined_col) |>
+    dplyr::select(-.data$col1, -.data$col2, -.data$combined_col) |>
     only_if(remove)(dplyr::select)(-!!n, -!!pct)
 }

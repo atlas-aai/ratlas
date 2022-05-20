@@ -4,7 +4,7 @@
 \alias{combine_n_pct}
 \title{Combine N and Percent Columns for Accessibility}
 \usage{
-combine_n_pct(df, n, pct, name, remove = TRUE)
+combine_n_pct(df, n, pct, name, remove = TRUE, na_replace = NULL)
 }
 \arguments{
 \item{df}{A data frame that has already been sent to \code{\link[=fmt_table]{fmt_table()}}}
@@ -16,6 +16,9 @@ combine_n_pct(df, n, pct, name, remove = TRUE)
 \item{name}{The name of the new combined column to be created}
 
 \item{remove}{Logical. Should the existing \code{n} and \code{pct} columns be removed?}
+
+\item{na_replace}{Character string representing how missing values should be
+represented.}
 }
 \value{
 A data frame.
