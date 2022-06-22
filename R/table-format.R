@@ -250,17 +250,17 @@ combine_n_pct <- function(df, n, pct, name, remove = TRUE, na_replace = NULL) {
   n <- rlang::enquo(n)
   pct <- rlang::enquo(pct)
 
-  df |>
+  df %>%
     dplyr::mutate(col1 = !!n,
                   col2 = !!pct,
                   col2 = stringr::str_replace_all(.data$col2,
                                                   "([0-9].*[0-9])",
                                                   "(\\1)"),
-                  combined_col := paste0(.data$col1, "\\ ", .data$col2)) |>
+                  combined_col := paste0(.data$col1, "\\ ", .data$col2)) %>%
     only_if(!is.null(na_replace))(dplyr::mutate)(
       combined_col = dplyr::case_when(is.na(.data$col1) ~ na_replace,
-                                      TRUE ~ .data$combined_col)) |>
-    dplyr::mutate(!!name := .data$combined_col) |>
-    dplyr::select(-.data$col1, -.data$col2, -.data$combined_col) |>
+                                      TRUE ~ .data$combined_col)) %>%
+    dplyr::mutate(!!name := .data$combined_col) %>%
+    dplyr::select(-.data$col1, -.data$col2, -.data$combined_col) %>%
     only_if(remove)(dplyr::select)(-!!n, -!!pct)
 }
