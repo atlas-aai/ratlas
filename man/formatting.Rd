@@ -24,7 +24,7 @@ fmt_replace_na(x, replacement = "&mdash;")
 
 fmt_corr(x, digits, output = NULL)
 
-fmt_prop(x, digits, fmt_small = TRUE)
+fmt_prop(x, digits, fmt_small = TRUE, keep_zero = FALSE)
 
 fmt_prop_pct(x, digits = 0, fmt_small = TRUE)
 }
@@ -44,7 +44,10 @@ decimal}
 \item{replacement}{The value to use when replacing missing values}
 
 \item{fmt_small}{Indicator for replacing zero with \code{<} (e.g., \code{.000} becomes
-\verb{< .001}). Default is \code{TRUE}.}
+\verb{<.001}). Default is \code{TRUE}.}
+
+\item{keep_zero}{If \code{fmt_small} is \code{TRUE}, whether to preserve true 0s (e.g.,
+\code{0.0000001} becomes \verb{<.001}, but \code{0.0000000} stays \code{.000}).}
 }
 \description{
 These formatting functions are used to format numerical values in a

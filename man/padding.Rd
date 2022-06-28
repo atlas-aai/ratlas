@@ -10,7 +10,7 @@
 \usage{
 pad_counts(x, digits = 0L)
 
-pad_prop(x, digits, fmt_small = TRUE, output = NULL)
+pad_prop(x, digits, fmt_small = TRUE, keep_zero = FALSE, output = NULL)
 
 pad_corr(x, digits, output = NULL)
 
@@ -23,6 +23,9 @@ pad_decimal(x, digits, output = NULL)
 
 \item{fmt_small}{Indicator for replacing zero with \code{<} (e.g., \code{.000} becomes
 \verb{< .001}). Default is \code{TRUE}.}
+
+\item{keep_zero}{If \code{fmt_small} is \code{TRUE}, whether to preserve true 0s (e.g.,
+\code{0.0000001} becomes \verb{<.001}, but \code{0.0000000} stays \code{.000}).}
 
 \item{output}{The output type for the rendered document. One of \code{"latex"} or
 \code{"html"}.}

@@ -12,7 +12,9 @@
 #' @param digits Number of decimal places to retain
 #' @param replacement The value to use when replacing missing values
 #' @param fmt_small Indicator for replacing zero with `<` (e.g., `.000` becomes
-#'   `< .001`). Default is `TRUE`.
+#'   `<.001`). Default is `TRUE`.
+#' @param keep_zero If `fmt_small` is `TRUE`, whether to preserve true 0s (e.g.,
+#'   `0.0000001` becomes `<.001`, but `0.0000000` stays `.000`).
 #' @param output The output type for the rendered document. One of `"latex"` or
 #'   `"html"`.
 #'
@@ -166,7 +168,7 @@ fmt_corr <- function(x, digits, output = NULL) {
 
 #' @export
 #' @rdname formatting
-fmt_prop <- function(x, digits, fmt_small = TRUE) {
+fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE) {
   x <- check_bound_real(x, name = "x", lb = 0, ub = 1)
   digits <- check_pos_int(digits, name = "digits")
 
@@ -179,16 +181,20 @@ fmt_prop <- function(x, digits, fmt_small = TRUE) {
     small_text <- small %>%
       fmt_digits(digits) %>%
       fmt_leading_zero() %>%
-      paste0_after(.first = "< ")
+      paste0_after(.first = "<")
 
     large <- 1 - small
     large_text <- large %>%
       fmt_digits(digits) %>%
       fmt_leading_zero() %>%
-      paste0_after(.first = "> ")
+      paste0_after(.first = ">")
 
     x_chr[x < small] <- small_text
     x_chr[x > large] <- large_text
+
+    if (keep_zero) {
+      x_chr[x == 0] <- fmt_leading_zero(fmt_digits(0, digits = digits))
+    }
   }
 
   return(x_chr)
@@ -207,12 +213,12 @@ fmt_prop_pct <- function(x, digits = 0, fmt_small = TRUE) {
     small <- 1 / (10 ^ digits)
     small_text <- small %>%
       fmt_digits(digits) %>%
-      paste0_after(.first = "< ")
+      paste0_after(.first = "<")
 
     large <- 100 - small
     large_text <- large %>%
       fmt_digits(digits) %>%
-      paste0_after(.first = "> ")
+      paste0_after(.first = ">")
 
     x_chr[round(x * 100, digits = digits) < small] <- small_text
     x_chr[round(x * 100, digits = digits) > large] <- large_text

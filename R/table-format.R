@@ -11,6 +11,10 @@
 #'   between \[0,1\], e.g., `prop_dig = 2` for .35.
 #' @param corr_dig The number of decimal places to include for numbers bounded
 #'   between \[-1,1\], e.g., `corr_dig = 3` for .205.
+#' @param fmt_small Indicator for replacing zero with `<` (e.g., `.000` becomes
+#'   `<.001`). Default is `TRUE`.
+#' @param keep_zero If `fmt_small` is `TRUE`, whether to preserve true 0s (e.g.,
+#'   `0.0000001` becomes `<.001`, but `0.0000000` stays `.000`).
 #' @param output The output format of the table. One of "latex" or "html".
 #'   Automatically pulled from document output type if not specified.
 #'
@@ -20,7 +24,7 @@
 #'
 #' @export
 fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
-                      output = NULL) {
+                      output = NULL, fmt_small = TRUE, keep_zero = FALSE) {
   dec_dig <- check_pos_int(dec_dig, name = "dec_dig")
   prop_dig <- check_pos_int(prop_dig, name = "prop_dig")
   corr_dig <- check_pos_int(corr_dig, name = "corr_dig")
@@ -31,13 +35,15 @@ fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
                                           all(dplyr::between(.x, 0, 1),
                                               na.rm = TRUE))),
                                 pad_prop, digits = prop_dig,
+                                fmt_small = fmt_small, keep_zero = keep_zero,
                                 output = output)) %>%
     dplyr::mutate(dplyr::across(where(~(is.numeric(.x) &&
-                                          all(dplyr::between(.x, 0, 1),
+                                          all(dplyr::between(.x, -1, 1),
                                               na.rm = TRUE))),
                                 pad_corr, digits = corr_dig,
                                 output = output)) %>%
-    dplyr::mutate(dplyr::across(where(is.numeric), pad_decimal, digits = dec_dig))
+    dplyr::mutate(dplyr::across(where(is.numeric), pad_decimal,
+                                digits = dec_dig))
 }
 
 
@@ -50,6 +56,8 @@ fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
 #' @param digits Number of decimal places to retain
 #' @param fmt_small Indicator for replacing zero with `<` (e.g., `.000` becomes
 #'   `< .001`). Default is `TRUE`.
+#' @param keep_zero If `fmt_small` is `TRUE`, whether to preserve true 0s (e.g.,
+#'   `0.0000001` becomes `<.001`, but `0.0000000` stays `.000`).
 #' @param output The output type for the rendered document. One of `"latex"` or
 #'   `"html"`.
 #'
@@ -140,10 +148,12 @@ pad_counts <- function(x, digits = 0L) {
 
 #' @export
 #' @rdname padding
-pad_prop <- function(x, digits, fmt_small = TRUE, output = NULL) {
+pad_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE,
+                     output = NULL) {
   digits <- check_pos_int(digits)
   output <- check_output(output)
-  new_x <- fmt_prop(x, digits = digits, fmt_small = fmt_small)
+  new_x <- fmt_prop(x, digits = digits, fmt_small = fmt_small,
+                    keep_zero = keep_zero)
   new_x[is.na(new_x)] <- "NA"
 
   if (any(stringr::str_detect(new_x, "^<|^>")) &
@@ -256,7 +266,7 @@ combine_n_pct <- function(df, n, pct, name, remove = TRUE, na_replace = NULL) {
                   col2 = stringr::str_replace_all(.data$col2,
                                                   "([0-9].*[0-9])",
                                                   "(\\1)"),
-                  combined_col := paste0(.data$col1, "\\ ", .data$col2)) %>%
+                  combined_col = paste0(.data$col1, "\\ ", .data$col2)) %>%
     only_if(!is.null(na_replace))(dplyr::mutate)(
       combined_col = dplyr::case_when(is.na(.data$col1) ~ na_replace,
                                       TRUE ~ .data$combined_col)) %>%

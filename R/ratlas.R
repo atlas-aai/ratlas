@@ -15,3 +15,4 @@ NULL
 
 ## Make R CMD Check go away
 if (getRversion() >= "2.15.1") utils::globalVariables(c("."))
+utils::globalVariables("where")

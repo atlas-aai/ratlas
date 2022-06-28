@@ -4,7 +4,15 @@
 \alias{fmt_table}
 \title{Center and Decimal Align Tables}
 \usage{
-fmt_table(df, dec_dig = 1, prop_dig = 3, corr_dig = 3, output = NULL)
+fmt_table(
+  df,
+  dec_dig = 1,
+  prop_dig = 3,
+  corr_dig = 3,
+  output = NULL,
+  fmt_small = TRUE,
+  keep_zero = FALSE
+)
 }
 \arguments{
 \item{df}{A data frame or tibble to be formatted for printing in output.}
@@ -20,6 +28,12 @@ between [-1,1], e.g., \code{corr_dig = 3} for .205.}
 
 \item{output}{The output format of the table. One of "latex" or "html".
 Automatically pulled from document output type if not specified.}
+
+\item{fmt_small}{Indicator for replacing zero with \code{<} (e.g., \code{.000} becomes
+\verb{<.001}). Default is \code{TRUE}.}
+
+\item{keep_zero}{If \code{fmt_small} is \code{TRUE}, whether to preserve true 0s (e.g.,
+\code{0.0000001} becomes \verb{<.001}, but \code{0.0000000} stays \code{.000}).}
 }
 \value{
 A tibble with the same rows and columns as \code{df}, with numbers

@@ -48,11 +48,11 @@ test_that("fmt_prop_pct", {
                sprintf("%0.2f", rand * 100))
 
   expect_equal(fmt_prop_pct(c(0.012, 0.009, 0.004, 0.989, 0.994, 0.997)),
-               c("1", "1", "< 1", "99", "99", "> 99"))
+               c("1", "1", "<1", "99", "99", ">99"))
   expect_equal(fmt_prop_pct(c(0.829, 0.080, NA_real_, 0.313, 0.002, 0.0004,
                               0.998, 0.9999), digits = 1),
-               c("82.9", "8.0", NA_character_, "31.3", "0.2", "< 0.1", "99.8",
-                 "> 99.9"))
+               c("82.9", "8.0", NA_character_, "31.3", "0.2", "<0.1", "99.8",
+                 ">99.9"))
 })
 
 test_that("fmt_leading_zero", {
@@ -146,8 +146,8 @@ test_that("fmt_prop", {
 
   check1 <- test %>%
     fmt_prop(digits = 3)
-  expect_equal(check1, c(".853", "> .999", ".855",     NA,   ".690",
-                         ".001",  ".129", ".869", ".169", "< .001"))
+  expect_equal(check1, c(".853", ">.999", ".855",     NA,   ".690",
+                         ".001",  ".129", ".869", ".169", "<.001"))
 
   check1_2 <- test %>%
     fmt_prop(digits = 3, fmt_small = FALSE)
@@ -156,8 +156,8 @@ test_that("fmt_prop", {
 
   check2 <- test %>%
     fmt_prop(digits = 2)
-  expect_equal(check2, c(".85",   "> .99", ".85",    NA,   ".69",
-                         "< .01",  ".13", ".87", ".17", "< .01"))
+  expect_equal(check2, c(".85",   ">.99", ".85",    NA,   ".69",
+                         "<.01",  ".13", ".87", ".17", "<.01"))
 
   check2_2 <- test %>%
     fmt_prop(digits = 2, fmt_small = FALSE)
