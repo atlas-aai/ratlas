@@ -81,21 +81,21 @@ adapted from TJ Mahr's <a href="https://github.com/tjmahr/printy" class="externa
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fmt_count</span><span class="op">(</span><span class="va">x</span>, big_interval <span class="op">=</span> <span class="fl">3L</span>, big_mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span>
-
-<span class="fu">fmt_digits</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-
-<span class="fu">fmt_leading_zero</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-
-<span class="fu">fmt_minus</span><span class="op">(</span><span class="va">x</span>, output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-
-<span class="fu">fmt_replace_na</span><span class="op">(</span><span class="va">x</span>, replacement <span class="op">=</span> <span class="st">"&amp;mdash;"</span><span class="op">)</span>
-
-<span class="fu">fmt_corr</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-
-<span class="fu">fmt_prop</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, fmt_small <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">fmt_prop_pct</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">0</span>, fmt_small <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">fmt_count</span><span class="op">(</span><span class="va">x</span>, big_interval <span class="op">=</span> <span class="fl">3L</span>, big_mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">fmt_digits</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">fmt_leading_zero</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">fmt_minus</span><span class="op">(</span><span class="va">x</span>, output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">fmt_replace_na</span><span class="op">(</span><span class="va">x</span>, replacement <span class="op">=</span> <span class="st">"&amp;mdash;"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">fmt_corr</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">fmt_prop</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, fmt_small <span class="op">=</span> <span class="cn">TRUE</span>, keep_zero <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">fmt_prop_pct</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">0</span>, fmt_small <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -128,7 +128,12 @@ decimal</p></dd>
 
 <dt>fmt_small</dt>
 <dd><p>Indicator for replacing zero with <code>&lt;</code> (e.g., <code>.000</code> becomes
-<code>&lt; .001</code>). Default is <code>TRUE</code>.</p></dd>
+<code>&lt;.001</code>). Default is <code>TRUE</code>.</p></dd>
+
+
+<dt>keep_zero</dt>
+<dd><p>If <code>fmt_small</code> is <code>TRUE</code>, whether to preserve true 0s (e.g.,
+<code>0.0000001</code> becomes <code>&lt;.001</code>, but <code>0.0000000</code> stays <code>.000</code>).</p></dd>
 
 </dl></div>
     <div id="details">
@@ -173,30 +178,30 @@ of the American Psychological Association</em> (7th ed.).
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">test_cor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">test_cor</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">3</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">test_cor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">test_cor</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">3</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "-0.85" "0.9"   "1"     "0.79" </span>
-<span class="r-in"><span class="fu">fmt_digits</span><span class="op">(</span><span class="va">test_cor</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">3</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">fmt_digits</span><span class="op">(</span><span class="va">test_cor</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">3</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "-0.85" "0.90"  "1.00"  "0.79" </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">fmt_digits</span><span class="op">(</span><span class="va">test_cor</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">3</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">fmt_leading_zero</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">fmt_digits</span><span class="op">(</span><span class="va">test_cor</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">3</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">fmt_leading_zero</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "-.85" ".90"  "1.00" ".79" </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">fmt_digits</span><span class="op">(</span><span class="va">test_cor</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">3</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">fmt_minus</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">fmt_digits</span><span class="op">(</span><span class="va">test_cor</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">3</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">fmt_minus</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "&amp;minus;0.85" "0.90"        "1.00"        "0.79"       </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">fmt_digits</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">test_cor</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">3</span><span class="op">]</span>, <span class="cn">NA_real_</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">fmt_replace_na</span><span class="op">(</span>replacement <span class="op">=</span> <span class="st">"&amp;mdash;"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">fmt_digits</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">test_cor</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">3</span><span class="op">]</span>, <span class="cn">NA_real_</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">fmt_replace_na</span><span class="op">(</span>replacement <span class="op">=</span> <span class="st">"&amp;mdash;"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "-0.85"   "0.90"    "1.00"    "0.79"    "&amp;mdash;"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">fmt_corr</span><span class="op">(</span><span class="va">test_cor</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">3</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">fmt_corr</span><span class="op">(</span><span class="va">test_cor</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">3</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "&amp;minus;.85" ".90"        "1.00"       ".79"       </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">fmt_prop</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.035</span>, <span class="fl">0.683</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "&lt; .01" ".04"   ".68"  </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">fmt_prop</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.035</span>, <span class="fl">0.683</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "&lt;.01" ".04"  ".68" </span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -211,7 +216,7 @@ of the American Psychological Association</em> (7th ed.).
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.9000.</p>
 </div>
 
       </footer></div>

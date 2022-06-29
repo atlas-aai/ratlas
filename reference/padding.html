@@ -77,13 +77,13 @@ that table columns can be both centered and decimal aligned.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">pad_counts</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span>
-
-<span class="fu">pad_prop</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, fmt_small <span class="op">=</span> <span class="cn">TRUE</span>, output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-
-<span class="fu">pad_corr</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-
-<span class="fu">pad_decimal</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pad_counts</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">pad_prop</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, fmt_small <span class="op">=</span> <span class="cn">TRUE</span>, keep_zero <span class="op">=</span> <span class="cn">FALSE</span>, output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">pad_corr</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">pad_decimal</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, output <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -99,6 +99,11 @@ that table columns can be both centered and decimal aligned.</p>
 <dt>fmt_small</dt>
 <dd><p>Indicator for replacing zero with <code>&lt;</code> (e.g., <code>.000</code> becomes
 <code>&lt; .001</code>). Default is <code>TRUE</code>.</p></dd>
+
+
+<dt>keep_zero</dt>
+<dd><p>If <code>fmt_small</code> is <code>TRUE</code>, whether to preserve true 0s (e.g.,
+<code>0.0000001</code> becomes <code>&lt;.001</code>, but <code>0.0000000</code> stays <code>.000</code>).</p></dd>
 
 
 <dt>output</dt>
@@ -134,22 +139,22 @@ wraps <code><a href="formatting.html">fmt_digits()</a></code> to round to a spec
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">pad_counts</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">pad_counts</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "885"      "435"      "270"      "794"      "\\ \\ 30" "\\ \\ 59"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "683"      "368"      "594"      "229"      "682"      "454"     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] "920"      "241"      "767"      "725"      "485"      "414"     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [19] "766"      "129"     </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">pad_prop</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "&lt; .01\\ \\ \\ " ".95"            ".94"            ".33"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] ".33"            ".38"           </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">pad_corr</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">pad_prop</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "&lt;.01\\ \\ \\ " ".95"           ".94"           ".33"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] ".33"           ".38"          </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">pad_corr</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] ".02"              ".29"              "&amp;minus;.57\\ \\ " ".49"             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [5] ".53"              "&amp;minus;.95\\ \\ " "&amp;minus;.07\\ \\ " ".62"             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [9] ".15"              ".89"             </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">pad_decimal</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">100</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">pad_decimal</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">100</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "18.9"      "23.8"      "91.6"      "12.9"      "29.2"      "63.6"     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "84.2"      "\\ \\ 2.8" "82.5"      "54.1"     </span>
 </code></pre></div>
@@ -166,7 +171,7 @@ wraps <code><a href="formatting.html">fmt_digits()</a></code> to round to a spec
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.9000.</p>
 </div>
 
       </footer></div>
