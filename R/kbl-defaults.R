@@ -11,7 +11,8 @@
 fmt_kbl <- function(x, booktabs = TRUE, linesep = "", escape = FALSE,
                     position = "left", latex_options = "HOLD_position",
                     ...) {
-  kableExtra::kbl(x, booktabs = booktabs, escape = escape, ...) %>%
+  kableExtra::kbl(x, booktabs = booktabs, linesep = linesep,
+                  escape = escape, ...) %>%
     kableExtra::kable_styling(position = position,
                               latex_options = latex_options) %>%
     kableExtra::kable_classic()
