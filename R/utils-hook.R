@@ -47,7 +47,7 @@ img_cap <- function(options, alt = FALSE) {
   }
   if (length(cap) == 0) cap <- ""
   if (is_blank(cap)) return(cap)
-  if (alt) return(escape_html(cap))
+  if (alt) return(escape_html(options$fig.alt))
   paste0("<strong>", create_label(
     options$fig.lp, options$label,
     if (options$fig.num > 1L && options$fig.show == "asis") c("-",
