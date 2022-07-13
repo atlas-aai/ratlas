@@ -209,7 +209,7 @@ hook_html_plot_rat <- function(x, options) {
       paste0(d1, img, "<br/>", note, if (plot2) paste0("\n", d2, "\n</div>"))
     }
   } else add_link(img_tag(
-    upload_url(x), w, h, alt,
+    upload_url(x), w, h, cap, alt,
     c(s, sprintf('style="%s"', css_align(a)))
   ))
 }
