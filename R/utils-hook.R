@@ -61,9 +61,9 @@ img_attr <- function(w, h, extra) {
   paste(c(sprintf('width="%s"', w), sprintf('height="%s"', h), extra),
         collapse = " ")
 }
-img_tag <- function(src, w, h, caption, extra) {
+img_tag <- function(src, w, h, caption, alt_text, extra) {
   caption <- if (length(caption) == 1 && caption != "") {
-    paste0('title="', caption, '" alt="', caption, '" ')
+    paste0('title="', caption, '" alt="', alt_text, '" ')
   }
   tag <- if (grepl("[.]pdf$", src, ignore.case = TRUE)) {
     extra <- c(extra, 'type="application/pdf"')
