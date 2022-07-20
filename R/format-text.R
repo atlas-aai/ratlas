@@ -16,12 +16,18 @@ fmt_italic <- function(string, indicator = "*", html = TRUE) {
   indicator <- check_character(indicator, name = "indicator")
   html <- check_logical(html, name = "html")
 
-  string %>%
-    stringr::str_replace_all(glue::glue("\\{indicator}(.*)\\{indicator}"),
-                             glue::glue("{ifelse(html, '<em>',
+  while (any(stringr::str_detect(string,
+                                 glue::glue("\\{indicator}(.*)",
+                                            "\\{indicator}")))) {
+    string <- string %>%
+      stringr::str_replace(glue::glue("\\{indicator}(.+?)\\{indicator}"),
+                           glue::glue("{ifelse(html, '<em>',
                                                  '\\\\\\\\textit{')}",
-                                        "\\1",
-                                        "{ifelse(html, '</em>', '}')}"))
+                                      "\\1",
+                                      "{ifelse(html, '</em>', '}')}"))
+  }
+
+  return(string)
 }
 
 #' Write APA Words
