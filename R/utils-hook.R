@@ -47,6 +47,7 @@ img_cap <- function(options, alt = FALSE) {
   }
   if (length(cap) == 0) cap <- ""
   if (is_blank(cap)) return(cap)
+  if (alt & is.null(options$fig.alt)) return(escape_html(options$fig.cap))
   if (alt) return(escape_html(options$fig.alt))
   paste0("<strong>", create_label(
     options$fig.lp, options$label,
