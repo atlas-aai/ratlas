@@ -158,7 +158,7 @@ pad_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE,
 
   if (any(stringr::str_detect(new_x, "^<|^>")) &
       !all(stringr::str_detect(new_x, "^<|^>"))) {
-    pad <- ifelse(output == "latex", 5, 3)
+    pad <- ifelse(output == "latex", 4, 3)
     new_x <- dplyr::case_when(stringr::str_detect(new_x, "^<|^>") ~
                                 paste0(new_x, paste(rep("\\ ", pad),
                                                     collapse = "")),
