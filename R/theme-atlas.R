@@ -163,11 +163,13 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
     ggplot2::theme(
       axis.text.x = ggplot2::element_text(
         size = axis_text_size,
-        margin = ggplot2::margin(t = 0)
+        margin = ggplot2::margin(t = 0),
+        color = "black"
       ),
       axis.text.y = ggplot2::element_text(
         size = axis_text_size,
-        margin = ggplot2::margin(r = 0)
+        margin = ggplot2::margin(r = 0),
+        color = "black"
       ),
       axis.title = ggplot2::element_text(
         size = axis_title_size,
