@@ -156,14 +156,28 @@ pad_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE,
                     keep_zero = keep_zero)
   new_x[is.na(new_x)] <- "NA"
 
-  if (any(stringr::str_detect(new_x, "^<|^>")) &
-      !all(stringr::str_detect(new_x, "^<|^>"))) {
-    pad <- ifelse(output == "latex", 4, 3)
-    new_x <- dplyr::case_when(stringr::str_detect(new_x, "^<|^>") ~
-                                paste0(new_x, paste(rep("\\ ", pad),
-                                                    collapse = "")),
-                              TRUE ~ new_x)
+  if(is_html_output()) {
+    if ((any(stringr::str_detect(new_x, "lt")) |
+         any(stringr::str_detect(new_x, "gt"))) &
+        !(all(stringr::str_detect(new_x, "lt") |
+              stringr::str_detect(new_x, "gt")))) {
+      pad <- ifelse(output == "latex", 4, 3)
+      new_x <- dplyr::case_when(stringr::str_detect(new_x, "^<|^>") ~
+                                  paste0(new_x, paste(rep("\\ ", pad),
+                                                      collapse = "")),
+                                TRUE ~ new_x)
+    }
+  } else if (is_latex_output()) {
+    if (any(stringr::str_detect(new_x, "^<|^>")) &
+        !all(stringr::str_detect(new_x, "^<|^>"))) {
+      pad <- ifelse(output == "latex", 4, 3)
+      new_x <- dplyr::case_when(stringr::str_detect(new_x, "^<|^>") ~
+                                  paste0(new_x, paste(rep("\\ ", pad),
+                                                      collapse = "")),
+                                TRUE ~ new_x)
+    }
   }
+
 
   if (any(x == 1, na.rm = TRUE)) {
     new_x <- dplyr::case_when(stringr::str_detect(new_x, "^1\\.") ~ new_x,
