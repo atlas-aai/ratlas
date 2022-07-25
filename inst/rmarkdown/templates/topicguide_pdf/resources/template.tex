@@ -19,6 +19,9 @@
     $if(mainfont)$
       \setmainfont[]{$mainfont$}
     $endif$
+    $if(monofont)$
+      \setmonofont[]{$monofont$}
+    $endif$
 \fi
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -123,7 +126,7 @@
   \postauthor{}
 
   \date{$date$}
-    \predate{\large\color{black}}
+    \predate{\color{black}}
     %\predate{\centering\large\bfseries}
   \postdate{\par}
 
@@ -219,13 +222,13 @@ $endif$
 
 % title styles
 \titleformat{\section}{\color{dlmcolor}\Large\bfseries}{}{0pt}{}
-\titlespacing*{\section}{0pt}{2pt plus 0pt minus 0pt}{-6pt plus 0pt minus 0pt}
+\titlespacing*{\section}{0pt}{8pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
 
 \titleformat{\subsection}{\color{dlmcolor2}\large\bfseries}{}{0pt}{}
-\titlespacing*{\subsection}{0pt}{2pt plus 0pt minus 0pt}{-6pt plus 0pt minus 0pt}
+\titlespacing*{\subsection}{0pt}{8pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
 
 \titleformat{\subsubsection}{\color{dlmcolor}\bfseries\normalsize}{}{0pt}{}
-\titlespacing*{\subsubsection}{0pt}{2pt plus 0pt minus 0pt}{-6pt plus 0pt minus 0pt}
+\titlespacing*{\subsubsection}{0pt}{8pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
 
 \titleformat{\paragraph}{\bfseries\large}{\theparagraph. }{0pt}{}
 \titlespacing*{\paragraph}{0pt}{10pt}{-6pt plus 0pt minus 0pt}
@@ -316,6 +319,26 @@ $endif$
   \fancyhfoffset{0pt}% recalculate head and foot width for fancyhdr
 }
 
+% column environment for PLD tables
+\newenvironment{cols}[1][]{}{}
+
+\newenvironment{col}[1]{\begin{minipage}[t]{#1}\ignorespaces\vspace{0pt}}{%
+\end{minipage}
+\ifhmode\unskip\fi
+\aftergroup\useignorespacesandallpars}
+
+\def\useignorespacesandallpars#1\ignorespaces\fi{%
+#1\fi\ignorespacesandallpars}
+
+\makeatletter
+\def\ignorespacesandallpars{%
+  \@ifnextchar\par
+    {\expandafter\ignorespacesandallpars\@gobble}%
+    {}%
+}
+\makeatother
+
+% other things
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}{Lemma}[section]
