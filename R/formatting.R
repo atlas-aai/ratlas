@@ -181,13 +181,15 @@ fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE) {
     small_text <- small %>%
       fmt_digits(digits) %>%
       fmt_leading_zero() %>%
-      paste0_after(.first = "<")
+      only_if(is_latex_output())(paste0_after)(.first = "<") %>%
+      only_if(is_html_output())(paste0_after)(.first = "$\\lt$")
 
     large <- 1 - small
     large_text <- large %>%
       fmt_digits(digits) %>%
       fmt_leading_zero() %>%
-      paste0_after(.first = ">")
+      only_if(is_latex_output())(paste0_after)(.first = ">") %>%
+      only_if(is_html_output())(paste0_after)(.first = "$\\gt$")
 
     x_chr[x < small] <- small_text
     x_chr[x > large] <- large_text
