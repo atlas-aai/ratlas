@@ -153,7 +153,7 @@ pad_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE,
   digits <- check_pos_int(digits)
   output <- check_output(output)
   new_x <- fmt_prop(x, digits = digits, fmt_small = fmt_small,
-                    keep_zero = keep_zero)
+                    keep_zero = keep_zero, output = output)
   new_x[is.na(new_x)] <- "NA"
 
   if(is_html_output()) {

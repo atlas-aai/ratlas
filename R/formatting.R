@@ -168,7 +168,7 @@ fmt_corr <- function(x, digits, output = NULL) {
 
 #' @export
 #' @rdname formatting
-fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE) {
+fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE, output) {
   x <- check_bound_real(x, name = "x", lb = 0, ub = 1)
   digits <- check_pos_int(digits, name = "digits")
 
@@ -181,15 +181,15 @@ fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE) {
     small_text <- small %>%
       fmt_digits(digits) %>%
       fmt_leading_zero() %>%
-      only_if(is_latex_output())(paste0_after)(.first = "<") %>%
-      only_if(is_html_output())(paste0_after)(.first = "$\\lt$")
+      only_if(output == "latex")(paste0_after)(.first = "<") %>%
+      only_if(output == "html")(paste0_after)(.first = "$\\lt$")
 
     large <- 1 - small
     large_text <- large %>%
       fmt_digits(digits) %>%
       fmt_leading_zero() %>%
-      only_if(is_latex_output())(paste0_after)(.first = ">") %>%
-      only_if(is_html_output())(paste0_after)(.first = "$\\gt$")
+      only_if(output == "latex")(paste0_after)(.first = ">") %>%
+      only_if(output == "html")(paste0_after)(.first = "$\\gt$")
 
     x_chr[x < small] <- small_text
     x_chr[x > large] <- large_text
