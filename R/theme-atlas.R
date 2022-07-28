@@ -161,33 +161,33 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
 
   ret <- ret +
     ggplot2::theme(
-      axis.text.x = ggplot2::element_text(
+      axis.text.x = ggtext::element_markdown(
         size = axis_text_size,
         margin = ggplot2::margin(t = 0),
         color = "black"
       ),
-      axis.text.y = ggplot2::element_text(
+      axis.text.y = ggtext::element_markdown(
         size = axis_text_size,
         margin = ggplot2::margin(r = 0),
         color = "black"
       ),
-      axis.title = ggplot2::element_text(
+      axis.title = ggtext::element_markdown(
         size = axis_title_size,
         family = axis_title_family
       ),
-      axis.title.x = ggplot2::element_text(
+      axis.title.x = ggtext::element_markdown(
         hjust = xj, size = axis_title_size,
         family = axis_title_family,
         face = axis_title_face,
         margin = ggplot2::margin(t = 10, r = 0, b = 0, l = 0)
       ),
-      axis.title.y = ggplot2::element_text(
+      axis.title.y = ggtext::element_markdown(
         hjust = yj, size = axis_title_size,
         family = axis_title_family,
         face = axis_title_face,
         margin = ggplot2::margin(t = 0, r = 10, b = 0, l = 0)
       ),
-      axis.title.y.right = ggplot2::element_text(
+      axis.title.y.right = ggtext::element_markdown(
         hjust = yj, size = axis_title_size,
         angle = 90, family = axis_title_family,
         face = axis_title_face
@@ -195,7 +195,8 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
       strip.text = ggplot2::element_text(
         hjust = 0, size = strip_text_size,
         face = strip_text_face,
-        family = strip_text_family
+        family = strip_text_family,
+        color = "black"
       ),
       panel.spacing = grid::unit(2, "lines"),
       plot.title = ggplot2::element_text(

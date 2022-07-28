@@ -139,7 +139,7 @@ fmt_minus <- function(x, output = NULL) {
 
   if (output == "latex") {
     new_minus <- stringr::str_replace_all(new_minus, stringr::fixed("&minus;"),
-                                          "$-$")
+                                          "-")
   }
 
   return(new_minus)
