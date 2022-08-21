@@ -264,7 +264,7 @@ combine_n_pct <- function(df, n, pct, name, remove = TRUE, na_replace = NULL) {
     dplyr::mutate(col1 = !!n,
                   col2 = !!pct,
                   col2 = stringr::str_replace_all(.data$col2,
-                                                  "([0-9].*[0-9])",
+                                                  "([0-9]+)",
                                                   "(\\1)"),
                   combined_col = paste0(.data$col1, "\\ ", .data$col2)) %>%
     only_if(!is.null(na_replace))(dplyr::mutate)(
