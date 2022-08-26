@@ -103,7 +103,7 @@ hook_tex_plot_rat <- function(x, options) {
     # * close figure environment
     if (plot2) {
       fig2 <- sprintf("\\end{%s}\n", options$fig.env)
-      note <- sprintf("%s\n", options$fig.note)
+      note <- sprintf("\\raggedright %s\n", options$fig.note)
     }
   } else if (pandoc_to(c("latex", "beamer"))) {
     # use alignment environments for R Markdown latex output
