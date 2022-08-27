@@ -4,7 +4,7 @@ pkgdown_sha: 956f076f661eb2de9413f64ea24a580cf444466d
 articles:
   plotting: plotting.html
   report-writing: report-writing.html
-last_built: 2022-08-26T22:03Z
+last_built: 2022-08-27T02:06Z
 urls:
   reference: https://ratlas.netlify.app/reference
   article: https://ratlas.netlify.app/articles
