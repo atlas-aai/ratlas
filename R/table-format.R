@@ -142,6 +142,8 @@ pad_counts <- function(x, digits = 0L) {
                               TRUE ~ paste0("\\ ", new_x))
   }
 
+  new_x <- stringr::str_replace_all(new_x, "(?<!\\\\) ", "")
+
   new_x[is.na(x)] <- NA_character_
   return(new_x)
 }
