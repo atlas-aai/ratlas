@@ -87,12 +87,34 @@ fmt_count <- function(x, big_interval = 3L, big_mark = ",") {
 
 #' @export
 #' @rdname formatting
-fmt_digits <- function(x, digits = 3) {
+fmt_digits <- function(x, digits = 3, fmt_small = FALSE, max_value = NULL,
+                       keep_zero = FALSE) {
   x <- check_number(x, name = "x")
   digits <- check_0_int(digits, name = "digits")
 
   round_x <- round(x, digits)
   to_print <- sprintf("%.*f", digits, round_x)
+
+  if (fmt_small) {
+    small <- 1 / (10 ^ digits)
+    small_text <- sprintf("%.*f", digits, small) %>%
+      paste0_after(.first = "<")
+
+    to_print[round(x, digits) < small] <- small_text
+
+    if (!is.null(max_value)) {
+      large <- max_value - small
+      large_text <- sprintf("%.*f", digits, large) %>%
+        paste0_after(.first = ">")
+
+      to_print[round(x, digits) > large] <- large_text
+    }
+  }
+
+  if (keep_zero) {
+    to_print[x == 0] <- sprintf("%.*f", digits, 0)
+  }
+
   to_print[is.na(x)] <- NA_character_
 
   return(to_print)

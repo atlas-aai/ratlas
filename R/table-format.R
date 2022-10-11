@@ -24,7 +24,8 @@
 #'
 #' @export
 fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
-                      output = NULL, fmt_small = TRUE, keep_zero = FALSE) {
+                      output = NULL, fmt_small = TRUE, max_value = NULL,
+                      keep_zero = FALSE) {
   dec_dig <- check_pos_int(dec_dig, name = "dec_dig")
   prop_dig <- check_pos_int(prop_dig, name = "prop_dig")
   corr_dig <- check_pos_int(corr_dig, name = "corr_dig")
@@ -43,7 +44,8 @@ fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
                                 pad_corr, digits = corr_dig,
                                 output = output)) %>%
     dplyr::mutate(dplyr::across(where(is.numeric), pad_decimal,
-                                digits = dec_dig))
+                                digits = dec_dig, fmt_small = fmt_small,
+                                max_value = max_value, keep_zero = keep_zero))
 }
 
 
@@ -208,7 +210,8 @@ pad_corr <- function(x, digits, output = NULL) {
 
 #' @export
 #' @rdname padding
-pad_decimal <- function(x, digits, output = NULL) {
+pad_decimal <- function(x, digits, fmt_small = FALSE, max_value = NULL,
+                        keep_zero = FALSE, output = NULL) {
   digits <- check_pos_int(digits)
   output <- check_output(output)
 
@@ -220,7 +223,8 @@ pad_decimal <- function(x, digits, output = NULL) {
     tidyr::replace_na(0)
 
   new_x <- x %>%
-    fmt_digits(digits = digits) %>%
+    fmt_digits(digits = digits, fmt_small = fmt_small, max_value = max_value,
+               keep_zero = keep_zero) %>%
     fmt_minus(output = output)
 
   new_x <- purrr::map2_chr(new_x, left_spaces, function(num, space) {
@@ -237,6 +241,15 @@ pad_decimal <- function(x, digits, output = NULL) {
     new_x <- dplyr::case_when(stringr::str_detect(new_x, search) ~
                                 paste0(new_x,
                                        paste(rep("\\ ", pad), collapse = "")),
+                              TRUE ~ new_x)
+  }
+
+  if (any(stringr::str_detect(new_x, "<|>")) &
+      !all(stringr::str_detect(new_x, "<|>"))) {
+    pad <- ifelse(output == "latex", 4, 3)
+    new_x <- dplyr::case_when(stringr::str_detect(new_x, "<|>") ~
+                                paste0(new_x, paste(rep("\\ ", pad),
+                                                    collapse = "")),
                               TRUE ~ new_x)
   }
 
