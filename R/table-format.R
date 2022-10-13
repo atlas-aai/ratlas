@@ -246,7 +246,7 @@ pad_decimal <- function(x, digits, fmt_small = FALSE, max_value = NULL,
 
   if (any(stringr::str_detect(new_x, "<|>")) &
       !all(stringr::str_detect(new_x, "<|>"))) {
-    pad <- ifelse(output == "latex", 4, 3)
+    pad <- ifelse(output == "latex", 3, 2)
     new_x <- dplyr::case_when(stringr::str_detect(new_x, "<|>") ~
                                 paste0(new_x, paste(rep("\\ ", pad),
                                                     collapse = "")),
