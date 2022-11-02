@@ -189,7 +189,7 @@ pad_corr <- function(x, digits, output = NULL) {
 
   if (any(x < 0, na.rm = TRUE)) {
     search <- ifelse(output == "latex", "^-", "&minus;")
-    pad <- ifelse(output == "latex", 5, 2)
+    pad <- ifelse(output == "latex", 4, 2)
     new_x <- dplyr::case_when(stringr::str_detect(new_x, search) ~
                                 paste0(new_x,
                                        paste(rep("\\ ", pad), collapse = "")),
