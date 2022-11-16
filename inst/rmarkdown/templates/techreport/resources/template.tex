@@ -194,8 +194,7 @@ $endif$
 % references
 \usepackage[style=apa]{biblatex}
 \ExecuteBibliographyOptions{sortcites}
-\DeclareFieldFormat{doi}{%
-  \url{https://doi.org/#1}}
+\DeclareFieldFormat*{doi}{\url{https://doi.org/#1}\nopunct}
 \DeclareFieldFormat{eprint:arXiv}{%
   arXiv\addperiod\space\url{https://arxiv.org/abs/#1}}
 
