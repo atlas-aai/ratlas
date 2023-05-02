@@ -1,0 +1,4 @@
+Title: measr Report (pdf) using ratlas
+Binding: measr_pdf_skeleton
+OpenFiles: index.Rmd
+Icon: measr.png
