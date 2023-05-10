@@ -15,7 +15,7 @@
   \else
     \usepackage{fontspec}
   \fi
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \defaultfontfeatures{Scale=MatchLowercase}
     $if(mainfont)$
       \setmainfont[]{$mainfont$}
     $endif$
@@ -52,6 +52,7 @@
 \newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
 
+% code blocks
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
@@ -268,10 +269,10 @@ $endif$
 
 % title styles
 \titleformat{\section}{\color{measrmediumblue}\Large\headingfont}{}{0pt}{}
-\titlespacing*{\section}{0pt}{2pt plus 0pt minus 0pt}{-6pt plus 0pt minus 0pt}
+\titlespacing*{\section}{0pt}{6pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
 
 \titleformat{\subsection}{\color{measrlightblue}\large\headingfont}{}{0pt}{}
-\titlespacing*{\subsection}{0pt}{2pt plus 0pt minus 0pt}{-6pt plus 0pt minus 0pt}
+\titlespacing*{\subsection}{0pt}{6pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
 
 \titleformat{\subsubsection}{\color{measrmediumblue}\normalsize\headingfont}{}{0pt}{}
 \titlespacing*{\subsubsection}{0pt}{2pt plus 0pt minus 0pt}{-6pt plus 0pt minus 0pt}
