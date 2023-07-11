@@ -14,7 +14,14 @@ pad_prop(x, digits, fmt_small = TRUE, keep_zero = FALSE, output = NULL)
 
 pad_corr(x, digits, output = NULL)
 
-pad_decimal(x, digits, output = NULL)
+pad_decimal(
+  x,
+  digits,
+  fmt_small = FALSE,
+  max_value = NULL,
+  keep_zero = FALSE,
+  output = NULL
+)
 }
 \arguments{
 \item{x}{Number or number string to be formatted}

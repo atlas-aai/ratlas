@@ -36,9 +36,6 @@ working directory.}
 \item{height}{Plot size in \code{units} ("in", "cm", or "mm"). If not supplied,
 uses \code{0.618 * width} when \code{dir = "h"} and \code{1.618 * width} when \code{dir = "v"}.}
 
-\item{units}{Plot size in \code{units} ("in", "cm", "mm", or "px").
-If not supplied, uses the size of current graphics device.}
-
 \item{dir}{Orientation of the plot. One of \code{h} (default) for horizontal or
 \code{v} for vertical.}
 

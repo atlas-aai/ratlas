@@ -14,7 +14,13 @@
 \usage{
 fmt_count(x, big_interval = 3L, big_mark = ",")
 
-fmt_digits(x, digits = 3)
+fmt_digits(
+  x,
+  digits = 3,
+  fmt_small = FALSE,
+  max_value = NULL,
+  keep_zero = FALSE
+)
 
 fmt_leading_zero(x)
 
@@ -38,16 +44,16 @@ decimal}
 
 \item{digits}{Number of decimal places to retain}
 
-\item{output}{The output type for the rendered document. One of \code{"latex"} or
-\code{"html"}.}
-
-\item{replacement}{The value to use when replacing missing values}
-
 \item{fmt_small}{Indicator for replacing zero with \code{<} (e.g., \code{.000} becomes
 \verb{<.001}). Default is \code{TRUE}.}
 
 \item{keep_zero}{If \code{fmt_small} is \code{TRUE}, whether to preserve true 0s (e.g.,
 \code{0.0000001} becomes \verb{<.001}, but \code{0.0000000} stays \code{.000}).}
+
+\item{output}{The output type for the rendered document. One of \code{"latex"} or
+\code{"html"}.}
+
+\item{replacement}{The value to use when replacing missing values}
 }
 \description{
 These formatting functions are used to format numerical values in a
