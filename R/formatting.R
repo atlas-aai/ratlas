@@ -190,7 +190,7 @@ fmt_corr <- function(x, digits, output = NULL) {
 
 #' @export
 #' @rdname formatting
-fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE) {
+fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE, output) {
   x <- check_bound_real(x, name = "x", lb = 0, ub = 1)
   digits <- check_pos_int(digits, name = "digits")
 
@@ -203,13 +203,15 @@ fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE) {
     small_text <- small %>%
       fmt_digits(digits) %>%
       fmt_leading_zero() %>%
-      paste0_after(.first = "<")
+      only_if(output == "latex")(paste0_after)(.first = "<") %>%
+      only_if(output == "html")(paste0_after)(.first = "$\\lt$")
 
     large <- 1 - small
     large_text <- large %>%
       fmt_digits(digits) %>%
       fmt_leading_zero() %>%
-      paste0_after(.first = ">")
+      only_if(output == "latex")(paste0_after)(.first = ">") %>%
+      only_if(output == "html")(paste0_after)(.first = "$\\gt$")
 
     x_chr[x < small] <- small_text
     x_chr[x > large] <- large_text
@@ -224,7 +226,7 @@ fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE) {
 
 #' @export
 #' @rdname formatting
-fmt_prop_pct <- function(x, digits = 0, fmt_small = TRUE) {
+fmt_prop_pct <- function(x, digits = 0, fmt_small = TRUE, output) {
   x <- check_bound_real(x, name = "x", lb = 0, ub = 1)
   digits <- check_0_int(digits, name = "digits")
 
@@ -235,12 +237,14 @@ fmt_prop_pct <- function(x, digits = 0, fmt_small = TRUE) {
     small <- 1 / (10 ^ digits)
     small_text <- small %>%
       fmt_digits(digits) %>%
-      paste0_after(.first = "<")
+      only_if(output == "latex")(paste0_after)(.first = "<") %>%
+      only_if(output == "html")(paste0_after)(.first = "$\\lt$")
 
     large <- 100 - small
     large_text <- large %>%
       fmt_digits(digits) %>%
-      paste0_after(.first = ">")
+      only_if(output == "latex")(paste0_after)(.first = ">") %>%
+      only_if(output == "html")(paste0_after)(.first = "$\\gt$")
 
     x_chr[round(x * 100, digits = digits) < small] <- small_text
     x_chr[round(x * 100, digits = digits) > large] <- large_text

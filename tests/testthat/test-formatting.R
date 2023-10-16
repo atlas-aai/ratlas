@@ -42,17 +42,31 @@ test_that("fmt_prop_pct", {
   expect_match(err$message, "between 0 and 1")
 
   rand <- runif(5)
-  expect_equal(fmt_prop_pct(rand, fmt_small = FALSE),
+  expect_equal(fmt_prop_pct(rand, fmt_small = FALSE, output = "latex"),
                sprintf("%0.0f", rand * 100))
-  expect_equal(fmt_prop_pct(rand, digits = 2, fmt_small = FALSE),
+  expect_equal(fmt_prop_pct(rand, fmt_small = FALSE, output = "html"),
+               sprintf("%0.0f", rand * 100))
+  expect_equal(fmt_prop_pct(rand, digits = 2, fmt_small = FALSE,
+                            output = "latex"),
+               sprintf("%0.2f", rand * 100))
+  expect_equal(fmt_prop_pct(rand, digits = 2, fmt_small = FALSE,
+                            output = "html"),
                sprintf("%0.2f", rand * 100))
 
-  expect_equal(fmt_prop_pct(c(0.012, 0.009, 0.004, 0.989, 0.994, 0.997)),
+  expect_equal(fmt_prop_pct(c(0.012, 0.009, 0.004, 0.989, 0.994, 0.997),
+                            output = "latex"),
                c("1", "1", "<1", "99", "99", ">99"))
+  expect_equal(fmt_prop_pct(c(0.012, 0.009, 0.004, 0.989, 0.994, 0.997),
+                            output = "html"),
+               c("1", "1", "$\\lt$1", "99", "99", "$\\gt$99"))
   expect_equal(fmt_prop_pct(c(0.829, 0.080, NA_real_, 0.313, 0.002, 0.0004,
-                              0.998, 0.9999), digits = 1),
+                              0.998, 0.9999), digits = 1, output = "latex"),
                c("82.9", "8.0", NA_character_, "31.3", "0.2", "<0.1", "99.8",
                  ">99.9"))
+  expect_equal(fmt_prop_pct(c(0.829, 0.080, NA_real_, 0.313, 0.002, 0.0004,
+                              0.998, 0.9999), digits = 1, output = "html"),
+               c("82.9", "8.0", NA_character_, "31.3", "0.2", "$\\lt$0.1",
+                 "99.8", "$\\gt$99.9"))
 })
 
 test_that("fmt_leading_zero", {
@@ -145,27 +159,52 @@ test_that("fmt_prop", {
   expect_match(err$message, "greater than zero")
 
   check1 <- test %>%
-    fmt_prop(digits = 3)
+    fmt_prop(digits = 3, output = "latex")
   expect_equal(check1, c(".853", ">.999", ".855",     NA,   ".690",
                          ".001",  ".129", ".869", ".169", "<.001"))
 
   check1_2 <- test %>%
-    fmt_prop(digits = 3, fmt_small = FALSE)
+    fmt_prop(digits = 3, fmt_small = FALSE, output = "latex")
   expect_equal(check1_2, c(".853", "1.000", ".855",     NA,   ".690",
                            ".001",  ".129", ".869", ".169", ".000"))
 
+  check1_3 <- test %>%
+    fmt_prop(digits = 3, output = "html")
+  expect_equal(check1_3, c(".853", "$\\gt$.999", ".855",     NA,   ".690",
+                           ".001",  ".129", ".869", ".169", "$\\lt$.001"))
+
+  check1_4 <- test %>%
+    fmt_prop(digits = 3, fmt_small = FALSE, output = "html")
+  expect_equal(check1_4, c(".853", "1.000", ".855",     NA,   ".690",
+                           ".001",  ".129", ".869", ".169", ".000"))
+
   check2 <- test %>%
-    fmt_prop(digits = 2)
+    fmt_prop(digits = 2, output = "latex")
   expect_equal(check2, c(".85",   ">.99", ".85",    NA,   ".69",
                          "<.01",  ".13", ".87", ".17", "<.01"))
 
   check2_2 <- test %>%
-    fmt_prop(digits = 2, fmt_small = FALSE)
+    fmt_prop(digits = 2, fmt_small = FALSE, output = "latex")
   expect_equal(check2_2, c(".85",   "1.00", ".85",    NA,   ".69",
                            ".00",  ".13", ".87", ".17", ".00"))
 
+  check2_3 <- test %>%
+    fmt_prop(digits = 2, output = "html")
+  expect_equal(check2_3, c(".85",   "$\\gt$.99", ".85",    NA,   ".69",
+                           "$\\lt$.01",  ".13", ".87", ".17", "$\\lt$.01"))
+
+  check2_4 <- test %>%
+    fmt_prop(digits = 2, fmt_small = FALSE, output = "html")
+  expect_equal(check2_4, c(".85",   "1.00", ".85",    NA,   ".69",
+                           ".00",  ".13", ".87", ".17", ".00"))
+
   check3 <- test %>%
-    fmt_prop(digits = 2, fmt_small = FALSE)
+    fmt_prop(digits = 2, fmt_small = FALSE, output = "latex")
+  expect_equal(check3, c(".85", "1.00", ".85",    NA, ".69",
+                         ".00",  ".13", ".87", ".17", ".00"))
+
+  check3_2 <- test %>%
+    fmt_prop(digits = 2, fmt_small = FALSE, output = "html")
   expect_equal(check3, c(".85", "1.00", ".85",    NA, ".69",
                          ".00",  ".13", ".87", ".17", ".00"))
 })
