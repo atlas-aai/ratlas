@@ -84,7 +84,7 @@ test_that("fmt_minus", {
 })
 
 test_that("fmt_replace_na", {
-  expect_error(fmt_replace_na(NA_real_, "&mdash;"), "character vector")
+  expect_error(fmt_replace_na(NA_real_, "&mdash;"), "Can't combine")
   expect_equal(fmt_replace_na(NA_character_, "&mdash;"), "&mdash;")
   expect_equal(fmt_replace_na(NA_real_, 4), 4)
 
