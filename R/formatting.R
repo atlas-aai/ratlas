@@ -170,6 +170,9 @@ fmt_minus <- function(x, output = NULL) {
 #' @export
 #' @rdname formatting
 fmt_replace_na <- function(x, replacement = "&mdash;") {
+  if (typeof(x) %in% c("integer", "double") & typeof(replacement) == "character"){
+    stop("x must be converted to a character string or vector before replacing NAs", call. = FALSE)
+  }
   dplyr::if_else(is.na(x), replacement, x)
 }
 
