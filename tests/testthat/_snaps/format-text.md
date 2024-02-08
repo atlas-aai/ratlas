@@ -1,8 +1,8 @@
 # italics work
 
     Code
-      kableExtra::kbl(mtcars[, 1:4], format = "html", escape = FALSE, col.names = fmt_italic(
-        col_names, html = TRUE))
+      cat(kableExtra::kbl(mtcars[, 1:4], format = "html", escape = FALSE, col.names = fmt_italic(
+        col_names, html = TRUE)))
     Output
       <table>
        <thead>

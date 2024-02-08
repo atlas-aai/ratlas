@@ -1,10 +1,10 @@
 test_that("only_if works", {
   d <- tibble::as_tibble(mtcars)
 
-  d_true <- d %>% dplyr::filter(.data$mpg > 25)
+  d_true <- d %>% dplyr::filter(mpg > 25)
 
-  expect_equal(d %>% only_if(TRUE)(dplyr::filter)(.data$mpg > 25), d_true)
-  expect_equal(d %>% only_if(FALSE)(dplyr::filter)(.data$mpg > 25), d)
+  expect_equal(d %>% only_if(TRUE)(dplyr::filter)(mpg > 25), d_true)
+  expect_equal(d %>% only_if(FALSE)(dplyr::filter)(mpg > 25), d)
 })
 
 test_that("append_summary works", {
@@ -15,25 +15,25 @@ test_that("append_summary works", {
                z = sample(1:10, 5, TRUE))
 
   row_sums <- df %>%
-    dplyr::select(-.data$group) %>%
+    dplyr::select(-group) %>%
     dplyr::summarize_all(sum)
   row_medians <- df %>%
-    dplyr::select(-.data$group) %>%
+    dplyr::select(-group) %>%
     dplyr::summarize_all(median)
   col_sums <- df %>%
-    dplyr::select(-.data$group) %>%
+    dplyr::select(-group) %>%
     tibble::rowid_to_column(var = "rowid") %>%
-    tidyr::gather(key = "col", value = "val", -.data$rowid) %>%
-    dplyr::group_by(.data$rowid) %>%
+    tidyr::gather(key = "col", value = "val", -rowid) %>%
+    dplyr::group_by(rowid) %>%
     dplyr::summarize(sum = sum(val)) %>%
-    dplyr::select(.data$sum)
+    dplyr::select(sum)
   col_medians <- df %>%
-    dplyr::select(-.data$group) %>%
+    dplyr::select(-group) %>%
     tibble::rowid_to_column(var = "rowid") %>%
-    tidyr::gather(key = "col", value = "val", -.data$rowid) %>%
-    dplyr::group_by(.data$rowid) %>%
+    tidyr::gather(key = "col", value = "val", -rowid) %>%
+    dplyr::group_by(rowid) %>%
     dplyr::summarize(median = stats::median(val)) %>%
-    dplyr::select(.data$median)
+    dplyr::select(median)
 
   expect_equal(append_summary(df, x, y, z, row = FALSE, col = FALSE), df)
   expect_equal(append_summary(df, x, y, z, row = TRUE, col = FALSE),
