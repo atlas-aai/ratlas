@@ -47,6 +47,11 @@ decimal}
 \item{fmt_small}{Indicator for replacing zero with \code{<} (e.g., \code{.000} becomes
 \verb{<.001}). Default is \code{TRUE}.}
 
+\item{max_value}{If \code{fmt_small} is \code{TRUE} and a \verb{max_value is supplied},
+any value greater than the \code{max_value} is replaced with \code{>}
+(e.g., if \code{max_value} = 50, then \code{60} becomes \verb{>49.9}). The number of digits
+depends on \code{digits}.}
+
 \item{keep_zero}{If \code{fmt_small} is \code{TRUE}, whether to preserve true 0s (e.g.,
 \code{0.0000001} becomes \verb{<.001}, but \code{0.0000000} stays \code{.000}).}
 
