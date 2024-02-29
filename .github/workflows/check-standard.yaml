@@ -48,7 +48,7 @@ jobs:
         with:
           upload-snapshots: true
 
-      - uses: xu-cheng/latex-action@v3
+      - uses: xu-cheng/latex-action@v2
         with:
           root_file: main.tex
           latexmk_use_xelatex: true
