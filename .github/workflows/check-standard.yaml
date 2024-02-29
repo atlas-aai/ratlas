@@ -47,3 +47,8 @@ jobs:
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
+
+      - uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          latexmk_use_xelatex: true
