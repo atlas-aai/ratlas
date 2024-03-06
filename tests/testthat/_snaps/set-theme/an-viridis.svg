@@ -58,17 +58,17 @@
 <text x='563.11' y='469.82' style='font-size: 9.00px; font-family: sans;' textLength='5.01px' lengthAdjust='spacingAndGlyphs'>3</text>
 <text x='371.19' y='489.56' style='font-size: 11.50px; font-family: sans;' textLength='5.75px' lengthAdjust='spacingAndGlyphs'>x</text>
 <text transform='translate(37.80,261.24) rotate(-90)' style='font-size: 11.50px; font-family: sans;' textLength='5.75px' lengthAdjust='spacingAndGlyphs'>y</text>
+<text x='325.13' y='528.72' style='font-size: 11.50px; font-family: sans;' textLength='5.75px' lengthAdjust='spacingAndGlyphs'>z</text>
 <image width='86.40' height='17.28' x='336.61' y='509.13' preserveAspectRatio='none' xlink:href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAABCAYAAABkOJMpAAAAz0lEQVQ4jYVSyxXDMAiTnNU6QvcfpeoBGzAmyYFnRRLmE/PDrzAIkMAA6HjG5J1j0mk8Ny74Pk5Nrzmma2E8aMe9y589SEFoYaBoSL2FR3f5jS6fCxAqn3RULp2IOp0WXHjU9GJldMwYc4fGbRe638/tfSq+s0b0p8YHqOVV9hI+0Z7qRVnAnvZFYUAYtO/AwgAwKNA9cMzp5/Rz5tgvW/jkOfmRMPmkNfhJS3jN63PD5ruKZtx+rnnXnozL+wpfzfEdbvVin4fX/W98h3+O/wX2kQrGpaQGAAAAAElFTkSuQmCC'/>
+<polyline points='352.90,522.96 352.90,526.41 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='379.81,522.96 379.81,526.41 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='406.72,522.96 406.72,526.41 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='352.90,512.59 352.90,509.13 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='379.81,512.59 379.81,509.13 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='406.72,512.59 406.72,509.13 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
 <text x='352.90' y='538.47' text-anchor='middle' style='font-size: 9.20px; font-family: sans;' textLength='12.79px' lengthAdjust='spacingAndGlyphs'>2.5</text>
 <text x='379.81' y='538.47' text-anchor='middle' style='font-size: 9.20px; font-family: sans;' textLength='12.79px' lengthAdjust='spacingAndGlyphs'>5.0</text>
 <text x='406.72' y='538.47' text-anchor='middle' style='font-size: 9.20px; font-family: sans;' textLength='12.79px' lengthAdjust='spacingAndGlyphs'>7.5</text>
-<text x='325.13' y='528.72' style='font-size: 11.50px; font-family: sans;' textLength='5.75px' lengthAdjust='spacingAndGlyphs'>z</text>
-<line x1='352.90' y1='526.41' x2='352.90' y2='522.96' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
-<line x1='379.81' y1='526.41' x2='379.81' y2='522.96' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
-<line x1='406.72' y1='526.41' x2='406.72' y2='522.96' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
-<line x1='352.90' y1='512.59' x2='352.90' y2='509.13' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
-<line x1='379.81' y1='512.59' x2='379.81' y2='509.13' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
-<line x1='406.72' y1='512.59' x2='406.72' y2='509.13' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
 <text x='58.02' y='42.28' style='font-size: 18.00px; font-weight: bold; font-family: sans;' textLength='76.04px' lengthAdjust='spacingAndGlyphs'>an_viridis</text>
 </g>
 </svg>
