@@ -76,5 +76,5 @@ scale_lcrost <- function(aesthetics, use_black = FALSE, order = 1:8,
     }
     values
   }
-  ggplot2::discrete_scale(aesthetics, "manual", pal, ...)
+  ggplot2::discrete_scale(aesthetics, palette = pal, ...)
 }
