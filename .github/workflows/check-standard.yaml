@@ -48,8 +48,3 @@ jobs:
         with:
           upload-snapshots: true
           build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
-
-       - uses: xu-cheng/latex-action@v2
-         with:
-           root_file: main.tex
-           latexmk_use_xelatex: true
