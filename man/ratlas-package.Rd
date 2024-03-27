@@ -15,3 +15,27 @@ The ratlas package serves three main purposes:
 \item Consistent ggplot2 themes
 }
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://ratlas.netlify.app}
+  \item \url{https://github.com/atlas-aai/ratlas}
+  \item Report bugs at \url{https://github.com/atlas-aai/ratlas/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: W. Jake Thompson \email{wjakethompson@gmail.com} (\href{https://orcid.org/0000-0001-7339-0300}{ORCID})
+
+Authors:
+\itemize{
+  \item Noelle Pablo \email{noellepablo@gmail.com}
+  \item Jeffrey Hoover \email{jeffrey.c.hoover@gmail.com} (\href{https://orcid.org/0000-0002-0276-0308}{ORCID})
+}
+
+Other contributors:
+\itemize{
+  \item ATLAS [copyright holder, funder]
+}
+
+}

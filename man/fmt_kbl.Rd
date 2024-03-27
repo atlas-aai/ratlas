@@ -41,7 +41,7 @@ floating around if you specify captions for your table. Possible choices are
 
 \item{latex_options}{A character vector for LaTeX table options. Please see
 package vignette for more information. Possible options include
-\code{basic}, \code{striped}, \code{hold_position}, \code{HOLD_position}, \code{scale_down} & \code{repeat_header}.
+\code{basic}, \code{striped}, \code{hold_position}, \code{HOLD_position}, \code{scale_down}, \code{scale_up} & \code{repeat_header}.
 \code{striped} will add alternative row colors to the table. It will imports
 \code{LaTeX} package \code{xcolor} if enabled. \code{hold_position} will "hold" the floating
 table to the exact position. It is useful when the \code{LaTeX} table is contained

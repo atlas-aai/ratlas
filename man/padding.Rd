@@ -14,7 +14,14 @@ pad_prop(x, digits, fmt_small = TRUE, keep_zero = FALSE, output = NULL)
 
 pad_corr(x, digits, output = NULL)
 
-pad_decimal(x, digits, output = NULL)
+pad_decimal(
+  x,
+  digits,
+  fmt_small = FALSE,
+  max_value = NULL,
+  keep_zero = FALSE,
+  output = NULL
+)
 }
 \arguments{
 \item{x}{Number or number string to be formatted}
@@ -29,6 +36,11 @@ pad_decimal(x, digits, output = NULL)
 
 \item{output}{The output type for the rendered document. One of \code{"latex"} or
 \code{"html"}.}
+
+\item{max_value}{If \code{fmt_small} is \code{TRUE} and a \verb{max_value is supplied},
+any value greater than the \code{max_value} is replaced with \code{>}
+(e.g., if \code{max_value} = 50, then \code{60} becomes \verb{>49.9}). The number of digits
+depends on \code{digits}.}
 }
 \value{
 A character vector of the same length as \code{x}.

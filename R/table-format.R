@@ -13,6 +13,10 @@
 #'   between \[-1,1\], e.g., `corr_dig = 3` for .205.
 #' @param fmt_small Indicator for replacing zero with `<` (e.g., `.000` becomes
 #'   `<.001`). Default is `TRUE`.
+#' @param max_value If `fmt_small` is `TRUE` and a `max_value` is supplied,
+#'  any value greater than the `max_value` is replaced with `>`
+#'  (e.g., if `max_value` = 50, then `60` becomes `>49.9`). The number of digits
+#'  depends on either `dec_digits`, `prop_dig`, or `corr_dig`.
 #' @param keep_zero If `fmt_small` is `TRUE`, whether to preserve true 0s (e.g.,
 #'   `0.0000001` becomes `<.001`, but `0.0000000` stays `.000`).
 #' @param output The output format of the table. One of "latex" or "html".
@@ -58,6 +62,10 @@ fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
 #' @param digits Number of decimal places to retain
 #' @param fmt_small Indicator for replacing zero with `<` (e.g., `.000` becomes
 #'   `< .001`). Default is `TRUE`.
+#' @param max_value If `fmt_small` is `TRUE` and a `max_value is supplied`,
+#'  any value greater than the `max_value` is replaced with `>`
+#'  (e.g., if `max_value` = 50, then `60` becomes `>49.9`). The number of digits
+#'  depends on `digits`.
 #' @param keep_zero If `fmt_small` is `TRUE`, whether to preserve true 0s (e.g.,
 #'   `0.0000001` becomes `<.001`, but `0.0000000` stays `.000`).
 #' @param output The output type for the rendered document. One of `"latex"` or
@@ -292,7 +300,7 @@ combine_n_pct <- function(df, n, pct, name, remove = TRUE, na_replace = NULL) {
                                                   "(\\1)"),
                   combined_col = paste0(.data$col1, "\\ ", .data$col2)) %>%
     only_if(!is.null(na_replace))(dplyr::mutate)(
-      combined_col = dplyr::case_when(is.na(.data$col1) ~ na_replace,
+      combined_col = dplyr::case_when(is.na(col1) ~ na_replace,
                                       TRUE ~ .data$combined_col)) %>%
     dplyr::mutate(!!name := .data$combined_col) %>%
     dplyr::select(-.data$col1, -.data$col2, -.data$combined_col) %>%

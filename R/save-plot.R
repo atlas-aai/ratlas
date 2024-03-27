@@ -11,6 +11,7 @@
 #' @param width Plot size in `units` ("in", "cm", or "mm").
 #' @param height Plot size in `units` ("in", "cm", or "mm"). If not supplied,
 #'   uses `0.618 * width` when `dir = "h"` and `1.618 * width` when `dir = "v"`.
+#' @param units Units of plot size ("in", "cm", or "mm"). Default is inches.
 #' @param dir Orientation of the plot. One of `h` (default) for horizontal or
 #'   `v` for vertical.
 #' @param embed_fonts Logical. Use Ghostscript to embed fonts in a PDF graphic?
