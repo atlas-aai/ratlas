@@ -25,15 +25,11 @@ copyright: "Copyright \\copyright\\ 2020 Accessible Teaching, Learning, and Asse
 ---
 
 ```{r setup, include = FALSE}
-needed_packages <- c("ratlas", "here", "fs", "glue", "english", 
+needed_packages <- c("here", "fs", "glue", "english", 
                      "knitr", "kableExtra", "ggplot2")
 load_packages <- function(x) {
   if (!(x %in% installed.packages())) {
-    if (x == "ratlas") {
-      devtools::install_github("atlas-aai/ratlas")
-    } else {
     install.packages(x, repos = "https://cran.rstudio.com/")
-    }
   }
   
   suppressPackageStartupMessages(require(x, character.only = TRUE))
