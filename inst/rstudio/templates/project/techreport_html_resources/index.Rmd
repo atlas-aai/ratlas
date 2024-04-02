@@ -28,7 +28,7 @@ copyright: "Copyright \\copyright\\ 2020 Accessible Teaching, Learning, and Asse
 ---
 
 ```{r setup, include = FALSE}
-needed_packages <- c("ratlas", "here", "fs", "glue", "pluralize", "english", 
+needed_packages <- c("ratlas", "here", "fs", "glue", "english", 
                      "knitr", "kableExtra", "tidyverse", "conflicted")
 load_packages <- function(x) {
   if (!(x %in% installed.packages())) {
