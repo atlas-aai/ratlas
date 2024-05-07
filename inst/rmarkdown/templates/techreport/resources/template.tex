@@ -143,11 +143,16 @@
       \if\instring{DCPS}{$program$}
       \definecolor{progcolor}{RGB}{56,122,88}
       \else
-      \definecolor{progcolor}{RGB}{0,0,0}
+        \if\instring{NCDB}{$program$}
+        \definecolor{progcolor}{RGB}{64,128,135}
+        \else
+          \definecolor{progcolor}{RGB}{0,0,0}
+        \fi
       \fi
     \fi
   \fi
 \fi
+
 
 \newcommand{\subtitle}[1]{
   \posttitle{
@@ -308,7 +313,11 @@ $endif$
   \if\instring{DCPS}{$program$}
   \newcommand{\progName}{Delaware Communication Portfolio Summary}
   \else
-  \newcommand{\progName}{$program$}
+    \if\instring{NCDB}{$program$}
+    \newcommand{\progName}{National Center on Deaf-Blindness}
+    \else
+      \newcommand{\progName}{$program$}
+    \fi
   \fi
 \fi
 
