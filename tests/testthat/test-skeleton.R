@@ -51,6 +51,7 @@ test_that("copying techreport pdf files works", {
                       "figures/pre-generated/DLM.png",
                       "figures/pre-generated/DCPS.png",
                       "figures/pre-generated/I-SMART.png",
+                      "figures/pre-generated/NCDB.png",
                       "front-matter/preface.Rmd")))
 })
 
