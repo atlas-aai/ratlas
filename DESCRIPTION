@@ -18,9 +18,9 @@ Authors@R:
              comment = c(ORCID = "0000-0002-0276-0308")),
       person(given = "ATLAS",
              role = c("cph", "fnd")))
-Description: This package contains various template and
-    formatting functions used for ATLAS. This include R Markdown
-    templates, formatting functions, and ggplot2 themes.
+Description: Provides template and formatting functions used for 
+    Accessible Teaching, Learning, and Assessment Systems (ATLAS). 
+    The package also includes R Markdown templates and 'ggplot2' themes.
 License: GPL-3
 VignetteBuilder: knitr
 URL: https://ratlas.netlify.app,
