@@ -9,3 +9,4 @@ hex-logo
 ^docs$
 ^pkgdown$
 ^data-raw$
+^cran-comments\.md$
