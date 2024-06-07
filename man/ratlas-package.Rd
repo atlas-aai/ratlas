@@ -35,7 +35,7 @@ Authors:
 
 Other contributors:
 \itemize{
-  \item ATLAS [copyright holder, funder]
+  \item University of Kansas [copyright holder, funder]
 }
 
 }

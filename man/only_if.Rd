@@ -9,6 +9,9 @@ only_if(condition)
 \arguments{
 \item{condition}{Logical condition to be evaluated}
 }
+\value{
+None. Called for side effects.
+}
 \description{
 Adverb for conditionally skipping steps in a piped workflow.
 }
