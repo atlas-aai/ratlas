@@ -14,6 +14,14 @@ update_geom_font_defaults(
 \arguments{
 \item{family, face, size, color}{font family name, face, size and color}
 }
+\value{
+None. Called for side effects.
+}
 \description{
 Updates \link[ggplot2:geom_text]{ggplot2::geom_label} and \link[ggplot2:geom_text]{ggplot2::geom_text} font defaults
+}
+\examples{
+# updates font to Arial Narrow, size to 3.5, and color to #2b2b2b by default
+update_geom_font_defaults()
+
 }

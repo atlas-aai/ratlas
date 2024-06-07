@@ -50,6 +50,10 @@ Automatic formatting for tables that should "just work" for most use cases.
 For more fine-grained control, see \link{formatting} and
 \link{padding}.
 }
+\examples{
+pcts <- tibble::tibble(n = 0:5, p = 0.5 * (0:5))
+pcts |> fmt_table()
+}
 \seealso{
 Other formatters: 
 \code{\link{formatting}},

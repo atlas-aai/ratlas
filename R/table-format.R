@@ -25,7 +25,9 @@
 #' @return A tibble with the same rows and columns as `df`, with numbers
 #'   formatted consistently and padded for alignment when printed.
 #' @family formatters
-#'
+#' @examples
+#' pcts <- tibble::tibble(n = 0:5, p = 0.5 * (0:5))
+#' pcts |> fmt_table()
 #' @export
 fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
                       output = NULL, fmt_small = TRUE, max_value = NULL,
@@ -288,6 +290,14 @@ pad_decimal <- function(x, digits, fmt_small = FALSE, max_value = NULL,
 #'   represented.
 #'
 #' @return A data frame.
+#' @examples
+#' pcts <- tibble::tibble(Program = c("A", "B", "C", "D", "E", "F"),
+#'                n = 0:5,
+#'                p = 0.5 * (0:5))
+#' pcts |>
+#'   fmt_table() |>
+#'   combine_n_pct(n = n, pct = p, name = "States")
+#'
 #' @export
 combine_n_pct <- function(df, n, pct, name, remove = TRUE, na_replace = NULL) {
   n <- rlang::enquo(n)

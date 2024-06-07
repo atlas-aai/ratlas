@@ -22,6 +22,9 @@ positive values) or lightened (for negative values).}
 \item{alpha}{Alpha transparency level of the color. Default is no
 transparency.}
 }
+\value{
+A color scale for use in plots created with \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
+}
 \description{
 This is a color-blind friendly, qualitative scale with eight different
 colors. See \link{palette_okabeito} for details.

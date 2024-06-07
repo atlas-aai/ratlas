@@ -17,7 +17,7 @@ This is a function called in the output of the yaml of the Rmd file to
 specify using the standard DLM tech report pdf document formatting.
 }
 \examples{
-\dontrun{
-  output: ratlas::techreport_gitbook
-}
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+output: ratlas::techreport_gitbook
+\dontshow{\}) # examplesIf}
 }

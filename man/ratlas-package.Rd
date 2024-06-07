@@ -2,8 +2,8 @@
 % Please edit documentation in R/ratlas.R
 \docType{package}
 \name{ratlas-package}
-\alias{ratlas-package}
 \alias{ratlas}
+\alias{ratlas-package}
 \title{ratlas:}
 \description{
 The ratlas package serves three main purposes:

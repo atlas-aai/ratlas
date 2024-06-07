@@ -34,3 +34,10 @@ A kable object.
 Apply some default formatting to the header row of a kable table. Should be
 called after any calls to \code{\link[kableExtra:column_spec]{kableExtra::column_spec()}}.
 }
+\examples{
+fmt_kbl(mtcars[, 1:3], align = c("r", "c", "r"),
+    col.names = c("Column 1", "Column 2", "Column 3"),
+    caption = "Example Table Title") |>
+  kableExtra::column_spec(1, width = "20em") |>
+  fmt_kbl_header()
+}

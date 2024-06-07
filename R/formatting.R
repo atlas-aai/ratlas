@@ -23,6 +23,9 @@
 #'   `"html"`.
 #'
 #' @details
+#' `fmt_count()` is a wrapper for [base::prettyNum()]. Prints a number with
+#' a `big_mark` between every `big_interval`.
+#'
 #' `fmt_digits()` is a wrapper for [base::sprintf()]. Prints a number with
 #' `digits` number of decimal places, without losing trailing zeros, as happens
 #' with [base::round()].
@@ -55,7 +58,7 @@
 #'
 #' @name formatting
 #' @family formatters
-#'
+#' @return The updated character object of the same size as `x`.
 #' @examples
 #' test_cor <- cor(mtcars[, 1:4])
 #' as.character(round(test_cor[1:4, 3], 2))

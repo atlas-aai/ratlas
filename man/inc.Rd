@@ -17,3 +17,8 @@ a string
 \description{
 Generate a section for the yaml input
 }
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+inc("front-matter/preface.Rmd")
+\dontshow{\}) # examplesIf}
+}

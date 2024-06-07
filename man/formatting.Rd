@@ -60,6 +60,9 @@ depends on \code{digits}.}
 
 \item{replacement}{The value to use when replacing missing values}
 }
+\value{
+The updated character object of the same size as \code{x}.
+}
 \description{
 These formatting functions are used to format numerical values in a
 consistent manner. This is useful for printing numbers inline with text, as
@@ -67,6 +70,9 @@ well as for formatting tables. Many of the included formatting functions were
 adapted from TJ Mahr's \href{https://github.com/tjmahr/printy}{printy} package.
 }
 \details{
+\code{fmt_count()} is a wrapper for \code{\link[base:formatc]{base::prettyNum()}}. Prints a number with
+a \code{big_mark} between every \code{big_interval}.
+
 \code{fmt_digits()} is a wrapper for \code{\link[base:sprintf]{base::sprintf()}}. Prints a number with
 \code{digits} number of decimal places, without losing trailing zeros, as happens
 with \code{\link[base:Round]{base::round()}}.

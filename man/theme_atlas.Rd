@@ -69,11 +69,14 @@ family, face and size}
 
 \item{ticks}{ticks if \code{TRUE} add ticks}
 }
+\value{
+A theme for use in plots created with \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
+}
 \description{
 Based on \code{hrbrthemes::\link[hrbrthemes]{theme_ipsum}}.
 }
 \examples{
-\dontrun{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 library(ggplot2)
 library(dplyr)
 
@@ -100,5 +103,5 @@ count(mpg, class) \%>\%
        caption = "Brought to you by the letter 'g'") +
   theme_atlas(grid = "Y") +
   theme(axis.text.y = element_blank())
-}
+\dontshow{\}) # examplesIf}
 }

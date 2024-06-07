@@ -6,8 +6,8 @@
 #' - Functions for formatting
 #' - Consistent ggplot2 themes
 #'
-#' @docType package
 #' @name ratlas-package
+"_PACKAGE"
 #' @aliases ratlas
 #' @import grDevices
 #' @importFrom rlang .data :=

@@ -61,3 +61,9 @@ A kable object.
 \description{
 Create a kable table with some reasonable ATLAS defaults.
 }
+\examples{
+fmt_kbl(mtcars[, 1:3], align = c("r", "c", "r"),
+  col.names = c("Column 1", "Column 2", "Column 3"),
+  caption = "Example Table Title")
+
+}

@@ -22,9 +22,9 @@
 #' @param axis_text_size font size of axis text
 #' @param axis add x or y axes? `TRUE`, `FALSE`, "`xy`"
 #' @param ticks ticks if `TRUE` add ticks
+#' @return A theme for use in plots created with [ggplot2::ggplot()].
 #' @export
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' library(ggplot2)
 #' library(dplyr)
 #'
@@ -51,7 +51,6 @@
 #'        caption = "Brought to you by the letter 'g'") +
 #'   theme_atlas(grid = "Y") +
 #'   theme(axis.text.y = element_blank())
-#' }
 theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
                         plot_title_family = base_family,
                         plot_title_size = 18,
@@ -227,6 +226,11 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
 #' Updates [ggplot2::geom_label] and [ggplot2::geom_text] font defaults
 #'
 #' @param family,face,size,color font family name, face, size and color
+#' @return None. Called for side effects.
+#' @examples
+#' # updates font to Arial Narrow, size to 3.5, and color to #2b2b2b by default
+#' update_geom_font_defaults()
+#'
 #' @export
 update_geom_font_defaults <- function(family = "Arial Narrow", face = "plain",
                                       size = 3.5, color = "#2b2b2b") {
