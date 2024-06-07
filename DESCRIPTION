@@ -16,7 +16,7 @@ Authors@R:
              role = "aut",
              email = "jeffrey.c.hoover@gmail.com",
              comment = c(ORCID = "0000-0002-0276-0308")),
-      person(given = "ATLAS",
+      person(given = "University of Kansas",
              role = c("cph", "fnd")))
 Description: Provides template and formatting functions used for 
     Accessible Teaching, Learning, and Assessment Systems (ATLAS). 
