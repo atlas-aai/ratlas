@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/simplex/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/simplex/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -74,6 +74,9 @@
       <a href="../articles/report-writing.html">Writing a Report With ratlas</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -213,10 +216,10 @@ Figure 5: The default <code>setup</code> chunk for a new report.
 <li>Create links using <code>[text](link)</code> (e.g., <code>Visit the [DLM website](https://dynamiclearningmaps.org).</code>)</li>
 </ul>
 <p>You can also create a bulleted list using asterisks or hyphens.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a>- <span class="st">item 1</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="st">- item 2</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="st">    - item 2.1</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="st">    - item 2.2</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ss">- </span>item 1</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ss">- </span>item 2</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ss">    - </span>item 2.1</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ss">    - </span>item 2.2</span></code></pre></div>
 <p>For more in-depth descriptions of Markdown formatting, check out <a href="https://bookdown.org/yihui/bookdown/components.html" class="external-link">Chapter 2 of <em>bookdown: Authoring Books and Technical Documents with R Markdown</em></a> and the <a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf" class="external-link">R Markdown reference guide</a>.</p>
 </div>
 <div class="section level2">
@@ -333,14 +336,14 @@ Group 3
 </tbody>
 </table>
 <p>Finally, we can cross reference the table using the chunk label. For example, the full code chunk to create Table <a href="#tab:example-table">1</a> is shown below. Cross references for tables are created using the syntax <code>\@ref(tab:chunk-label)</code>. For example, <code>Table \@ref(tab:example-table)</code> renders as Table <a href="#tab:example-table">1</a>. For more on cross references see <a href="https://bookdown.org/yihui/bookdown/cross-references.html" class="external-link">this section</a> from <em>bookdown: Authoring Books and Technical Documents with R Markdown</em> and <a href="https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html" class="external-link">this section</a> from the <em>R Markdown Cookbook</em>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="bn">```{r example-table}</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="bn">my_data %&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="bn">  fmt_table(corr_dig = 2, prop_dig = 2) %&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="bn">  kable(align = c("l", rep("c", 4)), booktabs = TRUE, linesep = "",</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="bn">        escape = FALSE,</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="bn">        col.names = c("Group", "Students (*n*)", "\\%", "*r*", "*p*-value"),</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="bn">        caption = "An example table")</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="bn">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="in">```{r example-table}</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="in">my_data %&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="in">  fmt_table(corr_dig = 2, prop_dig = 2) %&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="in">  kable(align = c("l", rep("c", 4)), booktabs = TRUE, linesep = "",</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="in">        escape = FALSE,</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="in">        col.names = c("Group", "Students (*n*)", "\\%", "*r*", "*p*-value"),</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="in">        caption = "An example table")</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="add-figure">Adding Figures<a class="anchor" aria-label="anchor" href="#add-figure"></a>
@@ -359,13 +362,13 @@ Figure 6: An example figure.
 </p>
 </div>
 <p>As with tables, we can create cross references for figures. For figures, the caption must be specified as a chunk option, as shown below. Then, we can create a cross reference using the same syntax that was used for tables, replacing <code>tab:</code> with <code>fig:</code>. That is, <code>Figure \@ref(fig:example-figure)</code> will render as Figure <a href="#fig:example-figure">6</a>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="bn">```{r example-figure, fig.cap = "An example figure."}</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="bn">ggplot(iris, aes(x = Petal.Length, y = Sepal.Length, color = Species)) +</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="bn">  geom_point() +</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="bn">  labs(x = "Petal Length", y = "Sepal Length") +</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="bn">  scale_color_okabeito() +</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="bn">  theme_atlas()</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="bn">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="in">```{r example-figure, fig.cap = "An example figure."}</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="in">ggplot(iris, aes(x = Petal.Length, y = Sepal.Length, color = Species)) +</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="in">  geom_point() +</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="in">  labs(x = "Petal Length", y = "Sepal Length") +</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="in">  scale_color_okabeito() +</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="in">  theme_atlas()</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="refs">Citations<a class="anchor" aria-label="anchor" href="#refs"></a>
@@ -381,13 +384,13 @@ Figure 6: An example figure.
   doi = {10.1007/S11336-008-9089-5}
 }</code></pre>
 <p>The next step is to tell R Markdown about your <code>.bib</code> files. The YAML header includes a bibliography field, where we specify the <code>.bib</code> files. In the template file, we assume that <code>.bib</code> files are kept in a <code>bib/</code> directory. Your references are saved in <code>bib/refs.bib</code>. By default, the template will write out a separate <code>.bib</code> file, <code>bib/packages.bib</code> that includes the citation information for all the <em>R</em> packages you have loaded, making it easy to cite your software. You can add more <code>.bib</code> files if that makes organizing easier. The YAML header also includes extra metadata about how references should be formatted. The default is to use APA style. You can find <code>.csl</code> files for other citation files <a href="https://www.zotero.org/styles" class="external-link">here</a> if APA is not suitable.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="pp">---</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="co">...</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="co">bibliography: ["bib/refs.bib", "bib/packages.bib"]</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="co">biblio-style: apa</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="co">csl: csl/apa.csl</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="co">...</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="co">---</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="co">...</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co">bibliography: ["bib/refs.bib", "bib/packages.bib"]</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">biblio-style: apa</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">csl: csl/apa.csl</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">...</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">---</span></span></code></pre></div>
 <p>We are then ready to start making citations. Citations are made using the syntax <code>@citation-key</code>. For <em>R</em> packages, the citation key is always <code>R-pkgname</code> (e.g., <code>R-ratlas</code>). To make a parenthetical citation, place the citation key within brackets (e.g., <code>[@R-ratlas]</code>). In-text citations can be made by remove the brackets. The author can be suppressed by adding a minus sign before the key (e.g., <code>-@R-ratlas</code>). Multiple citations are separate by semicolons. Finally, additional text can be added before or after a citation by using a semicolon or commas as appropriate. Table <a href="#tab:cite-style">2</a> shows some common citation styles, along with the code to generate the style.</p>
 <table class="table table" style="margin-left: auto; margin-right: auto;">
 <caption>
@@ -407,7 +410,7 @@ Renders as…
 <code>[@R-ratlas]</code>
 </td>
 <td style="text-align:left;">
-<span class="citation">(Thompson et al., <a href="#ref-R-ratlas" role="doc-biblioref">2020</a>)</span>
+<span class="citation">(<a href="#ref-R-ratlas">Thompson et al., 2020</a>)</span>
 </td>
 </tr>
 <tr>
@@ -415,7 +418,7 @@ Renders as…
 <code>@R-ratlas</code>
 </td>
 <td style="text-align:left;">
-<span class="citation">Thompson et al. (<a href="#ref-R-ratlas" role="doc-biblioref">2020</a>)</span>
+<span class="citation">Thompson et al. (<a href="#ref-R-ratlas">2020</a>)</span>
 </td>
 </tr>
 <tr>
@@ -423,7 +426,7 @@ Renders as…
 <code>[LCDM; @lcdm]</code>
 </td>
 <td style="text-align:left;">
-<span class="citation">(LCDM; Henson et al., <a href="#ref-lcdm" role="doc-biblioref">2009</a>)</span>
+[LCDM; <span class="citation">Henson et al. (<a href="#ref-lcdm">2009</a>)</span>]
 </td>
 </tr>
 <tr>
@@ -431,7 +434,7 @@ Renders as…
 <code>[-@lcdm]</code>
 </td>
 <td style="text-align:left;">
-<span class="citation">(<a href="#ref-lcdm" role="doc-biblioref">2009</a>)</span>
+<span class="citation">(<a href="#ref-lcdm">2009</a>)</span>
 </td>
 </tr>
 <tr>
@@ -439,7 +442,7 @@ Renders as…
 <code>[@lcdm, pp. 3]</code>
 </td>
 <td style="text-align:left;">
-<span class="citation">(Henson et al., <a href="#ref-lcdm" role="doc-biblioref">2009</a>, p. 3)</span>
+<span class="citation">(<a href="#ref-lcdm">Henson et al., 2009, p. 3</a>)</span>
 </td>
 </tr>
 <tr>
@@ -447,7 +450,7 @@ Renders as…
 <code>@lcdm [p. 3]</code>
 </td>
 <td style="text-align:left;">
-<span class="citation">Henson et al. (<a href="#ref-lcdm" role="doc-biblioref">2009</a>, p. 3)</span>
+<span class="citation">Henson et al. (<a href="#ref-lcdm">2009, p. 3</a>)</span>
 </td>
 </tr>
 <tr>
@@ -455,7 +458,7 @@ Renders as…
 <code>[@lcdm; @R-ratlas]</code>
 </td>
 <td style="text-align:left;">
-<span class="citation">(Henson et al., <a href="#ref-lcdm" role="doc-biblioref">2009</a>; Thompson et al., <a href="#ref-R-ratlas" role="doc-biblioref">2020</a>)</span>
+<span class="citation">(<a href="#ref-lcdm">Henson et al., 2009</a>; <a href="#ref-R-ratlas">Thompson et al., 2020</a>)</span>
 </td>
 </tr>
 </tbody>
@@ -506,36 +509,37 @@ Renders as…
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  24.4  147.     4</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  22.8  141.     4</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  19.2  168.     6</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 22 more rows</span></span></span>
-<span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 22 more rows</span></span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="va">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">my_data</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; (Intercept)        disp         cyl </span></span>
 <span><span class="co">#&gt; 34.66099474 -0.02058363 -1.58727681</span></span></code></pre></div>
 <p>When reporting the coefficient for <code>cyl</code> we might say, “Keeping displacement constant, an additional cylinder is associated with a loss of about 1.6 miles-per-gallon.” But now let’s say that the data file gets updated:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_new_data</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 48 × 3</span></span></span>
 <span><span class="co">#&gt;      mpg  disp   cyl</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  13.3  350      8</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  27.3   79      4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  15.2  276.     8</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  17.3  276.     8</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  19.7  145      6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  21.4  258      6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  18.1  225      6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  14.7  440      8</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  10.4  472      8</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  14.7  440      8</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 38 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  21     160     6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  18.1   225     6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  15     301     8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  15     301     8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  21.4   258     6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  10.4   460     8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  21     160     6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  22.8   108     4</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  19.2   400     8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  15.5   318     8</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 38 more rows</span></span></span></code></pre></div>
 <p>Notice that we now have 48 rows instead of 32. If we re-estimate the model, we can see the coefficients have changed:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">my_new_data</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; (Intercept)        disp         cyl </span></span>
-<span><span class="co">#&gt;  34.8300584  -0.0166198  -1.7689690</span></span></code></pre></div>
-<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -1.8. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
+<span><span class="co">#&gt; 33.28436601 -0.02131438 -1.40194733</span></span></code></pre></div>
+<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -1.4. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
 </div>
 <div class="section level3">
 <h3 id="additional-helpers">Additional Helpers<a class="anchor" aria-label="anchor" href="#additional-helpers"></a>
@@ -564,12 +568,12 @@ Renders as…
 <div class="section level2 unnumbered">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references">
-<div id="ref-lcdm">
-<p>Henson, R. A., Templin, J. L., &amp; Willse, J. T. (2009). Defining a family of cognitive diagnosis models using log-linear models with latent variables. <em>Psychometrika</em>, <em>74</em>, 191–210. <a href="https://doi.org/10.1007/S11336-008-9089-5" class="external-link">https://doi.org/10.1007/S11336-008-9089-5</a></p>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0" line-spacing="2">
+<div id="ref-lcdm" class="csl-entry">
+Henson, R. A., Templin, J. L., &amp; Willse, J. T. (2009). Defining a family of cognitive diagnosis models using log-linear models with latent variables. <em>Psychometrika</em>, <em>74</em>, 191–210. <a href="https://doi.org/10.1007/S11336-008-9089-5" class="external-link">https://doi.org/10.1007/S11336-008-9089-5</a>
 </div>
-<div id="ref-R-ratlas">
-<p>Thompson, W. J., Pablo, N., &amp; Hoover, J. (2020). <em>ratlas: ATLAS formatting functions and templates</em>. <a href="https://github.com/atlas-aai/ratlas" class="external-link">https://github.com/atlas-aai/ratlas</a></p>
+<div id="ref-R-ratlas" class="csl-entry">
+Thompson, W. J., Pablo, N., &amp; Hoover, J. (2020). <em><span class="nocase">ratlas</span>: ATLAS formatting functions and templates</em>. <a href="https://github.com/atlas-aai/ratlas" class="external-link">https://github.com/atlas-aai/ratlas</a>
 </div>
 </div>
 </div>
@@ -587,12 +591,12 @@ Renders as…
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by <a href="https://wjakethompson.com" class="external-link">W. Jake Thompson</a>, Noelle Pablo, Jeffrey Hoover, <a href="https://atlas.ku.edu/" class="external-link"><img src="https://www.wjakethompson.com/prof-logo/atlas.png" alt="ATLAS" height="35"></a>.</p>
+<p>Developed by <a href="https://wjakethompson.com" class="external-link">W. Jake Thompson</a>, Noelle Pablo, Jeffrey Hoover, University of Kansas.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer>
