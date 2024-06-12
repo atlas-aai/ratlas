@@ -11,11 +11,18 @@
 #' @param width Plot size in `units` ("in", "cm", or "mm").
 #' @param height Plot size in `units` ("in", "cm", or "mm"). If not supplied,
 #'   uses `0.618 * width` when `dir = "h"` and `1.618 * width` when `dir = "v"`.
+#' @param units Units of plot size ("in", "cm", or "mm"). Default is inches.
 #' @param dir Orientation of the plot. One of `h` (default) for horizontal or
 #'   `v` for vertical.
 #' @param embed_fonts Logical. Use Ghostscript to embed fonts in a PDF graphic?
 #' @param ... Additional arguments passed to [ggplot2::ggsave()]
+#' @examplesIf interactive()
+#' ggplot(mtcars, aes(mpg, wt)) +
+#'  geom_point()
 #'
+#' ggsave("mtcars.pdf")
+#' ggsave("mtcars.png")
+#' @return None. Called for side effects.
 #' @export
 ggsave2 <- function(plot = ggplot2::last_plot(), filename, device = NULL,
                     path = NULL, width = 7, height = NULL, units = "in",

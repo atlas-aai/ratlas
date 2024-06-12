@@ -13,6 +13,10 @@
 #'   between \[-1,1\], e.g., `corr_dig = 3` for .205.
 #' @param fmt_small Indicator for replacing zero with `<` (e.g., `.000` becomes
 #'   `<.001`). Default is `TRUE`.
+#' @param max_value If `fmt_small` is `TRUE` and a `max_value` is supplied,
+#'  any value greater than the `max_value` is replaced with `>`
+#'  (e.g., if `max_value` = 50, then `60` becomes `>49.9`). The number of digits
+#'  depends on either `dec_digits`, `prop_dig`, or `corr_dig`.
 #' @param keep_zero If `fmt_small` is `TRUE`, whether to preserve true 0s (e.g.,
 #'   `0.0000001` becomes `<.001`, but `0.0000000` stays `.000`).
 #' @param output The output format of the table. One of "latex" or "html".
@@ -21,7 +25,9 @@
 #' @return A tibble with the same rows and columns as `df`, with numbers
 #'   formatted consistently and padded for alignment when printed.
 #' @family formatters
-#'
+#' @examples
+#' pcts <- tibble::tibble(n = 0:5, p = 0.5 * (0:5))
+#' pcts |> fmt_table()
 #' @export
 fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
                       output = NULL, fmt_small = TRUE, max_value = NULL,
@@ -31,21 +37,22 @@ fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
   corr_dig <- check_pos_int(corr_dig, name = "corr_dig")
 
   df %>%
-    dplyr::mutate(dplyr::across(where(is.integer), pad_counts)) %>%
+    dplyr::mutate(dplyr::across(where(is.integer), \(x) pad_counts(x))) %>%
     dplyr::mutate(dplyr::across(where(~(is.numeric(.x) &&
                                           all(dplyr::between(.x, 0, 1),
                                               na.rm = TRUE))),
-                                pad_prop, digits = prop_dig,
-                                fmt_small = fmt_small, keep_zero = keep_zero,
-                                output = output)) %>%
+                                \(x) pad_prop(x, digits = prop_dig,
+                                              fmt_small = fmt_small,
+                                              keep_zero = keep_zero,
+                                              output = output))) %>%
     dplyr::mutate(dplyr::across(where(~(is.numeric(.x) &&
                                           all(dplyr::between(.x, -1, 1),
                                               na.rm = TRUE))),
-                                pad_corr, digits = corr_dig,
-                                output = output)) %>%
-    dplyr::mutate(dplyr::across(where(is.numeric), pad_decimal,
+                                \(x) pad_corr(x, digits = corr_dig,
+                                output = output))) %>%
+    dplyr::mutate(dplyr::across(where(is.numeric), \(x) pad_decimal(x,
                                 digits = dec_dig, fmt_small = fmt_small,
-                                max_value = max_value, keep_zero = keep_zero))
+                                max_value = max_value, keep_zero = keep_zero)))
 }
 
 
@@ -58,6 +65,10 @@ fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
 #' @param digits Number of decimal places to retain
 #' @param fmt_small Indicator for replacing zero with `<` (e.g., `.000` becomes
 #'   `< .001`). Default is `TRUE`.
+#' @param max_value If `fmt_small` is `TRUE` and a `max_value is supplied`,
+#'  any value greater than the `max_value` is replaced with `>`
+#'  (e.g., if `max_value` = 50, then `60` becomes `>49.9`). The number of digits
+#'  depends on `digits`.
 #' @param keep_zero If `fmt_small` is `TRUE`, whether to preserve true 0s (e.g.,
 #'   `0.0000001` becomes `<.001`, but `0.0000000` stays `.000`).
 #' @param output The output type for the rendered document. One of `"latex"` or
@@ -279,6 +290,14 @@ pad_decimal <- function(x, digits, fmt_small = FALSE, max_value = NULL,
 #'   represented.
 #'
 #' @return A data frame.
+#' @examples
+#' pcts <- tibble::tibble(Program = c("A", "B", "C", "D", "E", "F"),
+#'                n = 0:5,
+#'                p = 0.5 * (0:5))
+#' pcts |>
+#'   fmt_table() |>
+#'   combine_n_pct(n = n, pct = p, name = "States")
+#'
 #' @export
 combine_n_pct <- function(df, n, pct, name, remove = TRUE, na_replace = NULL) {
   n <- rlang::enquo(n)
@@ -292,7 +311,7 @@ combine_n_pct <- function(df, n, pct, name, remove = TRUE, na_replace = NULL) {
                                                   "(\\1)"),
                   combined_col = paste0(.data$col1, "\\ ", .data$col2)) %>%
     only_if(!is.null(na_replace))(dplyr::mutate)(
-      combined_col = dplyr::case_when(is.na(.data$col1) ~ na_replace,
+      combined_col = dplyr::case_when(is.na(col1) ~ na_replace,
                                       TRUE ~ .data$combined_col)) %>%
     dplyr::mutate(!!name := .data$combined_col) %>%
     dplyr::select(-.data$col1, -.data$col2, -.data$combined_col) %>%

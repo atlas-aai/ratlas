@@ -16,11 +16,11 @@ Authors@R:
              role = "aut",
              email = "jeffrey.c.hoover@gmail.com",
              comment = c(ORCID = "0000-0002-0276-0308")),
-      person(given = "ATLAS",
+      person(given = "University of Kansas",
              role = c("cph", "fnd")))
-Description: This package contains various template and
-    formatting functions used for ATLAS. This include R Markdown
-    templates, formatting functions, and ggplot2 themes.
+Description: Provides template and formatting functions used for 
+    Accessible Teaching, Learning, and Assessment Systems (ATLAS). 
+    The package also includes R Markdown templates and 'ggplot2' themes.
 License: GPL-3
 VignetteBuilder: knitr
 URL: https://ratlas.netlify.app,
@@ -59,7 +59,6 @@ Suggests:
     kableExtra (>= 1.1.0),
     lintr (>= 1.0.3),
     magick (>= 2.2),
-    pluralize (>= 0.2.0),
     rmarkdown (>= 1.12),
     spelling (>= 2.1),
     testthat (>= 2.1.0),
@@ -72,5 +71,5 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.3.1
 Language: en-US

@@ -15,7 +15,7 @@ fontsize: 11pt
 ---
 
 ```{r setup, include=FALSE}
-needed_packages <- c("ratlas", "knitr", "english")
+needed_packages <- c("knitr", "english")
 load_packages <- function(x) {
   if (!(x %in% installed.packages())) {
     install.packages(x, repos = "https://cran.rstudio.com/")

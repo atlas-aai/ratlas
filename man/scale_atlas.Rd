@@ -22,6 +22,9 @@ positive values) or lightened (for negative values).}
 \item{alpha}{Alpha transparency level of the color. Default is no
 transparency.}
 }
+\value{
+A color scale for use in plots created with \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
+}
 \description{
 This is a qualitative scale using the official ATLAS brand colors. See
 \link{palette_atlas} for details.

@@ -22,6 +22,9 @@ set_theme(
 
 \item{...}{Additional arguments to pass to theme functions.}
 }
+\value{
+None. Called for side effects.
+}
 \description{
 Sets the default color schemes, fonts, and theme for ggplot2 plots. The
 default color scheme for continuous variables is the
@@ -30,6 +33,7 @@ color palette, and the default color scheme for discrete variables is the
 \href{http://jfly.iam.u-tokyo.ac.jp/color/}{Okabe Ito} palette.
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 set_theme("Arial Narrow")
-
+\dontshow{\}) # examplesIf}
 }

@@ -7,6 +7,11 @@
 #' @param ... Additional parameters passed to [kableExtra::kbl()].
 #'
 #' @return A kable object.
+#' @examples
+#' fmt_kbl(mtcars[, 1:3], align = c("r", "c", "r"),
+#'   col.names = c("Column 1", "Column 2", "Column 3"),
+#'   caption = "Example Table Title")
+#'
 #' @export
 fmt_kbl <- function(x, booktabs = TRUE, linesep = "", escape = FALSE,
                     position = "left", latex_options = "HOLD_position",
@@ -27,6 +32,12 @@ fmt_kbl <- function(x, booktabs = TRUE, linesep = "", escape = FALSE,
 #' @param ... Additional arguments passed to [kableExtra::row_spec()]
 #'
 #' @return A kable object.
+#' @examples
+#' fmt_kbl(mtcars[, 1:3], align = c("r", "c", "r"),
+#'     col.names = c("Column 1", "Column 2", "Column 3"),
+#'     caption = "Example Table Title") |>
+#'   kableExtra::column_spec(1, width = "20em") |>
+#'   fmt_kbl_header()
 #' @export
 fmt_kbl_header <- function(kable_input, row = 0, align = "c",
                            extra_css = "border-bottom: 0.16em solid #111111",

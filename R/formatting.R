@@ -13,12 +13,19 @@
 #' @param replacement The value to use when replacing missing values
 #' @param fmt_small Indicator for replacing zero with `<` (e.g., `.000` becomes
 #'   `<.001`). Default is `TRUE`.
+#' @param max_value If `fmt_small` is `TRUE` and a `max_value is supplied`,
+#'  any value greater than the `max_value` is replaced with `>`
+#'  (e.g., if `max_value` = 50, then `60` becomes `>49.9`). The number of digits
+#'  depends on `digits`.
 #' @param keep_zero If `fmt_small` is `TRUE`, whether to preserve true 0s (e.g.,
 #'   `0.0000001` becomes `<.001`, but `0.0000000` stays `.000`).
 #' @param output The output type for the rendered document. One of `"latex"` or
 #'   `"html"`.
 #'
 #' @details
+#' `fmt_count()` is a wrapper for [base::prettyNum()]. Prints a number with
+#' a `big_mark` between every `big_interval`.
+#'
 #' `fmt_digits()` is a wrapper for [base::sprintf()]. Prints a number with
 #' `digits` number of decimal places, without losing trailing zeros, as happens
 #' with [base::round()].
@@ -51,7 +58,7 @@
 #'
 #' @name formatting
 #' @family formatters
-#'
+#' @return The updated character object of the same size as `x`.
 #' @examples
 #' test_cor <- cor(mtcars[, 1:4])
 #' as.character(round(test_cor[1:4, 3], 2))
@@ -170,6 +177,9 @@ fmt_minus <- function(x, output = NULL) {
 #' @export
 #' @rdname formatting
 fmt_replace_na <- function(x, replacement = "&mdash;") {
+  if (typeof(x) %in% c("integer", "double") & typeof(replacement) == "character"){
+    stop("x must be converted to a character string or vector before replacing NAs", call. = FALSE)
+  }
   dplyr::if_else(is.na(x), replacement, x)
 }
 

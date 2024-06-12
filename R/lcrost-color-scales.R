@@ -33,6 +33,7 @@ scale_fill_lcrost <- function(aesthetics = "fill", ...) {
 #' @param ... common discrete scale parameters: `name`, `breaks`, `labels`,
 #'   `na.value`, `limits`, `guide`, and `aesthetics`. See [discrete_scale] for
 #'   more details.
+#' @return A color scale for use in plots created with [ggplot2::ggplot()].
 #' @examples
 #' library(ggplot2)
 #' ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
@@ -76,5 +77,5 @@ scale_lcrost <- function(aesthetics, use_black = FALSE, order = 1:8,
     }
     values
   }
-  ggplot2::discrete_scale(aesthetics, "manual", pal, ...)
+  ggplot2::discrete_scale(aesthetics, palette = pal, ...)
 }

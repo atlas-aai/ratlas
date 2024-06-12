@@ -9,16 +9,19 @@ only_if(condition)
 \arguments{
 \item{condition}{Logical condition to be evaluated}
 }
+\value{
+None. Called for side effects.
+}
 \description{
 Adverb for conditionally skipping steps in a piped workflow.
 }
 \examples{
 d <- tibble::as_tibble(mtcars)
 d \%>\%
-  only_if(TRUE)(dplyr::filter)(.data$mpg > 25)
+  only_if(TRUE)(dplyr::filter)(mpg > 25)
 
 d \%>\%
-  only_if(FALSE)(dplyr::filter)(.data$mpg > 25)
+  only_if(FALSE)(dplyr::filter)(mpg > 25)
 }
 \author{
 David Robinson, https://twitter.com/drob/status/785880369073500161

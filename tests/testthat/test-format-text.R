@@ -32,10 +32,10 @@ test_that("italics work", {
                    c("Grade", "\\textit{n}", "\\textit{p}-value",
                      "Effect size"))
 
-  expect_snapshot(kableExtra::kbl(mtcars[, 1:4], format = "html",
+  expect_snapshot(cat(kableExtra::kbl(mtcars[, 1:4], format = "html",
                                   escape = FALSE,
                                   col.names = fmt_italic(col_names,
-                                                         html = TRUE)))
+                                                         html = TRUE))))
   expect_snapshot(kableExtra::kbl(mtcars[, 1:4], format = "latex",
                                   escape = FALSE,
                                   col.names = fmt_italic(col_names,

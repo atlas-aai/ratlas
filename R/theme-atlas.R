@@ -22,9 +22,9 @@
 #' @param axis_text_size font size of axis text
 #' @param axis add x or y axes? `TRUE`, `FALSE`, "`xy`"
 #' @param ticks ticks if `TRUE` add ticks
+#' @return A theme for use in plots created with [ggplot2::ggplot()].
 #' @export
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' library(ggplot2)
 #' library(dplyr)
 #'
@@ -51,7 +51,6 @@
 #'        caption = "Brought to you by the letter 'g'") +
 #'   theme_atlas(grid = "Y") +
 #'   theme(axis.text.y = element_blank())
-#' }
 theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
                         plot_title_family = base_family,
                         plot_title_size = 18,
@@ -80,9 +79,9 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
   if (inherits(grid, "character") | grid == TRUE) {
     ret <- ret +
       ggplot2::theme(
-        panel.grid = ggplot2::element_line(color = grid_col, size = 0.2),
-        panel.grid.major = ggplot2::element_line(color = grid_col, size = 0.2),
-        panel.grid.minor = ggplot2::element_line(color = grid_col, size = 0.15)
+        panel.grid = ggplot2::element_line(color = grid_col, linewidth = 0.2),
+        panel.grid.major = ggplot2::element_line(color = grid_col, linewidth = 0.2),
+        panel.grid.minor = ggplot2::element_line(color = grid_col, linewidth = 0.15)
       )
 
     if (inherits(grid, "character")) {
@@ -110,7 +109,7 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
   if (inherits(axis, "character") | axis == TRUE) {
     ret <- ret +
       ggplot2::theme(axis.line = ggplot2::element_line(color = "#2b2b2b",
-                                                       size = 0.15))
+                                                       linewidth = 0.15))
     if (inherits(axis, "character")) {
       axis <- tolower(axis)
       if (regexpr("x", axis)[1] < 0) {
@@ -118,22 +117,22 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
       } else {
         ret <- ret +
           ggplot2::theme(axis.line.x = ggplot2::element_line(color = axis_col,
-                                                             size = 0.15))
+                                                             linewidth = 0.15))
       }
       if (regexpr("y", axis)[1] < 0) {
         ret <- ret + ggplot2::theme(axis.line.y = ggplot2::element_blank())
       } else {
         ret <- ret +
           ggplot2::theme(axis.line.y = ggplot2::element_line(color = axis_col,
-                                                             size = 0.15))
+                                                             linewidth = 0.15))
       }
     } else {
       ret <- ret +
         ggplot2::theme(axis.line.x = ggplot2::element_line(color = axis_col,
-                                                           size = 0.15))
+                                                           linewidth = 0.15))
       ret <- ret +
         ggplot2::theme(axis.line.y = ggplot2::element_line(color = axis_col,
-                                                           size = 0.15))
+                                                           linewidth = 0.15))
     }
   } else {
     ret <- ret + ggplot2::theme(axis.line = ggplot2::element_blank())
@@ -145,11 +144,11 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
     ret <- ret + ggplot2::theme(axis.ticks.y = ggplot2::element_blank())
   } else {
     ret <- ret +
-      ggplot2::theme(axis.ticks = ggplot2::element_line(size = 0.15))
+      ggplot2::theme(axis.ticks = ggplot2::element_line(linewidth = 0.15))
     ret <- ret +
-      ggplot2::theme(axis.ticks.x = ggplot2::element_line(size = 0.15))
+      ggplot2::theme(axis.ticks.x = ggplot2::element_line(linewidth = 0.15))
     ret <- ret +
-      ggplot2::theme(axis.ticks.y = ggplot2::element_line(size = 0.15))
+      ggplot2::theme(axis.ticks.y = ggplot2::element_line(linewidth = 0.15))
     ret <- ret +
       ggplot2::theme(axis.ticks.length = grid::unit(5, "pt"))
   }
@@ -227,6 +226,11 @@ theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
 #' Updates [ggplot2::geom_label] and [ggplot2::geom_text] font defaults
 #'
 #' @param family,face,size,color font family name, face, size and color
+#' @return None. Called for side effects.
+#' @examples
+#' # updates font to Arial Narrow, size to 3.5, and color to #2b2b2b by default
+#' update_geom_font_defaults()
+#'
 #' @export
 update_geom_font_defaults <- function(family = "Arial Narrow", face = "plain",
                                       size = 3.5, color = "#2b2b2b") {

@@ -2,8 +2,8 @@
 % Please edit documentation in R/ratlas.R
 \docType{package}
 \name{ratlas-package}
-\alias{ratlas-package}
 \alias{ratlas}
+\alias{ratlas-package}
 \title{ratlas:}
 \description{
 The ratlas package serves three main purposes:
@@ -14,4 +14,28 @@ The ratlas package serves three main purposes:
 \item Functions for formatting
 \item Consistent ggplot2 themes
 }
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://ratlas.netlify.app}
+  \item \url{https://github.com/atlas-aai/ratlas}
+  \item Report bugs at \url{https://github.com/atlas-aai/ratlas/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: W. Jake Thompson \email{wjakethompson@gmail.com} (\href{https://orcid.org/0000-0001-7339-0300}{ORCID})
+
+Authors:
+\itemize{
+  \item Noelle Pablo \email{noellepablo@gmail.com}
+  \item Jeffrey Hoover \email{jeffrey.c.hoover@gmail.com} (\href{https://orcid.org/0000-0002-0276-0308}{ORCID})
+}
+
+Other contributors:
+\itemize{
+  \item University of Kansas [copyright holder, funder]
+}
+
 }

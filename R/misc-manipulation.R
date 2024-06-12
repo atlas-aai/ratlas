@@ -6,12 +6,13 @@
 #' @examples
 #' d <- tibble::as_tibble(mtcars)
 #' d %>%
-#'   only_if(TRUE)(dplyr::filter)(.data$mpg > 25)
+#'   only_if(TRUE)(dplyr::filter)(mpg > 25)
 #'
 #' d %>%
-#'   only_if(FALSE)(dplyr::filter)(.data$mpg > 25)
+#'   only_if(FALSE)(dplyr::filter)(mpg > 25)
 #' @author David Robinson, https://twitter.com/drob/status/785880369073500161
 #' @export
+#' @return None. Called for side effects.
 only_if <- function(condition) {
   function(func) {
     if (condition) {
@@ -58,17 +59,17 @@ append_summary <- function(df, ..., row = TRUE, col = TRUE, .f = sum,
   if (col) {
     new_df <- new_df %>%
       dplyr::bind_cols(tibble::rowid_to_column(., var = "rowid") %>%
-                         dplyr::select(.data$rowid, ...) %>%
-                         tidyr::pivot_longer(cols = -.data$rowid,
+                         dplyr::select(rowid, ...) %>%
+                         tidyr::pivot_longer(cols = -rowid,
                                              names_to = "col_name",
                                              values_to = "value") %>%
-                         dplyr::rename(!!func_name := .data$value) %>%
-                         dplyr::group_by(.data$rowid) %>%
-                         dplyr::select(-.data$col_name) %>%
+                         dplyr::rename(!!func_name := value) %>%
+                         dplyr::group_by(rowid) %>%
+                         dplyr::select(-col_name) %>%
                          dplyr::summarize_all(~do.call(.f, c(list(.x),
                                                              args))) %>%
-                         dplyr::arrange(.data$rowid) %>%
-                         dplyr::select(-.data$rowid))
+                         dplyr::arrange(rowid) %>%
+                         dplyr::select(-rowid))
   }
 
   return(new_df)

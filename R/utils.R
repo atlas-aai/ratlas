@@ -4,6 +4,8 @@
 #' @param sep a separator for each line.
 #'
 #' @return a string
+#' @examplesIf interactive()
+#' inc("front-matter/preface.Rmd")
 #'
 #' @export
 inc <- function(input, sep = "\n\n  ") {
