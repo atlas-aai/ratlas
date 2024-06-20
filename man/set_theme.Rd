@@ -28,9 +28,9 @@ None. Called for side effects.
 \description{
 Sets the default color schemes, fonts, and theme for ggplot2 plots. The
 default color scheme for continuous variables is the
-\href{https://cran.r-project.org/web/packages/viridis/index.html}{viridis}
+\href{https://CRAN.R-project.org/package=viridis}{viridis}
 color palette, and the default color scheme for discrete variables is the
-\href{http://jfly.iam.u-tokyo.ac.jp/color/}{Okabe Ito} palette.
+\href{https://jfly.uni-koeln.de/color/}{Okabe Ito} palette.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

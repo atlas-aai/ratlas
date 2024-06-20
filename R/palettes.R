@@ -1,7 +1,7 @@
 #' Color palette proposed by Okabe and Ito
 #'
 #' Two color palettes taken from the article "Color Universal Design" by Okabe
-#' and Ito, http://jfly.iam.u-tokyo.ac.jp/color/. The variant
+# and Ito, https://jfly.uni-koeln.de/color/. The variant
 #' `palette_okabeito` contains a gray color, while `palette_okabeito_black`
 #' contains black instead.
 #' @export

@@ -2,9 +2,9 @@
 #'
 #' Sets the default color schemes, fonts, and theme for ggplot2 plots. The
 #' default color scheme for continuous variables is the
-#' [viridis](https://cran.r-project.org/web/packages/viridis/index.html)
+#' [viridis](https://CRAN.R-project.org/package=viridis)
 #' color palette, and the default color scheme for discrete variables is the
-#' [Okabe Ito](http://jfly.iam.u-tokyo.ac.jp/color/) palette.
+#' [Okabe Ito](https://jfly.uni-koeln.de/color/) palette.
 #'
 #' @param font The base font family to be used in plots.
 #' @param discrete Color palette for discrete colors. One of "okabeito"

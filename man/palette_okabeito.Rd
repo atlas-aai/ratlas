@@ -17,7 +17,6 @@ palette_okabeito_black
 }
 \description{
 Two color palettes taken from the article "Color Universal Design" by Okabe
-and Ito, http://jfly.iam.u-tokyo.ac.jp/color/. The variant
 \code{palette_okabeito} contains a gray color, while \code{palette_okabeito_black}
 contains black instead.
 }
