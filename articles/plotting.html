@@ -51,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ratlas</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -124,7 +124,7 @@
 <li>
 <a href="https://r4ds.had.co.nz/data-visualisation.html" class="external-link">Data Visualisation</a> in <em>R for Data Science</em>, by Hadley Wickham &amp; Garrett Grolemund</li>
 <li>
-<a href="http://socviz.co" class="external-link"><em>Data Visualization</em></a>, by Kieran Healy</li>
+<a href="https://socviz.co/" class="external-link"><em>Data Visualization</em></a>, by Kieran Healy</li>
 <li>
 <a href="https://r-graphics.org" class="external-link"><em>R Graphics Cookbook</em></a>, by Winston Chang</li>
 </ul>
@@ -189,7 +189,7 @@ Figure 2: The result of applying <code><a href="../reference/theme_atlas.html">r
 <div class="section level2">
 <h2 id="changing-the-font">Changing the font<a class="anchor" aria-label="anchor" href="#changing-the-font"></a>
 </h2>
-<p>Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is <a href="https://brand.ku.edu/guidelines/typography" class="external-link">Gotham</a>. However, this font is expensive, and thus inaccessible to most users. <a href="https://fonts.google.com/specimen/Montserrat" class="external-link">Montserrat</a> is a very similar font that is available for free through Google Fonts. We recommend that you download and install this font on your system directly from Google Fonts, and then call <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html" class="external-link">extrafont::font_import()</a></code>.</p>
+<p>Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is <a href="https://brand.ku.edu/guidelines/design/typography" class="external-link">Gotham</a>. However, this font is expensive, and thus inaccessible to most users. <a href="https://fonts.google.com/specimen/Montserrat" class="external-link">Montserrat</a> is a very similar font that is available for free through Google Fonts. We recommend that you download and install this font on your system directly from Google Fonts, and then call <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html" class="external-link">extrafont::font_import()</a></code>.</p>
 <p>Once the Montserrat font has been installed on your system, you can apply it to the ATLAS theme using <code>ratlas::theme_atlas(base_family = "Montserrat")</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -326,7 +326,7 @@ Figure 10: Plot generated after using <code><a href="../reference/set_theme.html
 <li>For an introduction to {ggplot2}, see <a href="https://r4ds.had.co.nz/data-visualisation.html" class="external-link">Data Visualisation</a>, from <em>R for Data Science</em>, by Hadley Wickham and Garrett Grolemund</li>
 <li>For simple recipes for creating different types of plots with {ggplot2}, see the <a href="https://r-graphics.org/" class="external-link"><em>R Graphics Cookbook</em></a>, by Winston Chang</li>
 <li>For more details on how to customize {ggplot2} graphics to fit your specific use case, see <a href="https://socviz.co/" class="external-link"><em>Data Visualization: A Practical Introduction</em></a>, by Kieran Healy</li>
-<li>Finally, for a discussion of best principles for data visualization, see <a href="https://serialmentor.com/dataviz/" class="external-link"><em>Fundamentals of Data Visualization</em></a>, by Claus Wilke</li>
+<li>Finally, for a discussion of best principles for data visualization, see <a href="https://clauswilke.com/dataviz/" class="external-link"><em>Fundamentals of Data Visualization</em></a>, by Claus Wilke</li>
 </ul>
 </div>
   </div>
