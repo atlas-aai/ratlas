@@ -125,7 +125,7 @@ fmt_prop(c(0.001, 0.035, 0.683), digits = 2)
 \references{
 American Psychological Association. (2020). \emph{Publication manual
 of the American Psychological Association} (7th ed.).
-\url{https://doi.org/10.1037/0000165-000}
+\doi{doi:10.1037/0000165-000}
 }
 \seealso{
 Other formatters: 

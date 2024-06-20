@@ -51,7 +51,7 @@ install.packages("tinytex")
 tinytex::install_tinytex()
 ```
 
-We also assume that you are using [RStudio](https://rstudio.com/products/rstudio/download/#download). This is not required, but RStudio provides many shortcuts that make the process of writing and generating reports much smoother.
+We also assume that you are using [RStudio](https://posit.co/download/rstudio-desktop/#download). This is not required, but RStudio provides many shortcuts that make the process of writing and generating reports much smoother.
 
 ## Creating a New Tech Report or Topic Guide {#create-new}
 
@@ -138,7 +138,7 @@ You can also create a bulleted list using asterisks or hyphens.
     - item 2.2
 ```
 
-For more in-depth descriptions of Markdown formatting, check out [Chapter 2 of *bookdown: Authoring Books and Technical Documents with R Markdown*](https://bookdown.org/yihui/bookdown/components.html) and the [R Markdown reference guide](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
+For more in-depth descriptions of Markdown formatting, check out [Chapter 2 of *bookdown: Authoring Books and Technical Documents with R Markdown*](https://bookdown.org/yihui/bookdown/components.html) and the [R Markdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
 
 ## Adding Tables {#add-table}
 
@@ -258,7 +258,7 @@ tribble(
   kable_styling()
 ```
 
-Full references for all citations that have mentioned in the text are automatically added to the end of the document. This means that you only need to worry about making your citations within the text. The bibliography is handled automatically by R Markdown. For more information on citations, see the [R Markdown website](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html) and the [*R Markdown Cookbook*](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html).
+Full references for all citations that have mentioned in the text are automatically added to the end of the document. This means that you only need to worry about making your citations within the text. The bibliography is handled automatically by R Markdown. For more information on citations, see the [R Markdown website](https://pandoc.org/MANUAL.html#citations) and the [*R Markdown Cookbook*](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html).
 
 ## Best Practices
 

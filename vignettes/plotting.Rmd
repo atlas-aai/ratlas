@@ -44,7 +44,7 @@ This vignette walks through how to create consistent graphics that meet ATLAS fo
 A full tutorial of how to use {ggplot2} is beyond the scope of this vignette. If you are new to {ggplot2}, we recommend you start with these resources:
 
 * [Data Visualisation](https://r4ds.had.co.nz/data-visualisation.html) in *R for Data Science*, by Hadley Wickham & Garrett Grolemund
-* [*Data Visualization*](http://socviz.co), by Kieran Healy
+* [*Data Visualization*](https://socviz.co/), by Kieran Healy
 * [*R Graphics Cookbook*](https://r-graphics.org), by Winston Chang
 
 These resources walk through how {ggplot2} works, and provide examples with code for creating different types of plots. For a more in depth description of how {ggplot2} works, we recommend [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org), by Hadley Wickham. The second edition can be purchased from [Amazon](https://www.amazon.com/ggplot2-Elegant-Graphics-Data-Analysis/dp/331924275X/ref=sr_1_1?keywords=ggplot2&qid=1568726727&sr=8-1); however, the third edition is currently under development, and can be accessed for free at [ggplot2-book.org](https://ggplot2-book.org).
@@ -111,7 +111,7 @@ There are a few points to draw attention to when comparing Figure \@ref(fig:them
 
 ## Changing the font
 
-Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is [Gotham](https://brand.ku.edu/guidelines/typography). However, this font is expensive, and thus inaccessible to most users. [Montserrat](https://fonts.google.com/specimen/Montserrat) is a very similar font that is available for free through Google Fonts. We recommend that you download and install this font on your system directly from Google Fonts, and then call `extrafont::font_import()`.
+Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is [Gotham](https://brand.ku.edu/guidelines/design/typography). However, this font is expensive, and thus inaccessible to most users. [Montserrat](https://fonts.google.com/specimen/Montserrat) is a very similar font that is available for free through Google Fonts. We recommend that you download and install this font on your system directly from Google Fonts, and then call `extrafont::font_import()`.
 
 Once the Montserrat font has been installed on your system, you can apply it to the ATLAS theme using `ratlas::theme_atlas(base_family = "Montserrat")`.
 
@@ -339,4 +339,4 @@ There are many resources available for learning more about how to make data visu
 * For an introduction to {ggplot2}, see [Data Visualisation](https://r4ds.had.co.nz/data-visualisation.html), from *R for Data Science*, by Hadley Wickham and Garrett Grolemund
 * For simple recipes for creating different types of plots with {ggplot2}, see the [*R Graphics Cookbook*](https://r-graphics.org/), by Winston Chang
 * For more details on how to customize {ggplot2} graphics to fit your specific use case, see [*Data Visualization: A Practical Introduction*](https://socviz.co/), by Kieran Healy
-* Finally, for a discussion of best principles for data visualization, see [*Fundamentals of Data Visualization*](https://serialmentor.com/dataviz/), by Claus Wilke
+* Finally, for a discussion of best principles for data visualization, see [*Fundamentals of Data Visualization*](https://clauswilke.com/dataviz/), by Claus Wilke

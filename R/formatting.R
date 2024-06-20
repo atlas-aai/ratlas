@@ -79,7 +79,7 @@
 #'
 #' @references American Psychological Association. (2020). *Publication manual
 #'   of the American Psychological Association* (7th ed.).
-#'   \url{https://doi.org/10.1037/0000165-000}
+#'   \doi{doi:10.1037/0000165-000}
 
 
 #' @export
