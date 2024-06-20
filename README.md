@@ -5,9 +5,9 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/atlas-aai/ratlas/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/atlas-aai/ratlas/actions/workflows/check-standard.yaml)
+[![R-CMD-check](https://github.com/atlas-aai/ratlas/workflows/R-CMD-check/badge.svg)](https://github.com/atlas-aai/ratlas/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/atlas-aai/ratlas/branch/main/graph/badge.svg)](https://codecov.io/gh/atlas-aai/ratlas?branch=main)
+coverage](https://codecov.io/gh/atlas-aai/ratlas/branch/main/graph/badge.svg)](https://app.codecov.io/gh/atlas-aai/ratlas?branch=main)
 
 <!-- badges: end -->
 
@@ -22,5 +22,5 @@ documents, and providing consistent themes for
 You can install the latest version with:
 
 ``` r
-remotes::install_github("atlas-aai/ratlas")
+install.packages("atlas-aai/ratlas")
 ```
