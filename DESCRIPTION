@@ -1,6 +1,6 @@
 Package: ratlas
 Title: ATLAS Formatting Functions and Templates
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     c(person(given = "W. Jake",
              family = "Thompson",
@@ -18,9 +18,12 @@ Authors@R:
              comment = c(ORCID = "0000-0002-0276-0308")),
       person(given = "University of Kansas",
              role = c("cph", "fnd")))
-Description: Provides template and formatting functions used for 
-    Accessible Teaching, Learning, and Assessment Systems (ATLAS). 
-    The package also includes R Markdown templates and 'ggplot2' themes.
+Description: Provides templates, formatting tools, and 'ggplot2' themes 
+    tailored for the Accessible Teaching, Learning, and Assessment Systems (ATLAS) 
+    organization. These templates facilitate the creation of topic guides and 
+    technical reports, while the formatting functions enable users to customize 
+    numbers and tables to meet specific requirements. Additionally, the themes 
+    ensure a uniform visual style across graphics.
 License: GPL-3
 VignetteBuilder: knitr
 URL: https://ratlas.netlify.app,
