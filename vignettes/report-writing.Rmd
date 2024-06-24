@@ -16,6 +16,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r child="children/chunk-options.txt"}
+```
+
 ```{r setup, include = FALSE}
 library(ratlas)
 library(dplyr)
@@ -26,18 +29,6 @@ library(kableExtra)
 library(here)
 library(tibble)
 library(stringr)
-
-knitr::opts_chunk$set(
-  error = FALSE,
-  warning = FALSE,
-  message = FALSE,
-  echo = TRUE,
-  eval = TRUE,
-  collapse = TRUE,
-  comment = "#>",
-  fig.align = "center",
-  out.width = "100%"
-)
 ```
 
 This vignette walks through the process of creating a new topic guide, technical report, or research report using R Markdown. We also suggest best practices for organizing your report files, and give some tips and tricks for formatting text.

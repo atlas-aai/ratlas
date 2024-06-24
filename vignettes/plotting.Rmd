@@ -14,6 +14,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, child="children/chunk-options.txt"}
+```
+
 ```{r setup, include = FALSE}
 library(ratlas)
 library(dplyr)
@@ -23,18 +26,6 @@ library(scales)
 library(viridis)
 library(dichromat)
 library(colorspace)
-
-knitr::opts_chunk$set(
-  error = FALSE,
-  warning = FALSE,
-  message = FALSE,
-  echo = TRUE,
-  eval = TRUE,
-  collapse = TRUE,
-  comment = "#>",
-  fig.align = "center",
-  out.width = "100%"
-)
 ```
 
 This vignette walks through how to create consistent graphics that meet ATLAS formatting standards using [{ggplot2}](https://ggplot2.tidyverse.org). The {ggplot2} package uses the grammar of graphics to create elegant and reproducible plots that are publication ready. The {ratlas} package provides an extension to {ggplot2} by customizing the default theme to match brand requirements.
