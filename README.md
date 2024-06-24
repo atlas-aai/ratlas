@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/atlas-aai/ratlas/workflows/R-CMD-check/badge.svg)](https://github.com/atlas-aai/ratlas/actions)
+[![R-CMD-check](https://github.com/atlas-aai/ratlas/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/atlas-aai/ratlas/actions/workflows/check-standard.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/atlas-aai/ratlas/branch/main/graph/badge.svg)](https://app.codecov.io/gh/atlas-aai/ratlas?branch=main)
 
