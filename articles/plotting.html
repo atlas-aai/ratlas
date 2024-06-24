@@ -75,9 +75,6 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -138,7 +135,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:init-plot"></span>
-<img src="plotting_files/figure-html/init-plot-1.png" alt="Default {ggplot2} theme." width="100%"><p class="caption">
+<img src="plotting_files/figure-html/init-plot-1.png" alt="Default {ggplot2} theme." width="90%"><p class="caption">
 Figure 1: Default {ggplot2} theme.
 </p>
 </div>
@@ -180,7 +177,7 @@ Figure 1: Default {ggplot2} theme.
 <span>  <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:theme-atlas-ex"></span>
-<img src="plotting_files/figure-html/theme-atlas-ex-1.png" alt="The result of applying ratlas::theme_atlas() to a plot." width="100%"><p class="caption">
+<img src="plotting_files/figure-html/theme-atlas-ex-1.png" alt="The result of applying ratlas::theme_atlas() to a plot." width="90%"><p class="caption">
 Figure 2: The result of applying <code><a href="../reference/theme_atlas.html">ratlas::theme_atlas()</a></code> to a plot.
 </p>
 </div>
@@ -201,9 +198,249 @@ Figure 2: The result of applying <code><a href="../reference/theme_atlas.html">r
 </h2>
 <p>One potential issue with graphics created with {ggplot2} is that the default color scales are not colorblind friendly. For example, Figure <a href="#fig:disc-cvd">3</a> shows our working example simulated with different types of color blindness.</p>
 
+<pre><code><span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family</span></span>
+<span><span class="co">#&gt; 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font</span></span>
+<span><span class="co">#&gt; family 'Arial Narrow' not found in PostScript font database</span></span></code></pre>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:disc-cvd"></span>
-<img src="plotting_files/figure-html/disc-cvd-1.png" alt="The default {ggplot2} color palette for discrete scales with different types of color blindness." width="100%"><p class="caption">
+<img src="plotting_files/figure-html/disc-cvd-1.png" alt="The default {ggplot2} color palette for discrete scales with different types of color blindness." width="90%"><p class="caption">
 Figure 3: The default {ggplot2} color palette for discrete scales with different types of color blindness.
 </p>
 </div>
@@ -211,7 +448,7 @@ Figure 3: The default {ggplot2} color palette for discrete scales with different
 
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:cont-ex"></span>
-<img src="plotting_files/figure-html/cont-ex-1.png" alt="Default color palette for continuous variables in {ggplot2}." width="100%"><p class="caption">
+<img src="plotting_files/figure-html/cont-ex-1.png" alt="Default color palette for continuous variables in {ggplot2}." width="90%"><p class="caption">
 Figure 4: Default color palette for continuous variables in {ggplot2}.
 </p>
 </div>
@@ -219,7 +456,7 @@ Figure 4: Default color palette for continuous variables in {ggplot2}.
 
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:cont-cvd"></span>
-<img src="plotting_files/figure-html/cont-cvd-1.png" alt="The default {ggplot2} color palette for continuous scales with different types of color blindness." width="100%"><p class="caption">
+<img src="plotting_files/figure-html/cont-cvd-1.png" alt="The default {ggplot2} color palette for continuous scales with different types of color blindness." width="90%"><p class="caption">
 Figure 5: The default {ggplot2} color palette for continuous scales with different types of color blindness.
 </p>
 </div>
@@ -227,7 +464,7 @@ Figure 5: The default {ggplot2} color palette for continuous scales with differe
 <h3 id="using-color-blind-safe-palettes">Using color blind safe palettes<a class="anchor" aria-label="anchor" href="#using-color-blind-safe-palettes"></a>
 </h3>
 <p>For discrete color scales, the {ratlas} package includes the Okabe Ito color palette developed by <a href="https://jfly.uni-koeln.de/color/" class="external-link">Masataka Okabe and Kei Ito</a>. This can be used with the <code><a href="../reference/scale_okabeito.html">ratlas::scale_color_okabeito()</a></code> function.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -245,12 +482,12 @@ Figure 6: Comparison plot using the default (left) and Okabe Ito (right) discret
 <p>For continuous color scales, the viridis family of color palettes should be used. These palettes were created by <a href="https://github.com/stefanv" class="external-link">Stéfan van der Walt</a> and <a href="https://github.com/njsmith" class="external-link">Nathaniel Smith</a> and are shown in Figure <a href="#fig:show-viridis">7</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:show-viridis"></span>
-<img src="plotting_files/figure-html/show-viridis-1.png" alt="The viridis color scales." width="100%"><p class="caption">
+<img src="plotting_files/figure-html/show-viridis-1.png" alt="The viridis color scales." width="90%"><p class="caption">
 Figure 7: The viridis color scales.
 </p>
 </div>
 <p>These color scales are perceptually uniform, perform well for a variety of colorblindness, and maintain the ability to discriminate across the perceptual spectrum when rendered or printed in gray scale. These color scales can be applied using <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">ggplot2::scale_color_viridis_c()</a></code>. Figure <a href="#fig:viridis-compare">8</a> shows and example of using the the viridis color palette. There is also a discrete option for the viridis color palette (<code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">ggplot2::scale_color_viridis_d()</a></code>); however, the Okabe Ito palette is preferred for discrete scales.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">faithfuld</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">eruptions</span>, y <span class="op">=</span> <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_raster</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">density</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -271,14 +508,14 @@ Figure 8: Comparison plot with default (left) and viridis (right) continuous col
 </h3>
 <p>In additional to palettes that are color blind safe, the {ratlas} package also include brand specific color palettes. For example, a plot can be created using the official ATLAS color palette by using the <code><a href="../reference/scale_atlas.html">ratlas::scale_color_atlas()</a></code> function, as shown in Figure <a href="#fig:atlas-colors">9</a>.</p>
 
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/scale_atlas.html">scale_color_atlas</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:atlas-colors"></span>
-<img src="plotting_files/figure-html/atlas-colors-1.png" alt="Plot with the official ATLAS colors using ratlas::scale_color_atlas()." width="100%"><p class="caption">
+<img src="plotting_files/figure-html/atlas-colors-1.png" alt="Plot with the official ATLAS colors using ratlas::scale_color_atlas()." width="90%"><p class="caption">
 Figure 9: Plot with the official ATLAS colors using <code><a href="../reference/scale_atlas.html">ratlas::scale_color_atlas()</a></code>.
 </p>
 </div>
@@ -290,14 +527,14 @@ Figure 9: Plot with the official ATLAS colors using <code><a href="../reference/
 <p>If you have several plots in a document, it can be a hassle to always remember to add <code>+ theme_atlas()</code> to every plot and to switch to a non-default color palette. To make the formatting of plots easier, {ratlas} includes a wrapper function, <code><a href="../reference/set_theme.html">ratlas::set_theme()</a></code> which will change the {ggplot2} defaults so that <code><a href="../reference/theme_atlas.html">theme_atlas()</a></code> is always used, and the default color scales are changed to the Okabe Ito palette for discrete scales and the viridis palette for continuous scales.</p>
 <p>For example, once <code><a href="../reference/set_theme.html">set_theme()</a></code> has been called, the <code><a href="../reference/scale_okabeito.html">scale_color_okabeito()</a></code> and <code><a href="../reference/theme_atlas.html">theme_atlas()</a></code> lines no longer need to be added. Instead, they are applied by default (Figure <a href="#fig:default-theme">10</a>).</p>
 
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/set_theme.html">set_theme</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:default-theme"></span>
-<img src="plotting_files/figure-html/default-theme-1.png" alt="Plot generated after using set_theme() to set new defaults globally." width="100%"><p class="caption">
+<img src="plotting_files/figure-html/default-theme-1.png" alt="Plot generated after using set_theme() to set new defaults globally." width="90%"><p class="caption">
 Figure 10: Plot generated after using <code><a href="../reference/set_theme.html">set_theme()</a></code> to set new defaults globally.
 </p>
 </div>
@@ -307,13 +544,13 @@ Figure 10: Plot generated after using <code><a href="../reference/set_theme.html
 <h2 id="saving-plots">Saving plots<a class="anchor" aria-label="anchor" href="#saving-plots"></a>
 </h2>
 <p>Finally, it is often useful to save plots to a file. This can be done with <code><a href="../reference/ggsave2.html">ratlas::ggsave2()</a></code>. This is a wrapper around <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggplot2::ggsave()</a></code>. The <code><a href="../reference/ggsave2.html">ggsave2()</a></code> version applies some defaults to all ATLAS plots. Specifically, the plot labels and titles are automatically spell checked, the aspect ratio of plots is set to a reasonable default (rather than using the current size of your graphics device), and embeds the fonts when saving to a PDF format, allowing the plots to render correctly on any system.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/ggsave2.html">ggsave2</a></span><span class="op">(</span>plot <span class="op">=</span> <span class="va">p</span>, filename <span class="op">=</span> <span class="st">"my-plot.png"</span>, path <span class="op">=</span> <span class="st">"where/to/save"</span><span class="op">)</span></span></code></pre></div>
 <p>The <code><a href="../reference/ggsave2.html">ggsave2()</a></code> function also flips the order of the <code>filename</code> and <code>plot</code> arguments from the <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggplot2::ggsave()</a></code> function. This allows calls to the function to be chained together, making it easier to save the sample plot in multiple formats using the <code>%&gt;%</code> operator.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/ggsave2.html">ggsave2</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"my-plot.png"</span>, path <span class="op">=</span> <span class="st">"where/to/save"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/ggsave2.html">ggsave2</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"my-plot.pdf"</span>, path <span class="op">=</span> <span class="st">"where/to/save"</span><span class="op">)</span></span></code></pre></div>
