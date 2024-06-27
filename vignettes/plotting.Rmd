@@ -52,38 +52,6 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
 ```
 
 
-## Setting up your system
-
-The ATLAS {ggplot2} themes use different fonts from the default theme in Figure \@ref(fig:init-plot). In order for {ggplot2} to be able to use other fonts on your computer, we need to use the {extrafont} package.
-
-```{r exfnt, eval = FALSE}
-library(extrafont)
-
-extrafont::font_import()
-```
-
-This will import all TrueType fonts (`.ttf`) into a font database that can be accessed by {ggplot2}. If you later install new fonts to your system, you will need to call `extrafont::font_import()` again to add the new fonts to the database. To use the fonts, you simply have to load the database when you start your *R* session.
-
-```{r ldfnt, eval = FALSE}
-# For windows
-extrafont::loadfonts("win")
-
-# For Mac/Linux
-extrafont::loadfonts("pdf")
-extrafont::loadfonts("postscript")
-```
-
-Alternatively, you can set a global option in your `.Rprofile` to always load the font database when you attach the {ratlas} package with `library(ratlas)`. To edit your `.Rprofile`, use `usethis::edit_r_profile()`. This will open your `.Rprofile`, which is used to set global options. An example `.Rprofile` might look like this:
-
-```{r rprof, eval = FALSE}
-options(
-  repos = c("https://cran.rstudio.com/"),
-  ratlas.loadfonts = TRUE
-)
-```
-
-Here, two options have been set. The first defines which CRAN repository to use when installing new packages. The second indicates that the font database should be loaded when {ratlas} is attached. We recommend setting this option in your `.Rprofile` so that you don't have to always remember to load the font database manually.
-
 ## Using `theme_atlas()`
 
 The ATLAS {ggplot2} theme can be applied by adding a `ratlas::theme_atlas()` layer to plot, just as you would add any other theme. The result is shown in Figure \@ref(fig:theme-atlas-ex).
@@ -102,9 +70,18 @@ There are a few points to draw attention to when comparing Figure \@ref(fig:them
 
 ## Changing the font
 
-Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is [Gotham](https://brand.ku.edu/guidelines/design/typography). However, this font is expensive, and thus inaccessible to most users. [Montserrat](https://fonts.google.com/specimen/Montserrat) is a very similar font that is available for free through Google Fonts. We recommend that you download and install this font on your system directly from Google Fonts, and then call `extrafont::font_import()`.
+Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is [Gotham](https://brand.ku.edu/guidelines/design/typography). However, this font is expensive, and thus inaccessible to most users. [Montserrat](https://fonts.google.com/specimen/Montserrat) is a very similar font that is available for free through Google Fonts. We recommend that you load this font with the {showtext} package. This will load fonts that are available online through Google Fonts, and then tell R to render text using {showtext} by calling the `showtext_auto()` function.
 
-Once the Montserrat font has been installed on your system, you can apply it to the ATLAS theme using `ratlas::theme_atlas(base_family = "Montserrat")`.
+```{r showtxtfnt, eval = FALSE}
+library(showtext)
+## Loading Google fonts (https://fonts.google.com/)
+font_add_google("Montserrat", "montserrat")
+
+## Automatically use showtext to render text
+showtext_auto()
+```
+
+Once the Montserrat font has been loaded, you can apply it to the ATLAS theme using `ratlas::theme_atlas(base_family = "Montserrat")`.
 
 ```{r theme-atlas-ms-ex-build, eval = FALSE}
 ggplot(mtcars, aes(x = mpg, y = disp)) +
