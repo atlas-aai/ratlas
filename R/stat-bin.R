@@ -1,6 +1,6 @@
 #' Base ggproto classes for ratlas
 #'
-#' @seealso [ggproto]
+#' @seealso [ggplot2::ggproto]
 #' @keywords internal
 #' @name ratlas-ggproto
 NULL

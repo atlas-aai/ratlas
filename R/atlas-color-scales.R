@@ -30,7 +30,7 @@ scale_fill_atlas <- function(aesthetics = "fill", ...) {
 #' @param alpha Alpha transparency level of the color. Default is no
 #'   transparency.
 #' @param ... common discrete scale parameters: `name`, `breaks`, `labels`,
-#'   `na.value`, `limits`, `guide`, and `aesthetics`. See [discrete_scale] for
+#'   `na.value`, `limits`, `guide`, and `aesthetics`. See [ggplot2::discrete_scale] for
 #'   more details.
 #' @return A color scale for use in plots created with [ggplot2::ggplot()].
 #' @examples

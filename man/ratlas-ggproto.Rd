@@ -9,7 +9,7 @@
 Base ggproto classes for ratlas
 }
 \seealso{
-\link{ggproto}
+\link[ggplot2:ggproto]{ggplot2::ggproto}
 }
 \keyword{datasets}
 \keyword{internal}
