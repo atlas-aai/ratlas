@@ -1,132 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://ratlas.netlify.app/404.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/articles/plotting.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/articles/report-writing.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/index.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/ArialNarrow.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/apa_words.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/append_summary.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/combine_n_pct.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/dlm_ll_info.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/dlmalias.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/fmt_italic.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/fmt_kbl.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/fmt_kbl_header.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/fmt_table.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/formatting.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/ggsave2.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/inc.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/measr_pdf.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/only_if.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/padding.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/palette_atlas.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/palette_lcrost.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/palette_okabeito.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/rat_cap_words.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/ratlas-ggproto.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/ratlas-package.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/reexports.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/scale_atlas.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/scale_lcrost.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/scale_okabeito.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/set_theme.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/slides_html.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/techreport_gitbook.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/techreport_pdf.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/theme_atlas.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/topicguide_docx.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/topicguide_pdf.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/topicguide_rdocx.html</loc>
-  </url>
-  <url>
-    <loc>https://ratlas.netlify.app/reference/update_geom_font_defaults.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://ratlas.netlify.app/404.html</loc></url>
+<url><loc>https://ratlas.netlify.app/articles/index.html</loc></url>
+<url><loc>https://ratlas.netlify.app/articles/plotting.html</loc></url>
+<url><loc>https://ratlas.netlify.app/articles/report-writing.html</loc></url>
+<url><loc>https://ratlas.netlify.app/authors.html</loc></url>
+<url><loc>https://ratlas.netlify.app/index.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/ArialNarrow.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/apa_words.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/append_summary.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/combine_n_pct.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/dlm_ll_info.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/dlmalias.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/fmt_italic.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/fmt_kbl.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/fmt_kbl_header.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/fmt_table.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/formatting.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/ggsave2.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/inc.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/index.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/measr_pdf.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/only_if.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/padding.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/palette_atlas.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/palette_lcrost.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/palette_okabeito.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/pipe.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/rat_cap_words.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/ratlas-ggproto.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/ratlas-package.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/reexports.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/scale_atlas.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/scale_lcrost.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/scale_okabeito.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/set_theme.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/slides_html.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/techreport_gitbook.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/techreport_pdf.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/theme_atlas.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/topicguide_docx.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/topicguide_pdf.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/topicguide_rdocx.html</loc></url>
+<url><loc>https://ratlas.netlify.app/reference/update_geom_font_defaults.html</loc></url>
 </urlset>
+

@@ -9,7 +9,7 @@
 
   gtag('config', 'G-M7GZY05J5E');
 </script></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -34,7 +34,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
@@ -47,26 +47,26 @@
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://twitter.com/atlas4learning" class="external-link">
     <span class="fab fa-twitter fa-lg"></span>
-     
+
   </a>
 </li>
 <li>
   <a href="https://github.com/atlas-aai/ratlas/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Wrapper function of kableExtra::kbl</h1>
-    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/HEAD/R/kbl-defaults.R" class="external-link"><code>R/kbl-defaults.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/main/R/kbl-defaults.R" class="external-link"><code>R/kbl-defaults.R</code></a></small>
     <div class="hidden name"><code>fmt_kbl.Rd</code></div>
     </div>
 
@@ -88,33 +88,35 @@
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>x</dt>
+
+
+<dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>For <code>kable()</code>, <code>x</code> is an R object, which is typically a
 matrix or data frame. For <code>kables()</code>, a list with each element being a
 returned value from <code>kable()</code>.</p></dd>
 
 
-<dt>booktabs</dt>
+<dt id="arg-booktabs">booktabs<a class="anchor" aria-label="anchor" href="#arg-booktabs"></a></dt>
 <dd><p>T/F for whether to enable the booktabs format for tables. I
 personally would recommend you turn this on for every latex table except
 some special cases.</p></dd>
 
 
-<dt>linesep</dt>
+<dt id="arg-linesep">linesep<a class="anchor" aria-label="anchor" href="#arg-linesep"></a></dt>
 <dd><p>By default, in booktabs tables, <code>kable</code> insert an extra space
 every five rows for clear display. If you don't want this feature or if you
 want to do it in a different pattern, you can consider change this option.
-The default is c('', '', '', '', '\addlinespace'). Also, if you are not
-using booktabs, but you want a cleaner display, you can change this to ''.</p></dd>
+The default is c(”, ”, ”, ”, '\addlinespace'). Also, if you are not
+using booktabs, but you want a cleaner display, you can change this to ”.</p></dd>
 
 
-<dt>escape</dt>
+<dt id="arg-escape">escape<a class="anchor" aria-label="anchor" href="#arg-escape"></a></dt>
 <dd><p>Boolean; whether to escape special characters when producing
 HTML or LaTeX tables. When <code>escape = FALSE</code>, you have to make sure
 that special characters will not trigger syntax errors in LaTeX or HTML.</p></dd>
 
 
-<dt>position</dt>
+<dt id="arg-position">position<a class="anchor" aria-label="anchor" href="#arg-position"></a></dt>
 <dd><p>This is the "real" or say floating position for the latex
 table environment. The <code>kable</code> only puts tables in a table environment when
 a caption is provided. That is also the reason why your tables will be
@@ -122,7 +124,7 @@ floating around if you specify captions for your table. Possible choices are
 <code>h</code> (here), <code>t</code> (top, default), <code>b</code> (bottom) and <code>p</code> (on a dedicated page).</p></dd>
 
 
-<dt>latex_options</dt>
+<dt id="arg-latex-options">latex_options<a class="anchor" aria-label="anchor" href="#arg-latex-options"></a></dt>
 <dd><p>A character vector for LaTeX table options. Please see
 package vignette for more information. Possible options include
 <code>basic</code>, <code>striped</code>, <code>hold_position</code>, <code>HOLD_position</code>, <code>scale_down</code>, <code>scale_up</code> &amp; <code>repeat_header</code>.
@@ -138,15 +140,13 @@ environment. It will let the header row repeat on every page in that long
 table.</p></dd>
 
 
-<dt>...</dt>
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Additional parameters passed to <code><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kableExtra::kbl()</a></code>.</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p>A kable object.</p>
+    <p>A kable object.</p>
     </div>
 
     <div id="ref-examples">
@@ -374,15 +374,15 @@ table.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
       </footer></div>
 
-  
 
 
-  
+
+
 
   </body></html>
 
