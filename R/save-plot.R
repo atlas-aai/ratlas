@@ -17,11 +17,11 @@
 #' @param embed_fonts Logical. Use Ghostscript to embed fonts in a PDF graphic?
 #' @param ... Additional arguments passed to [ggplot2::ggsave()]
 #' @examplesIf interactive()
-#' ggplot(mtcars, aes(mpg, wt)) +
+#' p <- ggplot(mtcars, aes(mpg, wt)) +
 #'  geom_point()
 #'
-#' ggsave("mtcars.pdf")
-#' ggsave("mtcars.png")
+#' ggsave2(p, "/mtcars.pdf", path = tempdir())
+#' ggsave2(p, "/mtcars.png", path = tempdir())
 #' @return None. Called for side effects.
 #' @export
 ggsave2 <- function(plot = ggplot2::last_plot(), filename, device = NULL,

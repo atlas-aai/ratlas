@@ -187,9 +187,10 @@ img <- function(obj, nam) {
 ```
 
 ```{r cont-ex, echo = FALSE, fig.asp = 0.15, fig.cap = "(ref:cont-ex-cap)"}
-par(mfrow=c(1, 1), mar=rep(1, 4))
+oldpar <- par(mfrow=c(1, 1), mar=rep(1, 4))
 img(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
                          space = "Lab")(seq(0, 1, length=n_col))), "")
+par(oldpar)
 ```
 
 The simulated color blindness for this scale is shown in Figure \@ref(fig:cont-cvd). Here, several types of color blindness result in large sections of the palette where it is difficult to differentiate values.
@@ -197,7 +198,7 @@ The simulated color blindness for this scale is shown in Figure \@ref(fig:cont-c
 (ref:cont-cvd-cap) The default {ggplot2} color palette for continuous scales with different types of color blindness.
 
 ```{r cont-cvd, echo = FALSE, fig.asp = 0.5, fig.cap = "(ref:cont-cvd-cap)"}
-par(mfrow=c(4, 1), mar=rep(1, 4))
+oldpar <- par(mfrow=c(4, 1), mar=rep(1, 4))
 img(dichromat(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
                                    space = "Lab")(seq(0, 1, length=n_col))),
               "deutan"), "Deutanomaly")
@@ -210,6 +211,7 @@ img(dichromat(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
 img(desaturate(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
                                     space = "Lab")(seq(0, 1, length=n_col)))),
     "Desaturated")
+par(oldpar)
 ```
 
 ### Using color blind safe palettes
@@ -230,12 +232,13 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
 For continuous color scales, the viridis family of color palettes should be used. These palettes were created by [Stéfan van der Walt](https://github.com/stefanv) and [Nathaniel Smith](https://github.com/njsmith) and are shown in Figure \@ref(fig:show-viridis).
 
 ```{r show-viridis, echo = FALSE, fig.asp = 0.6, fig.cap = "The viridis color scales."}
-par(mfrow=c(5, 1), mar=rep(1, 4))
+oldpar <- par(mfrow=c(5, 1), mar=rep(1, 4))
 img(rev(viridis(n_col)), "Viridis")
 img(rev(magma(n_col)), "Magma")
 img(rev(plasma(n_col)), "Plasma")
 img(rev(inferno(n_col)), "Inferno")
 img(rev(cividis(n_col)), "Cividis")
+par(oldpar)
 ```
 
 These color scales are perceptually uniform, perform well for a variety of colorblindness, and maintain the ability to discriminate across the perceptual spectrum when rendered or printed in gray scale. These color scales can be applied using `ggplot2::scale_color_viridis_c()`. Figure \@ref(fig:viridis-compare) shows and example of using the the viridis color palette. There is also a discrete option for the viridis color palette (`ggplot2::scale_color_viridis_d()`); however, the Okabe Ito palette is preferred for discrete scales.

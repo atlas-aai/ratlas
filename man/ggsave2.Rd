@@ -61,10 +61,10 @@ the fonts embedded using \code{\link[extrafont:embed_fonts]{extrafont::embed_fon
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-ggplot(mtcars, aes(mpg, wt)) +
+p <- ggplot(mtcars, aes(mpg, wt)) +
  geom_point()
 
-ggsave("mtcars.pdf")
-ggsave("mtcars.png")
+ggsave2(p, "/mtcars.pdf", path = tempdir())
+ggsave2(p, "/mtcars.png", path = tempdir())
 \dontshow{\}) # examplesIf}
 }

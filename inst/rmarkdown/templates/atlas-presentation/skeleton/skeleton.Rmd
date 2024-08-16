@@ -96,10 +96,10 @@ class: final-slide
 
 # Connect With Us!
 
-<i class="fas fa-globe" style="color:#165C7D;"></i> [ATLAS4Learning.org](https://atlas4learning.org)
+<i class="fas fa-globe" style="color:#165C7D;"></i> [atlas.ku.edu](https://atlas.ku.edu)
 
 <i class="fas fa-envelope" style="color:#165C7D;"></i> [ATLAS-AAI@ku.edu](mailto:atlas-aai@ku.edu)
 
-<i class="fab fa-twitter" style="color:#165C7D;"></i> [@ATLAS4Learning](https://twitter.com/atlas4learning)
+<i class="fab fa-twitter" style="color:#165C7D;"></i> [@ATLAS4Learning](https://x.com/atlas4learning)
 
 <i class="fab fa-github" style="color:#165C7D;"></i> [@ATLAS-AAI](https://github.com/atlas-aai)
