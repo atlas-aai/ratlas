@@ -6,6 +6,9 @@
 \usage{
 lhs \%>\% rhs
 }
+\value{
+None. Called for side effects.
+}
 \description{
 See \code{magrittr::\link[magrittr]{\%>\%}} for details.
 }

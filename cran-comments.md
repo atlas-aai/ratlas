@@ -2,6 +2,15 @@
 
 This is a resubmission. The previous submission raised-- 
 
+- Missing Rd-tags:
+      pipe.Rd: \value
+
+This issue has now been fixed.
+
+## Resubmission
+
+This is a resubmission. The previous submission raised-- 
+
 - Unexecutable code in man/only_if.Rd:
    d %>%:
 
