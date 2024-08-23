@@ -1,3 +1,11 @@
+## Resubmission 
+
+This is a resubmission. The previous submission raised-- 
+
+- It is bad practice to cite a book by providing links to a shop.
+
+This link has been removed.
+
 ## Resubmission
 
 This is a resubmission. The previous submission raised-- 
