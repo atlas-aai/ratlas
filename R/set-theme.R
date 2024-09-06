@@ -13,8 +13,10 @@
 #'   "inferno", "plasma", "viridis" (default), or "cividis", or "ggplot2".
 #' @param ... Additional arguments to pass to theme functions.
 #'
-#' @examplesIf interactive()
+#' @examples
+#' \dontrun{
 #' set_theme("Arial Narrow")
+#' }
 #' @return None. Called for side effects.
 #' @export
 set_theme <- function(font = "Arial Narrow",

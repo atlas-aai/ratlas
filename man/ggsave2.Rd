@@ -60,11 +60,11 @@ returned if there are possible mistakes. Finally, plots saved as a pdf have
 the fonts embedded using \code{\link[extrafont:embed_fonts]{extrafont::embed_fonts()}}.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontrun{
 p <- ggplot(mtcars, aes(mpg, wt)) +
  geom_point()
 
 ggsave2(p, "/mtcars.pdf", path = tempdir())
 ggsave2(p, "/mtcars.png", path = tempdir())
-\dontshow{\}) # examplesIf}
+}
 }

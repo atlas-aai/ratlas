@@ -17,7 +17,7 @@ This is a function called in the output of the yaml of the Rmd file to
 specify using the standard DLM topic guide word document formatting.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontrun{
 output: ratlas::topicguide_rdocx
-\dontshow{\}) # examplesIf}
+}
 }

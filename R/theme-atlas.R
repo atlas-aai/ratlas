@@ -24,7 +24,8 @@
 #' @param ticks ticks if `TRUE` add ticks
 #' @return A theme for use in plots created with [ggplot2::ggplot()].
 #' @export
-#' @examplesIf interactive()
+#' @examples
+#' \dontrun{
 #' library(ggplot2)
 #' library(dplyr)
 #'
@@ -51,6 +52,7 @@
 #'        caption = "Brought to you by the letter 'g'") +
 #'   theme_atlas(grid = "Y") +
 #'   theme(axis.text.y = element_blank())
+#'   }
 theme_atlas <- function(base_family = "Arial Narrow", base_size = 11.5,
                         plot_title_family = base_family,
                         plot_title_size = 18,

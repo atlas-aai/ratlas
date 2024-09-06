@@ -8,8 +8,10 @@
 #' @return A modified `word_document2` with the standard topic guide formatting.
 #' @export
 #'
-#' @examplesIf interactive()
-#'   output: ratlas::topicguide_docx
+#' @examples
+#' \dontrun{
+#' output: ratlas::topicguide_docx
+#' }
 topicguide_docx <- function(...) {
   template <- find_resource("topicguide_docx", "template.docx")
   base <- bookdown::word_document2(reference_docx = template, ...)
@@ -43,8 +45,10 @@ topicguide_docx <- function(...) {
 #' @return A modified `word_document2` with the standard topic guide formatting.
 #' @export
 #'
-#' @examplesIf interactive()
+#' @examples
+#' \dontrun{
 #' output: ratlas::topicguide_rdocx
+#' }
 topicguide_rdocx <- function(...) {
   template <- find_resource("topicguide_rdocx", "template.docx")
   base <- officedown::rdocx_document(base_format = "bookdown::word_document2",
@@ -106,8 +110,10 @@ topicguide_rdocx <- function(...) {
 #' @return A modified `pdf_document2` with the standard tech report formatting.
 #' @export
 #'
-#' @examplesIf interactive()
+#' @examples
+#' \dontrun{
 #' output: ratlas::topicguide_pdf
+#' }
 topicguide_pdf <- function(...) {
   topic_guide_template <- find_resource("topicguide_pdf", "template.tex")
   base <- bookdown::pdf_document2(template = topic_guide_template,
@@ -150,8 +156,10 @@ topicguide_pdf <- function(...) {
 #' @return A modified `pdf_document2` with the standard tech report formatting.
 #' @export
 #'
-#' @examplesIf interactive()
+#' @examples
+#' \dontrun{
 #' output: ratlas::measr_pdf
+#' }
 measr_pdf <- function(...) {
   report_template <- find_resource("measr_pdf", "template.tex")
   base <- bookdown::pdf_document2(template = report_template,
@@ -196,8 +204,10 @@ measr_pdf <- function(...) {
 #' @return A modified `pdf_document2` with the standard tech report formatting.
 #' @export
 #'
-#' @examplesIf interactive()
+#' @examples
+#' \dontrun{
 #' output: ratlas::techreport_pdf
+#' }
 techreport_pdf <- function(apa6 = FALSE, ...) {
   template_name <- ifelse(apa6, "apa6-template.tex", "template.tex")
   tech_report_template <- find_resource("techreport", template_name)
@@ -245,8 +255,10 @@ techreport_pdf <- function(apa6 = FALSE, ...) {
 #' @return A modified `gitbook` with the standard tech report formatting.
 #' @export
 #'
-#' @examplesIf interactive()
+#' @examples
+#' \dontrun{
 #' output: ratlas::techreport_gitbook
+#' }
 techreport_gitbook <- function(...) {
   base <-
     bookdown::gitbook(css = "assets/style.css",
@@ -306,8 +318,10 @@ techreport_gitbook <- function(...) {
 #' @return A modified `mood_reader` with ATLAS branding applied.
 #' @export
 #'
-#' @examplesIf interactive()
+#' @examples
+#' \dontrun{
 #' output: ratlas::slides_html
+#' }
 slides_html <- function(...) {
   default_nature <- list(ratio = "16:9",
                          highlightStyle = "github",
