@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   plotting: plotting.html
   report-writing: report-writing.html
-last_built: 2024-09-06T22:50Z
+last_built: 2024-09-09T19:24Z
 urls:
   reference: https://ratlas.netlify.app/reference
   article: https://ratlas.netlify.app/articles
