@@ -2,6 +2,17 @@
 
 This is a resubmission. The previous submission raised-- 
 
+- We see examples wrapped in if(FALSE){}. Please never do that. If the
+example cannot be executed (e.g. because of missing additional software,
+missing API keys, ...) by the user it should be wrapped in \dontrun{}.
+Lengthy examples (> 5 sec) in \donttest{}.
+
+I've removed all `@examplesIf` tags and placed the examples in \dontrun{}.
+
+## Resubmission 
+
+This is a resubmission. The previous submission raised-- 
+
 - It is bad practice to cite a book by providing links to a shop.
 
 This link has been removed.
