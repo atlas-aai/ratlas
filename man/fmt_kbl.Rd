@@ -8,6 +8,7 @@ fmt_kbl(
   x,
   booktabs = TRUE,
   linesep = "",
+  centering = FALSE,
   escape = FALSE,
   position = "left",
   latex_options = "HOLD_position",
@@ -28,6 +29,9 @@ every five rows for clear display. If you don't want this feature or if you
 want to do it in a different pattern, you can consider change this option.
 The default is c('', '', '', '', '\\addlinespace'). Also, if you are not
 using booktabs, but you want a cleaner display, you can change this to ''.}
+
+\item{centering}{T (default)/F. Whether to center tables in the table
+environment.}
 
 \item{escape}{Boolean; whether to escape special characters when producing
 HTML or LaTeX tables. When \code{escape = FALSE}, you have to make sure
