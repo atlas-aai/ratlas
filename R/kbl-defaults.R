@@ -13,11 +13,11 @@
 #'   caption = "Example Table Title")
 #'
 #' @export
-fmt_kbl <- function(x, booktabs = TRUE, linesep = "", escape = FALSE,
-                    position = "left", latex_options = "HOLD_position",
-                    ...) {
+fmt_kbl <- function(x, booktabs = TRUE, linesep = "", centering = FALSE,
+                    escape = FALSE, position = "left",
+                    latex_options = "HOLD_position", ...) {
   kableExtra::kbl(x, booktabs = booktabs, linesep = linesep,
-                  escape = escape, ...) %>%
+                  centering = centering, escape = escape, ...) %>%
     kableExtra::kable_styling(position = position,
                               latex_options = latex_options) %>%
     kableExtra::kable_classic()
