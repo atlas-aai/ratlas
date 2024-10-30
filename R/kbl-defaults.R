@@ -20,7 +20,7 @@ fmt_kbl <- function(x, booktabs = TRUE, linesep = "", centering = FALSE,
                   centering = centering, escape = escape, ...) %>%
     kableExtra::kable_styling(position = position,
                               latex_options = latex_options) %>%
-    kableExtra::kable_classic()
+    kableExtra::kable_classic(position = position)
 }
 
 #' Wrapper function of kableExtra::row_spec
