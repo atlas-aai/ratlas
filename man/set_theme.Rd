@@ -33,7 +33,7 @@ color palette, and the default color scheme for discrete variables is the
 \href{https://jfly.uni-koeln.de/color/}{Okabe Ito} palette.
 }
 \examples{
-\dontrun{
+\donttest{
 set_theme("Arial Narrow")
 }
 }

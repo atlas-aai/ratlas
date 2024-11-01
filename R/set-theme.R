@@ -14,7 +14,7 @@
 #' @param ... Additional arguments to pass to theme functions.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' set_theme("Arial Narrow")
 #' }
 #' @return None. Called for side effects.

@@ -17,7 +17,8 @@
 #' @param embed_fonts Logical. Use Ghostscript to embed fonts in a PDF graphic?
 #' @param ... Additional arguments passed to [ggplot2::ggsave()]
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' library(ggplot2)
 #' p <- ggplot(mtcars, aes(mpg, wt)) +
 #'  geom_point()
 #'

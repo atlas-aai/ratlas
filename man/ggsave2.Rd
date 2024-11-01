@@ -60,7 +60,8 @@ returned if there are possible mistakes. Finally, plots saved as a pdf have
 the fonts embedded using \code{\link[extrafont:embed_fonts]{extrafont::embed_fonts()}}.
 }
 \examples{
-\dontrun{
+\donttest{
+library(ggplot2)
 p <- ggplot(mtcars, aes(mpg, wt)) +
  geom_point()
 
