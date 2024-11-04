@@ -129,7 +129,7 @@ You can also create a bulleted list using asterisks or hyphens.
     - item 2.2
 ```
 
-For more in-depth descriptions of Markdown formatting, check out [Chapter 2 of *bookdown: Authoring Books and Technical Documents with R Markdown*](https://bookdown.org/yihui/bookdown/components.html) and the [R Markdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
+For more in-depth descriptions of Markdown formatting, check out [Chapter 2 of *bookdown: Authoring Books and Technical Documents with R Markdown*](https://bookdown.org/yihui/bookdown/components.html) and the [R Markdown website](https://rmarkdown.rstudio.com/).
 
 ## Adding Tables {#add-table}
 
