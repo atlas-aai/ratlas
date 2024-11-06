@@ -29,6 +29,6 @@ The goal of ratlas is to provide uniform [R Markdown](https://bookdown.org/yihui
 You can install the latest version with:
 
 ``` r
-install.packages("atlas-aai/ratlas")
+install.packages("ratlas")
 ```
 
