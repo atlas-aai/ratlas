@@ -23,8 +23,7 @@ test_that("Okabe Ito colors work", {
     scale_color_okabeito() +
     theme_atlas()
 
-  expect_warning(ggplot2::ggplot_build(plot3), "Insufficient values")
-  expect_warning(ggplot2::ggplot_build(plot3), "only 8 provided")
+  expect_snapshot_warning(ggplot2::ggplot_build(plot3))
   vdiffr::expect_doppelganger("okabeito_color", plot)
   vdiffr::expect_doppelganger("okabeito_fill",
                               plot2 + scale_fill_okabeito(use_black = TRUE))
