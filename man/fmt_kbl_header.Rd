@@ -37,7 +37,7 @@ called after any calls to \code{\link[kableExtra:column_spec]{kableExtra::column
 \examples{
 fmt_kbl(mtcars[, 1:3], align = c("r", "c", "r"),
     col.names = c("Column 1", "Column 2", "Column 3"),
-    caption = "Example Table Title") |>
-  kableExtra::column_spec(1, width = "20em") |>
+    caption = "Example Table Title") \%>\%
+  kableExtra::column_spec(1, width = "20em") \%>\%
   fmt_kbl_header()
 }

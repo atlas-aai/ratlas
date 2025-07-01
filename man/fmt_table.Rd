@@ -52,7 +52,7 @@ For more fine-grained control, see \link{formatting} and
 }
 \examples{
 pcts <- tibble::tibble(n = 0:5, p = 0.5 * (0:5))
-pcts |> fmt_table()
+pcts \%>\% fmt_table()
 }
 \seealso{
 Other formatters: 

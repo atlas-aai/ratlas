@@ -30,8 +30,8 @@ Combine N and Percent Columns for Accessibility
 pcts <- tibble::tibble(Program = c("A", "B", "C", "D", "E", "F"),
                n = 0:5,
                p = 0.5 * (0:5))
-pcts |>
-  fmt_table() |>
+pcts \%>\%
+  fmt_table() \%>\%
   combine_n_pct(n = n, pct = p, name = "States")
 
 }
