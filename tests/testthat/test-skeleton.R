@@ -43,7 +43,8 @@ test_that("copying techreport pdf files works", {
   check_files <- list.files(dir, recursive = TRUE)
 
   expect_equal(sort(check_files),
-               sort(c("_bookdown.yml", "bib/refs.bib", "csl/apa.csl",
+               sort(c("_bookdown.yml", "bib/packages.bib", "bib/refs.bib",
+                      "csl/apa.csl",
                       paste0(tolower(basename(dir)), ".Rmd"),
                       "figures/pre-generated/letterhead.png",
                       "figures/pre-generated/letterhead.jpg",

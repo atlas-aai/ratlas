@@ -7,67 +7,20 @@
 theme_atlas(
   base_family = "Arial Narrow",
   base_size = 11.5,
-  plot_title_family = base_family,
-  plot_title_size = 18,
-  plot_title_face = "bold",
-  plot_title_margin = 10,
-  subtitle_family = base_family,
-  subtitle_size = 12,
-  subtitle_face = "plain",
-  subtitle_margin = 15,
-  strip_text_family = base_family,
-  strip_text_size = 12,
-  strip_text_face = "plain",
-  caption_family = base_family,
-  caption_size = 9,
-  caption_face = "italic",
-  caption_margin = 10,
   axis_text_size = 9,
-  axis_title_family = subtitle_family,
   axis_title_size = base_size,
-  axis_title_face = "plain",
   axis_title_just = "cm",
-  plot_margin = ggplot2::margin(30, 30, 30, 30),
-  grid_col = "#cccccc",
-  grid = TRUE,
-  axis_col = "#cccccc",
-  axis = FALSE,
-  ticks = FALSE
+  ...
 )
 }
 \arguments{
 \item{base_family, base_size}{base font family and size}
 
-\item{plot_title_family, plot_title_face, plot_title_size, plot_title_margin}{plot title family, face, size and margin}
-
-\item{subtitle_family, subtitle_face, subtitle_size}{plot subtitle family, face
-and size}
-
-\item{subtitle_margin}{plot subtitle margin bottom (single numeric value)}
-
-\item{strip_text_family, strip_text_face, strip_text_size}{facet label font
-family, face and size}
-
-\item{caption_family, caption_face, caption_size, caption_margin}{plot caption
-family, face, size and margin}
-
 \item{axis_text_size}{font size of axis text}
 
-\item{axis_title_family, axis_title_face, axis_title_size}{axis title font
-family, face and size}
+\item{axis_title_size}{axis title font family, face and size}
 
 \item{axis_title_just}{axis title font justification, one of \verb{[blmcrt]}}
-
-\item{plot_margin}{plot margin (specify with \code{\link[ggplot2:element]{ggplot2::margin()}})}
-
-\item{grid_col, axis_col}{grid & axis colors; both default to \verb{#cccccc}}
-
-\item{grid}{panel grid (\code{TRUE}, \code{FALSE}, or a combination of \code{X}, \code{x}, \code{Y},
-\code{y})}
-
-\item{axis}{add x or y axes? \code{TRUE}, \code{FALSE}, "\code{xy}"}
-
-\item{ticks}{ticks if \code{TRUE} add ticks}
 }
 \value{
 A theme for use in plots created with \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
