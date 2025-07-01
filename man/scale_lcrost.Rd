@@ -28,7 +28,7 @@ A color scale for use in plots created with \code{\link[ggplot2:ggplot]{ggplot2:
 \description{
 This is a color-blind friendly, qualitative scale with eight different
 colors. See \link{palette_lcrost} for details. The palette was first described in
-\href{https://blog.datawrapper.de/colorblindness-part2/}{this blog post}.
+\href{https://www.datawrapper.de/blog/colorblindness-part2}{this blog post}.
 }
 \examples{
 library(ggplot2)

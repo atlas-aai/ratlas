@@ -21,7 +21,7 @@ scale_fill_lcrost <- function(aesthetics = "fill", ...) {
 #'
 #' This is a color-blind friendly, qualitative scale with eight different
 #' colors. See [palette_lcrost] for details. The palette was first described in
-#' [this blog post](https://blog.datawrapper.de/colorblindness-part2/).
+#' [this blog post](https://www.datawrapper.de/blog/colorblindness-part2).
 #'
 #' @param use_black If `TRUE`, scale includes black, otherwise includes gray.
 #' @param order Numeric vector listing the order in which the colors should be

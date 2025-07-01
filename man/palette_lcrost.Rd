@@ -16,6 +16,6 @@ palette_lcrost
 palette_lcrost_black
 }
 \description{
-A colorblind friendly palette taken from the article \href{https://blog.datawrapper.de/colorblindness-part2/}{What to consider when visualizing data for colorblind readers}
+A colorblind friendly palette taken from the article \href{https://www.datawrapper.de/blog/colorblindness-part2}{What to consider when visualizing data for colorblind readers}
 }
 \keyword{datasets}
