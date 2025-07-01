@@ -43,7 +43,7 @@ test_that("theme_atlas font colors are correct", {
   thm <- theme_get()
 
   expect_equal(thm$text$colour, "black")
-  expect_equal(thm$axis.text$colour, "grey30")
+  expect_in(thm$axis.text$colour, c("grey30", "#4D4D4DFF"))
 })
 
 test_that("theme_atlas grids, axis, and ticks are correct", {

@@ -23,8 +23,7 @@ test_that("atlas colors work", {
     scale_color_atlas() +
     theme_atlas()
 
-  expect_warning(ggplot2::ggplot_build(plot3), "Insufficient values")
-  expect_warning(ggplot2::ggplot_build(plot3), "only 6 provided")
+  expect_snapshot_warning(ggplot2::ggplot_build(plot3))
   vdiffr::expect_doppelganger("atlas_color", plot)
   vdiffr::expect_doppelganger("atlas_fill",
                               plot2 + scale_fill_atlas(use_black = TRUE))

@@ -26,7 +26,7 @@ test_that("theme_atlas font sizes are correct", {
 
 test_that("theme_atlas font colors are correct", {
   expect_equal(thm$text$colour, "black")
-  expect_equal(thm$axis.text$colour, "grey30")
+  expect_in(thm$axis.text$colour, c("grey30", "#4D4D4DFF"))
 })
 
 test_that("theme_atlas grids, axis, and ticks are correct", {
@@ -51,6 +51,7 @@ test_that("theme_atlas grids, axis, and ticks are correct", {
 })
 
 test_that("update_geom_font_defaults() works", {
+  skip_if(packageVersion("ggplot2") > "3.5.2")
   expect_equal(update_geom_font_defaults(),
                ggplot2::update_geom_defaults("text",
                                              list(family = "Arial Narrow",

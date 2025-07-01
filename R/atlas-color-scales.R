@@ -69,12 +69,6 @@ scale_atlas <- function(aesthetics, use_black = FALSE, order = 1:6, darken = 0,
     values[ai] <- scales::alpha(values[ai], alpha[ai])
   }
 
-  pal <- function(n) {
-    if (n > length(values)) {
-      warning("Insufficient values in manual scale. ", n, " needed but only ",
-              length(values), " provided.", call. = FALSE)
-    }
-    values
-  }
+  pal <- scales::manual_pal(values, "colour")
   ggplot2::discrete_scale(aesthetics, palette = pal, ...)
 }
