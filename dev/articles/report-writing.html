@@ -210,10 +210,10 @@ Figure 5: The default <code>setup</code> chunk for a new report.
 <li>Create links using <code>[text](link)</code> (e.g., <code>Visit the [DLM website](https://dynamiclearningmaps.org).</code>)</li>
 </ul>
 <p>You can also create a bulleted list using asterisks or hyphens.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ss">- </span>item 1</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ss">- </span>item 2</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ss">    - </span>item 2.1</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ss">    - </span>item 2.2</span></code></pre></div>
+<pre><code>- item 1
+- item 2
+    - item 2.1
+    - item 2.2</code></pre>
 <p>For more in-depth descriptions of Markdown formatting, check out <a href="https://bookdown.org/yihui/bookdown/components.html" class="external-link">Chapter 2 of <em>bookdown: Authoring Books and Technical Documents with R Markdown</em></a> and the <a href="https://rmarkdown.rstudio.com/" class="external-link">R Markdown website</a>.</p>
 </div>
 <div class="section level2">
@@ -355,13 +355,13 @@ Figure 6: An example figure.
 </p>
 </div>
 <p>As with tables, we can create cross references for figures. For figures, the caption must be specified as a chunk option, as shown below. Then, we can create a cross reference using the same syntax that was used for tables, replacing <code>tab:</code> with <code>fig:</code>. That is, <code>Figure \@ref(fig:example-figure)</code> will render as Figure <a href="#fig:example-figure">6</a>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="in">```{r example-figure, fig.cap = "An example figure."}</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="in">ggplot(iris, aes(x = Petal.Length, y = Sepal.Length, color = Species)) +</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="in">  geom_point() +</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="in">  labs(x = "Petal Length", y = "Sepal Length") +</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="in">  scale_color_okabeito() +</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="in">  theme_atlas()</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<pre><code>```{r example-figure, fig.cap = "An example figure."}
+ggplot(iris, aes(x = Petal.Length, y = Sepal.Length, color = Species)) +
+  geom_point() +
+  labs(x = "Petal Length", y = "Sepal Length") +
+  scale_color_okabeito() +
+  theme_atlas()
+```</code></pre>
 </div>
 <div class="section level2">
 <h2 id="refs">Citations<a class="anchor" aria-label="anchor" href="#refs"></a>
@@ -403,7 +403,7 @@ Renders as…
 <code>[@R-ratlas]</code>
 </td>
 <td style="text-align:left;">
-<span class="citation">(<a href="#ref-R-ratlas">Thompson et al., 2024</a>)</span>
+<span class="citation">(<a href="#ref-R-ratlas">Thompson et al., 2025</a>)</span>
 </td>
 </tr>
 <tr>
@@ -411,7 +411,7 @@ Renders as…
 <code>@R-ratlas</code>
 </td>
 <td style="text-align:left;">
-<span class="citation">Thompson et al. (<a href="#ref-R-ratlas">2024</a>)</span>
+<span class="citation">Thompson et al. (<a href="#ref-R-ratlas">2025</a>)</span>
 </td>
 </tr>
 <tr>
@@ -451,7 +451,7 @@ Renders as…
 <code>[@lcdm; @R-ratlas]</code>
 </td>
 <td style="text-align:left;">
-<span class="citation">(<a href="#ref-lcdm">Henson et al., 2009</a>; <a href="#ref-R-ratlas">Thompson et al., 2024</a>)</span>
+<span class="citation">(<a href="#ref-lcdm">Henson et al., 2009</a>; <a href="#ref-R-ratlas">Thompson et al., 2025</a>)</span>
 </td>
 </tr>
 </tbody>
@@ -514,24 +514,24 @@ Renders as…
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 48 × 3</span></span></span>
 <span><span class="co">#&gt;      mpg  disp   cyl</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  21.4 121       4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  16.4 276.      8</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  30.4  75.7     4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  30.4  95.1     4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  30.4  95.1     4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  10.4 460       8</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  17.8 168.      6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  27.3  79       4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  22.8 108       4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  21   160       6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  17.3  276.     8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  15.2  304      8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  16.4  276.     8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  15    301      8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  18.7  360      8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  18.1  225      6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  10.4  472      8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  10.4  472      8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  15    301      8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  21.4  258      6</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 38 more rows</span></span></span></code></pre></div>
 <p>Notice that we now have 48 rows instead of 32. If we re-estimate the model, we can see the coefficients have changed:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">disp</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">my_new_data</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; (Intercept)        disp         cyl </span></span>
-<span><span class="co">#&gt;  35.5609926  -0.0127475  -2.0116853</span></span></code></pre></div>
-<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -2.0. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
+<span><span class="co">#&gt; 26.90384800 -0.01829298 -0.66756073</span></span></code></pre></div>
+<p>We now have to go through all of our text to replace any numbers that depend on the data set (e.g. sample size) or analyses (e.g., coefficients). This can be a tedious process, and result in errors if any numbers are missed. Instead, we should use in-line <em>R</em> expressions to automatically populate these numbers. For example, we can populate the <code>cyl</code> coefficient using <code>`r fmt_digits(coef(lm_mod)["cyl"], 1)`</code>, which will render as -0.7. This way, no matter how much the data changes, or if the model is altered, the text of the report will always populate with the most correct, most up-to-date value.</p>
 </div>
 <div class="section level3">
 <h3 id="additional-helpers">Additional Helpers<a class="anchor" aria-label="anchor" href="#additional-helpers"></a>
@@ -565,7 +565,7 @@ Renders as…
 Henson, R. A., Templin, J. L., &amp; Willse, J. T. (2009). Defining a family of cognitive diagnosis models using log-linear models with latent variables. <em>Psychometrika</em>, <em>74</em>, 191–210. <a href="https://doi.org/10.1007/S11336-008-9089-5" class="external-link">https://doi.org/10.1007/S11336-008-9089-5</a>
 </div>
 <div id="ref-R-ratlas" class="csl-entry">
-Thompson, W. J., Pablo, N., &amp; Hoover, J. (2024). <em><span class="nocase">ratlas</span>: ATLAS formatting functions and templates</em>. <a href="https://ratlas.netlify.app">https://ratlas.netlify.app</a>
+Thompson, W. J., Pablo, N., &amp; Hoover, J. (2025). <em><span class="nocase">ratlas</span>: ATLAS formatting functions and templates</em>. <a href="https://ratlas.netlify.app">https://ratlas.netlify.app</a>
 </div>
 </div>
 </div>
