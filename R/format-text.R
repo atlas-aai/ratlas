@@ -59,3 +59,38 @@ apa_words <- function(x, ordinal = FALSE) {
     }
   }
 }
+
+#' Capitalization of words
+#'
+#' Capitalize the first letters of words in a string. Can either use sentence
+#' case (i.e., only the first word capitalized; `all = FALSE`) or title case
+#' (i.e., all words capitalized; `all = TRUE`).
+#'
+#' @param x A character string
+#' @param all Logical. If `TRUE`, the first letter of every word is capitalized.
+#'   If `FALSE` (the default), only the first word is capitalized.
+#'
+#' @return A character string with the specified capitalization.
+#' @export
+#'
+#' @examples
+#' name <- c("zip code", "state", "final count")
+#' vapply(name, capitalize_words, character(1))
+#' vapply(name, capitalize_words, character(1), all = TRUE)
+capitalize_words <- function(x, all = FALSE) {
+  check_string(x)
+  check_bool(all)
+
+  if (all) {
+    s <- strsplit(x, " ")[[1]]
+    paste(toupper(substring(s, 1, 1)), substring(s, 2),
+          sep = "", collapse = " ")
+  } else {
+    s <- tolower(strsplit(x, " ")[[1]])
+    s <- paste0(toupper(substring(s, 1, 1)), substring(s, 2))
+    if (length(s) > 1) {
+      s[2:length(s)] <- tolower(s[2:length(s)])
+    }
+    paste(s, sep = "", collapse = " ")
+  }
+}
