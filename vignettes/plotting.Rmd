@@ -28,7 +28,7 @@ library(dichromat)
 library(colorspace)
 
 library(systemfonts)
-require_font("Arial")
+require_font("Arial", fallback = "sans")
 ```
 
 This vignette walks through how to create consistent graphics that meet ATLAS formatting standards using [{ggplot2}](https://ggplot2.tidyverse.org). The {ggplot2} package uses the grammar of graphics to create elegant and reproducible plots that are publication ready. The {ratlas} package provides an extension to {ggplot2} by customizing the default theme to match brand requirements.
