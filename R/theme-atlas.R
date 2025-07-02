@@ -6,6 +6,7 @@
 #' @param axis_text_size font size of axis text
 #' @param axis_title_size axis title font family, face and size
 #' @param axis_title_just axis title font justification, one of `[blmcrt]`
+#' @param ... Additional arguments passed to [hrbrthemes::theme_ipsum()].
 #'
 #' @return A theme for use in plots created with [ggplot2::ggplot()].
 #' @export

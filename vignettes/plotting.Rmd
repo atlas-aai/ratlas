@@ -26,6 +26,9 @@ library(scales)
 library(viridis)
 library(dichromat)
 library(colorspace)
+
+library(systemfonts)
+require_font("Arial")
 ```
 
 This vignette walks through how to create consistent graphics that meet ATLAS formatting standards using [{ggplot2}](https://ggplot2.tidyverse.org). The {ggplot2} package uses the grammar of graphics to create elegant and reproducible plots that are publication ready. The {ratlas} package provides an extension to {ggplot2} by customizing the default theme to match brand requirements.
@@ -70,15 +73,11 @@ There are a few points to draw attention to when comparing Figure \@ref(fig:them
 
 ## Changing the font
 
-Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is [Gotham](https://brand.ku.edu/guidelines/design/typography). However, this font is expensive, and thus inaccessible to most users. [Montserrat](https://fonts.google.com/specimen/Montserrat) is a very similar font that is available for free through Google Fonts. We recommend that you load this font with the {showtext} package. This will load fonts that are available online through Google Fonts, and then tell R to render text using {showtext} by calling the `showtext_auto()` function.
+Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is [Gotham](https://brand.ku.edu/guidelines/design/typography). However, this font is expensive, and thus inaccessible to most users. [Montserrat](https://fonts.google.com/specimen/Montserrat) is a very similar font that is available for free through Google Fonts. We recommend that you load this font with the {systemfonts} package.
 
-```{r showtxtfnt, eval = FALSE}
-library(showtext)
-## Loading Google fonts (https://fonts.google.com/)
-font_add_google("Montserrat", "montserrat")
-
-## Automatically use showtext to render text
-showtext_auto()
+```{r showtxtfnt}
+library(systemfonts)
+require_font("Montserrat")
 ```
 
 Once the Montserrat font has been loaded, you can apply it to the ATLAS theme using `ratlas::theme_atlas(base_family = "Montserrat")`.
@@ -166,7 +165,7 @@ cvd_grid <- function(plot = last_plot(), severity = 1)
 }
 ```
 
-```{r disc-cvd, echo = FALSE, fig.asp = 1.618, fig.cap = "(ref:disc-cvd-cap)"}
+```{r disc-cvd, echo = FALSE, fig.asp = 1.618, fig.cap = "(ref:disc-cvd-cap)", warning = FALSE}
 p <- ggplot(mtcars, aes(x = mpg, y = disp)) +
   geom_point(aes(color = factor(cyl))) +
   theme_atlas()
@@ -276,13 +275,13 @@ For example, once `set_theme()` has been called, the `scale_color_okabeito()` an
 (ref:default-theme-cap) Plot generated after using `set_theme()` to set new defaults globally.
 
 ```{r default-theme, fig.cap = "(ref:default-theme-cap)"}
-set_theme()
+set_theme(theme_atlas())
 
 ggplot(mtcars, aes(x = mpg, y = disp)) +
   geom_point(aes(color = factor(cyl)))
 ```
 
-The `set_theme()` function also provides flexibility for which defaults are set. For example, to use the Montserrat font by default, use `set_theme(font = "Montserrat")`. See `?set_theme()` for all options.
+The `set_theme()` function also provides flexibility for which defaults are set. For example, to use the Montserrat font by default, use `set_theme(theme_atlas(base_family = "Montserrat"))`. See `?set_theme()` for all options.
 
 ## Saving plots
 

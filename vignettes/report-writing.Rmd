@@ -122,7 +122,7 @@ Now that all of the setup is complete, it's time to start writing! R Markdown us
 
 You can also create a bulleted list using asterisks or hyphens.
 
-```{markdown}
+```
 - item 1
 - item 2
     - item 2.1
@@ -191,7 +191,7 @@ ggplot(iris, aes(x = Petal.Length, y = Sepal.Length, color = Species)) +
 
 As with tables, we can create cross references for figures. For figures, the caption must be specified as a chunk option, as shown below. Then, we can create a cross reference using the same syntax that was used for tables, replacing `tab:` with `fig:`. That is, `Figure \@ref(fig:example-figure)` will render as Figure \@ref(fig:example-figure).
 
-````markdown
+````
 ```{r example-figure, fig.cap = "An example figure."}`r ''`
 ggplot(iris, aes(x = Petal.Length, y = Sepal.Length, color = Species)) +
   geom_point() +

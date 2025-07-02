@@ -29,12 +29,10 @@ Rost
 Stéfan
 TJ
 Teetor
-TrueType
 Visualisation
 Wickham
 Wilke
 Xie
-YAML
 Yihui
 Zotero
 addlinespace
@@ -47,7 +45,6 @@ der
 drob
 english
 eps
-extrafont
 formatters
 funder
 geoms
@@ -66,11 +63,11 @@ png
 printy
 ps
 svg
+systemfonts
 tex
 th
 tibble
 tidyverse
 tinytex
-viridis
 wmf
 yaml

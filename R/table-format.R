@@ -37,20 +37,22 @@ fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
   corr_dig <- check_pos_int(corr_dig, name = "corr_dig")
 
   df %>%
-    dplyr::mutate(dplyr::across(where(is.integer), \(x) pad_counts(x))) %>%
+    dplyr::mutate(dplyr::across(where(is.integer),
+                                function(x) pad_counts(x))) %>%
     dplyr::mutate(dplyr::across(where(~(is.numeric(.x) &&
                                           all(dplyr::between(.x, 0, 1),
                                               na.rm = TRUE))),
-                                \(x) pad_prop(x, digits = prop_dig,
-                                              fmt_small = fmt_small,
-                                              keep_zero = keep_zero,
-                                              output = output))) %>%
+                                function(x) pad_prop(x, digits = prop_dig,
+                                                     fmt_small = fmt_small,
+                                                     keep_zero = keep_zero,
+                                                     output = output))) %>%
     dplyr::mutate(dplyr::across(where(~(is.numeric(.x) &&
                                           all(dplyr::between(.x, -1, 1),
                                               na.rm = TRUE))),
-                                \(x) pad_corr(x, digits = corr_dig,
-                                output = output))) %>%
-    dplyr::mutate(dplyr::across(where(is.numeric), \(x) pad_decimal(x,
+                                function(x) pad_corr(x, digits = corr_dig,
+                                                     output = output))) %>%
+    dplyr::mutate(dplyr::across(where(is.numeric),
+                                function(x) pad_decimal(x,
                                 digits = dec_dig, fmt_small = fmt_small,
                                 max_value = max_value, keep_zero = keep_zero)))
 }

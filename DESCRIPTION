@@ -64,6 +64,7 @@ Suggests:
     pkgdown (>= 2.0.7),
     rmarkdown (>= 1.12),
     spelling (>= 2.1),
+    systemfonts,
     testthat (>= 2.1.0),
     tinytex (>= 0.13),
     usethis (>= 1.6.0),

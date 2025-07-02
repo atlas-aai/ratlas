@@ -21,6 +21,8 @@ theme_atlas(
 \item{axis_title_size}{axis title font family, face and size}
 
 \item{axis_title_just}{axis title font justification, one of \verb{[blmcrt]}}
+
+\item{...}{Additional arguments passed to \code{\link[hrbrthemes:theme_ipsum]{hrbrthemes::theme_ipsum()}}.}
 }
 \value{
 A theme for use in plots created with \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
