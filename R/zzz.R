@@ -1,4 +1,3 @@
-# nocov start
 .onLoad <- function(libname, pkgname) {
   auto_format <- getOption("ratlas.auto_format", default = TRUE)
   if (auto_format) auto_set_format()
@@ -27,4 +26,3 @@
     packageStartupMessage("      if Arial Narrow is not on your system, please see https://bit.ly/arialnarrow")
   }
 }
-# nocov end

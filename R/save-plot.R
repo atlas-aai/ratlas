@@ -45,7 +45,6 @@ ggsave2 <- function(plot = ggplot2::last_plot(), filename, device = NULL,
                   dpi = dpi, ...)
 
   # Embed fonts if pdf
-  # nocov start
   if ((grepl("\\.pdf", filename) || (!is.null(device) && device == "pdf")) &
       embed_fonts) {
     if (!is.null(path)) {
@@ -53,7 +52,6 @@ ggsave2 <- function(plot = ggplot2::last_plot(), filename, device = NULL,
     }
     extrafont::embed_fonts(filename)
   }
-  # nocov end
 
   # return plot invisibly
   invisible(plot)
