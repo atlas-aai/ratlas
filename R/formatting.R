@@ -85,9 +85,9 @@
 #' @export
 #' @rdname formatting
 fmt_count <- function(x, big_interval = 3L, big_mark = ",") {
-  x <- check_0_int(x, name = "x")
-  big_interval <- check_pos_int(big_interval, name = "big_interval")
-  big_mark <- check_character(big_mark, name = "big_mark")
+  x <- check_number_whole(x, min = 0)
+  big_interval <- check_number_whole(big_interval, min = 1)
+  big_mark <- check_string(big_mark)
 
   prettyNum(x, big.mark = big_mark, big.interval = big_interval)
 }
@@ -96,8 +96,8 @@ fmt_count <- function(x, big_interval = 3L, big_mark = ",") {
 #' @rdname formatting
 fmt_digits <- function(x, digits = 3, fmt_small = FALSE, max_value = NULL,
                        keep_zero = FALSE) {
-  x <- check_number(x, name = "x")
-  digits <- check_0_int(digits, name = "digits")
+  x <- check_number_decimal(x)
+  digits <- check_number_whole(digits, min = 0)
 
   round_x <- round(x, digits)
   to_print <- sprintf("%.*f", digits, round_x)
@@ -130,7 +130,7 @@ fmt_digits <- function(x, digits = 3, fmt_small = FALSE, max_value = NULL,
 #' @export
 #' @rdname formatting
 fmt_leading_zero <- function(x) {
-  x <- check_character(x, name = "x")
+  x <- check_character(x)
 
   non_zero <- x %>%
     as.numeric() %>%
@@ -157,7 +157,7 @@ fmt_leading_zero <- function(x) {
 #' @export
 #' @rdname formatting
 fmt_minus <- function(x, output = NULL) {
-  x <- check_character(x, name = "x")
+  x <- check_character(x)
   output <- check_output(output)
 
   new_minus <- x %>%
@@ -186,8 +186,8 @@ fmt_replace_na <- function(x, replacement = "&mdash;") {
 #' @export
 #' @rdname formatting
 fmt_corr <- function(x, digits, output = NULL) {
-  x <- check_bound_real(x, name = "x", lb = -1, ub = 1)
-  digits <- check_pos_int(digits, name = "digits")
+  x <- check_number_decimal(x, lb = -1, ub = 1)
+  digits <- check_number_whole(digits, min = 1)
   output <- check_output(output)
 
   x_chr <- x %>%
@@ -201,8 +201,8 @@ fmt_corr <- function(x, digits, output = NULL) {
 #' @export
 #' @rdname formatting
 fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE) {
-  x <- check_bound_real(x, name = "x", lb = 0, ub = 1)
-  digits <- check_pos_int(digits, name = "digits")
+  x <- check_number_decimal(x, lb = 0, ub = 1)
+  digits <- check_number_whole(digits, min = 1)
 
   x_chr <- x %>%
     fmt_digits(digits) %>%
@@ -235,8 +235,8 @@ fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE) {
 #' @export
 #' @rdname formatting
 fmt_prop_pct <- function(x, digits = 0, fmt_small = TRUE) {
-  x <- check_bound_real(x, name = "x", lb = 0, ub = 1)
-  digits <- check_0_int(digits, name = "digits")
+  x <- check_number_decimal(x, lb = 0, ub = 1)
+  digits <- check_number_whole(digits, min = 0)
 
   x_chr <- (x * 100) %>%
     fmt_digits(digits)

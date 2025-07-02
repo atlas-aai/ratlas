@@ -32,9 +32,9 @@
 fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
                       output = NULL, fmt_small = TRUE, max_value = NULL,
                       keep_zero = FALSE) {
-  dec_dig <- check_pos_int(dec_dig, name = "dec_dig")
-  prop_dig <- check_pos_int(prop_dig, name = "prop_dig")
-  corr_dig <- check_pos_int(corr_dig, name = "corr_dig")
+  dec_dig <- check_number_whole(dec_dig, min = 1)
+  prop_dig <- check_number_whole(prop_dig, min = 1)
+  corr_dig <- check_number_whole(corr_dig, min = 1)
 
   df %>%
     dplyr::mutate(dplyr::across(where(is.integer),
@@ -167,7 +167,7 @@ pad_counts <- function(x, digits = 0L) {
 #' @rdname padding
 pad_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE,
                      output = NULL) {
-  digits <- check_pos_int(digits)
+  digits <- check_number_whole(digits, min = 1)
   output <- check_output(output)
   new_x <- fmt_prop(x, digits = digits, fmt_small = fmt_small,
                     keep_zero = keep_zero)
@@ -195,7 +195,7 @@ pad_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE,
 #' @export
 #' @rdname padding
 pad_corr <- function(x, digits, output = NULL) {
-  digits <- check_pos_int(digits)
+  digits <- check_number_whole(digits, min = 1)
   output <- check_output(output)
   new_x <- fmt_corr(x, digits = digits, output = output)
   new_x[is.na(new_x)] <- "NA"
@@ -225,7 +225,7 @@ pad_corr <- function(x, digits, output = NULL) {
 #' @rdname padding
 pad_decimal <- function(x, digits, fmt_small = FALSE, max_value = NULL,
                         keep_zero = FALSE, output = NULL) {
-  digits <- check_pos_int(digits)
+  digits <- check_number_whole(digits, min = 1)
   output <- check_output(output)
 
   left_spaces <- x %>%

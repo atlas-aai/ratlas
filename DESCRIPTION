@@ -45,7 +45,7 @@ Imports:
     magrittr (>= 1.5),
     officedown (>= 0.2.2),
     purrr (>= 0.3.4),
-    rlang (>= 0.3.4),
+    rlang (>= 1.1.0),
     scales (>= 1.4.0),
     stringr (>= 1.4.0),
     tibble (>= 2.1.3),

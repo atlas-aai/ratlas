@@ -12,9 +12,9 @@
 #' fmt_italic("Make *this* italic.", html = TRUE)
 #' fmt_italic("Make *this* italic.", html = FALSE)
 fmt_italic <- function(string, indicator = "*", html = TRUE) {
-  string <- check_character(string, name = "string")
-  indicator <- check_character(indicator, name = "indicator")
-  html <- check_logical(html, name = "html")
+  string <- check_character(string)
+  indicator <- check_string(indicator)
+  html <- check_bool(html, name = "html")
 
   while (any(stringr::str_detect(string,
                                  glue::glue("\\{indicator}(.*)",
@@ -47,7 +47,7 @@ fmt_italic <- function(string, indicator = "*", html = TRUE) {
 #' apa_words(16)
 #' apa_words(6, ordinal = TRUE)
 apa_words <- function(x, ordinal = FALSE) {
-  x <- check_0_int(x, name = "x")
+  x <- check_number_whole(x, min = 0)
 
   if (ordinal) {
     return(scales::ordinal(x, big.mark = ","))

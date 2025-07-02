@@ -10,7 +10,7 @@
 "_PACKAGE"
 #' @aliases ratlas
 #' @import grDevices
-#' @importFrom rlang .data :=
+#' @import rlang
 NULL
 
 ## Make R CMD Check go away
