@@ -3,15 +3,13 @@
 #' This is a wrapper around [ggplot2::ggsave()] with some ATLAS-specific
 #' defaults. The aspect ratio is fixed to 0.618 ([the golden
 #' ratio](https://en.wikipedia.org/wiki/Golden_ratio)) unless the height is
-#' manually defined. Plots are automatically spell checked and warnings are
-#' returned if there are possible mistakes. Finally, plots saved as a pdf have
-#' the fonts embedded using [extrafont::embed_fonts()].
+#' manually defined.
 #'
 #' @inheritParams ggplot2::ggsave
 #' @param width Plot size in `units` ("in", "cm", or "mm").
-#' @param height Plot size in `units` ("in", "cm", or "mm"). If not supplied,
-#'   uses `0.618 * width` when `dir = "h"` and `1.618 * width` when `dir = "v"`.
-#' @param units Units of plot size ("in", "cm", or "mm"). Default is inches.
+#' @param height Plot size in `units` expressed by the `unit` argument. If
+#'   `NULL` (the default), the height is set to `0.618 * width` when `dir = "h"`
+#'   and `1.618 * width` when `dir = "v"`.
 #' @param dir Orientation of the plot. One of `h` (default) for horizontal or
 #'   `v` for vertical.
 #' @param embed_fonts Logical. Use Ghostscript to embed fonts in a PDF graphic?
