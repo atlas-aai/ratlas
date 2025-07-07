@@ -6,11 +6,17 @@
 \alias{dlm_ll}
 \alias{dlm_grades}
 \alias{dlm_complexity}
+\alias{dlm_performance}
+\alias{dlm_performance_full}
 \title{DLM Aliases}
 \format{
 An object of class \code{character} of length 7.
 
 An object of class \code{character} of length 16.
+
+An object of class \code{character} of length 4.
+
+An object of class \code{character} of length 4.
 
 An object of class \code{character} of length 4.
 }
@@ -20,6 +26,10 @@ dlm_ll
 dlm_grades
 
 dlm_complexity
+
+dlm_performance
+
+dlm_performance_full
 }
 \description{
 R variable aliases for commonly used vector and values.
@@ -31,5 +41,10 @@ R variable aliases for commonly used vector and values.
 
 \code{dlm_complexity} contains all complexity band names for ELA, mathematics,
 science, writing, and communication.
+
+\code{dlm_performance} and \code{dlm_performance_full} contain the performance level
+names for ELA, mathematics and science. \code{dlm_performance} uses the common
+names (e.g., "Approaching"), whereas \code{dlm_performance_full} uses the official
+names (e.g., "Approaching the Target").
 }
 \keyword{datasets}
