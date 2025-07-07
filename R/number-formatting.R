@@ -1,4 +1,4 @@
-#' Text and Number Formatting
+#' Number Formatting
 #'
 #' These formatting functions are used to format numerical values in a
 #' consistent manner. This is useful for printing numbers inline with text, as

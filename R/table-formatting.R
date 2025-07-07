@@ -1,3 +1,18 @@
+#' Set default kable output type
+#'
+#' Called from [.onLoad()] unless the user has set a global option of
+#' `options(ratlas.auto_format = FALSE)`.
+#'
+#' @returns None. Called for side effects.
+#' @noRd
+auto_set_format <- function() {
+  if (knitr::is_latex_output()) {
+    options(knitr.table.format = "latex")
+  } else {
+    options(knitr.table.format = "html")
+  }
+}
+
 #' Wrapper function of kableExtra::kbl
 #'
 #' Create a kable table with some reasonable ATLAS defaults.
