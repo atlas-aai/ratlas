@@ -5,7 +5,7 @@ knit: bookdown::render_book
 output: ratlas::report_rdocx
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
 biblio-style: apalike2
-csl: csl/apa.csl
+csl: bib/csl/apa.csl
 link-citations: yes
 ---
 
@@ -21,7 +21,10 @@ load_packages <- function(x) {
 vapply(needed_packages, load_packages, logical(1))
 
 options(knitr.kable.NA = "")
-set_theme(font = "Arial Narrow", plot_margin = ggplot2::margin(0, 10, 10, 10))
+set_theme_ratlas(font = "Archivo Narrow",
+                 plot_margin = margin(0, 10, 10, 10))
+
+require_font("Archivo Narrow")
 ```
 
 

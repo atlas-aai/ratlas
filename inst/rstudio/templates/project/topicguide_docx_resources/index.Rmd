@@ -2,15 +2,15 @@
 title: "Topic Guide Title"
 date: "`r format(Sys.Date(), '%B %Y')`"
 knit: bookdown::render_book
-output: ratlas::topicguide_docx
+output: ratlas::report_docx
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
 biblio-style: apalike2
-csl: csl/apa.csl
+csl: bib/csl/apa.csl
 link-citations: yes
 ---
 
-```{r setup, include=FALSE}
-needed_packages <- c("ratlas", "knitr", "english")
+```{r setup, include = FALSE}
+needed_packages <- c("ratlas", "knitr", "english", "systemfonts")
 load_packages <- function(x) {
   if (!(x %in% installed.packages())) {
     install.packages(x, repos = "https://cran.rstudio.com/")
@@ -21,7 +21,10 @@ load_packages <- function(x) {
 vapply(needed_packages, load_packages, logical(1))
 
 options(knitr.kable.NA = "")
-set_theme(font = "Arial Narrow", plot_margin = ggplot2::margin(0, 10, 10, 10))
+set_theme_ratlas(font = "Archivo Narrow",
+                 plot_margin = margin(0, 10, 10, 10))
+
+require_font("Archivo Narrow")
 ```
 
 

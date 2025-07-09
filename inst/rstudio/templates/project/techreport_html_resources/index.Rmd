@@ -7,15 +7,16 @@ program: "DLM"
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 output:
-  ratlas::techreport_gitbook: default
-  ratlas::techreport_pdf: default
+  ratlas::report_gitbook: default
+  ratlas::techreport_pdf:
+    type: "techreport"
 internal: false
 manual: false
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
 biblio-style: apa
 biblatexoptions:
   - sortcites
-csl: csl/apa.csl
+csl: bib/csl/apa.csl
 link-citations: yes
 lot: true
 lof: true
@@ -24,12 +25,13 @@ mainfont: Arial
 fontsize: 11pt
 acknowledgements: >
   `r if (knitr::is_latex_output()) ratlas::inc("front-matter/preface-latex.Rmd")  else "Filler"`
-copyright: "Copyright \\copyright\\ 2020 Accessible Teaching, Learning, and Assessment Systems (ATLAS)"
+copyright: "Copyright \\copyright\\ 2025 Accessible Teaching, Learning, and Assessment Systems (ATLAS)"
 ---
 
 ```{r setup, include = FALSE}
 needed_packages <- c("ratlas", "here", "fs", "glue", "english", 
-                     "knitr", "kableExtra", "tidyverse", "conflicted")
+                     "knitr", "kableExtra", "tidyverse", "conflicted",
+                     "systemfonts")
 load_packages <- function(x) {
   if (!(x %in% installed.packages())) {
     install.packages(x, repos = "https://cran.rstudio.com/")
@@ -43,7 +45,10 @@ conflict_prefer("filter", "dplyr", quiet = TRUE)
 conflict_prefer("group_rows", "kableExtra", quiet = TRUE)
 
 options(knitr.kable.NA = "")
-set_theme(font = "Arial Narrow", plot_margin = margin(0, 10, 10, 10))
+set_theme_ratlas(font = "Archivo Narrow",
+                 plot_margin = margin(0, 10, 10, 10))
+
+require_font("Archivo Narrow")
 ```
 
 `r if (knitr::is_html_output()) "# Placeholder Title {.unlisted .unnumbered .blank}"`
@@ -136,4 +141,3 @@ if (knitr::is_latex_output()) {
 ```
 
 `r bib_output`
-

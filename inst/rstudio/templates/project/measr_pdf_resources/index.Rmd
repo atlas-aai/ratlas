@@ -2,9 +2,11 @@
 title: "Report Title"
 date: "`r format(Sys.Date(), '%B %Y')`"
 knit: rmarkdown::render
-output: ratlas::measr_pdf
+output:
+  ratlas::report_pdf:
+    type: "measr"
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
-csl: csl/apa.csl
+csl: bib/csl/apa.csl
 link-citations: yes
 internal: true
 lot: true
@@ -27,9 +29,10 @@ vapply(needed_packages, load_packages, logical(1))
 
 options(knitr.kable.NA = "")
 options(knitr.table.format = "latex")
-set_theme(font = "Open Sans", plot_margin = ggplot2::margin(0, 10, 10, 10))
+set_theme_ratlas(font = "Open Sans",
+                 plot_margin = margin(0, 10, 10, 10))
 
-systemfonts::get_from_google_fonts("Open Sans")
+require_font("Open Sans")
 ```
 
 
