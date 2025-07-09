@@ -1,12 +1,3 @@
-#' @importFrom hrbrthemes scale_x_comma
+#' @importFrom ggplot2 margin
 #' @export
-hrbrthemes::scale_x_comma
-#' @importFrom hrbrthemes scale_y_comma
-#' @export
-hrbrthemes::scale_y_comma
-#' @importFrom hrbrthemes scale_x_percent
-#' @export
-hrbrthemes::scale_x_percent
-#' @importFrom hrbrthemes scale_y_percent
-#' @export
-hrbrthemes::scale_y_percent
+ggplot2::margin

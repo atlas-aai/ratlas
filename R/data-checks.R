@@ -1,6 +1,13 @@
+#' Check kable output type
+#'
+#' @param output The type of output. Should be one of "latex" or "html". An
+#'   error is return if another `output` is provided, or if `output` is not
+#'   specified.
+#'
+#' @noRd
 check_output <- function(output) {
   if (!is.null(output)) {
-    output <- rlang::arg_match(output, choices = c("latex", "html"))
+    output <- rlang::arg_match(output, values = c("latex", "html"))
   } else {
     output <- getOption("knitr.table.format", default = "error")
     if (output == "error") {

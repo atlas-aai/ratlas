@@ -1,3 +1,10 @@
+#' Copy files to create a project skeleton for reports
+#'
+#' @param path The directory path where files should be saved.
+#' @param type The type of report. Options vary by output type and are defined
+#'   by the corresponding functions.
+#'
+#' @noRd
 project_skeleton <- function(path, type) {
   type <- rlang::arg_match(
     type,
@@ -42,22 +49,75 @@ project_skeleton <- function(path, type) {
   TRUE
 }
 
+bib_skeleton <- function(path) {
+  bib <- ratlas_file("rstudio", "templates", "project", "_common-files", "bib")
+
+  # identify sub-directories
+  sub_dirs <- list.dirs(bib, recursive = TRUE, full.names = FALSE)
+  sub_dirs <- sub_dirs[-which(sub_dirs == "")]
+  files <- list.files(bib, recursive = TRUE, include.dirs = FALSE)
+
+  # make sure directories exist
+  new_path <- file.path(path, "bib", sub_dirs)
+  fs::dir_create(new_path)
+
+  # copy files
+  source <- file.path(bib, files)
+  target <- file.path(path, "bib", files)
+  file.copy(source, target)
+
+  TRUE
+}
+
+fig_skeleton <- function(path, logo = NULL, letterhead = NULL) {
+  fig <- ratlas_file("rstudio", "templates", "project", "_common-files",
+                     "figures", "pre-generated")
+
+  # make sure directories exist
+  new_path <- file.path(path, "figures", "pre-generated")
+  fs::dir_create(new_path)
+
+  if (!is.null(logo)) {
+    file.copy(
+      file.path(fig, logo),
+      file.path(path, "figures", "pre-generated", logo)
+    )
+  }
+
+  if (!is.null(letterhead)) {
+    file.copy(
+      file.path(fig, letterhead),
+      file.path(path, "figures", "pregenerated", letterhead)
+    )
+  }
+
+  TRUE
+}
+
 techreport_html_skeleton <- function(path) {
   project_skeleton(path, type = "techreport_html")
+  bib_skeleton(path)
+  fig_skeleton(path, logo = "DLM.png")
 }
 
 techreport_pdf_skeleton <- function(path) {
   project_skeleton(path, type = "techreport_pdf")
+  bib_skeleton(path)
+  fig_skeleton(path, logo = "DLM.png", letterhead = "atlas-letterhead.png")
 }
 
 topicguide_docx_skeleton <- function(path) {
   project_skeleton(path, type = "topicguide_docx")
+  bib_skeleton(path)
 }
 
 topicguide_pdf_skeleton <- function(path) {
   project_skeleton(path, type = "topicguide_pdf")
+  bib_skeleton(path)
 }
 
 measr_pdf_skeleton <- function(path) {
   project_skeleton(path, type = "measr_pdf")
+  bib_skeleton(path)
+  fig_skeleton(path, letterhead = "measr-letterhead.png")
 }

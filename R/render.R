@@ -164,7 +164,6 @@ report_gitbook <- function(type = "techreport", ...) {
                         sharing = "no"
                       ), ...)
 
-  # nolint start
   base$knitr$opts_chunk$comment <- "#>"
   base$knitr$opts_chunk$message <- FALSE
   base$knitr$opts_chunk$warning <- FALSE
@@ -183,7 +182,6 @@ report_gitbook <- function(type = "techreport", ...) {
   base$knitr$opts_chunk$out.width <- "100%"
   base$knitr$opts_chunk$fig.show <- "hold"
   base$knitr$opts_chunk$fig.topcaption <- TRUE
-  # nolint end
 
   base$knitr$knit_hooks$plot <- hook_html_plot_rat
 

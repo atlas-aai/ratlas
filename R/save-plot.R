@@ -14,6 +14,10 @@
 #'   `v` for vertical.
 #' @param embed_fonts Logical. Use Ghostscript to embed fonts in a PDF graphic?
 #' @param ... Additional arguments passed to [ggplot2::ggsave()]
+#'
+#' @return None. Called for side effects.
+#' @export
+#'
 #' @examples
 #' \donttest{
 #' library(ggplot2)
@@ -23,8 +27,6 @@
 #' ggsave2(p, "/mtcars.pdf", path = tempdir())
 #' ggsave2(p, "/mtcars.png", path = tempdir())
 #' }
-#' @return None. Called for side effects.
-#' @export
 ggsave2 <- function(plot = ggplot2::last_plot(), filename, device = NULL,
                     path = NULL, width = 7, height = NULL, units = "in",
                     dir = c("h", "v"), dpi = "retina", embed_fonts = FALSE,

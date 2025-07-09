@@ -64,13 +64,13 @@
 #' as.character(round(test_cor[1:4, 3], 2))
 #' fmt_digits(test_cor[1:4, 3], 2)
 #'
-#' fmt_digits(test_cor[1:4, 3], 2) %>%
+#' fmt_digits(test_cor[1:4, 3], 2) |>
 #'   fmt_leading_zero()
 #'
-#' fmt_digits(test_cor[1:4, 3], 2) %>%
+#' fmt_digits(test_cor[1:4, 3], 2) |>
 #'   fmt_minus()
 #'
-#' fmt_digits(c(test_cor[1:4, 3], NA_real_), 2) %>%
+#' fmt_digits(c(test_cor[1:4, 3], NA_real_), 2) |>
 #'   fmt_replace_na(replacement = "&mdash;")
 #'
 #' fmt_corr(test_cor[1:4, 3], 2)
@@ -80,7 +80,7 @@
 #' @references American Psychological Association. (2020). *Publication manual
 #'   of the American Psychological Association* (7th ed.).
 #'   \doi{doi:10.1037/0000165-000}
-
+NULL
 
 #' @export
 #' @rdname formatting
@@ -96,7 +96,9 @@ fmt_count <- function(x, big_interval = 3L, big_mark = ",") {
 #' @rdname formatting
 fmt_digits <- function(x, digits = 3, fmt_small = FALSE, max_value = NULL,
                        keep_zero = FALSE) {
-  check_number_decimal(x)
+  for (i in seq_along(x)) {
+    check_number_decimal(x[i])
+  }
   check_number_whole(digits, min = 0)
 
   round_x <- round(x, digits)
@@ -104,14 +106,14 @@ fmt_digits <- function(x, digits = 3, fmt_small = FALSE, max_value = NULL,
 
   if (fmt_small) {
     small <- 1 / (10 ^ digits)
-    small_text <- sprintf("%.*f", digits, small) %>%
+    small_text <- sprintf("%.*f", digits, small) |>
       paste0_after(.first = "<")
 
     to_print[round(x, digits) < small] <- small_text
 
     if (!is.null(max_value)) {
       large <- max_value - small
-      large_text <- sprintf("%.*f", digits, large) %>%
+      large_text <- sprintf("%.*f", digits, large) |>
         paste0_after(.first = ">")
 
       to_print[round(x, digits) > large] <- large_text
@@ -132,8 +134,8 @@ fmt_digits <- function(x, digits = 3, fmt_small = FALSE, max_value = NULL,
 fmt_leading_zero <- function(x) {
   check_character(x)
 
-  non_zero <- x %>%
-    as.numeric() %>%
+  non_zero <- x |>
+    as.numeric() |>
     abs()
   non_zero <- non_zero > 1
   non_zero <- stats::na.omit(non_zero)
@@ -160,10 +162,10 @@ fmt_minus <- function(x, output = NULL) {
   check_character(x)
   output <- check_output(output)
 
-  new_minus <- x %>%
-    stringr::str_replace("^-", "&minus;") %>%
+  new_minus <- x |>
+    stringr::str_replace("^-", "&minus;") |>
     # Remove signed zero
-    stringr::str_replace("^(&minus;)(0)$", "\\2") %>%
+    stringr::str_replace("^(&minus;)(0)$", "\\2") |>
     stringr::str_replace("^(&minus;)(0[.]0+)$", "\\2")
 
   if (output == "latex") {
@@ -186,13 +188,15 @@ fmt_replace_na <- function(x, replacement = "&mdash;") {
 #' @export
 #' @rdname formatting
 fmt_corr <- function(x, digits, output = NULL) {
-  check_number_decimal(x, lb = -1, ub = 1)
+  for (i in seq_along(x)) {
+    check_number_decimal(x[i], lb = -1, ub = 1)
+  }
   check_number_whole(digits, min = 1)
   output <- check_output(output)
 
-  x_chr <- x %>%
-    fmt_digits(digits) %>%
-    fmt_leading_zero() %>%
+  x_chr <- x |>
+    fmt_digits(digits) |>
+    fmt_leading_zero() |>
     fmt_minus(output = output)
 
   return(x_chr)
@@ -201,24 +205,26 @@ fmt_corr <- function(x, digits, output = NULL) {
 #' @export
 #' @rdname formatting
 fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE) {
-  check_number_decimal(x, lb = 0, ub = 1)
+  for (i in seq_along(x)) {
+    check_number_decimal(x[i], lb = 0, ub = 1)
+  }
   check_number_whole(digits, min = 1)
 
-  x_chr <- x %>%
-    fmt_digits(digits) %>%
+  x_chr <- x |>
+    fmt_digits(digits) |>
     fmt_leading_zero()
 
   if (fmt_small) {
     small <- 1 / (10 ^ digits)
-    small_text <- small %>%
-      fmt_digits(digits) %>%
-      fmt_leading_zero() %>%
+    small_text <- small |>
+      fmt_digits(digits) |>
+      fmt_leading_zero() |>
       paste0_after(.first = "<")
 
     large <- 1 - small
-    large_text <- large %>%
-      fmt_digits(digits) %>%
-      fmt_leading_zero() %>%
+    large_text <- large |>
+      fmt_digits(digits) |>
+      fmt_leading_zero() |>
       paste0_after(.first = ">")
 
     x_chr[x < small] <- small_text
@@ -235,21 +241,23 @@ fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE) {
 #' @export
 #' @rdname formatting
 fmt_prop_pct <- function(x, digits = 0, fmt_small = TRUE) {
-  check_number_decimal(x, lb = 0, ub = 1)
+  for (i in seq_along(x)) {
+    check_number_decimal(x[i], lb = 0, ub = 1)
+  }
   check_number_whole(digits, min = 0)
 
-  x_chr <- (x * 100) %>%
+  x_chr <- (x * 100) |>
     fmt_digits(digits)
 
   if (fmt_small) {
     small <- 1 / (10 ^ digits)
-    small_text <- small %>%
-      fmt_digits(digits) %>%
+    small_text <- small |>
+      fmt_digits(digits) |>
       paste0_after(.first = "<")
 
     large <- 100 - small
-    large_text <- large %>%
-      fmt_digits(digits) %>%
+    large_text <- large |>
+      fmt_digits(digits) |>
       paste0_after(.first = ">")
 
     x_chr[round(x * 100, digits = digits) < small] <- small_text

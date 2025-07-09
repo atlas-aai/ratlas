@@ -19,7 +19,7 @@ fmt_italic <- function(string, indicator = "*", html = TRUE) {
   while (any(stringr::str_detect(string,
                                  glue::glue("\\{indicator}(.*)",
                                             "\\{indicator}")))) {
-    string <- string %>%
+    string <- string |>
       stringr::str_replace(glue::glue("\\{indicator}(.+?)\\{indicator}"),
                            glue::glue("{ifelse(html, '<em>',
                                                  '\\\\\\\\textit{')}",

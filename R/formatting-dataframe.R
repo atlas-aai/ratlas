@@ -3,50 +3,55 @@
 #' Add row and/or column summaries (e.g., total counts) to a data frame.
 #'
 #' @param df A data frame to append summaries to.
-#' @param ... Unquoted names of columns to be included in the summary
+#' @param ... Unquoted names of columns to be included in the summary.
 #' @param row logical indicating whether a summary row should be added (i.e.,
-#'   summarizing each column)
+#'   summarizing each column).
 #' @param col logical indicating whether a summary column should be added (i.e.,
-#'   summarizing each row)
-#' @param .f Function to use for calculating summaries
-#' @param args A named list of arguments to pass to `.f`
+#'   summarizing each row).
+#' @param .f Function to use for calculating summaries.
+#' @param args A named list of additional arguments to pass to `.f`.
 #'
 #' @return A data frame with the summary row and/or column appended
 #' @export
 #'
 #' @examples
-#' set.seed(9416)
-#' df <- tibble::tibble(char = letters[1:5], x = rnorm(5), y = rnorm(5))
-#' append_summary(df, x, y, row = TRUE, col = TRUE, .f = sum)
-#' append_summary(df, x, y, row = FALSE, .f = mean)
+#' df <- head(penguins[, c("species", "bill_len", "flipper_len")])
+#' append_summary(df, bill_len, flipper_len, row = TRUE, col = TRUE, .f = sum)
+#'
+#' append_summary(df, where(is.numeric), .f = sum, args = list(na.rm = TRUE))
+#'
+#' append_summary(df, bill_len, flipper_len, row = FALSE, .f = mean)
 append_summary <- function(df, ..., row = TRUE, col = TRUE, .f = sum,
                            args = NULL) {
   func_name <- as.character(substitute(.f))
   new_df <- df
 
   if (row) {
-    new_df <- new_df %>%
-      dplyr::bind_rows(dplyr::summarize_at(., dplyr::vars(...),
-                                           ~do.call(.f, c(list(.x), args))))
+    col_summary <- new_df |>
+      dplyr::select(...) |>
+      dplyr::summarize(
+        dplyr::across(dplyr::everything(),
+                      \(x) do.call(.f, c(list(x), args)))
+      )
+
+    new_df <- dplyr::bind_rows(new_df, col_summary)
   }
 
   if (col) {
-    new_df <- new_df %>%
-      dplyr::bind_cols(tibble::rowid_to_column(., var = "rowid") %>%
-                         dplyr::select("rowid", ...) %>%
-                         tidyr::pivot_longer(cols = -"rowid",
-                                             names_to = "col_name",
-                                             values_to = "value") %>%
-                         dplyr::rename(!!func_name := "value") %>%
-                         dplyr::group_by(.data$rowid) %>%
-                         dplyr::select(-"col_name") %>%
-                         dplyr::summarize_all(~do.call(.f, c(list(.x),
-                                                             args))) %>%
-                         dplyr::arrange(.data$rowid) %>%
-                         dplyr::select(-"rowid"))
+    row_summary <- new_df |>
+      dplyr::select(...) |>
+      dplyr::rowwise() |>
+      dplyr::mutate(
+        # !!func_name := .f(dplyr::c_across(dplyr::everything()))
+        !!func_name := do.call(.f, c(list(dplyr::c_across(dplyr::everything())), args))
+      ) |>
+      dplyr::ungroup()
+
+    new_df <- new_df |>
+      dplyr::mutate(!!func_name := row_summary[[func_name]])
   }
 
-  return(new_df)
+  new_df
 }
 
 
@@ -79,7 +84,7 @@ append_summary <- function(df, ..., row = TRUE, col = TRUE, .f = sum,
 #' @family formatters
 #' @examples
 #' pcts <- tibble::tibble(n = 0:5, p = 0.5 * (0:5))
-#' pcts %>% fmt_table()
+#' fmt_table(pcts)
 #' @export
 fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
                       output = NULL, fmt_small = TRUE, max_value = NULL,
@@ -88,25 +93,29 @@ fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
   check_number_whole(prop_dig, min = 1)
   check_number_whole(corr_dig, min = 1)
 
-  df %>%
+  df |>
     dplyr::mutate(dplyr::across(where(is.integer),
-                                function(x) pad_counts(x))) %>%
-    dplyr::mutate(dplyr::across(where(~(is.numeric(.x) &&
-                                          all(dplyr::between(.x, 0, 1),
-                                              na.rm = TRUE))),
-                                function(x) pad_prop(x, digits = prop_dig,
-                                                     fmt_small = fmt_small,
-                                                     keep_zero = keep_zero,
-                                                     output = output))) %>%
-    dplyr::mutate(dplyr::across(where(~(is.numeric(.x) &&
-                                          all(dplyr::between(.x, -1, 1),
-                                              na.rm = TRUE))),
-                                function(x) pad_corr(x, digits = corr_dig,
-                                                     output = output))) %>%
-    dplyr::mutate(dplyr::across(where(is.numeric),
-                                function(x) pad_decimal(x,
-                                digits = dec_dig, fmt_small = fmt_small,
-                                max_value = max_value, keep_zero = keep_zero)))
+                                function(x) pad_counts(x))) |>
+    dplyr::mutate(
+      dplyr::across(
+        where(\(x) is.numeric(x) && all(dplyr::between(x, 0, 1), na.rm = TRUE)),
+        \(x) pad_prop(x, digits = prop_dig, fmt_small = fmt_small,
+                      keep_zero = keep_zero, output = output)
+      )
+    ) |>
+    dplyr::mutate(
+      dplyr::across(
+        where(\(x) is.numeric(x) && all(dplyr::between(x, -1, 1), na.rm = TRUE)),
+        \(x) pad_corr(x, digits = corr_dig, output = output)
+      )
+    ) |>
+    dplyr::mutate(
+      dplyr::across(
+        where(is.numeric),
+        \(x) pad_decimal(x, digits = dec_dig, fmt_small = fmt_small,
+                         max_value = max_value, keep_zero = keep_zero)
+      )
+    )
 }
 
 
@@ -156,8 +165,8 @@ fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
 #' pad_corr(runif(10, -1, 1), digits = 2)
 #'
 #' pad_decimal(runif(10, 1, 100), digits = 1)
+NULL
 
-# nolint start
 #' @export
 #' @rdname padding
 pad_counts <- function(x, digits = 0L) {
@@ -168,39 +177,39 @@ pad_counts <- function(x, digits = 0L) {
   new_x <- format(x, big.mark = ",", nsmall = digits)
 
   if (max_dig == 7) {
-    new_x <- new_x %>%
-      stringr::str_replace_all("       ", paste(rep("\\\\ ", 12), collapse = "")) %>%
-      stringr::str_replace_all("      ", paste(rep("\\\\ ", 11), collapse = "")) %>%
-      stringr::str_replace_all("     ", paste(rep("\\\\ ", 9), collapse = "")) %>%
-      stringr::str_replace_all("    ", paste(rep("\\\\ ", 7), collapse = "")) %>%
-      stringr::str_replace_all("  ", paste(rep("\\\\ ", 4), collapse = "")) %>%
+    new_x <- new_x |>
+      stringr::str_replace_all("       ", paste(rep("\\\\ ", 12), collapse = "")) |>
+      stringr::str_replace_all("      ", paste(rep("\\\\ ", 11), collapse = "")) |>
+      stringr::str_replace_all("     ", paste(rep("\\\\ ", 9), collapse = "")) |>
+      stringr::str_replace_all("    ", paste(rep("\\\\ ", 7), collapse = "")) |>
+      stringr::str_replace_all("  ", paste(rep("\\\\ ", 4), collapse = "")) |>
       stringr::str_replace_all("^ ", paste(rep("\\\\ ", 2), collapse = ""))
   } else if (max_dig == 6) {
-    new_x <- new_x %>%
-      stringr::str_replace_all("      ", paste(rep("\\\\ ", 11), collapse  = "")) %>%
-      stringr::str_replace_all("     ", paste(rep("\\\\ ", 8), collapse = "")) %>%
-      stringr::str_replace_all("    ", paste(rep("\\\\ ", 7), collapse = "")) %>%
-      stringr::str_replace_all("  ", paste(rep("\\\\ ", 4), collapse = "")) %>%
+    new_x <- new_x |>
+      stringr::str_replace_all("      ", paste(rep("\\\\ ", 11), collapse  = "")) |>
+      stringr::str_replace_all("     ", paste(rep("\\\\ ", 8), collapse = "")) |>
+      stringr::str_replace_all("    ", paste(rep("\\\\ ", 7), collapse = "")) |>
+      stringr::str_replace_all("  ", paste(rep("\\\\ ", 4), collapse = "")) |>
       stringr::str_replace_all("^ ", paste(rep("\\\\ ", 2), collapse = ""))
   } else if (max_dig == 5) {
-    new_x <- new_x %>%
-      stringr::str_replace_all("     ", paste(rep("\\\\ ", 9), collapse = "")) %>%
-      stringr::str_replace_all("    ", paste(rep("\\\\ ", 6), collapse = "")) %>%
-      stringr::str_replace_all("   ", paste(rep("\\\\ ", 5), collapse = "")) %>%
-      stringr::str_replace_all("  ", paste0(rep("\\\\ ", 2), collapse = "")) %>%
+    new_x <- new_x |>
+      stringr::str_replace_all("     ", paste(rep("\\\\ ", 9), collapse = "")) |>
+      stringr::str_replace_all("    ", paste(rep("\\\\ ", 6), collapse = "")) |>
+      stringr::str_replace_all("   ", paste(rep("\\\\ ", 5), collapse = "")) |>
+      stringr::str_replace_all("  ", paste0(rep("\\\\ ", 2), collapse = "")) |>
       stringr::str_replace_all("^ ", paste(rep("\\\\ ", 2), collapse = ""))
   } else if (max_dig == 4) {
-    new_x <- new_x %>%
-      stringr::str_replace_all("    ", paste(rep("\\\\ ", 7), collapse = "")) %>%
-      stringr::str_replace_all("   ", paste(rep("\\\\ ", 5), collapse = "")) %>%
-      stringr::str_replace_all("  ", paste(rep("\\\\ ", 3), collapse = "")) %>%
+    new_x <- new_x |>
+      stringr::str_replace_all("    ", paste(rep("\\\\ ", 7), collapse = "")) |>
+      stringr::str_replace_all("   ", paste(rep("\\\\ ", 5), collapse = "")) |>
+      stringr::str_replace_all("  ", paste(rep("\\\\ ", 3), collapse = "")) |>
       stringr::str_replace_all("^ ", paste0(rep("\\\\ ", 2), collapse = ""))
   } else if (max_dig == 3) {
-    new_x <- new_x %>%
-      stringr::str_replace_all("  ", paste(rep("\\\\ ", 4), collapse = "")) %>%
+    new_x <- new_x |>
+      stringr::str_replace_all("  ", paste(rep("\\\\ ", 4), collapse = "")) |>
       stringr::str_replace_all("^ ", paste(rep("\\\\ ", 2), collapse = ""))
   } else if (max_dig == 2) {
-    new_x <- new_x %>%
+    new_x <- new_x |>
       stringr::str_replace_all(" ", paste(rep("\\\\ ", 2), collapse = ""))
   }
 
@@ -280,24 +289,26 @@ pad_decimal <- function(x, digits, fmt_small = FALSE, max_value = NULL,
   check_number_whole(digits, min = 1)
   output <- check_output(output)
 
-  left_spaces <- x %>%
-    abs() %>%
-    fmt_digits(digits) %>%
-    stringr::str_pad(width = max(nchar(.), na.rm = TRUE), side = "left") %>%
-    stringr::str_count(" ") %>%
+  left_spaces <- x |>
+    abs() |>
+    fmt_digits(digits)
+  left_spaces <- left_spaces |>
+    stringr::str_pad(width = max(nchar(left_spaces), na.rm = TRUE),
+                     side = "left") |>
+    stringr::str_count(" ") |>
     tidyr::replace_na(0)
 
-  new_x <- x %>%
+  new_x <- x |>
     fmt_digits(digits = digits, fmt_small = fmt_small, max_value = max_value,
-               keep_zero = keep_zero) %>%
+               keep_zero = keep_zero) |>
     fmt_minus(output = output)
 
   new_x <- purrr::map2_chr(new_x, left_spaces, function(num, space) {
     paste0(paste0(rep(" ", space), collapse = ""), num, collapse = "")
   })
 
-  new_x <- new_x %>%
-    stringr::str_replace_all("  ", paste(rep("\\\\ ", 4), collapse = "")) %>%
+  new_x <- new_x |>
+    stringr::str_replace_all("  ", paste(rep("\\\\ ", 4), collapse = "")) |>
     stringr::str_replace_all("^ ", paste(rep("\\\\ ", 2), collapse = ""))
 
   if (any(x < 0, na.rm = TRUE)) {
@@ -330,44 +341,44 @@ pad_decimal <- function(x, digits, fmt_small = FALSE, max_value = NULL,
   new_x[is.na(x)] <- NA_character_
   return(new_x)
 }
-# nolint end
 
 
 #' Combine N and Percent Columns for Accessibility
 #'
-#' @param df A data frame that has already been sent to [fmt_table()]
-#' @param n The unquoted name of the column containing count values
-#' @param pct The unquoted name of the column containing percentage values
-#' @param name The name of the new combined column to be created
+#' @param df A data frame that has already been sent to [fmt_table()].
+#' @param n The unquoted name of the column containing count values.
+#' @param pct The unquoted name of the column containing percentage values.
+#' @param name The name of the new combined column to be created.
 #' @param remove Logical. Should the existing `n` and `pct` columns be removed?
 #' @param na_replace Character string representing how missing values should be
 #'   represented.
 #'
 #' @return A data frame.
-#' @examples
-#' pcts <- tibble::tibble(Program = c("A", "B", "C", "D", "E", "F"),
-#'                n = 0:5,
-#'                p = 0.5 * (0:5))
-#' pcts %>%
-#'   fmt_table() %>%
-#'   combine_n_pct(n = n, pct = p, name = "States")
-#'
 #' @export
+#' @examples
+#' pcts <- tibble::tibble(Program = LETTERS[1:10],
+#'                        n = 1:10,
+#'                        p = seq(0, 100, length.out = 10))
+#' pcts |>
+#'   fmt_table(max_value = 100) |>
+#'   combine_n_pct(n = n, pct = p, name = "States")
 combine_n_pct <- function(df, n, pct, name, remove = TRUE, na_replace = NULL) {
   n <- rlang::enquo(n)
   pct <- rlang::enquo(pct)
 
-  df %>%
+  df |>
     dplyr::mutate(col1 = !!n,
                   col2 = !!pct,
                   col2 = stringr::str_replace_all(.data$col2,
                                                   "([0-9|\\.]+)",
                                                   "(\\1)"),
-                  combined_col = paste0(.data$col1, "\\ ", .data$col2)) %>%
+                  col2 = stringr::str_replace_all(.data$col2,
+                                                  stringr::fixed("<("), "(<"),
+                  combined_col = paste0(.data$col1, "\\ ", .data$col2)) |>
     only_if(!is.null(na_replace))(dplyr::mutate)(
       combined_col = dplyr::case_when(is.na(col1) ~ na_replace,
-                                      TRUE ~ .data$combined_col)) %>%
-    dplyr::mutate(!!name := .data$combined_col) %>%
-    dplyr::select(-.data$col1, -.data$col2, -.data$combined_col) %>%
+                                      TRUE ~ .data$combined_col)) |>
+    dplyr::mutate(!!name := .data$combined_col) |>
+    dplyr::select(-.data$col1, -.data$col2, -.data$combined_col) |>
     only_if(remove)(dplyr::select)(-!!n, -!!pct)
 }
