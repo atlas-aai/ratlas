@@ -5,58 +5,54 @@
 \title{ATLAS ggplot2 theme for consistent graphics}
 \usage{
 theme_atlas(
-  base_family = "Arial Narrow",
   base_size = 11.5,
-  axis_text_size = 9,
-  axis_title_size = base_size,
-  axis_title_just = "cm",
+  base_family = "Archivo Narrow",
+  title_size = 18,
+  subtitle_size = 13,
+  axis_text_size = 10,
+  plot_margin = margin(3, 10, 0, 10),
   ...
 )
 }
 \arguments{
-\item{base_family, base_size}{base font family and size}
+\item{base_size}{Base font size, given in pts.}
 
-\item{axis_text_size}{font size of axis text}
+\item{base_family}{Base font family.}
 
-\item{axis_title_size}{axis title font family, face and size}
+\item{title_size}{Title font size, given in pts.}
 
-\item{axis_title_just}{axis title font justification, one of \verb{[blmcrt]}}
+\item{subtitle_size}{Subtitle font size, given in pts.}
 
-\item{...}{Additional arguments passed to \code{\link[hrbrthemes:theme_ipsum]{hrbrthemes::theme_ipsum()}}.}
+\item{axis_text_size}{Axis labels font size, given in pts.}
+
+\item{plot_margin}{Plot margin (specify with \code{\link[ggplot2:element]{ggplot2::margin()}}).}
+
+\item{...}{Additional arguments passed to \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}}.}
 }
 \value{
 A theme for use in plots created with \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Based on \code{hrbrthemes::\link[hrbrthemes]{theme_ipsum}}.
+ATLAS ggplot2 theme for consistent graphics
 }
 \examples{
-\dontrun{
-library(ggplot2)
-library(dplyr)
-
-# seminal scatterplot
 ggplot(mtcars, aes(mpg, wt)) +
   geom_point() +
-  labs(x = "Fuel effiiency (mpg)", y = "Weight (tons)",
+  labs(x = "Fuel efficiency (mpg)", y = "Weight (tons)",
        title = "Seminal ggplot2 scatterplot example",
        subtitle = "A plot that is only useful for demonstration purposes",
        caption = "Brought to you by the letter 'g'") +
   theme_atlas()
 
-# seminal bar chart
-
-update_geom_font_defaults()
-
-count(mpg, class) \%>\%
-  ggplot(aes(class, n)) +
+dplyr::count(mtcars, cyl) |>
+  dplyr::mutate(cyl = factor(cyl)) |>
+  ggplot(aes(cyl, n)) +
   geom_col() +
-  geom_text(aes(label=n), nudge_y=3) +
-  labs(x = "Fuel efficiency (mpg)", y = "Weight (tons)",
-       title =  "Seminal ggplot2 bar chart example",
+  geom_text(aes(label = n), nudge_y = 1) +
+  labs(x = "Cylinders", y = "Cars",
+       title =  "**Seminal *ggplot2* bar chart example**",
        subtitle = "A plot that is only useful for demonstration purposes",
        caption = "Brought to you by the letter 'g'") +
-  theme_atlas(grid = "Y") +
+  theme_atlas(base_family = "sans") +
   theme(axis.text.y = element_blank())
-  }
 }
