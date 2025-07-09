@@ -1,10 +1,10 @@
 test_that("only_if works", {
   d <- tibble::as_tibble(mtcars)
 
-  d_true <- d %>% dplyr::filter(mpg > 25)
+  d_true <- d |> dplyr::filter(mpg > 25)
 
-  expect_equal(d %>% only_if(TRUE)(dplyr::filter)(mpg > 25), d_true)
-  expect_equal(d %>% only_if(FALSE)(dplyr::filter)(mpg > 25), d)
+  expect_equal(d |> only_if(TRUE)(dplyr::filter)(mpg > 25), d_true)
+  expect_equal(d |> only_if(FALSE)(dplyr::filter)(mpg > 25), d)
 })
 
 test_that("append_summary works", {
@@ -14,25 +14,25 @@ test_that("append_summary works", {
                y = sample(1:10, 5, TRUE),
                z = sample(1:10, 5, TRUE))
 
-  row_sums <- df %>%
-    dplyr::select(-group) %>%
+  row_sums <- df |>
+    dplyr::select(-group) |>
     dplyr::summarize_all(sum)
-  row_medians <- df %>%
-    dplyr::select(-group) %>%
+  row_medians <- df |>
+    dplyr::select(-group) |>
     dplyr::summarize_all(median)
-  col_sums <- df %>%
-    dplyr::select(-group) %>%
-    tibble::rowid_to_column(var = "rowid") %>%
-    tidyr::gather(key = "col", value = "val", -rowid) %>%
-    dplyr::group_by(rowid) %>%
-    dplyr::summarize(sum = sum(val)) %>%
+  col_sums <- df |>
+    dplyr::select(-group) |>
+    tibble::rowid_to_column(var = "rowid") |>
+    tidyr::gather(key = "col", value = "val", -rowid) |>
+    dplyr::group_by(rowid) |>
+    dplyr::summarize(sum = sum(val)) |>
     dplyr::select(sum)
-  col_medians <- df %>%
-    dplyr::select(-group) %>%
-    tibble::rowid_to_column(var = "rowid") %>%
-    tidyr::gather(key = "col", value = "val", -rowid) %>%
-    dplyr::group_by(rowid) %>%
-    dplyr::summarize(median = stats::median(val)) %>%
+  col_medians <- df |>
+    dplyr::select(-group) |>
+    tibble::rowid_to_column(var = "rowid") |>
+    tidyr::gather(key = "col", value = "val", -rowid) |>
+    dplyr::group_by(rowid) |>
+    dplyr::summarize(median = stats::median(val)) |>
     dplyr::select(median)
 
   expect_equal(append_summary(df, x, y, z, row = FALSE, col = FALSE), df)
@@ -43,7 +43,7 @@ test_that("append_summary works", {
   expect_equal(append_summary(df, x, y, z, col = FALSE, .f = stats::median),
                dplyr::bind_rows(df, row_medians))
   expect_equal(append_summary(df, x, y, z),
-               dplyr::bind_cols(df, col_sums) %>%
+               dplyr::bind_cols(df, col_sums) |>
                  dplyr::bind_rows(
                    dplyr::mutate(row_sums, sum = sum(col_sums$sum))
                  ))

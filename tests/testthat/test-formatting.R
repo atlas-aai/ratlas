@@ -88,8 +88,8 @@ test_that("fmt_replace_na", {
   expect_equal(fmt_replace_na(NA_character_, "&mdash;"), "&mdash;")
   expect_equal(fmt_replace_na(NA_real_, 4), 4)
 
-  test <- c(0.4630685, 0.7966377, 0.5037911, NA, 0.6172584, 0.3771406) %>%
-    fmt_digits() %>%
+  test <- c(0.4630685, 0.7966377, 0.5037911, NA, 0.6172584, 0.3771406) |>
+    fmt_digits() |>
     fmt_replace_na()
   expect_equal(test, c("0.463", "0.797", "0.504", "&mdash;", "0.617", "0.377"))
 })
@@ -115,13 +115,13 @@ test_that("fmt_corr", {
   expect_equal(err$arg, "digits")
   expect_match(err$message, "greater than zero")
 
-  check1 <- test %>%
+  check1 <- test |>
     fmt_corr(digits = 3)
   expect_equal(check1, c("&minus;.415", ".243", ".723", "&minus;1.000",
                          "&minus;.404", "&minus;.411", ".898", NA,
                          "&minus;.155", "1.000"))
 
-  check2 <- test %>%
+  check2 <- test |>
     fmt_corr(digits = 2)
   expect_equal(check2, c("&minus;.41", ".24", ".72", "&minus;1.00",
                          "&minus;.40", "&minus;.41", ".90", NA,
@@ -144,27 +144,27 @@ test_that("fmt_prop", {
   expect_equal(err$arg, "digits")
   expect_match(err$message, "greater than zero")
 
-  check1 <- test %>%
+  check1 <- test |>
     fmt_prop(digits = 3)
   expect_equal(check1, c(".853", ">.999", ".855",     NA,   ".690",
                          ".001",  ".129", ".869", ".169", "<.001"))
 
-  check1_2 <- test %>%
+  check1_2 <- test |>
     fmt_prop(digits = 3, fmt_small = FALSE)
   expect_equal(check1_2, c(".853", "1.000", ".855",     NA,   ".690",
                            ".001",  ".129", ".869", ".169", ".000"))
 
-  check2 <- test %>%
+  check2 <- test |>
     fmt_prop(digits = 2)
   expect_equal(check2, c(".85",   ">.99", ".85",    NA,   ".69",
                          "<.01",  ".13", ".87", ".17", "<.01"))
 
-  check2_2 <- test %>%
+  check2_2 <- test |>
     fmt_prop(digits = 2, fmt_small = FALSE)
   expect_equal(check2_2, c(".85",   "1.00", ".85",    NA,   ".69",
                            ".00",  ".13", ".87", ".17", ".00"))
 
-  check3 <- test %>%
+  check3 <- test |>
     fmt_prop(digits = 2, fmt_small = FALSE)
   expect_equal(check3, c(".85", "1.00", ".85",    NA, ".69",
                          ".00",  ".13", ".87", ".17", ".00"))
