@@ -1,5 +1,0 @@
-output_dir: _report
-delete_merged_file: true
-language:
-  label:
-    fig: "*Figure *"

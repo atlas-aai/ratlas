@@ -120,6 +120,16 @@ Phasellus sagittis consectetur orci, pretium bibendum arcu sagittis non.
 Fusce eu nunc viverra, consectetur orci accumsan, tincidunt ante.
 Etiam congue, mauris a suscipit accumsan, neque turpis hendrerit sapien, sit amet eleifend tortor lectus et ex.
 
+```{r}
+#| label: penguins
+#| fig-cap: Here is some penguin data
+#| fig-alt: Penguin data plot.
+#| fig-note: Not all penguins are friendly.
+
+ggplot(penguins, aes(bill_len, flipper_len, color = species)) +
+  geom_point()
+```
+
 \newpage
 
 # References

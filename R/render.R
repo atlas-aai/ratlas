@@ -107,7 +107,7 @@ report_pdf <- function(type = "topicguide", ...) {
 
   template <- find_resource(paste0(type, "_pdf"), "template.tex")
   base <- bookdown::pdf_document2(
-    template = topic_guide_template,
+    template = template,
     latex_engine = "xelatex",
     citation_package = "biblatex",
     keep_tex = TRUE,
@@ -124,6 +124,7 @@ report_pdf <- function(type = "topicguide", ...) {
   base$knitr$opts_chunk$fig.width <- 7
   base$knitr$opts_chunk$fig.asp <- 0.618
   base$knitr$opts_chunk$fig.ext <- "pdf"
+  base$knitr$opts_chunk$dev <- "cairo_pdf"
   base$knitr$opts_chunk$fig.align <- "center"
   base$knitr$opts_chunk$fig.retina <- 3
   base$knitr$opts_chunk$fig.path <- "figures/"

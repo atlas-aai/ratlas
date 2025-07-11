@@ -8,8 +8,8 @@
 project_skeleton <- function(path, type) {
   type <- rlang::arg_match(
     type,
-    c("techreport_html", "techreport_pdf", "topicguide_docx", "topicguide_pdf",
-      "measr_pdf")
+    c("measr_pdf", "techreport_html", "techreport_pdf",
+      "topicguide_docx", "topicguide_pdf", "topicguide_rdocx")
   )
 
   # copy 'techreport_html_resources' folder to path
@@ -37,14 +37,13 @@ project_skeleton <- function(path, type) {
                        x,
                        "",
                        "rmd_files: [",
-                       sprintf('  "%s.Rmd"', tolower(basename(path))),
+                       sprintf('  "%s.Rmd"', "index"),
                        "]"),
                      f)
+  } else {
+    fs::file_move(file.path(path, "index.Rmd"),
+                  file.path(path, paste0(tolower(basename(path)), ".Rmd")))
   }
-
-  # rename index.Rmd
-  fs::file_move(file.path(path, "index.Rmd"),
-                file.path(path, paste0(tolower(basename(path)), ".Rmd")))
 
   TRUE
 }
@@ -87,11 +86,17 @@ fig_skeleton <- function(path, logo = NULL, letterhead = NULL) {
   if (!is.null(letterhead)) {
     file.copy(
       file.path(fig, letterhead),
-      file.path(path, "figures", "pregenerated", letterhead)
+      file.path(path, "figures", "pre-generated", letterhead)
     )
   }
 
   TRUE
+}
+
+measr_pdf_skeleton <- function(path) {
+  project_skeleton(path, type = "measr_pdf")
+  bib_skeleton(path)
+  fig_skeleton(path, letterhead = "measr-letterhead.png")
 }
 
 techreport_html_skeleton <- function(path) {
@@ -103,7 +108,7 @@ techreport_html_skeleton <- function(path) {
 techreport_pdf_skeleton <- function(path) {
   project_skeleton(path, type = "techreport_pdf")
   bib_skeleton(path)
-  fig_skeleton(path, logo = "DLM.png", letterhead = "atlas-letterhead.png")
+  fig_skeleton(path, logo = "DLM.png", letterhead = "atlas-letterhead.jpg")
 }
 
 topicguide_docx_skeleton <- function(path) {
@@ -116,8 +121,7 @@ topicguide_pdf_skeleton <- function(path) {
   bib_skeleton(path)
 }
 
-measr_pdf_skeleton <- function(path) {
-  project_skeleton(path, type = "measr_pdf")
+topicguide_rdocx_skeleton <- function(path) {
+  project_skeleton(path, type = "topicguide_rdocx")
   bib_skeleton(path)
-  fig_skeleton(path, letterhead = "measr-letterhead.png")
 }

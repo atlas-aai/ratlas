@@ -85,7 +85,9 @@ NULL
 #' @export
 #' @rdname formatting
 fmt_count <- function(x, big_interval = 3L, big_mark = ",") {
-  check_number_whole(x, min = 0)
+  for (i in seq_along(x)) {
+    check_number_whole(x[i], min = 0)
+  }
   check_number_whole(big_interval, min = 1)
   check_string(big_mark)
 
@@ -95,9 +97,9 @@ fmt_count <- function(x, big_interval = 3L, big_mark = ",") {
 #' @export
 #' @rdname formatting
 fmt_digits <- function(x, digits = 3, fmt_small = FALSE, max_value = NULL,
-                       keep_zero = FALSE) {
+                       keep_zero = FALSE, keep_max = FALSE) {
   for (i in seq_along(x)) {
-    check_number_decimal(x[i])
+    check_number_decimal(x[i], allow_na = TRUE)
   }
   check_number_whole(digits, min = 0)
 
@@ -122,6 +124,9 @@ fmt_digits <- function(x, digits = 3, fmt_small = FALSE, max_value = NULL,
 
   if (keep_zero) {
     to_print[x == 0] <- sprintf("%.*f", digits, 0)
+  }
+  if(keep_max) {
+    to_print[x == max_value] <- sprintf("%.*f", digits, max_value)
   }
 
   to_print[is.na(x)] <- NA_character_
@@ -189,7 +194,7 @@ fmt_replace_na <- function(x, replacement = "&mdash;") {
 #' @rdname formatting
 fmt_corr <- function(x, digits, output = NULL) {
   for (i in seq_along(x)) {
-    check_number_decimal(x[i], lb = -1, ub = 1)
+    check_number_decimal(x[i], min = -1, max = 1, allow_na = TRUE)
   }
   check_number_whole(digits, min = 1)
   output <- check_output(output)
@@ -204,9 +209,10 @@ fmt_corr <- function(x, digits, output = NULL) {
 
 #' @export
 #' @rdname formatting
-fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE) {
+fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE,
+                     keep_one = FALSE) {
   for (i in seq_along(x)) {
-    check_number_decimal(x[i], lb = 0, ub = 1)
+    check_number_decimal(x[i], min = 0, max = 1, allow_na = TRUE)
   }
   check_number_whole(digits, min = 1)
 
@@ -233,6 +239,9 @@ fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE) {
     if (keep_zero) {
       x_chr[x == 0] <- fmt_leading_zero(fmt_digits(0, digits = digits))
     }
+    if (keep_one) {
+      x_chr[x == 1] <- fmt_digits(1, digits = digits)
+    }
   }
 
   return(x_chr)
@@ -242,7 +251,7 @@ fmt_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE) {
 #' @rdname formatting
 fmt_prop_pct <- function(x, digits = 0, fmt_small = TRUE) {
   for (i in seq_along(x)) {
-    check_number_decimal(x[i], lb = 0, ub = 1)
+    check_number_decimal(x[i], min = 0, max = 1, allow_na = TRUE)
   }
   check_number_whole(digits, min = 0)
 

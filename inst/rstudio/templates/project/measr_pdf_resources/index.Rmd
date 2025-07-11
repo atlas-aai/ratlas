@@ -1,7 +1,8 @@
 ---
 title: "Report Title"
 date: "`r format(Sys.Date(), '%B %Y')`"
-knit: rmarkdown::render
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "_report") })
 output:
   ratlas::report_pdf:
     type: "measr"

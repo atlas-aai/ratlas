@@ -1,7 +1,8 @@
 ---
 title: "Topic Guide Title"
 date: "`r format(Sys.Date(), '%B %Y')`"
-knit: bookdown::render_book
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "_report") })
 output: ratlas::report_rdocx
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
 biblio-style: apalike2
@@ -10,7 +11,7 @@ link-citations: yes
 ---
 
 ```{r setup, include=FALSE}
-needed_packages <- c("ratlas", "knitr", "english")
+needed_packages <- c("ratlas", "knitr", "english", "systemfonts")
 load_packages <- function(x) {
   if (!(x %in% installed.packages())) {
     install.packages(x, repos = "https://cran.rstudio.com/")

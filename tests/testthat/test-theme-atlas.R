@@ -1,42 +1,56 @@
-thm <- theme_atlas()
-
 test_that("theme_atlas is a theme", {
-  expect_s3_class(thm, "theme")
+  expect_s3_class(theme_atlas(), "theme")
 })
 
-test_that("theme_atlas uses Arial Narrow font", {
-  expect_equal(thm$text$family, "Arial Narrow")
-  expect_equal(thm$plot.title$family, "Arial Narrow")
-  expect_equal(thm$plot.subtitle$family, "Arial Narrow")
-  expect_equal(thm$plot.caption$family, "Arial Narrow")
-  expect_equal(thm$strip.text$family, "Arial Narrow")
-  expect_equal(thm$axis.title$family, "Arial Narrow")
-  expect_null(thm$axis.text$family)
-  expect_null(thm$legend.text$family)
+test_that("theme_atlas default font settings are correct", {
+  expect_equal(theme_atlas()$text$family, "Archivo Narrow")
+  expect_equal(theme_atlas()$text$colour, "black")
+  expect_equal(theme_atlas()$text$size, 11.5)
+  expect_equal(theme_atlas()$plot.title$size, 18)
+  expect_equal(theme_atlas()$plot.subtitle$size, 13)
+  expect_equal(theme_atlas()$axis.text$size, 10)
+  expect_equal(theme_atlas()$plot.margin, margin(3, 10, 0, 10))
 })
 
-test_that("theme_atlas font sizes are correct", {
-  expect_equal(thm$text$size, 11.5)
-  expect_equal(thm$plot.title$size, 18)
-  expect_equal(thm$plot.subtitle$size, 12)
-  expect_equal(thm$strip.text$size, 12)
-  expect_equal(thm$plot.caption$size, 9)
-  expect_equal(thm$axis.title$size, 11.5)
-})
+test_that("setting theme works", {
+  # errors for unknown color scales --------------------------------------------
+  err <- rlang::catch_cnd(set_theme_ratlas(discrete = "taylorswift"))
+  expect_s3_class(err, "rlang_error")
+  expect_match(err$message, "one of \"okabeito\" or \"ggplot2\"")
 
-test_that("theme_atlas font colors are correct", {
-  expect_equal(thm$text$colour, "black")
-  expect_in(thm$axis.text$colour, c("grey30", "#4D4D4DFF"))
-})
+  err <- rlang::catch_cnd(set_theme_ratlas(continuous = "taylorswift"))
+  expect_s3_class(err, "rlang_error")
+  expect_match(err$message, "must be one of")
 
-test_that("theme_atlas grids, axis, and ticks are correct", {
-  expect_equal(invisible(theme_atlas(grid = FALSE)),
-               theme_atlas(grid = FALSE))
-  expect_equal(invisible(theme_atlas(grid = "XY")),
-               theme_atlas(grid = "XY"))
-  expect_equal(invisible(theme_atlas(grid = "xy")),
-               theme_atlas(grid = "xy"))
+  # default plots --------------------------------------------------------------
+  d_plot <- ggplot(penguins, aes(x = bill_len, y = flipper_len)) +
+    geom_point(aes(color = species), na.rm = TRUE)
+  vdiffr::expect_doppelganger("discrete-default", d_plot)
 
-  expect_equal(invisible(theme_atlas(ticks = TRUE)),
-               theme_atlas(ticks = TRUE))
+  c_plot <- ggplot(ggplot2::faithfuld, aes(waiting, eruptions)) +
+    geom_tile(aes(fill = density))
+  vdiffr::expect_doppelganger("continuous-default", c_plot)
+
+  # discrete plot --------------------------------------------------------------
+  local_theme()
+  vdiffr::expect_doppelganger("discrete-atlas-default", d_plot)
+
+  local_theme(font = "sans", discrete = "ggplot2")
+  vdiffr::expect_doppelganger("discrete-atlas-sans-ggplot2", d_plot)
+
+  local_theme(font = "serif", discrete = "okabeito")
+  vdiffr::expect_doppelganger("discrete-atlas-serif-okabito", d_plot)
+
+  # continuous plot ------------------------------------------------------------
+  local_theme()
+  vdiffr::expect_doppelganger("continuous-atlas-default", c_plot)
+
+  local_theme(continuous = "ggplot2")
+  vdiffr::expect_doppelganger("continuous-atlas-sans-ggplot2", c_plot)
+
+  local_theme(font = "mono", continuous = "viridis")
+  vdiffr::expect_doppelganger("continuous-atlas-mono-viridis", c_plot)
+
+  local_theme(font = "serif", continuous = "plasma")
+  vdiffr::expect_doppelganger("continuous-atlas-serif-plasma", c_plot)
 })

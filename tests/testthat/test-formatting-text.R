@@ -1,21 +1,18 @@
 test_that("italics work", {
   err <- rlang::catch_cnd(fmt_italic(string = 3, indicator = "*",
                                      html = TRUE))
-  expect_s3_class(err, "error_bad_argument")
-  expect_equal(err$arg, "string")
-  expect_match(err$message, "be character")
+  expect_s3_class(err, "rlang_error")
+  expect_match(err$message, "be a character vector")
 
   err <- rlang::catch_cnd(fmt_italic(string = "Make *this* italic.",
                                      indicator = 2, html = TRUE))
-  expect_s3_class(err, "error_bad_argument")
-  expect_equal(err$arg, "indicator")
-  expect_match(err$message, "be character")
+  expect_s3_class(err, "rlang_error")
+  expect_match(err$message, "be a single string")
 
   err <- rlang::catch_cnd(fmt_italic(string = "Make *this* italic.",
                                      indicator = "*", html = "blue"))
-  expect_s3_class(err, "error_bad_argument")
-  expect_equal(err$arg, "html")
-  expect_match(err$message, "be a logical")
+  expect_s3_class(err, "rlang_error")
+  expect_match(err$message, "must be `TRUE` or `FALSE`")
 
 
   expect_identical(fmt_italic(string = "Make *this* italic.", indicator = "*",
@@ -32,11 +29,11 @@ test_that("italics work", {
                    c("Grade", "\\textit{n}", "\\textit{p}-value",
                      "Effect size"))
 
-  expect_snapshot(cat(kableExtra::kbl(mtcars[, 1:4], format = "html",
-                                  escape = FALSE,
-                                  col.names = fmt_italic(col_names,
-                                                         html = TRUE))))
-  expect_snapshot(kableExtra::kbl(mtcars[, 1:4], format = "latex",
+  expect_snapshot(cat(kableExtra::kbl(mtcars[1:2, 1:4], format = "html",
+                                      escape = FALSE,
+                                      col.names = fmt_italic(col_names,
+                                                             html = TRUE))))
+  expect_snapshot(kableExtra::kbl(mtcars[1:2, 1:4], format = "latex",
                                   escape = FALSE,
                                   col.names = fmt_italic(col_names,
                                                          html = FALSE)))
@@ -44,9 +41,8 @@ test_that("italics work", {
 
 test_that("apa words works", {
   err <- rlang::catch_cnd(apa_words("14"))
-  expect_s3_class(err, "error_bad_argument")
-  expect_equal(err$arg, "x")
-  expect_match(err$message, "numeric scalar")
+  expect_s3_class(err, "rlang_error")
+  expect_match(err$message, "must be a whole number")
 
   expect_identical(apa_words(14), "14")
   expect_identical(apa_words(3L), "three")

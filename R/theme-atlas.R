@@ -95,18 +95,27 @@ theme_atlas <- function(base_size = 11.5, base_family = "Archivo Narrow",
 set_theme_ratlas <- function(font = "Archivo Narrow", discrete = "okabeito",
                              continuous = "mako", ...) {
   discrete <- rlang::arg_match(discrete,
-                               values = c("okabeito", "datawrapper", "ggplot2"))
+                               values = c("okabeito", "ggplot2"))
   disc_option <- switch(discrete,
                         okabeito = palette_okabeito,
-                        datawrapper = palette_datawrapper,
                         ggplot2 = NULL)
 
+  continuous <- rlang::arg_match(
+    continuous,
+    values = c(LETTERS[1:8], "magma", "inferno", "plasma", "viridis", "cividis",
+               "rocket", "mako", "turbo", "ggplot2")
+  )
+  cont_option <- if (continuous == "ggplot2") {
+    NULL
+  } else {
+    scales::pal_viridis(option = continuous)
+  }
 
   thm <- theme_atlas(base_family = font, ...) +
     ggplot2::theme(
       geom = ggplot2::element_geom(family = font),
-      palette.colour.continuous = scales::pal_viridis(option = continuous),
-      palette.fill.continuous = scales::pal_viridis(option = continuous),
+      palette.colour.continuous = cont_option,
+      palette.fill.continuous = cont_option,
       palette.colour.discrete = disc_option,
       palette.fill.discrete = disc_option
     )

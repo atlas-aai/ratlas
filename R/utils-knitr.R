@@ -20,7 +20,10 @@ find_file <- function(template, file) {
   template <- system.file("rmarkdown", "templates", template, file,
                           package = "ratlas")
   if (template == "") {
-    stop("Couldn't find template file ", template, "/", file, call. = FALSE)
+    cli::cli_abort(
+      cli::format_message(c("Couldn't find template file ",
+                            "{.path {file.path(template, file)}}"))
+    )
   }
 
   template

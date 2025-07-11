@@ -169,12 +169,12 @@ NULL
 
 #' @export
 #' @rdname padding
-pad_counts <- function(x, digits = 0L) {
-  x <- round(x, digits = digits)
+pad_counts <- function(x) {
+  x <- round(x, digits = 0)
   max_dig <- max(nchar(stringr::str_replace_all(abs(x), "\\.", "")),
                  na.rm = TRUE)
 
-  new_x <- format(x, big.mark = ",", nsmall = digits)
+  new_x <- format(x, big.mark = ",", nsmall = 0)
 
   if (max_dig == 7) {
     new_x <- new_x |>
@@ -211,11 +211,6 @@ pad_counts <- function(x, digits = 0L) {
   } else if (max_dig == 2) {
     new_x <- new_x |>
       stringr::str_replace_all(" ", paste(rep("\\\\ ", 2), collapse = ""))
-  }
-
-  if (any(stringr::str_detect(new_x, ",")) & digits > 0L) {
-    new_x <- dplyr::case_when(stringr::str_detect(new_x, ",") ~ new_x,
-                              TRUE ~ paste0("\\ ", new_x))
   }
 
   new_x <- stringr::str_replace_all(new_x, "(?<!\\\\) ", "")
@@ -374,11 +369,13 @@ combine_n_pct <- function(df, n, pct, name, remove = TRUE, na_replace = NULL) {
                                                   "(\\1)"),
                   col2 = stringr::str_replace_all(.data$col2,
                                                   stringr::fixed("<("), "(<"),
+                  col2 = stringr::str_replace_all(.data$col2,
+                                                  stringr::fixed(">("), "(>"),
                   combined_col = paste0(.data$col1, "\\ ", .data$col2)) |>
     only_if(!is.null(na_replace))(dplyr::mutate)(
       combined_col = dplyr::case_when(is.na(col1) ~ na_replace,
                                       TRUE ~ .data$combined_col)) |>
     dplyr::mutate(!!name := .data$combined_col) |>
-    dplyr::select(-.data$col1, -.data$col2, -.data$combined_col) |>
+    dplyr::select(-"col1", -"col2", -"combined_col") |>
     only_if(remove)(dplyr::select)(-!!n, -!!pct)
 }

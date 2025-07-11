@@ -29,7 +29,6 @@ scale_fill_okabeito <- function(aesthetics = "fill", ...) {
 #' grayscale printing. For details on the palette, see Okabe and Ito (2008).
 #'
 #' @inheritParams ggplot2::discrete_scale
-#' @param option The color palette to use. One of "okabeito" or "datawrapper".
 #' @param use_black If `TRUE`, scale includes black, otherwise includes gray.
 #' @param order Numeric vector listing the order in which the colors should be
 #'   used. Default is 1:8.
