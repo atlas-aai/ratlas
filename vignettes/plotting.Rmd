@@ -1,13 +1,6 @@
 ---
 title: "Plotting in ratlas"
-output:
-  bookdown::html_document2:
-    number_sections: false
-    toc: true
-pkgdown:
-  as_is: true
-resource_files:
-  - images/
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Plotting in ratlas}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,203 +14,94 @@ vignette: >
 library(ratlas)
 library(dplyr)
 library(ggplot2)
-
-library(scales)
-library(viridis)
-library(dichromat)
-library(colorspace)
+library(viridisLite)
 
 library(systemfonts)
-require_font("Arial", fallback = "sans")
+require_font("Archivo Narrow", fallback = "sans")
+
+knitr::opts_chunk$set(dev = "ragg_png")
 ```
 
-This vignette walks through how to create consistent graphics that meet ATLAS formatting standards using [{ggplot2}](https://ggplot2.tidyverse.org). The {ggplot2} package uses the grammar of graphics to create elegant and reproducible plots that are publication ready. The {ratlas} package provides an extension to {ggplot2} by customizing the default theme to match brand requirements.
+This vignette walks through how to create consistent graphics that meet ATLAS formatting standards using {ggplot2}.
+The ggplot2 package uses the grammar of graphics to create elegant and reproducible plots that are publication ready.
+The ratlas package provides an extension to ggplot2 by customizing the default theme to match brand requirements.
 
 ## Introduction to ggplot2
 
-A full tutorial of how to use {ggplot2} is beyond the scope of this vignette. If you are new to {ggplot2}, we recommend you start with these resources:
+A full tutorial of how to use ggplot2 is beyond the scope of this vignette.
+If you are new to ggplot2, we recommend you start with these resources:
 
-* [Data Visualisation](https://r4ds.had.co.nz/data-visualisation.html) in *R for Data Science*, by Hadley Wickham & Garrett Grolemund
+* [Data Visualisation](https://r4ds.hadley.nz/data-visualize.html) in *R for Data Science*, by Hadley Wickham, Mine Çetinkaya-Rundel, & Garrett Grolemund
 * [*Data Visualization*](https://socviz.co/), by Kieran Healy
 * [*R Graphics Cookbook*](https://r-graphics.org), by Winston Chang
 
-These resources walk through how {ggplot2} works, and provide examples with code for creating different types of plots. For a more in depth description of how {ggplot2} works, we recommend [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org), by Hadley Wickham.
+These resources walk provide an overview of ggplot2 and provide examples with code for creating different types of plots.
+For a more in depth description of how ggplot2 works, we recommend [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org), by Hadley Wickham.
 
-To demonstrate how to use the ATLAS theme for {ggplot2}, we will use the following example plot of the `mtcars` data set (Figure \@ref(fig:init-plot)).
+To demonstrate how to use the ATLAS theme for ggplot2, we will use the following example plot of the `penguins` data set.
 
-(ref:init-plot-cap) Default {ggplot2} theme.
+```{r}
+#| label: init-plot
 
-```{r init-plot, fig.cap = "(ref:init-plot-cap)"}
 library(ggplot2)
 
-ggplot(mtcars, aes(x = mpg, y = disp)) +
-  geom_point(aes(color = factor(cyl)))
+p1 <- ggplot(penguins, aes(x = bill_len, y = flipper_len)) +
+  geom_point(aes(color = species), na.rm = TRUE)
+
+p1
 ```
 
 
 ## Using `theme_atlas()`
 
-The ATLAS {ggplot2} theme can be applied by adding a `ratlas::theme_atlas()` layer to plot, just as you would add any other theme. The result is shown in Figure \@ref(fig:theme-atlas-ex).
+The ATLAS ggplot2 theme can be applied by adding a `ratlas::theme_atlas()` layer to plot, just as you would add any other theme.
 
-(ref:theme-atlas-ex-cap) The result of applying `ratlas::theme_atlas()` to a plot.
+```{r}
+#| label: theme-atlas-ex
 
-```{r theme-atlas-ex, fig.cap = "(ref:theme-atlas-ex-cap)"}
 library(ratlas)
 
-ggplot(mtcars, aes(x = mpg, y = disp)) +
-  geom_point(aes(color = factor(cyl))) +
+p1 +
   theme_atlas()
 ```
 
-There are a few points to draw attention to when comparing Figure \@ref(fig:theme-atlas-ex) back to Figure \@ref(fig:init-plot). First, the gray  background has been removed, and the grid lines have been changed from white to gray. Second, the legend has been moved from a vertical orientation on the right-hand side of the plot to a horizontal orientation below the plot. Finally, the font has been changed to Arial Narrow, which should be available on all systems and provides a more modern look.
+There are a few points to draw attention to when comparing the ATLAS theme to the ggplot2 default.
+First, the gray  background has been removed, and the grid lines have been changed from white to gray.
+Second, the legend has been moved from a vertical orientation on the right-hand side of the plot to a horizontal orientation below the plot.
+Finally, the font has been changed to Archivo Narrow, which is freely available from [Google Fonts](https://fonts.google.com/specimen/Archivo+Narrow).
 
 ## Changing the font
 
-Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is [Gotham](https://brand.ku.edu/guidelines/design/typography). However, this font is expensive, and thus inaccessible to most users. [Montserrat](https://fonts.google.com/specimen/Montserrat) is a very similar font that is available for free through Google Fonts. We recommend that you load this font with the {systemfonts} package.
+Although Archivo Narrow provides a modern font that works in most cases, it is often desirable to have a font that matches the brand requirements.
+For fonts that are available on most systems, the University of Kansas and ATLAS recommend [Arial and Palatino](https://brand.ku.edu/guidelines/design/typography#section4196).
+These fonts can be loaded using the {systemfonts} package.
 
 ```{r showtxtfnt}
 library(systemfonts)
-require_font("Montserrat")
+require_font("Arial")
+require_font("Palatino")
 ```
 
-Once the Montserrat font has been loaded, you can apply it to the ATLAS theme using `ratlas::theme_atlas(base_family = "Montserrat")`.
+Once the fonts has been loaded, you can apply them to the ATLAS theme using the `base_family` argument.
 
-```{r theme-atlas-ms-ex-build, eval = FALSE}
-ggplot(mtcars, aes(x = mpg, y = disp)) +
-  geom_point(aes(color = factor(cyl))) +
-  theme_atlas(base_family = "Montserrat")
+```{r}
+#| label: palatino-font
+
+p1 +
+  theme_atlas(base_family = "Palatino")
 ```
 
-## Colors
+## Using color-blind-safe palettes
 
-One potential issue with graphics created with {ggplot2} is that the default color scales are not colorblind friendly. For example, Figure \@ref(fig:disc-cvd) shows our working example simulated with different types of color blindness.
+For discrete color scales, the ratlas package includes the Okabe Ito color palette developed by [Masataka Okabe and Kei Ito](https://jfly.uni-koeln.de/color/).
+This can be used with the `ratlas::scale_color_okabeito()` function.
 
-(ref:disc-cvd-cap) The default {ggplot2} color palette for discrete scales with different types of color blindness.
+```{r}
+#| label: okabeito-compare
+#| out-width: "40%"
+#| fig-asp: 1.618
+#| fig-show: "hold"
 
-```{r colorblindr-funcs, include = FALSE}
-# This is a placeholder until colorblindr is on CRAN. When that happens,
-# colorblindr can be added to suggests, and we can just use
-# colorblindr::cvd_grid()
-edit_colors <- function(plot = last_plot(), colfun = passthrough, fillfun = NULL, ...)
-{
-  # convert to grob if necessary
-  if (!methods::is(plot, "grob")) {
-    plot <- cowplot::plot_to_gtable(plot)
-  }
-
-  if (is.null(fillfun)) {
-    fillfun = colfun
-  }
-  edit_grob_colors(plot, colfun, fillfun, ...)
-}
-
-edit_grob_colors <- function(grob, colfun, fillfun, ...)
-{
-  if (!is.null(grob$gp)) {
-    if (!is.null(grob$gp$col)) {
-      grob$gp$col <- colfun(grob$gp$col, ...)
-    }
-    if (!is.null(grob$gp$fill)) {
-      grob$gp$fill <- fillfun(grob$gp$fill, ...)
-    }
-  }
-
-  if (!is.null(grob$grobs)) {
-    grob$grobs <- lapply(grob$grobs, edit_grob_colors, colfun, fillfun, ...)
-  }
-
-  if (!is.null(grob$children)) {
-    grob$children <- lapply(grob$children, edit_grob_colors, colfun, fillfun, ...)
-  }
-
-  if (methods::is(grob, "rastergrob")) {
-    grob <- edit_rastergrob_colors(grob, colfun, ...)
-  }
-
-  grob
-}
-
-edit_rastergrob_colors <- function(grob, colfun, ...)
-{
-  rasternew <- colfun(c(grob$raster), ...)
-  dim(rasternew) <- dim(grob$raster)
-  class(rasternew) <- class(grob$raster)
-  grid::editGrob(grob, raster = rasternew)
-}
-
-cvd_grid <- function(plot = last_plot(), severity = 1)
-{
-  deut <- function(c) colorspace::deutan(c, severity)
-  p1 <- edit_colors(plot, deut)
-
-  prot <- function(c) colorspace::protan(c, severity)
-  p2 <- edit_colors(plot, prot)
-
-  trit <- function(c) colorspace::tritan(c, severity)
-  p3 <- edit_colors(plot, trit)
-
-  des <- function(c) colorspace::desaturate(c, severity)
-  p4 <- edit_colors(plot, des)
-
-  cowplot::plot_grid(p1, p2, p3, p4, scale = 0.9, hjust = 0, vjust = 1,
-                     labels = c("Deutanomaly", "Protanomaly", "Tritanomaly", "Desaturated"),
-                     label_x = 0.01, label_y = 0.99, label_size = 12, label_fontface = "bold")
-}
-```
-
-```{r disc-cvd, echo = FALSE, fig.asp = 1.618, fig.cap = "(ref:disc-cvd-cap)", warning = FALSE}
-p <- ggplot(mtcars, aes(x = mpg, y = disp)) +
-  geom_point(aes(color = factor(cyl))) +
-  theme_atlas()
-
-cvd_grid(p)
-```
-
-Figure \@ref(fig:disc-cvd) shows that most types of color blindness make it hard to distinguish between the different level of the `cyl` variable when using the default color palette. The palette for continuous variables has similar problems. Figure \@ref(fig:cont-ex) shows the default color palette for continuous variables in {ggplot2}.
-
-(ref:cont-ex-cap) Default color palette for continuous variables in {ggplot2}.
-
-```{r for_repeat, include = FALSE}
-n_col <- 128
-img <- function(obj, nam) {
-  image(1:length(obj), 1, as.matrix(1:length(obj)), col = obj, main = nam,
-        ylab = "", xaxt = "n", yaxt = "n",  bty = "n")
-}
-```
-
-```{r cont-ex, echo = FALSE, fig.asp = 0.15, fig.cap = "(ref:cont-ex-cap)"}
-oldpar <- par(mfrow=c(1, 1), mar=rep(1, 4))
-img(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
-                         space = "Lab")(seq(0, 1, length=n_col))), "")
-par(oldpar)
-```
-
-The simulated color blindness for this scale is shown in Figure \@ref(fig:cont-cvd). Here, several types of color blindness result in large sections of the palette where it is difficult to differentiate values.
-
-(ref:cont-cvd-cap) The default {ggplot2} color palette for continuous scales with different types of color blindness.
-
-```{r cont-cvd, echo = FALSE, fig.asp = 0.5, fig.cap = "(ref:cont-cvd-cap)"}
-oldpar <- par(mfrow=c(4, 1), mar=rep(1, 4))
-img(dichromat(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
-                                   space = "Lab")(seq(0, 1, length=n_col))),
-              "deutan"), "Deutanomaly")
-img(dichromat(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
-                                   space = "Lab")(seq(0, 1, length=n_col))),
-              "protan"), "Protanomaly")
-img(dichromat(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
-                                   space = "Lab")(seq(0, 1, length=n_col))),
-              "tritan"), "Tritanomaly")
-img(desaturate(rev(seq_gradient_pal(low = "#132B43", high = "#56B1F7",
-                                    space = "Lab")(seq(0, 1, length=n_col)))),
-    "Desaturated")
-par(oldpar)
-```
-
-### Using color blind safe palettes
-
-For discrete color scales, the {ratlas} package includes the Okabe Ito color palette developed by [Masataka Okabe and Kei Ito](https://jfly.uni-koeln.de/color/). This can be used with the `ratlas::scale_color_okabeito()` function.
-
-```{r okabeito-compare, out.width = "47%", fig.asp = 1.618, fig.show = "hold", fig.cap = "Comparison plot using the default (left) and Okabe Ito (right) discrete color palettes."}
 ggplot(mtcars, aes(x = mpg, y = disp)) +
   geom_point(aes(color = factor(cyl)), size = 3) +
   theme_atlas()
@@ -228,85 +112,92 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
   theme_atlas()
 ```
 
-For continuous color scales, the viridis family of color palettes should be used. These palettes were created by [Stéfan van der Walt](https://github.com/stefanv) and [Nathaniel Smith](https://github.com/njsmith) and are shown in Figure \@ref(fig:show-viridis).
+For continuous color scales, the viridis family of color palettes should be used.
+These palettes were created by [Stéfan van der Walt](https://github.com/stefanv) and [Nathaniel Smith](https://github.com/njsmith).
 
-```{r show-viridis, echo = FALSE, fig.asp = 0.6, fig.cap = "The viridis color scales."}
-oldpar <- par(mfrow=c(5, 1), mar=rep(1, 4))
+```{r}
+#| label: viridis-printing
+#| include: false
+
+n_col <- 128
+img <- function(obj, nam) {
+  image(1:length(obj), 1, as.matrix(1:length(obj)), col = obj, main = nam,
+        ylab = "", xaxt = "n", yaxt = "n",  bty = "n")
+}
+```
+
+```{r}
+#| label: show-viridis
+#| echo: FALSE
+#| fig-asp: 0.6
+
+oldpar <- par(mfrow=c(8, 1), mar=rep(1, 4))
 img(rev(viridis(n_col)), "Viridis")
 img(rev(magma(n_col)), "Magma")
-img(rev(plasma(n_col)), "Plasma")
 img(rev(inferno(n_col)), "Inferno")
+img(rev(plasma(n_col)), "Plasma")
 img(rev(cividis(n_col)), "Cividis")
+img(rev(rocket(n_col)), "Rocket")
+img(rev(mako(n_col)), "Mako")
+img(rev(turbo(n_col)), "Turbo")
 par(oldpar)
 ```
 
-These color scales are perceptually uniform, perform well for a variety of colorblindness, and maintain the ability to discriminate across the perceptual spectrum when rendered or printed in gray scale. These color scales can be applied using `ggplot2::scale_color_viridis_c()`. Figure \@ref(fig:viridis-compare) shows and example of using the the viridis color palette. There is also a discrete option for the viridis color palette (`ggplot2::scale_color_viridis_d()`); however, the Okabe Ito palette is preferred for discrete scales.
+These color scales are perceptually uniform, perform well for a variety of colorblindness, and maintain the ability to discriminate across the perceptual spectrum when rendered or printed in gray scale.
+These color scales can be applied using `ggplot2::scale_color_viridis_c()`.
+There is also a discrete option for the viridis color palette (`ggplot2::scale_color_viridis_d()`); however, the Okabe Ito palette is preferred for discrete scales.
 
-```{r viridis-compare, out.width = "47%", fig.asp = 1.618, fig.show = "hold", fig.cap = "Comparison plot with default (left) and viridis (right) continuous color palettes."}
+```{r}
+#| label: viridis-compare
+#| out-width: "47%"
+#| fig-asp: 1.618
+#| fig-show: "hold"
+
 ggplot(faithfuld, aes(x = eruptions, y = waiting)) +
-  geom_raster(aes(fill = density)) +
+  geom_tile(aes(fill = density)) +
   theme_atlas()
 
 ggplot(faithfuld, aes(x = eruptions, y = waiting)) +
-  geom_raster(aes(fill = density)) +
+  geom_tile(aes(fill = density)) +
   scale_fill_viridis_c() +
-  theme_atlas()
-```
-
-### Brand colors
-
-In additional to palettes that are color blind safe, the {ratlas} package also include brand specific color palettes. For example, a plot can be created using the official ATLAS color palette by using the `ratlas::scale_color_atlas()` function, as shown in Figure \@ref(fig:atlas-colors).
-
-(ref:atlas-colors-cap) Plot with the official ATLAS colors using `ratlas::scale_color_atlas()`.
-
-```{r atlas-colors, fig.cap = "(ref:atlas-colors-cap)"}
-ggplot(mtcars, aes(x = mpg, y = disp)) +
-  geom_point(aes(color = factor(cyl))) +
-  scale_color_atlas() +
   theme_atlas()
 ```
 
 ## Setting a global theme
 
-If you have several plots in a document, it can be a hassle to always remember to add `+ theme_atlas()` to every plot and to switch to a non-default color palette. To make the formatting of plots easier, {ratlas} includes a wrapper function, `ratlas::set_theme()` which will change the {ggplot2} defaults so that `theme_atlas()` is always used, and the default color scales are changed to the Okabe Ito palette for discrete scales and the viridis palette for continuous scales.
+If you have several plots in a document, it can be a hassle to always remember to add `+ theme_atlas()` to every plot and to switch to a non-default color palette.
+To make the formatting of plots easier, ratlas includes a wrapper function, `set_theme_ratlas()` which will change the ggplot2 defaults so that `theme_atlas()` is always used, and the default color scales are changed to the Okabe Ito palette for discrete scales and the viridis palette for continuous scales.
+That is, once `set_theme_ratlas()` has been called, the `scale_color_okabeito()` and `theme_atlas()` lines no longer need to be added.
+Instead, they are applied by default. 
 
-For example, once `set_theme()` has been called, the `scale_color_okabeito()` and `theme_atlas()` lines no longer need to be added. Instead, they are applied by default (Figure \@ref(fig:default-theme)). 
+```{r}
+#| label: default-theme
 
-(ref:default-theme-cap) Plot generated after using `set_theme()` to set new defaults globally.
+set_theme_ratlas()
 
-```{r default-theme, fig.cap = "(ref:default-theme-cap)"}
-set_theme(theme_atlas())
-
-ggplot(mtcars, aes(x = mpg, y = disp)) +
-  geom_point(aes(color = factor(cyl)))
+p1
 ```
 
-The `set_theme()` function also provides flexibility for which defaults are set. For example, to use the Montserrat font by default, use `set_theme(theme_atlas(base_family = "Montserrat"))`. See `?set_theme()` for all options.
+`set_theme_ratlas()` also provides flexibility for which defaults are set.
+For example, to use the Palatino font by default, use `set_theme_ratlas(font = "Palatino")`.
+See `?set_theme_ratlas()` for all options.
 
 ## Saving plots
 
-Finally, it is often useful to save plots to a file. This can be done with `ratlas::ggsave2()`. This is a wrapper around `ggplot2::ggsave()`. The `ggsave2()` version applies some defaults to all ATLAS plots. Specifically, the plot labels and titles are automatically spell checked, the aspect ratio of plots is set to a reasonable default (rather than using the current size of your graphics device), and embeds the fonts when saving to a PDF format, allowing the plots to render correctly on any system.
+Finally, it is often useful to save plots to a file.
+This can be done with `ggsave2()`, which is a wrapper around `ggplot2::ggsave()`.
+The `ggsave2()` version applies some defaults to all ATLAS plots.
+Specifically, the aspect ratio of plots is set to a reasonable default (rather than using the current size of your graphics device), and fonts are automatically embedded when saving to a PDF format, allowing the plots to render correctly on any system.
 
 ```{r eval = FALSE}
-p <- ggplot(mtcars, aes(x = mpg, y = disp)) +
-  geom_point()
-
-ggsave2(plot = p, filename = "my-plot.png", path = "where/to/save")
+ggsave2(plot = p1, filename = "my-plot.png", path = "where/to/save")
 ```
 
-The `ggsave2()` function also flips the order of the `filename` and `plot` arguments from the `ggplot2::ggsave()` function. This allows calls to the function to be chained together, making it easier to save the sample plot in multiple formats using the `%>%` operator.
+The `ggsave2()` function also flips the order of the `filename` and `plot` arguments from the original `ggplot2::ggsave()` function.
+This allows calls to the function to be chained together, making it easier to save the sample plot in multiple formats using the `|>` operator.
 
 ```{r eval = FALSE}
-p %>%
-  ggsave2(filename = "my-plot.png", path = "where/to/save") %>%
+p1 |>
+  ggsave2(filename = "my-plot.png", path = "where/to/save") |>
   ggsave2(filename = "my-plot.pdf", path = "where/to/save")
 ```
-
-## Keep Learning
-
-There are many resources available for learning more about how to make data visualizations with R and {ggplot2}. Here are a few **free** resources that I have found particularly helpful:
-
-* For an introduction to {ggplot2}, see [Data Visualisation](https://r4ds.had.co.nz/data-visualisation.html), from *R for Data Science*, by Hadley Wickham and Garrett Grolemund
-* For simple recipes for creating different types of plots with {ggplot2}, see the [*R Graphics Cookbook*](https://r-graphics.org/), by Winston Chang
-* For more details on how to customize {ggplot2} graphics to fit your specific use case, see [*Data Visualization: A Practical Introduction*](https://socviz.co/), by Kieran Healy
-* Finally, for a discussion of best principles for data visualization, see [*Fundamentals of Data Visualization*](https://clauswilke.com/dataviz/), by Claus Wilke
