@@ -148,19 +148,19 @@ my_data
 The next step is to format the table for printing. The `fmt_table()` function will apply default formatting and work in most cases. Notice the formatting that has been applied below. Commas have been added to integer values, decimal digits have been rounded to the same number of decimal places, and leading zeros have been removed from values that are bounded between -1 and 1. Leading and trailing spaces have also been added so that values will be centered and decimal aligned in the table. See `?ratlas::formatting` for specific formatting options that are wrapped by `fmt_table()`. These formatting functions can be used to specific styling of columns that do not conform to the defaults specified in `fmt_table()`.
 
 ```{r fmt-table}
-my_data %>%
+my_data |>
   fmt_table(corr_dig = 2, prop_dig = 2)
 ```
 
 The table can then be created using `knitr::kable()`. There are several arguments supplied to the `kable()` function. The `align` argument specifies the alignment of each column. Because we formatted the table with `fmt_table()`, we can set the alignment of all the numeric columns to `"c"` (centered). The `booktabs` and `linesep` arguments control the appearance of the table. By setting `escape = FALSE`, we tell the `kable()` function to not escape special characters, allowing for the padding spaces we added to remain in tact. Additionally, column names for the table and a caption are specified. The last step is to add additional styling from the {kableExtra} package. In this example, we use the `kableExtra::kable_styling()` function to set some $\LaTeX$ options. Specifically, the `"HOLD_position"` setting ensures that the table will appear in the exact position of the code chunk (i.e., the $\LaTeX$ engine is not allowed to float the table above or below additional paragraphs in order to avoid extraneous white space). For more customization options with the {kableExtra} package, see the package vignettes for [HTML](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html) and [PDF](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf) tables.
 
 ```{r example-table}
-my_data %>%
-  fmt_table(corr_dig = 2, prop_dig = 2) %>%
+my_data |>
+  fmt_table(corr_dig = 2, prop_dig = 2) |>
   kable(align = c("l", rep("c", 4)), booktabs = TRUE, linesep = "",
         escape = FALSE,
         col.names = c("Group", "Students (*n*)", "\\%", "*r*", "*p*-value"),
-        caption = "An example table") %>%
+        caption = "An example table") |>
  kable_styling(latex_options = "HOLD_position")
 ```
 
@@ -168,8 +168,8 @@ Finally, we can cross reference the table using the chunk label. For example, th
 
 ````markdown
 ```{r example-table}`r ''`
-my_data %>%
-  fmt_table(corr_dig = 2, prop_dig = 2) %>%
+my_data |>
+  fmt_table(corr_dig = 2, prop_dig = 2) |>
   kable(align = c("l", rep("c", 4)), booktabs = TRUE, linesep = "",
         escape = FALSE,
         col.names = c("Group", "Students (*n*)", "\\%", "*r*", "*p*-value"),
@@ -242,10 +242,10 @@ tribble(
         "`@lcdm [p. 3]`",       "@lcdm [p. 3]",
   "`[@lcdm; @R-ratlas]`", "[@lcdm; @R-ratlas]"
   
-) %>%
+) |>
   kable(align = c("l", "l"), booktabs = TRUE, linesep = "",
         col.names = c("Code", "Renders as..."),
-        caption = "Citation Styles") %>%
+        caption = "Citation Styles") |>
   kable_styling()
 ```
 
@@ -284,7 +284,7 @@ In this project, there is a `data/` directory with raw data, an `R/` directory w
 If at all possible, you should avoid the hard coding of numbers. For example, let's say we have some data on cars and estimate the following model:
 
 ```{r echo = FALSE}
-my_data <- select(mtcars, mpg, disp, cyl) %>% as_tibble()
+my_data <- select(mtcars, mpg, disp, cyl) |> as_tibble()
 my_new_data <- sample_n(my_data, size = nrow(mtcars) * 1.5, replace = TRUE)
 ```
 
@@ -340,7 +340,7 @@ suppressWarnings(
 )
 
 # Correct capitalization in packages
-readLines("bib/packages.bib") %>%
-  str_replace_all("ratlas:", "{ratlas}:") %>%
+readLines("bib/packages.bib") |>
+  str_replace_all("ratlas:", "{ratlas}:") |>
   writeLines("bib/packages.bib")
 ```
