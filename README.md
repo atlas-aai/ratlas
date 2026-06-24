@@ -22,5 +22,5 @@ documents, and providing consistent themes for
 You can install the latest version with:
 
 ``` r
-install.packages("ratlas")
+devtools::install_github("ratlas")
 ```
