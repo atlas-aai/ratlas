@@ -17,7 +17,7 @@ library(ggplot2)
 library(viridisLite)
 
 library(systemfonts)
-require_font("Archivo Narrow", fallback = "sans")
+require_font("Roboto Condensed", fallback = "sans")
 
 knitr::opts_chunk$set(dev = "ragg_png")
 ```
@@ -68,13 +68,13 @@ p1 +
 There are a few points to draw attention to when comparing the ATLAS theme to the ggplot2 default.
 First, the gray  background has been removed, and the grid lines have been changed from white to gray.
 Second, the legend has been moved from a vertical orientation on the right-hand side of the plot to a horizontal orientation below the plot.
-Finally, the font has been changed to Archivo Narrow, which is freely available from [Google Fonts](https://fonts.google.com/specimen/Archivo+Narrow).
+Finally, the font has been changed to Roboto Condensed, which is freely available from [Google Fonts](https://fonts.google.com/specimen/Roboto+Condensed).
 
 ## Changing the font
 
-Although Archivo Narrow provides a modern font that works in most cases, it is often desirable to have a font that matches the brand requirements.
+Although Roboto Condensed provides a modern font that works in most cases, it is often desirable to have a font that matches the brand requirements.
 For fonts that are available on most systems, the University of Kansas and ATLAS recommend [Arial and Palatino](https://brand.ku.edu/guidelines/design/typography#section4196).
-These fonts can be loaded using the {systemfonts} package.
+These fonts can be loaded using the `{systemfonts}` package.
 
 ```{r showtxtfnt}
 library(systemfonts)
@@ -121,8 +121,17 @@ These palettes were created by [Stéfan van der Walt](https://github.com/stefanv
 
 n_col <- 128
 img <- function(obj, nam) {
-  image(1:length(obj), 1, as.matrix(1:length(obj)), col = obj, main = nam,
-        ylab = "", xaxt = "n", yaxt = "n",  bty = "n")
+  image(
+    1:length(obj),
+    1,
+    as.matrix(1:length(obj)),
+    col = obj,
+    main = nam,
+    ylab = "",
+    xaxt = "n",
+    yaxt = "n",
+    bty = "n"
+  )
 }
 ```
 
@@ -131,7 +140,7 @@ img <- function(obj, nam) {
 #| echo: FALSE
 #| fig-asp: 0.6
 
-oldpar <- par(mfrow=c(8, 1), mar=rep(1, 4))
+oldpar <- par(mfrow = c(8, 1), mar = rep(1, 4))
 img(rev(viridis(n_col)), "Viridis")
 img(rev(magma(n_col)), "Magma")
 img(rev(inferno(n_col)), "Inferno")

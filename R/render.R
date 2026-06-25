@@ -3,11 +3,10 @@
 #' This is a function called in the output of the yaml of the Rmd file to
 #' specify using the standard DLM topic guide word document formatting.
 #'
-#' @param type The type of report. Should be one of "topicguide", "techreport",
-#'   or "measr". The following outputs are supported for each type:
+#' @param type The type of report. Should be one of "topicguide", or
+#'   "techreport". The following outputs are supported for each type:
 #'   * topicguide: docx, rdocx, pdf
 #'   * techreport: pdf, gitbook
-#'   * measr: pdf
 #' @param ... Arguments to be passed to relevant {bookdown} or {officedown}
 #'   output functions:
 #'   * [report_docx()] passes to [bookdown::word_document2()]
@@ -53,33 +52,40 @@ report_rdocx <- function(type = "topicguide", ...) {
   type <- rlang::arg_match(type, c("topicguide"))
 
   template <- find_resource(paste0(type, "_rdocx"), "template.docx")
-  base <- officedown::rdocx_document(base_format = "bookdown::word_document2",
-                                     reference_docx = template,
-                                     number_sections = FALSE,
-                                     page_size = list(
-                                       width = 8.5, height = 11,
-                                       orient = "portrait"
-                                     ),
-                                     page_margins = list(
-                                       top = 1, right = 1, bottom = 1, left = .5
-                                     ),
-                                     plots = list(
-                                       align = "left", topcaption = TRUE,
-                                       caption = list(
-                                         style = "Image Caption",
-                                         pre = "Figure ",
-                                         sep = ": "
-                                       )
-                                     ),
-                                     tables = list(
-                                       align = "center",
-                                       caption = list(
-                                         style = "Table Caption",
-                                         pre = "Table ",
-                                         sep = ": "
-                                       )
-                                     ),
-                                     ...)
+  base <- officedown::rdocx_document(
+    base_format = "bookdown::word_document2",
+    reference_docx = template,
+    number_sections = FALSE,
+    page_size = list(
+      width = 8.5,
+      height = 11,
+      orient = "portrait"
+    ),
+    page_margins = list(
+      top = 1,
+      right = 1,
+      bottom = 1,
+      left = .5
+    ),
+    plots = list(
+      align = "left",
+      topcaption = TRUE,
+      caption = list(
+        style = "Image Caption",
+        pre = "Figure ",
+        sep = ": "
+      )
+    ),
+    tables = list(
+      align = "center",
+      caption = list(
+        style = "Table Caption",
+        pre = "Table ",
+        sep = ": "
+      )
+    ),
+    ...
+  )
 
   base$knitr$opts_chunk$comment <- "#>"
   base$knitr$opts_chunk$message <- FALSE
@@ -103,7 +109,7 @@ report_rdocx <- function(type = "topicguide", ...) {
 #' @rdname output-formats
 #' @export
 report_pdf <- function(type = "topicguide", ...) {
-  type <- rlang::arg_match(type, c("topicguide", "techreport", "measr"))
+  type <- rlang::arg_match(type, c("topicguide", "techreport"))
 
   template <- find_resource(paste0(type, "_pdf"), "template.tex")
   base <- bookdown::pdf_document2(
@@ -112,14 +118,15 @@ report_pdf <- function(type = "topicguide", ...) {
     citation_package = "biblatex",
     keep_tex = TRUE,
     number_sections = ifelse(type == "techreport", TRUE, FALSE),
-    highlight = NULL, ...
+    highlight = NULL,
+    ...
   )
 
   base$knitr$opts_chunk$comment <- "#>"
   base$knitr$opts_chunk$message <- FALSE
   base$knitr$opts_chunk$warning <- FALSE
   base$knitr$opts_chunk$error <- FALSE
-  base$knitr$opts_chunk$echo <- ifelse(type == "measr", TRUE, FALSE)
+  base$knitr$opts_chunk$echo <- FALSE
   base$knitr$opts_chunk$cache <- FALSE
   base$knitr$opts_chunk$fig.width <- 7
   base$knitr$opts_chunk$fig.asp <- 0.618
@@ -144,26 +151,31 @@ report_gitbook <- function(type = "techreport", ...) {
   type <- rlang::arg_match(type, c("techreport"))
 
   base <-
-    bookdown::gitbook(css = "assets/style.css",
-                      split_by = "chapter+number",
-                      split_bib = FALSE,
-                      pandoc_args = "--lua-filter=assets/footnote.lua",
-                      includes = list(in_header = "assets/style.html"),
-                      config = list(
-                        toc = list(
-                          collapse = "section",
-                          scroll_highlight = TRUE,
-                          before = glue::glue("<li>",
-                                              "<strong>",
-                                              "<a href=\"./\">",
-                                              "Dynamic Learning Maps",
-                                              "</a>",
-                                              "</strong>",
-                                              "</li>")
-                        ),
-                        download = "pdf",
-                        sharing = "no"
-                      ), ...)
+    bookdown::gitbook(
+      css = "assets/style.css",
+      split_by = "chapter+number",
+      split_bib = FALSE,
+      pandoc_args = "--lua-filter=assets/footnote.lua",
+      includes = list(in_header = "assets/style.html"),
+      config = list(
+        toc = list(
+          collapse = "section",
+          scroll_highlight = TRUE,
+          before = glue::glue(
+            "<li>",
+            "<strong>",
+            "<a href=\"./\">",
+            "Dynamic Learning Maps",
+            "</a>",
+            "</strong>",
+            "</li>"
+          )
+        ),
+        download = "pdf",
+        sharing = "no"
+      ),
+      ...
+    )
 
   base$knitr$opts_chunk$comment <- "#>"
   base$knitr$opts_chunk$message <- FALSE

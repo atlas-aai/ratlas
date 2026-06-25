@@ -68,10 +68,8 @@ table.}
 
 \item{...}{\itemize{
 \item For \code{\link[=fmt_kbl]{fmt_kbl()}}, additional parameters passed to \code{\link[kableExtra:kbl]{kableExtra::kbl()}}.
-\itemize{
 \item For \code{\link[=fmt_kbl_header]{fmt_kbl_header()}}, additional arguments passed to
 \code{\link[kableExtra:row_spec]{kableExtra::row_spec()}}.
-}
 }}
 
 \item{kable_input}{Output of \code{knitr::kable()} with \code{format} specified}

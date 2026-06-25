@@ -37,7 +37,7 @@ Imports:
     dplyr (>= 1.0.0),
     extrafont,
     fs,
-    ggplot2 (>= 3.5.2.9001),
+    ggplot2 (>= 4.0.0),
     glue,
     knitr (>= 1.22),
     magrittr (>= 1.5),
@@ -62,12 +62,10 @@ Suggests:
     vdiffr,
     viridis,
     withr
-Remotes:
-    tidyverse/ggplot2
 Config/testthat/edition: 3
 Config/Needs/documentation: openpharma/roxylint
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE, roclets = c("namespace", "rd", "roxylint::roxylint"))
-RoxygenNote: 7.3.2
 Language: en-US
+Config/roxygen2/version: 8.0.0

@@ -6,7 +6,7 @@
 \alias{ratlas-package}
 \title{ratlas: ATLAS Formatting Functions and Templates}
 \description{
-\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+\if{html}{\figure{logo.svg}{options: style='float: right' alt='logo' width='120'}}
 
 Provides templates, formatting tools, and 'ggplot2' themes tailored for the Accessible Teaching, Learning, and Assessment Systems (ATLAS) organization. These templates facilitate the creation of topic guides and technical reports, while the formatting functions enable users to customize numbers and tables to meet specific requirements. Additionally, the themes ensure a uniform visual style across graphics.
 }
@@ -24,6 +24,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item W. Jake Thompson \email{wjakethompson@gmail.com} (\href{https://orcid.org/0000-0001-7339-0300}{ORCID})
   \item Noelle Pablo \email{noellepablo@gmail.com}
   \item Jeffrey Hoover \email{jeffrey.c.hoover@gmail.com} (\href{https://orcid.org/0000-0002-0276-0308}{ORCID})
 }

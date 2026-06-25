@@ -15,16 +15,15 @@ load_packages <- function(x) {
   if (!(x %in% installed.packages())) {
     install.packages(x, repos = "https://cran.rstudio.com/")
   }
-  
+
   suppressPackageStartupMessages(require(x, character.only = TRUE))
 }
 vapply(needed_packages, load_packages, logical(1))
 
 options(knitr.kable.NA = "")
-set_theme_ratlas(font = "Archivo Narrow",
-                 plot_margin = margin(0, 10, 10, 10))
+set_theme(theme_atlas(plot.margin = margin(3, 10, 0, 10)))
 
-require_font("Archivo Narrow")
+require_font("Roboto Condensed")
 ```
 
 
@@ -35,7 +34,9 @@ require_font("Archivo Narrow")
 # References
 
 ```{r write-packages, include = FALSE}
-if (!file.exists("bib/packages.bib")) file.create("bib/packages.bib")
+if (!file.exists("bib/packages.bib")) {
+  file.create("bib/packages.bib")
+}
 suppressWarnings(
   knitr::write_bib(c(.packages()), "bib/packages.bib")
 )

@@ -27,10 +27,19 @@
 #' ggsave2(p, "/mtcars.pdf", path = tempdir())
 #' ggsave2(p, "/mtcars.png", path = tempdir())
 #' }
-ggsave2 <- function(plot = ggplot2::last_plot(), filename, device = NULL,
-                    path = NULL, width = 7, height = NULL, units = "in",
-                    dir = c("h", "v"), dpi = "retina", embed_fonts = FALSE,
-                    ...) {
+ggsave2 <- function(
+  plot = ggplot2::last_plot(),
+  filename,
+  device = NULL,
+  path = NULL,
+  width = 7,
+  height = NULL,
+  units = "in",
+  dir = c("h", "v"),
+  dpi = "retina",
+  embed_fonts = FALSE,
+  ...
+) {
   dir <- match.arg(dir)
 
   # Calculate aspect ratio if not fixed
@@ -40,13 +49,23 @@ ggsave2 <- function(plot = ggplot2::last_plot(), filename, device = NULL,
   }
 
   # Save plot
-  ggplot2::ggsave(filename = filename, plot = plot, device = device,
-                  path = path, width = width, height = height, units = units,
-                  dpi = dpi, ...)
+  ggplot2::ggsave(
+    filename = filename,
+    plot = plot,
+    device = device,
+    path = path,
+    width = width,
+    height = height,
+    units = units,
+    dpi = dpi,
+    ...
+  )
 
   # Embed fonts if pdf
-  if ((grepl("\\.pdf", filename) || (!is.null(device) && device == "pdf")) &
-      embed_fonts) {
+  if (
+    (grepl("\\.pdf", filename) || (!is.null(device) && device == "pdf")) &
+      embed_fonts
+  ) {
     if (!is.null(path)) {
       filename <- file.path(path, filename)
     }

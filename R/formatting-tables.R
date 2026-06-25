@@ -40,26 +40,53 @@ auto_set_format <- function() {
 #'         col.names = c("Column 1", "Column 2", "Column 3"),
 #'         caption = "Example Table Title") |>
 #'   fmt_kbl_header()
-fmt_kbl <- function(x, booktabs = TRUE, linesep = "", centering = FALSE,
-                    escape = FALSE, position = "left",
-                    latex_options = "HOLD_position", ...) {
+fmt_kbl <- function(
+  x,
+  booktabs = TRUE,
+  linesep = "",
+  centering = FALSE,
+  escape = FALSE,
+  position = "left",
+  latex_options = "HOLD_position",
+  ...
+) {
   x |>
-    dplyr::mutate(dplyr::across(dplyr::everything(),
-                                \(x) stringr::str_replace_all(x, "<", "<")),
-                  dplyr::across(dplyr::everything(),
-                                \(x) stringr::str_replace_all(x, ">", ">"))) |>
-    kableExtra::kbl(booktabs = booktabs, linesep = linesep,
-                    centering = centering, escape = escape, ...) |>
-    kableExtra::kable_styling(position = position,
-                              latex_options = latex_options) |>
+    dplyr::mutate(
+      dplyr::across(dplyr::everything(), \(x) {
+        stringr::str_replace_all(x, "<", "<")
+      }),
+      dplyr::across(dplyr::everything(), \(x) {
+        stringr::str_replace_all(x, ">", ">")
+      })
+    ) |>
+    kableExtra::kbl(
+      booktabs = booktabs,
+      linesep = linesep,
+      centering = centering,
+      escape = escape,
+      ...
+    ) |>
+    kableExtra::kable_styling(
+      position = position,
+      latex_options = latex_options
+    ) |>
     kableExtra::kable_classic(position = position)
 }
 
 #' @rdname kbl-format
 #' @export
-fmt_kbl_header <- function(kable_input, row = 0, align = "c",
-                           extra_css = "border-bottom: 0.16em solid #111111",
-                           ...) {
-  kableExtra::row_spec(kable_input = kable_input, row = row, align = align,
-                       extra_css = extra_css, ...)
+fmt_kbl_header <- function(
+  kable_input,
+  row = 0,
+  align = "c",
+  extra_css = "border-bottom: 0.16em solid #111111",
+  ...
+) {
+  kableExtra::row_spec(
+    kable_input = kable_input,
+    row = row,
+    align = align,
+    extra_css = extra_css,
+    ...
+  )
 }

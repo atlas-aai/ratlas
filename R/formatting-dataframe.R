@@ -21,8 +21,14 @@
 #' append_summary(df, where(is.numeric), .f = sum, args = list(na.rm = TRUE))
 #'
 #' append_summary(df, bill_len, flipper_len, row = FALSE, .f = mean)
-append_summary <- function(df, ..., row = TRUE, col = TRUE, .f = sum,
-                           args = NULL) {
+append_summary <- function(
+  df,
+  ...,
+  row = TRUE,
+  col = TRUE,
+  .f = sum,
+  args = NULL
+) {
   func_name <- as.character(substitute(.f))
   new_df <- df
 
@@ -30,8 +36,7 @@ append_summary <- function(df, ..., row = TRUE, col = TRUE, .f = sum,
     col_summary <- new_df |>
       dplyr::select(...) |>
       dplyr::summarize(
-        dplyr::across(dplyr::everything(),
-                      \(x) do.call(.f, c(list(x), args)))
+        dplyr::across(dplyr::everything(), \(x) do.call(.f, c(list(x), args)))
       )
 
     new_df <- dplyr::bind_rows(new_df, col_summary)
@@ -42,8 +47,10 @@ append_summary <- function(df, ..., row = TRUE, col = TRUE, .f = sum,
       dplyr::select(...) |>
       dplyr::rowwise() |>
       dplyr::mutate(
-        # !!func_name := .f(dplyr::c_across(dplyr::everything()))
-        !!func_name := do.call(.f, c(list(dplyr::c_across(dplyr::everything())), args))
+        !!func_name := do.call(
+          .f,
+          c(list(dplyr::c_across(dplyr::everything())), args)
+        )
       ) |>
       dplyr::ungroup()
 
@@ -86,34 +93,58 @@ append_summary <- function(df, ..., row = TRUE, col = TRUE, .f = sum,
 #' pcts <- tibble::tibble(n = 0:5, p = 0.5 * (0:5))
 #' fmt_table(pcts)
 #' @export
-fmt_table <- function(df, dec_dig = 1, prop_dig = 3, corr_dig = 3,
-                      output = NULL, fmt_small = TRUE, max_value = NULL,
-                      keep_zero = FALSE) {
+fmt_table <- function(
+  df,
+  dec_dig = 1,
+  prop_dig = 3,
+  corr_dig = 3,
+  output = NULL,
+  fmt_small = TRUE,
+  max_value = NULL,
+  keep_zero = FALSE
+) {
   check_number_whole(dec_dig, min = 1)
   check_number_whole(prop_dig, min = 1)
   check_number_whole(corr_dig, min = 1)
 
   df |>
-    dplyr::mutate(dplyr::across(where(is.integer),
-                                function(x) pad_counts(x))) |>
+    dplyr::mutate(dplyr::across(where(is.integer), function(x) {
+      pad_counts(x)
+    })) |>
     dplyr::mutate(
       dplyr::across(
         where(\(x) is.numeric(x) && all(dplyr::between(x, 0, 1), na.rm = TRUE)),
-        \(x) pad_prop(x, digits = prop_dig, fmt_small = fmt_small,
-                      keep_zero = keep_zero, output = output)
+        \(x) {
+          pad_prop(
+            x,
+            digits = prop_dig,
+            fmt_small = fmt_small,
+            keep_zero = keep_zero,
+            output = output
+          )
+        }
       )
     ) |>
     dplyr::mutate(
       dplyr::across(
-        where(\(x) is.numeric(x) && all(dplyr::between(x, -1, 1), na.rm = TRUE)),
+        where(\(x) {
+          is.numeric(x) && all(dplyr::between(x, -1, 1), na.rm = TRUE)
+        }),
         \(x) pad_corr(x, digits = corr_dig, output = output)
       )
     ) |>
     dplyr::mutate(
       dplyr::across(
         where(is.numeric),
-        \(x) pad_decimal(x, digits = dec_dig, fmt_small = fmt_small,
-                         max_value = max_value, keep_zero = keep_zero)
+        \(x) {
+          pad_decimal(
+            x,
+            digits = dec_dig,
+            fmt_small = fmt_small,
+            max_value = max_value,
+            keep_zero = keep_zero
+          )
+        }
       )
     )
 }
@@ -171,29 +202,49 @@ NULL
 #' @rdname padding
 pad_counts <- function(x) {
   x <- round(x, digits = 0)
-  max_dig <- max(nchar(stringr::str_replace_all(abs(x), "\\.", "")),
-                 na.rm = TRUE)
+  max_dig <- max(
+    nchar(stringr::str_replace_all(abs(x), "\\.", "")),
+    na.rm = TRUE
+  )
 
   new_x <- format(x, big.mark = ",", nsmall = 0)
 
   if (max_dig == 7) {
     new_x <- new_x |>
-      stringr::str_replace_all("       ", paste(rep("\\\\ ", 12), collapse = "")) |>
-      stringr::str_replace_all("      ", paste(rep("\\\\ ", 11), collapse = "")) |>
-      stringr::str_replace_all("     ", paste(rep("\\\\ ", 9), collapse = "")) |>
+      stringr::str_replace_all(
+        "       ",
+        paste(rep("\\\\ ", 12), collapse = "")
+      ) |>
+      stringr::str_replace_all(
+        "      ",
+        paste(rep("\\\\ ", 11), collapse = "")
+      ) |>
+      stringr::str_replace_all(
+        "     ",
+        paste(rep("\\\\ ", 9), collapse = "")
+      ) |>
       stringr::str_replace_all("    ", paste(rep("\\\\ ", 7), collapse = "")) |>
       stringr::str_replace_all("  ", paste(rep("\\\\ ", 4), collapse = "")) |>
       stringr::str_replace_all("^ ", paste(rep("\\\\ ", 2), collapse = ""))
   } else if (max_dig == 6) {
     new_x <- new_x |>
-      stringr::str_replace_all("      ", paste(rep("\\\\ ", 11), collapse  = "")) |>
-      stringr::str_replace_all("     ", paste(rep("\\\\ ", 8), collapse = "")) |>
+      stringr::str_replace_all(
+        "      ",
+        paste(rep("\\\\ ", 11), collapse = "")
+      ) |>
+      stringr::str_replace_all(
+        "     ",
+        paste(rep("\\\\ ", 8), collapse = "")
+      ) |>
       stringr::str_replace_all("    ", paste(rep("\\\\ ", 7), collapse = "")) |>
       stringr::str_replace_all("  ", paste(rep("\\\\ ", 4), collapse = "")) |>
       stringr::str_replace_all("^ ", paste(rep("\\\\ ", 2), collapse = ""))
   } else if (max_dig == 5) {
     new_x <- new_x |>
-      stringr::str_replace_all("     ", paste(rep("\\\\ ", 9), collapse = "")) |>
+      stringr::str_replace_all(
+        "     ",
+        paste(rep("\\\\ ", 9), collapse = "")
+      ) |>
       stringr::str_replace_all("    ", paste(rep("\\\\ ", 6), collapse = "")) |>
       stringr::str_replace_all("   ", paste(rep("\\\\ ", 5), collapse = "")) |>
       stringr::str_replace_all("  ", paste0(rep("\\\\ ", 2), collapse = "")) |>
@@ -221,27 +272,40 @@ pad_counts <- function(x) {
 
 #' @export
 #' @rdname padding
-pad_prop <- function(x, digits, fmt_small = TRUE, keep_zero = FALSE,
-                     output = NULL) {
+pad_prop <- function(
+  x,
+  digits,
+  fmt_small = TRUE,
+  keep_zero = FALSE,
+  output = NULL
+) {
   check_number_whole(digits, min = 1)
   output <- check_output(output)
-  new_x <- fmt_prop(x, digits = digits, fmt_small = fmt_small,
-                    keep_zero = keep_zero)
+  new_x <- fmt_prop(
+    x,
+    digits = digits,
+    fmt_small = fmt_small,
+    keep_zero = keep_zero
+  )
   new_x[is.na(new_x)] <- "NA"
 
-  if (any(stringr::str_detect(new_x, "^<|^>")) &
-      !all(stringr::str_detect(new_x, "^<|^>"))) {
+  if (
+    any(stringr::str_detect(new_x, "^<|^>")) &
+      !all(stringr::str_detect(new_x, "^<|^>"))
+  ) {
     pad <- ifelse(output == "latex", 4, 3)
-    new_x <- dplyr::case_when(stringr::str_detect(new_x, "^<|^>") ~
-                                paste0(new_x, paste(rep("\\ ", pad),
-                                                    collapse = "")),
-                              TRUE ~ new_x)
+    new_x <- dplyr::case_when(
+      stringr::str_detect(new_x, "^<|^>") ~
+        paste0(new_x, paste(rep("\\ ", pad), collapse = "")),
+      TRUE ~ new_x
+    )
   }
 
   if (any(x == 1, na.rm = TRUE)) {
-    new_x <- dplyr::case_when(stringr::str_detect(new_x, "^1\\.") ~ new_x,
-                              TRUE ~ paste0(paste(rep("\\ ", 2), collapse = ""),
-                                            new_x))
+    new_x <- dplyr::case_when(
+      stringr::str_detect(new_x, "^1\\.") ~ new_x,
+      TRUE ~ paste0(paste(rep("\\ ", 2), collapse = ""), new_x)
+    )
   }
 
   new_x[is.na(x)] <- NA_character_
@@ -259,18 +323,22 @@ pad_corr <- function(x, digits, output = NULL) {
   if (any(x < 0, na.rm = TRUE)) {
     search <- ifelse(output == "latex", "^-", "&minus;")
     pad <- ifelse(output == "latex", 4, 2)
-    new_x <- dplyr::case_when(stringr::str_detect(new_x, search) ~
-                                paste0(new_x,
-                                       paste(rep("\\ ", pad), collapse = "")),
-                              TRUE ~ new_x)
+    new_x <- dplyr::case_when(
+      stringr::str_detect(new_x, search) ~
+        paste0(new_x, paste(rep("\\ ", pad), collapse = "")),
+      TRUE ~ new_x
+    )
   }
 
-  bound <- stringr::str_detect(new_x, glue::glue(".+\\.{paste(rep(0, digits),
-                                                 collapse = '')}"))
+  bound <- stringr::str_detect(
+    new_x,
+    glue::glue(".+\\.{paste(rep(0, digits), collapse = '')}")
+  )
   if (any(bound, na.rm = TRUE)) {
-    new_x <- dplyr::case_when(bound ~ new_x,
-                              TRUE ~ paste0(paste(rep("\\ ", 2), collapse = ""),
-                                            new_x))
+    new_x <- dplyr::case_when(
+      bound ~ new_x,
+      TRUE ~ paste0(paste(rep("\\ ", 2), collapse = ""), new_x)
+    )
   }
 
   new_x[is.na(x)] <- NA_character_
@@ -279,8 +347,14 @@ pad_corr <- function(x, digits, output = NULL) {
 
 #' @export
 #' @rdname padding
-pad_decimal <- function(x, digits, fmt_small = FALSE, max_value = NULL,
-                        keep_zero = FALSE, output = NULL) {
+pad_decimal <- function(
+  x,
+  digits,
+  fmt_small = FALSE,
+  max_value = NULL,
+  keep_zero = FALSE,
+  output = NULL
+) {
   check_number_whole(digits, min = 1)
   output <- check_output(output)
 
@@ -288,15 +362,20 @@ pad_decimal <- function(x, digits, fmt_small = FALSE, max_value = NULL,
     abs() |>
     fmt_digits(digits)
   left_spaces <- left_spaces |>
-    stringr::str_pad(width = max(nchar(left_spaces), na.rm = TRUE),
-                     side = "left") |>
+    stringr::str_pad(
+      width = max(nchar(left_spaces), na.rm = TRUE),
+      side = "left"
+    ) |>
     stringr::str_count(" ") |>
     tidyr::replace_na(0)
 
   new_x <- x |>
-    fmt_digits(digits = digits, fmt_small = fmt_small, max_value = max_value,
-               keep_zero = keep_zero) |>
-    fmt_minus(output = output)
+    fmt_digits(
+      digits = digits,
+      fmt_small = fmt_small,
+      max_value = max_value,
+      keep_zero = keep_zero
+    )
 
   new_x <- purrr::map2_chr(new_x, left_spaces, function(num, space) {
     paste0(paste0(rep(" ", space), collapse = ""), num, collapse = "")
@@ -309,28 +388,35 @@ pad_decimal <- function(x, digits, fmt_small = FALSE, max_value = NULL,
   if (any(x < 0, na.rm = TRUE)) {
     search <- ifelse(output == "latex", "-", "&minus;")
     pad <- ifelse(output == "latex", 2, 2)
-    new_x <- dplyr::case_when(stringr::str_detect(new_x, search) ~
-                                paste0(new_x,
-                                       paste(rep("\\ ", pad), collapse = "")),
-                              TRUE ~ new_x)
+    new_x <- dplyr::case_when(
+      stringr::str_detect(new_x, search) ~
+        paste0(new_x, paste(rep("\\ ", pad), collapse = "")),
+      TRUE ~ new_x
+    )
   }
 
-  if (any(stringr::str_detect(new_x, "<")) &
-      !all(stringr::str_detect(new_x, "<"))) {
+  if (
+    any(stringr::str_detect(new_x, "<")) &
+      !all(stringr::str_detect(new_x, "<"))
+  ) {
     pad <- ifelse(output == "latex", 3, 2)
-    new_x <- dplyr::case_when(stringr::str_detect(new_x, "<|>") ~
-                                paste0(new_x, paste(rep("\\ ", pad),
-                                                    collapse = "")),
-                              TRUE ~ new_x)
+    new_x <- dplyr::case_when(
+      stringr::str_detect(new_x, "<|>") ~
+        paste0(new_x, paste(rep("\\ ", pad), collapse = "")),
+      TRUE ~ new_x
+    )
   }
 
-  if (any(stringr::str_detect(new_x, ">")) &
-      !all(stringr::str_detect(new_x, ">"))) {
+  if (
+    any(stringr::str_detect(new_x, ">")) &
+      !all(stringr::str_detect(new_x, ">"))
+  ) {
     pad <- ifelse(output == "latex", 1, 2)
-    new_x <- dplyr::case_when(stringr::str_detect(new_x, "<|>") ~
-                                paste0(new_x, paste(rep("\\ ", pad),
-                                                    collapse = "")),
-                              TRUE ~ new_x)
+    new_x <- dplyr::case_when(
+      stringr::str_detect(new_x, "<|>") ~
+        paste0(new_x, paste(rep("\\ ", pad), collapse = "")),
+      TRUE ~ new_x
+    )
   }
 
   new_x[is.na(x)] <- NA_character_
@@ -362,19 +448,20 @@ combine_n_pct <- function(df, n, pct, name, remove = TRUE, na_replace = NULL) {
   pct <- rlang::enquo(pct)
 
   df |>
-    dplyr::mutate(col1 = !!n,
-                  col2 = !!pct,
-                  col2 = stringr::str_replace_all(.data$col2,
-                                                  "([0-9|\\.]+)",
-                                                  "(\\1)"),
-                  col2 = stringr::str_replace_all(.data$col2,
-                                                  stringr::fixed("<("), "(<"),
-                  col2 = stringr::str_replace_all(.data$col2,
-                                                  stringr::fixed(">("), "(>"),
-                  combined_col = paste0(.data$col1, "\\ ", .data$col2)) |>
+    dplyr::mutate(
+      col1 = !!n,
+      col2 = !!pct,
+      col2 = stringr::str_replace_all(.data$col2, "([0-9|\\.]+)", "(\\1)"),
+      col2 = stringr::str_replace_all(.data$col2, stringr::fixed("<("), "(<"),
+      col2 = stringr::str_replace_all(.data$col2, stringr::fixed(">("), "(>"),
+      combined_col = paste0(.data$col1, "\\ ", .data$col2)
+    ) |>
     only_if(!is.null(na_replace))(dplyr::mutate)(
-      combined_col = dplyr::case_when(is.na(col1) ~ na_replace,
-                                      TRUE ~ .data$combined_col)) |>
+      combined_col = dplyr::case_when(
+        is.na(col1) ~ na_replace,
+        TRUE ~ .data$combined_col
+      )
+    ) |>
     dplyr::mutate(!!name := .data$combined_col) |>
     dplyr::select(-"col1", -"col2", -"combined_col") |>
     only_if(remove)(dplyr::select)(-!!n, -!!pct)

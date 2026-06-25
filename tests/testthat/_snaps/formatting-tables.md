@@ -1,4 +1,4 @@
-# multiplication works
+# table formatting works
 
     Code
       cat(html_tab)

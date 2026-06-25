@@ -6,4 +6,3 @@ test_that("only_if works", {
   expect_equal(d |> only_if(TRUE)(dplyr::filter)(mpg > 25), d_true)
   expect_equal(d |> only_if(FALSE)(dplyr::filter)(mpg > 25), d)
 })
-

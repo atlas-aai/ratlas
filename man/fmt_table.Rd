@@ -55,8 +55,7 @@ pcts <- tibble::tibble(n = 0:5, p = 0.5 * (0:5))
 fmt_table(pcts)
 }
 \seealso{
-Other formatters: 
-\code{\link{formatting}},
+Other formatters:
 \code{\link{padding}}
 }
 \concept{formatters}

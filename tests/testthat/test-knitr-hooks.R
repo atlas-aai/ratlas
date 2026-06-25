@@ -19,9 +19,18 @@ test_that("apa7 fig hook works", {
   opt$fig.cur <- 3
   chunk3 <- hook_tex_plot_rat(x[3], opt)
 
-  expect_equal(chunk1, "\\begin{figure}[H]\n\\caption[A Short Caption]{A Caption}\\label{}\n\n\n{\\centering \\subfloat[\\label{1}]{\\includegraphics[width=100%,]{figures/fig-1} }")
-  expect_equal(chunk2, "\\subfloat[\\label{2}]{\\includegraphics[width=100%,]{figures/fig-2} }\\newline")
-  expect_equal(chunk3, "\\subfloat[\\label{3}]{\\includegraphics[width=100%,]{figures/fig-3} }\n\n}\n\n\\raggedright A note\n\\end{figure}\n")
+  expect_equal(
+    chunk1,
+    "\\begin{figure}[H]\n\\caption[A Short Caption]{A Caption}\\label{}\n\n\n{\\centering \\subfloat[\\label{1}]{\\includegraphics[width=100%,]{figures/fig-1} }"
+  )
+  expect_equal(
+    chunk2,
+    "\\subfloat[\\label{2}]{\\includegraphics[width=100%,]{figures/fig-2} }\\newline"
+  )
+  expect_equal(
+    chunk3,
+    "\\subfloat[\\label{3}]{\\includegraphics[width=100%,]{figures/fig-3} }\n\n}\n\n\\raggedright A note\n\\end{figure}\n"
+  )
 })
 
 test_that("null check works", {

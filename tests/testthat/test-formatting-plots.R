@@ -1,6 +1,8 @@
 test_that("x/y scales work", {
-  dat <- data.frame(count = seq(0, 3000, length.out = 10),
-                    percent = seq(0, 1, length.out = 10))
+  dat <- data.frame(
+    count = seq(0, 3000, length.out = 10),
+    percent = seq(0, 1, length.out = 10)
+  )
 
   p1 <- ggplot(dat, aes(x = count, y = percent)) +
     geom_point() +

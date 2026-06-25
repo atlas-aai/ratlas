@@ -17,12 +17,19 @@ inc <- function(input, sep = "\n\n  ") {
 
 # Helper functions from bookdown and rticles -----------------------------------
 find_file <- function(template, file) {
-  template <- system.file("rmarkdown", "templates", template, file,
-                          package = "ratlas")
+  template <- system.file(
+    "rmarkdown",
+    "templates",
+    template,
+    file,
+    package = "ratlas"
+  )
   if (template == "") {
     cli::cli_abort(
-      cli::format_message(c("Couldn't find template file ",
-                            "{.path {file.path(template, file)}}"))
+      cli::format_message(c(
+        "Couldn't find template file ",
+        "{.path {file.path(template, file)}}"
+      ))
     )
   }
 
@@ -53,9 +60,11 @@ is_tikz_dev <- function(options) {
 
 create_label <- function(..., latex = FALSE) {
   if (isTRUE(knitr::opts_knit$get("bookdown.internal.label"))) {
-    lab1 <- "(\\#"; lab2 <- ")"
+    lab1 <- "(\\#"
+    lab2 <- ")"
   } else if (latex) {
-    lab1 <- "\\label{"; lab2 <- "}"
+    lab1 <- "\\label{"
+    lab2 <- "}"
   } else {
     return("")
   }
@@ -83,25 +92,48 @@ pandoc_from <- function() {
 }
 
 img_cap <- function(options, alt = FALSE) {
-  cap <- options$fig.cap %n% {
-    if (is.null(pandoc_to())) sprintf("plot of chunk %s", options$label) else ""
+  cap <- options$fig.cap %n%
+    {
+      if (is.null(pandoc_to())) {
+        sprintf("plot of chunk %s", options$label)
+      } else {
+        ""
+      }
+    }
+  if (length(cap) == 0) {
+    cap <- ""
   }
-  if (length(cap) == 0) cap <- ""
-  if (is_blank(cap)) return(cap)
-  if (alt & is.null(options$fig.alt)) return(escape_html(options$fig.cap))
-  if (alt) return(escape_html(options$fig.alt))
-  paste0("<strong>", create_label(
-    options$fig.lp, options$label,
-    if (options$fig.num > 1L && options$fig.show == "asis") c("-",
-                                                              options$fig.cur)
-  ), "</strong><em> ", cap, "</em>")
+  if (is_blank(cap)) {
+    return(cap)
+  }
+  if (alt & is.null(options$fig.alt)) {
+    return(escape_html(options$fig.cap))
+  }
+  if (alt) {
+    return(escape_html(options$fig.alt))
+  }
+  paste0(
+    "<strong>",
+    create_label(
+      options$fig.lp,
+      options$label,
+      if (options$fig.num > 1L && options$fig.show == "asis") {
+        c("-", options$fig.cur)
+      }
+    ),
+    "</strong><em> ",
+    cap,
+    "</em>"
+  )
 }
 upload_url <- function(x) {
   knitr::opts_knit$get("upload.fun")(x)
 }
 img_attr <- function(w, h, extra) {
-  paste(c(sprintf('width="%s"', w), sprintf('height="%s"', h), extra),
-        collapse = " ")
+  paste(
+    c(sprintf('width="%s"', w), sprintf('height="%s"', h), extra),
+    collapse = " "
+  )
 }
 img_tag <- function(src, w, h, caption, alt_text, extra) {
   caption <- if (length(caption) == 1 && caption != "") {
@@ -110,10 +142,19 @@ img_tag <- function(src, w, h, caption, alt_text, extra) {
   tag <- if (grepl("[.]pdf$", src, ignore.case = TRUE)) {
     extra <- c(extra, 'type="application/pdf"')
     "embed"
-  } else "img"
+  } else {
+    "img"
+  }
   paste0(
-    "<", tag, ' src="', knitr::opts_knit$get("base.url"), src, '" ', caption,
-    img_attr(w, h, extra), " />"
+    "<",
+    tag,
+    ' src="',
+    knitr::opts_knit$get("base.url"),
+    src,
+    '" ',
+    caption,
+    img_attr(w, h, extra),
+    " />"
   )
 }
 
@@ -121,8 +162,13 @@ css_text_align <- function(align) {
   if (align == "default") "" else sprintf(' style="text-align: %s"', align)
 }
 css_align <- function(align) {
-  sprintf("display: block; margin: %s;", switch(
-    align, left = "auto auto auto 0", center = "auto",
-    right = "auto 0 auto auto"
-  ))
+  sprintf(
+    "display: block; margin: %s;",
+    switch(
+      align,
+      left = "auto auto auto 0",
+      center = "auto",
+      right = "auto 0 auto auto"
+    )
+  )
 }

@@ -1,124 +1,171 @@
 #' ATLAS ggplot2 theme for consistent graphics
 #'
-#' @param base_size Base font size, given in pts.
-#' @param base_family Base font family.
-#' @param title_size Title font size, given in pts.
-#' @param subtitle_size Subtitle font size, given in pts.
-#' @param axis_text_size Axis labels font size, given in pts.
-#' @param plot_margin Plot margin (specify with [ggplot2::margin()]).
-#' @param ... Additional arguments passed to [ggplot2::theme_minimal()].
+#' Based on [ggplot2::theme_minimal()].
 #'
-#' @return A theme for use in plots created with [ggplot2::ggplot()].
+#' @inheritParams ggplot2::theme_minimal
+#' @param continuous A character vector of valid colors that will be
+#'   interpolated into a continuous color scale.
+#' @param discrete A character vector of colors to use for discrete color
+#'   scales.
+#' @param transparent Logical indicator for whether the background of the plot
+#'   should be transparent.
+#' @param ... Additional parameters passed to [ggplot2::theme()].
+#'
+#' @return A `theme` object that can be added to a [ggplot2::ggplot()].
 #' @export
-#' @examples
-#' ggplot(mtcars, aes(mpg, wt)) +
-#'   geom_point() +
-#'   labs(x = "Fuel efficiency (mpg)", y = "Weight (tons)",
-#'        title = "Seminal ggplot2 scatterplot example",
-#'        subtitle = "A plot that is only useful for demonstration purposes",
-#'        caption = "Brought to you by the letter 'g'") +
-#'   theme_atlas()
 #'
-#' dplyr::count(mtcars, cyl) |>
-#'   dplyr::mutate(cyl = factor(cyl)) |>
-#'   ggplot(aes(cyl, n)) +
-#'   geom_col() +
-#'   geom_text(aes(label = n), nudge_y = 1) +
-#'   labs(x = "Cylinders", y = "Cars",
-#'        title =  "**Seminal *ggplot2* bar chart example**",
-#'        subtitle = "A plot that is only useful for demonstration purposes",
-#'        caption = "Brought to you by the letter 'g'") +
-#'   theme_atlas(base_family = "sans") +
-#'   theme(axis.text.y = element_blank())
-theme_atlas <- function(base_size = 11.5, base_family = "Archivo Narrow",
-                        title_size = 18, subtitle_size = 13,
-                        axis_text_size = 10,
-                        plot_margin = margin(3, 10, 0, 10), ...) {
-  ggplot2::theme_minimal(
+#' @examples
+#' library(ggplot2)
+#'
+#' ggplot(penguins, aes(x = bill_len, y = flipper_len)) +
+#'   geom_point(aes(color = species), na.rm = TRUE) +
+#'   labs(
+#'     x = "Bill length (mm)",
+#'     y = "Flipper length (mm)",
+#'     title = "Seminal ggplot2 scatterplot example",
+#'     subtitle = "A plot that is only useful for demonstration purposes",
+#'     caption = "Brought to you by the letter *p*",
+#'     color = "Species"
+#'   ) +
+#'   theme_atlas(base_family = "sans")
+theme_atlas <- function(
+  base_size = 11.5,
+  base_family = "Roboto Condensed",
+  header_family = NULL,
+  base_line_size = base_size / 22,
+  base_rect_size = base_size / 22,
+  ink = "black",
+  paper = "white",
+  accent = "#E69F00",
+  continuous = ramp_dlm(c(0.1, 1)),
+  discrete = palette_okabeito,
+  transparent = FALSE,
+  ...
+) {
+  atlas_theme <- ggplot2::theme_minimal(
     base_size = base_size,
     base_family = base_family,
-    ...
-  ) %+replace%
-  ggplot2::theme(
-    plot.margin = plot_margin,
-    plot.title = ggtext::element_markdown(size = title_size, hjust = 0),
-    plot.subtitle = ggtext::element_markdown(
-      size = subtitle_size, hjust = 0,
-      padding = unit(c(5, 0, 0, 0), "pt")
-    ),
-    strip.text = ggtext::element_markdown(),
-    axis.title.x = ggtext::element_markdown(
-      padding = unit(c(5, 0, 0, 0), "pt")
-    ),
-    axis.title.y = ggtext::element_markdown(
-      angle = 90,
-      padding = unit(c(0, 0, 5, 0), "pt")
-    ),
-    axis.text = ggtext::element_markdown(size = axis_text_size,
-                                         color = "black"),
-    legend.title = ggtext::element_markdown(),
-    legend.background = ggplot2::element_blank(),
-    legend.key = ggplot2::element_blank(),
-    legend.position = "bottom",
-    complete = TRUE
-  )
-}
-
-#' Set default ggplot2 theme
-#'
-#' Sets the default color schemes, fonts, and theme for ggplot2 plots. The
-#' default color scheme for continuous variables is the
-#' [viridis](https://CRAN.R-project.org/package=viridis)
-#' color palette, and the default color scheme for discrete variables is the
-#' [Okabe Ito](https://jfly.uni-koeln.de/color/) palette.
-#'
-#' @param font The base font family to be used in plots.
-#' @param discrete Color palette for discrete colors. One of "okabeito"
-#'   (default), "atlas", or "ggplot2".
-#' @param continuous Color palette for continuous scales. One of "magma",
-#'   "inferno", "plasma", "viridis" (default), or "cividis", or "ggplot2".
-#' @param ... Additional arguments to passed to [theme_atlas()].
-#'
-#' @return None. Called for side effects.
-#' @export
-#'
-#' @examples
-#' p1 <- ggplot(penguins, aes(x = bill_len, y = flipper_len)) +
-#'   geom_point(aes(color = species), na.rm = TRUE)
-#' p1
-#'
-#' set_theme_ratlas(font = "mono")
-#' p1
-#'
-#' reset_theme_settings()
-#' p1
-set_theme_ratlas <- function(font = "Archivo Narrow", discrete = "okabeito",
-                             continuous = "mako", ...) {
-  discrete <- rlang::arg_match(discrete,
-                               values = c("okabeito", "ggplot2"))
-  disc_option <- switch(discrete,
-                        okabeito = palette_okabeito,
-                        ggplot2 = NULL)
-
-  continuous <- rlang::arg_match(
-    continuous,
-    values = c(LETTERS[1:8], "magma", "inferno", "plasma", "viridis", "cividis",
-               "rocket", "mako", "turbo", "ggplot2")
-  )
-  cont_option <- if (continuous == "ggplot2") {
-    NULL
-  } else {
-    scales::pal_viridis(option = continuous)
-  }
-
-  thm <- theme_atlas(base_family = font, ...) +
+    header_family = header_family,
+    base_line_size = base_line_size,
+    base_rect_size = base_rect_size,
+    ink = ink,
+    paper = paper,
+    accent = accent
+  ) +
+    ggplot2::theme_sub_legend(
+      background = ggplot2::element_blank(),
+      key = element_blank(),
+      position = "bottom"
+    ) +
+    ggplot2::theme_sub_axis_bottom(
+      title = ggtext::element_markdown(
+        family = base_family,
+        color = "black",
+        size = rel(.9),
+        hjust = 0.5
+      ),
+      text = ggtext::element_markdown(
+        family = base_family,
+        color = "black",
+        size = base_size
+      )
+    ) +
+    ggplot2::theme_sub_axis_top(
+      title = ggtext::element_markdown(
+        family = base_family,
+        color = "black",
+        size = rel(.9),
+        hjust = 0.5
+      ),
+      text = ggtext::element_markdown(
+        family = base_family,
+        color = "black",
+        size = base_size
+      )
+    ) +
+    ggplot2::theme_sub_axis_left(
+      title = ggtext::element_markdown(
+        family = base_family,
+        color = "black",
+        size = rel(.9),
+        hjust = 0.5
+      ),
+      text = ggtext::element_markdown(
+        family = base_family,
+        color = "black",
+        size = base_size
+      )
+    ) +
+    ggplot2::theme_sub_axis_right(
+      title = ggtext::element_markdown(
+        family = base_family,
+        color = "black",
+        size = rel(.9),
+        hjust = 0.5
+      ),
+      text = ggtext::element_markdown(
+        family = base_family,
+        color = "black",
+        size = base_size
+      )
+    ) +
+    ggplot2::theme_sub_strip(
+      text = ggtext::element_markdown(
+        family = base_family,
+        color = "black",
+        size = base_size
+      )
+    ) +
+    ggplot2::theme_sub_panel(
+      spacing = unit(1, "lines")
+    ) +
+    ggplot2::theme_sub_plot(
+      title = ggtext::element_markdown(
+        family = base_family,
+        color = "black",
+        size = rel(1.5)
+      ),
+      title.position = "plot",
+      subtitle = ggtext::element_markdown(
+        family = base_family,
+        color = "black",
+        size = rel(1.2)
+      ),
+      caption = ggtext::element_markdown(
+        family = base_family,
+        color = "black",
+        size = rel(.8)
+      )
+    ) +
     ggplot2::theme(
-      geom = ggplot2::element_geom(family = font),
-      palette.colour.continuous = cont_option,
-      palette.fill.continuous = cont_option,
-      palette.colour.discrete = disc_option,
-      palette.fill.discrete = disc_option
+      geom = ggplot2::element_geom(
+        ink = "black"
+      ),
+      palette.color.continuous = continuous,
+      palette.fill.continuous = continuous,
+      palette.color.discrete = discrete,
+      palette.fill.discrete = discrete,
+      ...
     )
 
-  ggplot2::set_theme(thm)
+  if (transparent) {
+    atlas_theme <- atlas_theme +
+      ggplot2::theme(
+        plot.background = ggplot2::element_rect(
+          fill = "transparent",
+          color = "transparent"
+        ),
+        panel.background = ggplot2::element_rect(
+          fill = "transparent",
+          color = "transparent"
+        ),
+        legend.background = ggplot2::element_rect(
+          fill = "transparent",
+          color = "transparent"
+        ),
+        panel.border = ggplot2::element_blank()
+      )
+  }
+
+  atlas_theme
 }

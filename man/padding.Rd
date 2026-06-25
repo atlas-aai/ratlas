@@ -8,7 +8,7 @@
 \alias{pad_decimal}
 \title{Table Padding}
 \usage{
-pad_counts(x, digits = 0L)
+pad_counts(x)
 
 pad_prop(x, digits, fmt_small = TRUE, keep_zero = FALSE, output = NULL)
 
@@ -74,8 +74,7 @@ pad_corr(runif(10, -1, 1), digits = 2)
 pad_decimal(runif(10, 1, 100), digits = 1)
 }
 \seealso{
-Other formatters: 
-\code{\link{fmt_table}()},
-\code{\link{formatting}}
+Other formatters:
+\code{\link[=fmt_table]{fmt_table()}}
 }
 \concept{formatters}
