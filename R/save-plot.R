@@ -63,7 +63,7 @@ ggsave2 <- function(
 
   # Embed fonts if pdf
   if (
-    (grepl("\\.pdf", filename) || (!is.null(device) && device == "pdf")) &
+    (grepl("\\.pdf", filename) || (!is.null(device) && device == "pdf")) &&
       embed_fonts
   ) {
     if (!is.null(path)) {

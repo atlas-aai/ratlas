@@ -10,9 +10,8 @@ fmt_table(
   prop_dig = 3,
   corr_dig = 3,
   output = NULL,
-  fmt_small = TRUE,
-  max_value = NULL,
-  keep_zero = FALSE
+  keep_boundary = FALSE,
+  ...
 )
 }
 \arguments{

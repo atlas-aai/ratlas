@@ -122,9 +122,9 @@ These palettes were created by [Stéfan van der Walt](https://github.com/stefanv
 n_col <- 128
 img <- function(obj, nam) {
   image(
-    1:length(obj),
+    seq_along(obj),
     1,
-    as.matrix(1:length(obj)),
+    as.matrix(seq_along(obj)),
     col = obj,
     main = nam,
     ylab = "",

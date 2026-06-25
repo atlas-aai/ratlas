@@ -53,10 +53,12 @@ When beginning a new report, the first step is to create a new project in RStudi
 You can then choose a name for your project, and specify the location to save the project on your computer. To lessen confusion later, we recommend saving each report as a new project in its own directory so that you can quickly and easily find the report at a later date. Please note, this example will use the terminology for creating a new tech report, but the same steps can be used to create a new topic guide.
 
 ```{r create-report, echo = FALSE, out.width = "80%", fig.subcap = c("Create a new project.", "Create project in a new directory.",  "Choose the type of report."), fig.cap = "Process for creating a new report with {ratlas}."}
-include_graphics(c(here("vignettes", "images", "01-new-project.png"),
-                   here("vignettes", "images", "02-new-directory.png"),
-                   here("vignettes", "images", "03-techreport.png"),
-                   here("vignettes", "images", "04-name-report.png")))
+include_graphics(c(
+  here("vignettes", "images", "01-new-project.png"),
+  here("vignettes", "images", "02-new-directory.png"),
+  here("vignettes", "images", "03-techreport.png"),
+  here("vignettes", "images", "04-name-report.png")
+))
 ```
 
 Your new project should open automatically. You can then open the R Markdown document by clicking the `.Rmd` file in the Files pane of the RStudio window. The `.Rmd` document will automatically be named with the name you gave your project. This will open up a document that looks similar to Figure \@ref(fig:name-report).
@@ -137,10 +139,10 @@ There are many ways to create professional tables in R Markdown. We recommend us
 
 ```{r fake-data}
 my_data <- tribble(
-  ~label,     ~count,  ~percent,  ~correlation, ~pvalue,
-  "Group 1",    103L,      0.92,        -0.895,   0.120,
-  "Group 2",   1064L,      32.1,         0.051,   0.030,
-  "Group 3",  79205L,      95.4,         0.927,   0.001
+  ~label    , ~count , ~percent , ~correlation , ~pvalue ,
+  "Group 1" ,   103L ,  0.92    , -0.895       , 0.120   ,
+  "Group 2" ,  1064L , 32.1     ,  0.051       , 0.030   ,
+  "Group 3" , 79205L , 95.4     ,  0.927       , 0.001
 )
 my_data
 ```
@@ -157,11 +159,15 @@ The table can then be created using `knitr::kable()`. There are several argument
 ```{r example-table}
 my_data |>
   fmt_table(corr_dig = 2, prop_dig = 2) |>
-  kable(align = c("l", rep("c", 4)), booktabs = TRUE, linesep = "",
-        escape = FALSE,
-        col.names = c("Group", "Students (*n*)", "\\%", "*r*", "*p*-value"),
-        caption = "An example table") |>
- kable_styling(latex_options = "HOLD_position")
+  kable(
+    align = c("l", rep("c", 4)),
+    booktabs = TRUE,
+    linesep = "",
+    escape = FALSE,
+    col.names = c("Group", "Students (*n*)", "\\%", "*r*", "*p*-value"),
+    caption = "An example table"
+  ) |>
+  kable_styling(latex_options = "HOLD_position")
 ```
 
 Finally, we can cross reference the table using the chunk label. For example, the full code chunk to create Table \@ref(tab:example-table) is shown below. Cross references for tables are created using the syntax `\@ref(tab:chunk-label)`. For example, `Table \@ref(tab:example-table)` renders as Table \@ref(tab:example-table). For more on cross references see [this section](https://bookdown.org/yihui/bookdown/cross-references.html) from *bookdown: Authoring Books and Technical Documents with R Markdown* and [this section](https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html) from the *R Markdown Cookbook*.
@@ -233,19 +239,22 @@ We are then ready to start making citations. Citations are made using the syntax
 
 ```{r cite-style, echo = FALSE}
 tribble(
-                   ~code,             ~renders,
-         "`[@R-ratlas]`",        "[@R-ratlas]",
-           "`@R-ratlas`",          "@R-ratlas",
-       "`[LCDM; @lcdm]`",      "[LCDM; @lcdm]",
-            "`[-@lcdm]`",           "[-@lcdm]",
-      "`[@lcdm, pp. 3]`",     "[@lcdm, pp. 3]",
-        "`@lcdm [p. 3]`",       "@lcdm [p. 3]",
-  "`[@lcdm; @R-ratlas]`", "[@lcdm; @R-ratlas]"
-  
+  ~code                  , ~renders             ,
+  "`[@R-ratlas]`"        , "[@R-ratlas]"        ,
+  "`@R-ratlas`"          , "@R-ratlas"          ,
+  "`[LCDM; @lcdm]`"      , "[LCDM; @lcdm]"      ,
+  "`[-@lcdm]`"           , "[-@lcdm]"           ,
+  "`[@lcdm, pp. 3]`"     , "[@lcdm, pp. 3]"     ,
+  "`@lcdm [p. 3]`"       , "@lcdm [p. 3]"       ,
+  "`[@lcdm; @R-ratlas]`" , "[@lcdm; @R-ratlas]"
 ) |>
-  kable(align = c("l", "l"), booktabs = TRUE, linesep = "",
-        col.names = c("Code", "Renders as..."),
-        caption = "Citation Styles") |>
+  kable(
+    align = c("l", "l"),
+    booktabs = TRUE,
+    linesep = "",
+    col.names = c("Code", "Renders as..."),
+    caption = "Citation Styles"
+  ) |>
   kable_styling()
 ```
 
@@ -334,7 +343,9 @@ There are also many resources for getting started with data analysis and program
 ## References
 
 ```{r write-packages, include = FALSE}
-if (!file.exists("bib/packages.bib")) file.create("bib/packages.bib")
+if (!file.exists("bib/packages.bib")) {
+  file.create("bib/packages.bib")
+}
 suppressWarnings(
   knitr::write_bib(c(.packages()), "bib/packages.bib")
 )

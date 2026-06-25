@@ -8,39 +8,32 @@
 \alias{pad_decimal}
 \title{Table Padding}
 \usage{
-pad_counts(x)
+pad_counts(x, ...)
 
-pad_prop(x, digits, fmt_small = TRUE, keep_zero = FALSE, output = NULL)
+pad_prop(x, digits, output = NULL, ...)
 
-pad_corr(x, digits, output = NULL)
+pad_corr(x, digits, output = NULL, ...)
 
-pad_decimal(
-  x,
-  digits,
-  fmt_small = FALSE,
-  max_value = NULL,
-  keep_zero = FALSE,
-  output = NULL
-)
+pad_decimal(x, digits, output = NULL, ...)
 }
 \arguments{
 \item{x}{Number or number string to be formatted}
 
 \item{digits}{Number of decimal places to retain}
 
-\item{fmt_small}{Indicator for replacing zero with \code{<} (e.g., \code{.000} becomes
-\verb{< .001}). Default is \code{TRUE}.}
-
-\item{keep_zero}{If \code{fmt_small} is \code{TRUE}, whether to preserve true 0s (e.g.,
-\code{0.0000001} becomes \verb{<.001}, but \code{0.0000000} stays \code{.000}).}
-
 \item{output}{The output type for the rendered document. One of \code{"latex"} or
 \code{"html"}.}
+
+\item{fmt_small}{Indicator for replacing zero with \code{<} (e.g., \code{.000} becomes
+\verb{< .001}). Default is \code{TRUE}.}
 
 \item{max_value}{If \code{fmt_small} is \code{TRUE} and a \verb{max_value is supplied},
 any value greater than the \code{max_value} is replaced with \code{>}
 (e.g., if \code{max_value} = 50, then \code{60} becomes \verb{>49.9}). The number of digits
 depends on \code{digits}.}
+
+\item{keep_zero}{If \code{fmt_small} is \code{TRUE}, whether to preserve true 0s (e.g.,
+\code{0.0000001} becomes \verb{<.001}, but \code{0.0000000} stays \code{.000}).}
 }
 \value{
 A character vector of the same length as \code{x}.

@@ -58,52 +58,68 @@ test_that("table formatting works", {
     prop = seq(0, 1, length.out = 11),
     value = seq(10.4, 50.7, length.out = 11)
   )
+  expect_snapshot(fmt_table(dat2))
 
   dat3 <- data.frame(
-    state = state.name[1:11],
+    state = state.name[seq(1, 21, by = 2)],
     n = as.integer(seq(1L, 600L, length.out = 11)),
-    corr = seq(-.9, 0.9, length.out = 11),
+    corr = seq(-1, 1, length.out = 11),
     prop = seq(0, 1, length.out = 11),
-    value = seq(10.4, 50.7, length.out = 11)
+    value = seq(9.3, 97.2, length.out = 11)
   )
+  expect_snapshot(fmt_table(dat3))
 
   dat4 <- data.frame(
-    state = state.name[1:11],
+    state = state.name[seq(2, 22, by = 2)],
     n = as.integer(seq(10L, 2000L, length.out = 11)),
     corr = seq(-1, 1, length.out = 11),
     prop = seq(0, 1, length.out = 11),
-    value = seq(10.4, 50.7, length.out = 11)
+    value = seq(0.01, 99.99, length.out = 11)
   )
+  expect_snapshot(fmt_table(dat4))
 
   dat5 <- data.frame(
-    state = state.name[1:11],
+    state = state.name[seq(1, 31, by = 3)],
     n = as.integer(seq(10L, 20000L, length.out = 11)),
-    corr = seq(-.9, 0.9, length.out = 11),
+    corr = seq(-1, 1, length.out = 11),
     prop = seq(0, 1, length.out = 11),
-    value = seq(10.4, 50.7, length.out = 11)
+    value = seq(0, 100, length.out = 11)
   )
+  expect_snapshot(fmt_table(dat5, min_value = 0, max_value = 100))
 
   dat6 <- data.frame(
-    state = state.name[1:11],
+    state = state.name[seq(2, 32, by = 3)],
     n = as.integer(seq(1L, 200000L, length.out = 11)),
-    corr = seq(-.9, 0.9, length.out = 11),
+    corr = seq(-1, 1, length.out = 11),
     prop = seq(0, 1, length.out = 11),
-    value = seq(10.4, 50.7, length.out = 11)
+    value = seq(0, 100, length.out = 11)
   )
+  expect_snapshot(fmt_table(
+    dat6,
+    min_value = 0,
+    max_value = 100,
+    keep_boundary = TRUE
+  ))
 
   dat7 <- data.frame(
-    state = state.name[1:11],
-    n = as.integer(seq(1L, 2000000L, length.out = 11)),
+    state = state.name[50:40],
+    n = as.integer(c(
+      4,
+      1,
+      52,
+      83,
+      430,
+      550,
+      8011,
+      89378,
+      733788,
+      7149491,
+      4623994
+    )),
     corr = seq(-.9, 0.9, length.out = 11),
     prop = seq(0, 1, length.out = 11),
     value = seq(-30.5, 50.7, length.out = 11)
   )
-
-  expect_snapshot(fmt_table(dat2))
-  expect_snapshot(fmt_table(dat3))
-  expect_snapshot(fmt_table(dat4))
-  expect_snapshot(fmt_table(dat5))
-  expect_snapshot(fmt_table(dat6))
   expect_snapshot(fmt_table(dat7))
 
   expect_snapshot(fmt_table(dat4, fmt_small = FALSE))
@@ -124,7 +140,7 @@ test_that("combine n and percent", {
 
   expect_snapshot(
     pcts |>
-      fmt_table(max_value = 100) |>
+      fmt_table(min_value = 0, max_value = 100) |>
       combine_n_pct(n = n, pct = p, name = "States")
   )
 })

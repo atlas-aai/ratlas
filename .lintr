@@ -1,2 +1,15 @@
-linters: with_defaults()
+linters: linters_with_defaults() # see vignette("lintr")
+exclusions: list(
+    "R/import-standalone-obj-type.R",
+    "R/import-standalone-types-check.R",
+    "R/formatting-dataframe.R" = list(
+      object_usage_linter = Inf
+    ),
+    "R/utils-knitr.R" = list(
+      brace_linter = Inf
+    ),
+    "vignettes/report-writing.Rmd" = list(
+      commas_linter = Inf
+    )
+  )
 encoding: "UTF-8"

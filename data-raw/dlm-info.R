@@ -39,6 +39,7 @@ dlm_labels <- list(
   performance_levels_full = dlm_performance_full
 )
 
+# nolint start
 dlm_ll_info <- tibble::tribble(
   ~subject , ~linkage_level       , ~name                , ~value ,
   "ELA"    , "Initial Precursor"  , "Initial Precursor"  , 1L     ,
@@ -55,5 +56,6 @@ dlm_ll_info <- tibble::tribble(
   "Sci"    , "Proximal Precursor" , "Precursor"          , 2L     ,
   "Sci"    , "Target"             , "Target"             , 3L
 )
+# nolint end
 
 usethis::use_data(dlm_labels, dlm_ll_info, overwrite = TRUE)

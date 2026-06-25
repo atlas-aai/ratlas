@@ -99,27 +99,28 @@ fmt_table <- function(
   prop_dig = 3,
   corr_dig = 3,
   output = NULL,
-  fmt_small = TRUE,
-  max_value = NULL,
-  keep_zero = FALSE
+  keep_boundary = FALSE,
+  ...
 ) {
   check_number_whole(dec_dig, min = 1)
   check_number_whole(prop_dig, min = 1)
   check_number_whole(corr_dig, min = 1)
+  output <- check_output(output)
 
   df |>
-    dplyr::mutate(dplyr::across(where(is.integer), function(x) {
+    dplyr::mutate(dplyr::across(dplyr::where(is.integer), function(x) {
       pad_counts(x)
     })) |>
     dplyr::mutate(
       dplyr::across(
-        where(\(x) is.numeric(x) && all(dplyr::between(x, 0, 1), na.rm = TRUE)),
+        dplyr::where(\(x) {
+          is.numeric(x) && all(dplyr::between(x, 0, 1), na.rm = TRUE)
+        }),
         \(x) {
           pad_prop(
             x,
             digits = prop_dig,
-            fmt_small = fmt_small,
-            keep_zero = keep_zero,
+            keep_boundary = keep_boundary,
             output = output
           )
         }
@@ -127,22 +128,28 @@ fmt_table <- function(
     ) |>
     dplyr::mutate(
       dplyr::across(
-        where(\(x) {
+        dplyr::where(\(x) {
           is.numeric(x) && all(dplyr::between(x, -1, 1), na.rm = TRUE)
         }),
-        \(x) pad_corr(x, digits = corr_dig, output = output)
+        \(x) {
+          pad_corr(
+            x,
+            digits = corr_dig,
+            keep_boundary = keep_boundary,
+            output = output
+          )
+        }
       )
     ) |>
     dplyr::mutate(
       dplyr::across(
-        where(is.numeric),
+        dplyr::where(is.numeric),
         \(x) {
           pad_decimal(
             x,
             digits = dec_dig,
-            fmt_small = fmt_small,
-            max_value = max_value,
-            keep_zero = keep_zero
+            keep_boundary = keep_boundary,
+            ...
           )
         }
       )
@@ -200,7 +207,7 @@ NULL
 
 #' @export
 #' @rdname padding
-pad_counts <- function(x) {
+pad_counts <- function(x, ...) {
   x <- round(x, digits = 0)
   max_dig <- max(
     nchar(stringr::str_replace_all(abs(x), "\\.", "")),
@@ -267,30 +274,18 @@ pad_counts <- function(x) {
   new_x <- stringr::str_replace_all(new_x, "(?<!\\\\) ", "")
 
   new_x[is.na(x)] <- NA_character_
-  return(new_x)
+  new_x
 }
 
 #' @export
 #' @rdname padding
-pad_prop <- function(
-  x,
-  digits,
-  fmt_small = TRUE,
-  keep_zero = FALSE,
-  output = NULL
-) {
+pad_prop <- function(x, digits, output = NULL, ...) {
   check_number_whole(digits, min = 1)
-  output <- check_output(output)
-  new_x <- fmt_prop(
-    x,
-    digits = digits,
-    fmt_small = fmt_small,
-    keep_zero = keep_zero
-  )
+  new_x <- fmt_prop(x, digits = digits, ...)
   new_x[is.na(new_x)] <- "NA"
 
   if (
-    any(stringr::str_detect(new_x, "^<|^>")) &
+    any(stringr::str_detect(new_x, "^<|^>")) &&
       !all(stringr::str_detect(new_x, "^<|^>"))
   ) {
     pad <- ifelse(output == "latex", 4, 3)
@@ -301,7 +296,7 @@ pad_prop <- function(
     )
   }
 
-  if (any(x == 1, na.rm = TRUE)) {
+  if (any(x == 1, na.rm = TRUE) && list(...)$keep_boundary) {
     new_x <- dplyr::case_when(
       stringr::str_detect(new_x, "^1\\.") ~ new_x,
       TRUE ~ paste0(paste(rep("\\ ", 2), collapse = ""), new_x)
@@ -309,22 +304,21 @@ pad_prop <- function(
   }
 
   new_x[is.na(x)] <- NA_character_
-  return(new_x)
+  new_x
 }
 
 #' @export
 #' @rdname padding
-pad_corr <- function(x, digits, output = NULL) {
+pad_corr <- function(x, digits, output = NULL, ...) {
   check_number_whole(digits, min = 1)
   output <- check_output(output)
-  new_x <- fmt_corr(x, digits = digits, output = output)
+  new_x <- fmt_corr(x, digits = digits, ...)
   new_x[is.na(new_x)] <- "NA"
 
   if (any(x < 0, na.rm = TRUE)) {
-    search <- ifelse(output == "latex", "^-", "&minus;")
     pad <- ifelse(output == "latex", 4, 2)
     new_x <- dplyr::case_when(
-      stringr::str_detect(new_x, search) ~
+      stringr::str_detect(new_x, "\U2212") ~
         paste0(new_x, paste(rep("\\ ", pad), collapse = "")),
       TRUE ~ new_x
     )
@@ -342,19 +336,12 @@ pad_corr <- function(x, digits, output = NULL) {
   }
 
   new_x[is.na(x)] <- NA_character_
-  return(new_x)
+  new_x
 }
 
 #' @export
 #' @rdname padding
-pad_decimal <- function(
-  x,
-  digits,
-  fmt_small = FALSE,
-  max_value = NULL,
-  keep_zero = FALSE,
-  output = NULL
-) {
+pad_decimal <- function(x, digits, output = NULL, ...) {
   check_number_whole(digits, min = 1)
   output <- check_output(output)
 
@@ -372,9 +359,7 @@ pad_decimal <- function(
   new_x <- x |>
     fmt_digits(
       digits = digits,
-      fmt_small = fmt_small,
-      max_value = max_value,
-      keep_zero = keep_zero
+      ...
     )
 
   new_x <- purrr::map2_chr(new_x, left_spaces, function(num, space) {
@@ -386,17 +371,16 @@ pad_decimal <- function(
     stringr::str_replace_all("^ ", paste(rep("\\\\ ", 2), collapse = ""))
 
   if (any(x < 0, na.rm = TRUE)) {
-    search <- ifelse(output == "latex", "-", "&minus;")
     pad <- ifelse(output == "latex", 2, 2)
     new_x <- dplyr::case_when(
-      stringr::str_detect(new_x, search) ~
+      stringr::str_detect(new_x, "\U2212") ~
         paste0(new_x, paste(rep("\\ ", pad), collapse = "")),
       TRUE ~ new_x
     )
   }
 
   if (
-    any(stringr::str_detect(new_x, "<")) &
+    any(stringr::str_detect(new_x, "<")) &&
       !all(stringr::str_detect(new_x, "<"))
   ) {
     pad <- ifelse(output == "latex", 3, 2)
@@ -408,7 +392,7 @@ pad_decimal <- function(
   }
 
   if (
-    any(stringr::str_detect(new_x, ">")) &
+    any(stringr::str_detect(new_x, ">")) &&
       !all(stringr::str_detect(new_x, ">"))
   ) {
     pad <- ifelse(output == "latex", 1, 2)
@@ -420,7 +404,7 @@ pad_decimal <- function(
   }
 
   new_x[is.na(x)] <- NA_character_
-  return(new_x)
+  new_x
 }
 
 

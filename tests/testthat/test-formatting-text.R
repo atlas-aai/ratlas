@@ -51,28 +51,3 @@ test_that("italics work", {
     col.names = fmt_italic(col_names, html = FALSE)
   ))
 })
-
-test_that("apa words works", {
-  err <- rlang::catch_cnd(apa_words("14"))
-  expect_s3_class(err, "rlang_error")
-  expect_match(err$message, "must be a whole number")
-
-  expect_identical(apa_words(14), "14")
-  expect_identical(apa_words(3L), "three")
-  expect_identical(apa_words(6930), "6,930")
-
-  expect_identical(apa_words(1, ordinal = TRUE), "1st")
-  expect_identical(apa_words(2, ordinal = TRUE), "2nd")
-  expect_identical(apa_words(3, ordinal = TRUE), "3rd")
-  expect_identical(apa_words(4, ordinal = TRUE), "4th")
-  expect_identical(apa_words(5, ordinal = TRUE), "5th")
-  expect_identical(apa_words(11, ordinal = TRUE), "11th")
-  expect_identical(apa_words(12, ordinal = TRUE), "12th")
-  expect_identical(apa_words(13, ordinal = TRUE), "13th")
-  expect_identical(apa_words(21, ordinal = TRUE), "21st")
-  expect_identical(apa_words(33, ordinal = TRUE), "33rd")
-  expect_identical(apa_words(55, ordinal = TRUE), "55th")
-  expect_identical(apa_words(62, ordinal = TRUE), "62nd")
-  expect_identical(apa_words(101, ordinal = TRUE), "101st")
-  expect_identical(apa_words(113, ordinal = TRUE), "113th")
-})

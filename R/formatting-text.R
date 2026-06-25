@@ -33,5 +33,5 @@ fmt_italic <- function(string, indicator = "*", html = TRUE) {
       )
   }
 
-  return(string)
+  string
 }

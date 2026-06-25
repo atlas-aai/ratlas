@@ -106,7 +106,7 @@ img_cap <- function(options, alt = FALSE) {
   if (is_blank(cap)) {
     return(cap)
   }
-  if (alt & is.null(options$fig.alt)) {
+  if (alt && is.null(options$fig.alt)) {
     return(escape_html(options$fig.cap))
   }
   if (alt) {

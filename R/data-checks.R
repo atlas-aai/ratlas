@@ -20,8 +20,7 @@ check_output <- function(output) {
         )
       )
       cli::cli_abort(message = msg)
-    } else {
-      return(output)
     }
   }
+  output
 }
