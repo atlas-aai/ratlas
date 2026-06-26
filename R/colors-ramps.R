@@ -30,9 +30,9 @@ ramp_dlm <- function(output, end = "#FFFFFF") {
 #' @examples
 #' ramp_okabeito(seq(0.2, 1, length.out = 5), index = 2)
 ramp_okabeito <- function(output, end = "#FFFFFF", index = 1) {
-  scl <- wjake::make_color_pal(
+  ramp <- wjake::make_color_pal(
     colors = c("#FFFFFF", palette_okabeito[index]),
     bias = 1
   )
-  scl(output)
+  ramp(output)
 }
