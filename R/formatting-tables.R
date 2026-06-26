@@ -50,6 +50,8 @@ fmt_kbl <- function(
   latex_options = "HOLD_position",
   ...
 ) {
+  output <- getOption("knitr.table.format", default = "html")
+
   x |>
     dplyr::mutate(
       dplyr::across(dplyr::everything(), \(x) {
@@ -57,6 +59,11 @@ fmt_kbl <- function(
       }),
       dplyr::across(dplyr::everything(), \(x) {
         stringr::str_replace_all(x, ">", ">")
+      })
+    ) |>
+    only_if(output == "html")(dplyr::mutate)(
+      dplyr::across(dplyr::everything(), \(x) {
+        stringr::str_replace_all(x, stringr::fixed("\\ "), "&nbsp;")
       })
     ) |>
     kableExtra::kbl(
@@ -70,7 +77,10 @@ fmt_kbl <- function(
       position = position,
       latex_options = latex_options
     ) |>
-    kableExtra::kable_classic(position = position)
+    kableExtra::kable_classic(
+      position = position,
+      html_font = getOption("ratlas.table.font", default = "Arial Narrow")
+    )
 }
 
 #' @rdname kbl-format
