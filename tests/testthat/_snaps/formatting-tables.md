@@ -3,7 +3,7 @@
     Code
       cat(html_tab)
     Output
-      <table class="table lightable-classic" style=' font-family: "Arial Narrow", "Source Sans Pro", sans-serif; '>
+      <table class="table lightable-classic" style=" font-family: Arial Narrow; ">
       <caption>Example Table Title</caption>
        <thead>
         <tr>
@@ -40,14 +40,14 @@
     Code
       cat(html_head)
     Output
-      <table class="table lightable-classic" style=' font-family: "Arial Narrow", "Source Sans Pro", sans-serif; '>
+      <table class="table lightable-classic" style=" font-family: Arial Narrow; ">
       <caption>Example Table Title</caption>
        <thead>
         <tr>
-         <th style="text-align:left;text-align: center;border-bottom: 0.16em solid #111111">   </th>
-         <th style="text-align:right;text-align: center;border-bottom: 0.16em solid #111111"> Column 1 </th>
-         <th style="text-align:center;text-align: center;border-bottom: 0.16em solid #111111"> Column 2 </th>
-         <th style="text-align:right;text-align: center;border-bottom: 0.16em solid #111111"> Column 3 </th>
+         <th style="text-align:left;text-align: center;border-bottom: black solid 2px">   </th>
+         <th style="text-align:right;text-align: center;border-bottom: black solid 2px"> Column 1 </th>
+         <th style="text-align:center;text-align: center;border-bottom: black solid 2px"> Column 2 </th>
+         <th style="text-align:right;text-align: center;border-bottom: black solid 2px"> Column 3 </th>
         </tr>
        </thead>
       <tbody>
@@ -77,7 +77,7 @@
     Code
       cat(latex_tab)
     Output
-      <table class="table lightable-classic" style=' font-family: "Arial Narrow", "Source Sans Pro", sans-serif; '>
+      <table class="table lightable-classic" style=" font-family: Arial Narrow; ">
       <caption>Example Table Title</caption>
        <thead>
         <tr>
@@ -114,14 +114,14 @@
     Code
       cat(latex_head)
     Output
-      <table class="table lightable-classic" style=' font-family: "Arial Narrow", "Source Sans Pro", sans-serif; '>
+      <table class="table lightable-classic" style=" font-family: Arial Narrow; ">
       <caption>Example Table Title</caption>
        <thead>
         <tr>
-         <th style="text-align:left;text-align: center;border-bottom: 0.16em solid #111111">   </th>
-         <th style="text-align:right;text-align: center;border-bottom: 0.16em solid #111111"> Column 1 </th>
-         <th style="text-align:center;text-align: center;border-bottom: 0.16em solid #111111"> Column 2 </th>
-         <th style="text-align:right;text-align: center;border-bottom: 0.16em solid #111111"> Column 3 </th>
+         <th style="text-align:left;text-align: center;border-bottom: black solid 2px">   </th>
+         <th style="text-align:right;text-align: center;border-bottom: black solid 2px"> Column 1 </th>
+         <th style="text-align:center;text-align: center;border-bottom: black solid 2px"> Column 2 </th>
+         <th style="text-align:right;text-align: center;border-bottom: black solid 2px"> Column 3 </th>
         </tr>
        </thead>
       <tbody>
