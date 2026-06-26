@@ -55,6 +55,9 @@ Suggests:
     vdiffr,
     viridisLite,
     withr
+VignetteBuilder:
+    knitr,
+    quarto
 Config/testthat/edition: 3
 Config/Needs/documentation: openpharma/roxylint
 Config/roxylint: list(linters = roxylint::tidy)
@@ -63,4 +66,3 @@ Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE, roclets = c("namespace", "rd", "roxylint::roxylint"))
 Config/roxygen2/version: 8.0.0
-VignetteBuilder: knitr
