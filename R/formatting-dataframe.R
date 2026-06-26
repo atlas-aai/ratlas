@@ -65,7 +65,7 @@ append_summary <- function(
 #' Center and Decimal Align Tables
 #'
 #' Automatic formatting for tables that should "just work" for most use cases.
-#' For more fine-grained control, see [ratlas::formatting] and
+#' For more fine-grained control, see [wjake::fmt_digits()] and
 #' [ratlas::padding].
 #'
 #' @param df A data frame or tibble to be formatted for printing in output.
@@ -75,22 +75,16 @@ append_summary <- function(
 #'   between \[0,1\], e.g., `prop_dig = 2` for .35.
 #' @param corr_dig The number of decimal places to include for numbers bounded
 #'   between \[-1,1\], e.g., `corr_dig = 3` for .205.
-#' @param fmt_small Indicator for replacing zero with `<` (e.g., `.000` becomes
-#'   `<.001`). Default is `TRUE`.
-#' @param max_value If `fmt_small` is `TRUE` and a `max_value` is supplied,
-#'  any value greater than the `max_value` is replaced with `>`
-#'  (e.g., if `max_value` = 50, then `60` becomes `>49.9`). The number of digits
-#'  depends on either `dec_digits`, `prop_dig`, or `corr_dig`.
-#' @param keep_zero If `fmt_small` is `TRUE`, whether to preserve true 0s (e.g.,
-#'   `0.0000001` becomes `<.001`, but `0.0000000` stays `.000`).
 #' @param output The output format of the table. One of "latex" or "html".
 #'   Automatically pulled from document output type if not specified.
+#' @inheritParams wjake::fmt_digits keep_boundary
+#' @param ... Additional arguments passed to [wjake::fmt_digits()].
 #'
 #' @return A tibble with the same rows and columns as `df`, with numbers
 #'   formatted consistently and padded for alignment when printed.
 #' @family formatters
 #' @examples
-#' pcts <- tibble::tibble(n = 0:5, p = 0.5 * (0:5))
+#' pcts <- data.frame(n = 0:5, p = 0.5 * (0:5))
 #' fmt_table(pcts)
 #' @export
 fmt_table <- function(
@@ -164,16 +158,9 @@ fmt_table <- function(
 #'
 #' @param x Number or number string to be formatted
 #' @param digits Number of decimal places to retain
-#' @param fmt_small Indicator for replacing zero with `<` (e.g., `.000` becomes
-#'   `< .001`). Default is `TRUE`.
-#' @param max_value If `fmt_small` is `TRUE` and a `max_value is supplied`,
-#'  any value greater than the `max_value` is replaced with `>`
-#'  (e.g., if `max_value` = 50, then `60` becomes `>49.9`). The number of digits
-#'  depends on `digits`.
-#' @param keep_zero If `fmt_small` is `TRUE`, whether to preserve true 0s (e.g.,
-#'   `0.0000001` becomes `<.001`, but `0.0000000` stays `.000`).
 #' @param output The output type for the rendered document. One of `"latex"` or
 #'   `"html"`.
+#' @param ... Additional arguments passed to [wjake::fmt_digits()].
 #'
 #' @return A character vector of the same length as `x`.
 #'
@@ -280,6 +267,7 @@ pad_counts <- function(x, ...) {
 #' @export
 #' @rdname padding
 pad_prop <- function(x, digits, output = NULL, ...) {
+  output <- check_output(output)
   check_number_whole(digits, min = 1)
   new_x <- fmt_prop(x, digits = digits, ...)
   new_x[is.na(new_x)] <- "NA"
@@ -421,7 +409,7 @@ pad_decimal <- function(x, digits, output = NULL, ...) {
 #' @return A data frame.
 #' @export
 #' @examples
-#' pcts <- tibble::tibble(Program = LETTERS[1:10],
+#' pcts <- data.frame(Program = LETTERS[1:10],
 #'                        n = 1:10,
 #'                        p = seq(0, 100, length.out = 10))
 #' pcts |>

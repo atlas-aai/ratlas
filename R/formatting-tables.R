@@ -15,9 +15,9 @@ auto_set_format <- function() {
 
 #' Wrapper function of kableExtra::kbl
 #'
-#' Wrapper functions around {kableExtra} to apply some reasonable defaults to a
-#' kable table. [fmt_kbl_header()] should be called after any call to
-#' [kableExtra::column_spec()].
+#' Wrapper functions around [kableExtra::kbl()] to apply some reasonable
+#' defaults to a kable table. [fmt_kbl_header()] should be called after any call
+#' to [kableExtra::column_spec()].
 #'
 #' @inheritParams kableExtra::kbl
 #' @inheritParams kableExtra::kable_styling

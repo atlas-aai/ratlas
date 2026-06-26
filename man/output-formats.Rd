@@ -23,7 +23,7 @@ report_gitbook(type = "techreport", ...)
 \item techreport: pdf, gitbook
 }}
 
-\item{...}{Arguments to be passed to relevant {bookdown} or {officedown}
+\item{...}{Arguments to be passed to relevant bookdown or officedown
 output functions:
 \itemize{
 \item \code{\link[=report_docx]{report_docx()}} passes to \code{\link[bookdown:word_document2]{bookdown::word_document2()}}

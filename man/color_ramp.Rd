@@ -31,6 +31,6 @@ ggplot2 plots and gt tables.
 \code{\link[=ramp_okabeito]{ramp_okabeito()}} is a pre-made color ramp based on the Okabe Ito palette.
 }
 \examples{
-ramp_dlm(seq(0.1, 1), by = 0.2)
+ramp_dlm(seq(0.1, 1, by = 0.2))
 ramp_okabeito(seq(0.2, 1, length.out = 5), index = 2)
 }

@@ -27,7 +27,7 @@ A data frame.
 Combine N and Percent Columns for Accessibility
 }
 \examples{
-pcts <- tibble::tibble(Program = LETTERS[1:10],
+pcts <- data.frame(Program = LETTERS[1:10],
                        n = 1:10,
                        p = seq(0, 100, length.out = 10))
 pcts |>

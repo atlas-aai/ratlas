@@ -7,7 +7,7 @@ output:
 csl: bib/apa.csl
 bibliography: ["bib/example-bib.bib", "bib/packages.bib"]
 biblio-style: apa
-link-citations: yes
+link-citations: true
 pkgdown:
   as_is: true
 vignette: >

@@ -33,21 +33,19 @@ Depends:
     R (>= 4.2.0)
 Imports:
     bookdown,
-    colorspace,
+    cli,
     dplyr (>= 1.0.0),
     extrafont,
     fs,
     ggplot2 (>= 4.0.0),
+    ggtext,
     glue,
     knitr (>= 1.22),
-    magrittr (>= 1.5),
     officedown,
     purrr,
     ragg,
     rlang (>= 1.1.0),
-    scales (>= 1.4.0),
     stringr,
-    tibble,
     tidyr,
     wjake,
     xfun
@@ -56,13 +54,15 @@ Suggests:
     here,
     kableExtra (>= 1.1.0),
     magick,
+    pkgdown,
     rmarkdown,
     spelling,
     systemfonts,
     testthat,
+    tibble,
     tinytex,
     vdiffr,
-    viridis,
+    viridisLite,
     withr
 Config/testthat/edition: 3
 Config/Needs/documentation: openpharma/roxylint

@@ -19,7 +19,7 @@
 #' @rdname color_ramp
 #' @export
 #' @examples
-#' ramp_dlm(seq(0.1, 1), by = 0.2)
+#' ramp_dlm(seq(0.1, 1, by = 0.2))
 ramp_dlm <- function(output, end = "#FFFFFF") {
   ramp <- wjake::make_color_pal(c(end, "#2B4098"), bias = 1)
   ramp(output)

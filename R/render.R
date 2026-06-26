@@ -7,7 +7,7 @@
 #'   "techreport". The following outputs are supported for each type:
 #'   * topicguide: docx, rdocx, pdf
 #'   * techreport: pdf, gitbook
-#' @param ... Arguments to be passed to relevant {bookdown} or {officedown}
+#' @param ... Arguments to be passed to relevant bookdown or officedown
 #'   output functions:
 #'   * [report_docx()] passes to [bookdown::word_document2()]
 #'   * [report_rdocx()] passes to [officedown::rdocx_document()]

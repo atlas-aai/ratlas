@@ -16,10 +16,10 @@ None. Called for side effects.
 Adverb for conditionally skipping steps in a piped workflow.
 }
 \examples{
-tibble::as_tibble(mtcars) |>
+data.frame(mtcars) |>
   only_if(TRUE)(dplyr::filter)(mpg > 25)
 
-tibble::as_tibble(mtcars) |>
+data.frame(mtcars) |>
   only_if(FALSE)(dplyr::filter)(mpg > 25)
 }
 \author{

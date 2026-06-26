@@ -91,9 +91,9 @@ that it's not for the whole row.}
 A kable object.
 }
 \description{
-Wrapper functions around {kableExtra} to apply some reasonable defaults to a
-kable table. \code{\link[=fmt_kbl_header]{fmt_kbl_header()}} should be called after any call to
-\code{\link[kableExtra:column_spec]{kableExtra::column_spec()}}.
+Wrapper functions around \code{\link[kableExtra:kbl]{kableExtra::kbl()}} to apply some reasonable
+defaults to a kable table. \code{\link[=fmt_kbl_header]{fmt_kbl_header()}} should be called after any call
+to \code{\link[kableExtra:column_spec]{kableExtra::column_spec()}}.
 }
 \examples{
 fmt_kbl(mtcars[, 1:3], align = c("r", "c", "r"),
