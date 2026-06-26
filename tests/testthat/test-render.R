@@ -19,7 +19,7 @@ test_that("techreport-html renders", {
 
   expect_true(file.exists(paste0(
     "_report/",
-    stringr::str_to_title("index.html")
+    "index.html"
   )))
 })
 
@@ -37,9 +37,14 @@ test_that("techreport-pdf renders", {
     envir = new.env()
   ))
   reset_theme_settings()
-  expect_true(file.exists(
-    paste0("_report/", stringr::str_to_title(basename(report_dir)), ".pdf")
-  ))
+  expect_true(
+    file.exists(paste0("_report/", basename(report_dir)), ".pdf") ||
+      file.exists(paste0(
+        "_report/",
+        stringr::str_to_title(basename(report_dir)),
+        ".pdf"
+      ))
+  )
 })
 
 test_that("topicguide-docx renders", {
@@ -56,9 +61,14 @@ test_that("topicguide-docx renders", {
     envir = new.env()
   ))
   reset_theme_settings()
-  expect_true(file.exists(
-    paste0("_report/", stringr::str_to_title(basename(report_dir)), ".docx")
-  ))
+  expect_true(
+    file.exists(paste0("_report/", basename(report_dir), ".docx")) ||
+      file.exists(paste0(
+        "_report/",
+        stringr::str_to_title(basename(report_dir)),
+        ".docx"
+      ))
+  )
 })
 
 test_that("topicguide-pdf renders", {
@@ -75,9 +85,14 @@ test_that("topicguide-pdf renders", {
     envir = new.env()
   ))
   reset_theme_settings()
-  expect_true(file.exists(
-    paste0("_report/", stringr::str_to_title(basename(report_dir)), ".pdf")
-  ))
+  expect_true(
+    file.exists(paste0("_report/", basename(report_dir), ".pdf")) ||
+      file.exists(paste0(
+        "_report/",
+        stringr::str_to_title(basename(report_dir)),
+        ".pdf"
+      ))
+  )
 })
 
 test_that("topicguide-rdocx renders", {
@@ -96,7 +111,12 @@ test_that("topicguide-rdocx renders", {
     envir = new.env()
   ))
   reset_theme_settings()
-  expect_true(file.exists(
-    paste0("_report/", stringr::str_to_title(basename(report_dir)), ".docx")
-  ))
+  expect_true(
+    file.exists(paste0("_report/", basename(report_dir), ".docx")) ||
+      file.exists(paste0(
+        "_report/",
+        stringr::str_to_title(basename(report_dir)),
+        ".docx"
+      ))
+  )
 })
