@@ -1,0 +1,53 @@
+url: https://atlas-aai.github.io/ratlas
+
+authors:
+  footer:
+    roles: [cre, aut]
+  sidebar:
+    roles: [aut]
+  
+  W. Jake Thompson:
+    href: "https://wjakethompson.com"
+  Accessible Teaching, Learning, and Assessment Systems:
+    href: https://atlas.ku.edu/
+    
+template:
+  bootstrap: 5
+  opengraph:
+    twitter:
+      creator: "@wjakethompson"
+      site: "@atlas4learning"
+      card: summary_large_image
+  bslib:
+    base_font: {google: "Atkinson Hyperlegible"}
+    heading_font: {google: "Fraunces"}
+    code_font: {google: "Atkinson Hyperlegible Mono"}
+    bg: "#FFFFFF"
+    fg: "#333"
+
+development:
+  mode: release
+
+code:
+  width: 74
+
+navbar:
+  type: light
+  bg: none
+  structure:
+    right: [linkedin, github]
+  components:
+    linkedin:
+      icon: "fab fa-linkedin fa-lg"
+      href: https://linkedin.com/company/atlas4learning
+
+home:
+  title: Custom Graphics and Report Templates for ATLAS
+  description: >
+    An R package for making customized reports and graphics that conform to APA
+    and ATLAS style.
+
+
+
+figures:
+  fig.retina: 3
