@@ -38,7 +38,7 @@ test_that("techreport-pdf renders", {
   ))
   reset_theme_settings()
   expect_true(
-    file.exists(paste0("_report/", basename(report_dir)), ".pdf") ||
+    file.exists(paste0("_report/", basename(report_dir), ".pdf")) ||
       file.exists(paste0(
         "_report/",
         stringr::str_to_title(basename(report_dir)),
