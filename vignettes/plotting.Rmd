@@ -76,7 +76,10 @@ Although Roboto Condensed provides a modern font that works in most cases, it is
 For fonts that are available on most systems, the University of Kansas and ATLAS recommend [Arial and Palatino](https://brand.ku.edu/guidelines/design/typography#section4196).
 These fonts can be loaded using the `{systemfonts}` package.
 
-```{r showtxtfnt}
+```{r}
+#| label: showtextfnt
+#| eval: false
+
 library(systemfonts)
 require_font("Arial")
 require_font("Palatino")
@@ -86,6 +89,7 @@ Once the fonts has been loaded, you can apply them to the ATLAS theme using the 
 
 ```{r}
 #| label: palatino-font
+#| eval: false
 
 p1 +
   theme_atlas(base_family = "Palatino")
