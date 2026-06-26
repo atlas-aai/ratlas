@@ -5,58 +5,64 @@
 \title{ATLAS ggplot2 theme for consistent graphics}
 \usage{
 theme_atlas(
-  base_family = "Arial Narrow",
   base_size = 11.5,
-  axis_text_size = 9,
-  axis_title_size = base_size,
-  axis_title_just = "cm",
+  base_family = "Roboto Condensed",
+  header_family = NULL,
+  base_line_size = base_size/22,
+  base_rect_size = base_size/22,
+  ink = "black",
+  paper = "white",
+  accent = "#E69F00",
+  continuous = ramp_dlm(c(0.1, 1)),
+  discrete = palette_okabeito,
+  transparent = FALSE,
   ...
 )
 }
 \arguments{
-\item{base_family, base_size}{base font family and size}
+\item{base_size}{base font size, given in pts.}
 
-\item{axis_text_size}{font size of axis text}
+\item{base_family}{base font family}
 
-\item{axis_title_size}{axis title font family, face and size}
+\item{header_family}{font family for titles and headers. The default, \code{NULL},
+uses theme inheritance to set the font. This setting affects axis titles,
+legend titles, the plot title and tag text.}
 
-\item{axis_title_just}{axis title font justification, one of \verb{[blmcrt]}}
+\item{base_line_size}{base size for line elements}
 
-\item{...}{Additional arguments passed to \code{\link[hrbrthemes:theme_ipsum]{hrbrthemes::theme_ipsum()}}.}
+\item{base_rect_size}{base size for rect elements}
+
+\item{ink, paper, accent}{colour for foreground, background, and accented elements respectively.}
+
+\item{continuous}{A character vector of valid colors that will be
+interpolated into a continuous color scale.}
+
+\item{discrete}{A character vector of colors to use for discrete color
+scales.}
+
+\item{transparent}{Logical indicator for whether the background of the plot
+should be transparent.}
+
+\item{...}{Additional parameters passed to \code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 }
 \value{
-A theme for use in plots created with \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
+A \code{theme} object that can be added to a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-Based on \code{hrbrthemes::\link[hrbrthemes]{theme_ipsum}}.
+Based on \code{\link[ggplot2:theme_minimal]{ggplot2::theme_minimal()}}.
 }
 \examples{
-\dontrun{
 library(ggplot2)
-library(dplyr)
 
-# seminal scatterplot
-ggplot(mtcars, aes(mpg, wt)) +
-  geom_point() +
-  labs(x = "Fuel effiiency (mpg)", y = "Weight (tons)",
-       title = "Seminal ggplot2 scatterplot example",
-       subtitle = "A plot that is only useful for demonstration purposes",
-       caption = "Brought to you by the letter 'g'") +
-  theme_atlas()
-
-# seminal bar chart
-
-update_geom_font_defaults()
-
-count(mpg, class) \%>\%
-  ggplot(aes(class, n)) +
-  geom_col() +
-  geom_text(aes(label=n), nudge_y=3) +
-  labs(x = "Fuel efficiency (mpg)", y = "Weight (tons)",
-       title =  "Seminal ggplot2 bar chart example",
-       subtitle = "A plot that is only useful for demonstration purposes",
-       caption = "Brought to you by the letter 'g'") +
-  theme_atlas(grid = "Y") +
-  theme(axis.text.y = element_blank())
-  }
+ggplot(penguins, aes(x = bill_len, y = flipper_len)) +
+  geom_point(aes(color = species), na.rm = TRUE) +
+  labs(
+    x = "Bill length (mm)",
+    y = "Flipper length (mm)",
+    title = "Seminal ggplot2 scatterplot example",
+    subtitle = "A plot that is only useful for demonstration purposes",
+    caption = "Brought to you by the letter *p*",
+    color = "Species"
+  ) +
+  theme_atlas(base_family = "sans")
 }

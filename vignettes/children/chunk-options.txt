@@ -15,11 +15,4 @@ knitr::opts_chunk$set(
   fig.align = "center",
   out.width = "90%"
 )
-
-if (capabilities("cairo") && Sys.info()[['sysname']] != "Darwin") {
-  knitr::opts_chunk$set(
-    dev = "png",
-    dev.args = list(type = "cairo")
-  )
-}
 ```

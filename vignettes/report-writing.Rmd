@@ -7,7 +7,7 @@ output:
 csl: bib/apa.csl
 bibliography: ["bib/example-bib.bib", "bib/packages.bib"]
 biblio-style: apa
-link-citations: yes
+link-citations: true
 pkgdown:
   as_is: true
 vignette: >
@@ -29,6 +29,8 @@ library(kableExtra)
 library(here)
 library(tibble)
 library(stringr)
+
+knitr::opts_chunk$set(dev = "ragg_png")
 ```
 
 This vignette walks through the process of creating a new topic guide, technical report, or research report using R Markdown. We also suggest best practices for organizing your report files, and give some tips and tricks for formatting text.
@@ -53,10 +55,12 @@ When beginning a new report, the first step is to create a new project in RStudi
 You can then choose a name for your project, and specify the location to save the project on your computer. To lessen confusion later, we recommend saving each report as a new project in its own directory so that you can quickly and easily find the report at a later date. Please note, this example will use the terminology for creating a new tech report, but the same steps can be used to create a new topic guide.
 
 ```{r create-report, echo = FALSE, out.width = "80%", fig.subcap = c("Create a new project.", "Create project in a new directory.",  "Choose the type of report."), fig.cap = "Process for creating a new report with {ratlas}."}
-include_graphics(c(here("vignettes", "images", "01-new-project.png"),
-                   here("vignettes", "images", "02-new-directory.png"),
-                   here("vignettes", "images", "03-techreport.png"),
-                   here("vignettes", "images", "04-name-report.png")))
+include_graphics(c(
+  here("vignettes", "images", "01-new-project.png"),
+  here("vignettes", "images", "02-new-directory.png"),
+  here("vignettes", "images", "03-techreport.png"),
+  here("vignettes", "images", "04-name-report.png")
+))
 ```
 
 Your new project should open automatically. You can then open the R Markdown document by clicking the `.Rmd` file in the Files pane of the RStudio window. The `.Rmd` document will automatically be named with the name you gave your project. This will open up a document that looks similar to Figure \@ref(fig:name-report).
@@ -137,10 +141,10 @@ There are many ways to create professional tables in R Markdown. We recommend us
 
 ```{r fake-data}
 my_data <- tribble(
-  ~label,     ~count,  ~percent,  ~correlation, ~pvalue,
-  "Group 1",    103L,      0.92,        -0.895,   0.120,
-  "Group 2",   1064L,      32.1,         0.051,   0.030,
-  "Group 3",  79205L,      95.4,         0.927,   0.001
+  ~label    , ~count , ~percent , ~correlation , ~pvalue ,
+  "Group 1" ,   103L ,  0.92    , -0.895       , 0.120   ,
+  "Group 2" ,  1064L , 32.1     ,  0.051       , 0.030   ,
+  "Group 3" , 79205L , 95.4     ,  0.927       , 0.001
 )
 my_data
 ```
@@ -148,28 +152,32 @@ my_data
 The next step is to format the table for printing. The `fmt_table()` function will apply default formatting and work in most cases. Notice the formatting that has been applied below. Commas have been added to integer values, decimal digits have been rounded to the same number of decimal places, and leading zeros have been removed from values that are bounded between -1 and 1. Leading and trailing spaces have also been added so that values will be centered and decimal aligned in the table. See `?ratlas::formatting` for specific formatting options that are wrapped by `fmt_table()`. These formatting functions can be used to specific styling of columns that do not conform to the defaults specified in `fmt_table()`.
 
 ```{r fmt-table}
-my_data %>%
+my_data |>
   fmt_table(corr_dig = 2, prop_dig = 2)
 ```
 
 The table can then be created using `knitr::kable()`. There are several arguments supplied to the `kable()` function. The `align` argument specifies the alignment of each column. Because we formatted the table with `fmt_table()`, we can set the alignment of all the numeric columns to `"c"` (centered). The `booktabs` and `linesep` arguments control the appearance of the table. By setting `escape = FALSE`, we tell the `kable()` function to not escape special characters, allowing for the padding spaces we added to remain in tact. Additionally, column names for the table and a caption are specified. The last step is to add additional styling from the {kableExtra} package. In this example, we use the `kableExtra::kable_styling()` function to set some $\LaTeX$ options. Specifically, the `"HOLD_position"` setting ensures that the table will appear in the exact position of the code chunk (i.e., the $\LaTeX$ engine is not allowed to float the table above or below additional paragraphs in order to avoid extraneous white space). For more customization options with the {kableExtra} package, see the package vignettes for [HTML](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html) and [PDF](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf) tables.
 
 ```{r example-table}
-my_data %>%
-  fmt_table(corr_dig = 2, prop_dig = 2) %>%
-  kable(align = c("l", rep("c", 4)), booktabs = TRUE, linesep = "",
-        escape = FALSE,
-        col.names = c("Group", "Students (*n*)", "\\%", "*r*", "*p*-value"),
-        caption = "An example table") %>%
- kable_styling(latex_options = "HOLD_position")
+my_data |>
+  fmt_table(corr_dig = 2, prop_dig = 2) |>
+  kable(
+    align = c("l", rep("c", 4)),
+    booktabs = TRUE,
+    linesep = "",
+    escape = FALSE,
+    col.names = c("Group", "Students (*n*)", "\\%", "*r*", "*p*-value"),
+    caption = "An example table"
+  ) |>
+  kable_styling(latex_options = "HOLD_position")
 ```
 
 Finally, we can cross reference the table using the chunk label. For example, the full code chunk to create Table \@ref(tab:example-table) is shown below. Cross references for tables are created using the syntax `\@ref(tab:chunk-label)`. For example, `Table \@ref(tab:example-table)` renders as Table \@ref(tab:example-table). For more on cross references see [this section](https://bookdown.org/yihui/bookdown/cross-references.html) from *bookdown: Authoring Books and Technical Documents with R Markdown* and [this section](https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html) from the *R Markdown Cookbook*.
 
 ````markdown
 ```{r example-table}`r ''`
-my_data %>%
-  fmt_table(corr_dig = 2, prop_dig = 2) %>%
+my_data |>
+  fmt_table(corr_dig = 2, prop_dig = 2) |>
   kable(align = c("l", rep("c", 4)), booktabs = TRUE, linesep = "",
         escape = FALSE,
         col.names = c("Group", "Students (*n*)", "\\%", "*r*", "*p*-value"),
@@ -233,19 +241,22 @@ We are then ready to start making citations. Citations are made using the syntax
 
 ```{r cite-style, echo = FALSE}
 tribble(
-                   ~code,             ~renders,
-         "`[@R-ratlas]`",        "[@R-ratlas]",
-           "`@R-ratlas`",          "@R-ratlas",
-       "`[LCDM; @lcdm]`",      "[LCDM; @lcdm]",
-            "`[-@lcdm]`",           "[-@lcdm]",
-      "`[@lcdm, pp. 3]`",     "[@lcdm, pp. 3]",
-        "`@lcdm [p. 3]`",       "@lcdm [p. 3]",
-  "`[@lcdm; @R-ratlas]`", "[@lcdm; @R-ratlas]"
-  
-) %>%
-  kable(align = c("l", "l"), booktabs = TRUE, linesep = "",
-        col.names = c("Code", "Renders as..."),
-        caption = "Citation Styles") %>%
+  ~code                  , ~renders             ,
+  "`[@R-ratlas]`"        , "[@R-ratlas]"        ,
+  "`@R-ratlas`"          , "@R-ratlas"          ,
+  "`[LCDM; @lcdm]`"      , "[LCDM; @lcdm]"      ,
+  "`[-@lcdm]`"           , "[-@lcdm]"           ,
+  "`[@lcdm, pp. 3]`"     , "[@lcdm, pp. 3]"     ,
+  "`@lcdm [p. 3]`"       , "@lcdm [p. 3]"       ,
+  "`[@lcdm; @R-ratlas]`" , "[@lcdm; @R-ratlas]"
+) |>
+  kable(
+    align = c("l", "l"),
+    booktabs = TRUE,
+    linesep = "",
+    col.names = c("Code", "Renders as..."),
+    caption = "Citation Styles"
+  ) |>
   kable_styling()
 ```
 
@@ -284,7 +295,7 @@ In this project, there is a `data/` directory with raw data, an `R/` directory w
 If at all possible, you should avoid the hard coding of numbers. For example, let's say we have some data on cars and estimate the following model:
 
 ```{r echo = FALSE}
-my_data <- select(mtcars, mpg, disp, cyl) %>% as_tibble()
+my_data <- select(mtcars, mpg, disp, cyl) |> as_tibble()
 my_new_data <- sample_n(my_data, size = nrow(mtcars) * 1.5, replace = TRUE)
 ```
 
@@ -334,13 +345,15 @@ There are also many resources for getting started with data analysis and program
 ## References
 
 ```{r write-packages, include = FALSE}
-if (!file.exists("bib/packages.bib")) file.create("bib/packages.bib")
+if (!file.exists("bib/packages.bib")) {
+  file.create("bib/packages.bib")
+}
 suppressWarnings(
   knitr::write_bib(c(.packages()), "bib/packages.bib")
 )
 
 # Correct capitalization in packages
-readLines("bib/packages.bib") %>%
-  str_replace_all("ratlas:", "{ratlas}:") %>%
+readLines("bib/packages.bib") |>
+  str_replace_all("ratlas:", "{ratlas}:") |>
   writeLines("bib/packages.bib")
 ```

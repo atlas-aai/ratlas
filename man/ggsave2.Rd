@@ -34,10 +34,12 @@ working directory.}
 
 \item{width}{Plot size in \code{units} ("in", "cm", or "mm").}
 
-\item{height}{Plot size in \code{units} ("in", "cm", or "mm"). If not supplied,
-uses \code{0.618 * width} when \code{dir = "h"} and \code{1.618 * width} when \code{dir = "v"}.}
+\item{height}{Plot size in \code{units} expressed by the \code{unit} argument. If
+\code{NULL} (the default), the height is set to \code{0.618 * width} when \code{dir = "h"}
+and \code{1.618 * width} when \code{dir = "v"}.}
 
-\item{units}{Units of plot size ("in", "cm", or "mm"). Default is inches.}
+\item{units}{One of the following units in which the \code{width} and \code{height}
+arguments are expressed: \code{"in"}, \code{"cm"}, \code{"mm"} or \code{"px"}.}
 
 \item{dir}{Orientation of the plot. One of \code{h} (default) for horizontal or
 \code{v} for vertical.}
@@ -56,9 +58,7 @@ None. Called for side effects.
 \description{
 This is a wrapper around \code{\link[ggplot2:ggsave]{ggplot2::ggsave()}} with some ATLAS-specific
 defaults. The aspect ratio is fixed to 0.618 (\href{https://en.wikipedia.org/wiki/Golden_ratio}{the golden ratio}) unless the height is
-manually defined. Plots are automatically spell checked and warnings are
-returned if there are possible mistakes. Finally, plots saved as a pdf have
-the fonts embedded using \code{\link[extrafont:embed_fonts]{extrafont::embed_fonts()}}.
+manually defined.
 }
 \examples{
 \donttest{

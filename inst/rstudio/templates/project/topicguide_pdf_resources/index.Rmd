@@ -2,9 +2,11 @@
 title: "Topic Guide Title"
 date: "`r format(Sys.Date(), '%B %Y')`"
 knit: bookdown::render_book
-output: ratlas::topicguide_pdf
+output:
+  ratlas::report_pdf:
+    type: "topicguide"
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
-csl: csl/apa.csl
+csl: bib/csl/apa.csl
 link-citations: yes
 internal: true
 lot: true
@@ -14,23 +16,23 @@ mainfont: Arial
 fontsize: 11pt
 ---
 
-```{r setup, include=FALSE}
-needed_packages <- c("knitr", "english")
+```{r setup, include = FALSE}
+needed_packages <- c("ratlas", "ggplot2", "knitr", "systemfonts")
 load_packages <- function(x) {
   if (!(x %in% installed.packages())) {
     install.packages(x, repos = "https://cran.rstudio.com/")
   }
-  
+
   suppressPackageStartupMessages(require(x, character.only = TRUE))
 }
 vapply(needed_packages, load_packages, logical(1))
 
 options(knitr.kable.NA = "")
 options(knitr.table.format = "latex")
-set_theme(font = "Arial Narrow", plot_margin = ggplot2::margin(0, 10, 10, 10))
+set_theme(theme_atlas(plot.margin = margin(3, 10, 0, 10)))
+
+require_font("Roboto Condensed")
 ```
-
-
 
 
 \newpage
@@ -38,7 +40,9 @@ set_theme(font = "Arial Narrow", plot_margin = ggplot2::margin(0, 10, 10, 10))
 # References
 
 ```{r write-packages, include = FALSE}
-if (!file.exists("bib/packages.bib")) file.create("bib/packages.bib")
+if (!file.exists("bib/packages.bib")) {
+  file.create("bib/packages.bib")
+}
 suppressWarnings(
   knitr::write_bib(c(.packages()), "bib/packages.bib")
 )

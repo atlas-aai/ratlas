@@ -7,15 +7,16 @@ program: "DLM"
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 output:
-  ratlas::techreport_gitbook: default
-  ratlas::techreport_pdf: default
+  ratlas::report_gitbook: default
+  ratlas::techreport_pdf:
+    type: "techreport"
 internal: false
 manual: false
 bibliography: ["bib/refs.bib", "bib/packages.bib"]
 biblio-style: apa
 biblatexoptions:
   - sortcites
-csl: csl/apa.csl
+csl: bib/csl/apa.csl
 link-citations: yes
 lot: true
 lof: true
@@ -24,17 +25,23 @@ mainfont: Arial
 fontsize: 11pt
 acknowledgements: >
   `r if (knitr::is_latex_output()) ratlas::inc("front-matter/preface-latex.Rmd")  else "Filler"`
-copyright: "Copyright \\copyright\\ 2020 Accessible Teaching, Learning, and Assessment Systems (ATLAS)"
+copyright: "Copyright \\copyright\\ 2026 Accessible Teaching, Learning, and Assessment Systems (ATLAS)"
 ---
 
 ```{r setup, include = FALSE}
-needed_packages <- c("ratlas", "here", "fs", "glue", "english", 
-                     "knitr", "kableExtra", "tidyverse", "conflicted")
+needed_packages <- c(
+  "ratlas",
+  "ggplot2",
+  "knitr",
+  "kableExtra",
+  "conflicted",
+  "systemfonts"
+)
 load_packages <- function(x) {
   if (!(x %in% installed.packages())) {
     install.packages(x, repos = "https://cran.rstudio.com/")
   }
-  
+
   suppressPackageStartupMessages(require(x, character.only = TRUE))
 }
 vapply(needed_packages, load_packages, logical(1))
@@ -43,12 +50,14 @@ conflict_prefer("filter", "dplyr", quiet = TRUE)
 conflict_prefer("group_rows", "kableExtra", quiet = TRUE)
 
 options(knitr.kable.NA = "")
-set_theme(font = "Arial Narrow", plot_margin = margin(0, 10, 10, 10))
+set_theme(theme_atlas(plot.margin = margin(3, 10, 0, 10)))
+
+require_font("Roboto Condensed")
 ```
 
 `r if (knitr::is_html_output()) "# Placeholder Title {.unlisted .unnumbered .blank}"`
 
-`r if (knitr::is_html_output()) glue("Copyright &copy; 2020 Accessible Teaching, Learning, and Assessment Systems (ATLAS)")`
+`r if (knitr::is_html_output()) "Copyright &copy; 2026 Accessible Teaching, Learning, and Assessment Systems (ATLAS)"`
 
 ```{js, echo = FALSE}
 title=document.getElementById('header');
@@ -115,25 +124,41 @@ Phasellus sagittis consectetur orci, pretium bibendum arcu sagittis non.
 Fusce eu nunc viverra, consectetur orci accumsan, tincidunt ante.
 Etiam congue, mauris a suscipit accumsan, neque turpis hendrerit sapien, sit amet eleifend tortor lectus et ex.
 
+```{r}
+#| label: penguins
+#| fig-cap: Here is some penguin data
+#| fig-alt: Penguin data plot.
+#| fig-note: Not all penguins are friendly.
+
+ggplot(penguins, aes(bill_len, flipper_len, color = species)) +
+  geom_point()
+```
+
 \newpage
 
 # References
 
 ```{r write-packages, include = FALSE}
-if (!file.exists("bib/packages.bib")) file.create("bib/packages.bib")
+if (!file.exists("bib/packages.bib")) {
+  file.create("bib/packages.bib")
+}
 suppressWarnings(
   knitr::write_bib(c(.packages()), "bib/packages.bib")
 )
 
 if (knitr::is_latex_output()) {
-  bib_output <- glue("\\printbibliography[heading=none]
-                     
-                     \\setlength{{\\parindent}}{{0pt}}
-                     \\setlength{{\\leftskip}}{{0pt}}")
+  bib_output <- paste(
+    c(
+      "\\printbibliography[heading=none]",
+      "",
+      "\\setlength{{\\parindent}}{{0pt}}",
+      "\\setlength{{\\leftskip}}{{0pt}}"
+    ),
+    collapse = "\n"
+  )
 } else {
-  bib_output <- glue("<div id='refs'></div>")
+  bib_output <- "<div id='refs'></div>"
 }
 ```
 
 `r bib_output`
-
