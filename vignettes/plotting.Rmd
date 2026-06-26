@@ -175,21 +175,20 @@ ggplot(faithfuld, aes(x = eruptions, y = waiting)) +
 ## Setting a global theme
 
 If you have several plots in a document, it can be a hassle to always remember to add `+ theme_atlas()` to every plot and to switch to a non-default color palette.
-To make the formatting of plots easier, ratlas includes a wrapper function, `set_theme_ratlas()` which will change the ggplot2 defaults so that `theme_atlas()` is always used, and the default color scales are changed to the Okabe Ito palette for discrete scales and the viridis palette for continuous scales.
-That is, once `set_theme_ratlas()` has been called, the `scale_color_okabeito()` and `theme_atlas()` lines no longer need to be added.
+To make the formatting of plots easier, you can use `ggplot2::set_theme()` which will change the ggplot2 defaults so that `theme_atlas()` is always used, and the default color scales are changed to the Okabe Ito palette for discrete scales and the viridis palette for continuous scales.
+That is, once `ggplot2::set_theme()` has been called, the `scale_color_okabeito()` and `theme_atlas()` lines no longer need to be added.
 Instead, they are applied by default. 
 
 ```{r}
 #| label: default-theme
 
-set_theme_ratlas()
+set_theme(theme_atlas())
 
 p1
 ```
 
-`set_theme_ratlas()` also provides flexibility for which defaults are set.
-For example, to use the Palatino font by default, use `set_theme_ratlas(font = "Palatino")`.
-See `?set_theme_ratlas()` for all options.
+`ggplot2::set_theme()` also provides flexibility for which defaults are set.
+For example, to use the Palatino font by default, use `set_theme(theme_atlas(base_family = "Palatino"))`.
 
 ## Saving plots
 

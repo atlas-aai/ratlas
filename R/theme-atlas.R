@@ -30,7 +30,7 @@
 #'   theme_atlas(base_family = "sans")
 theme_atlas <- function(
   base_size = 11.5,
-  base_family = "Roboto Condensed",
+  base_family = c("Roboto Condensed", "sans"),
   header_family = NULL,
   base_line_size = base_size / 22,
   base_rect_size = base_size / 22,

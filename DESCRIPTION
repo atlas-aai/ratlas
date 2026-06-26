@@ -43,11 +43,13 @@ Imports:
     magrittr (>= 1.5),
     officedown,
     purrr,
+    ragg,
     rlang (>= 1.1.0),
     scales (>= 1.4.0),
     stringr,
     tibble,
     tidyr,
+    wjake,
     xfun
 Suggests: 
     english,
