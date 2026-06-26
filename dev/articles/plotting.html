@@ -109,97 +109,92 @@
 
     
     
-<p>This vignette walks through how to create consistent graphics that meet ATLAS formatting standards using <a href="https://ggplot2.tidyverse.org" class="external-link">{ggplot2}</a>. The {ggplot2} package uses the grammar of graphics to create elegant and reproducible plots that are publication ready. The {ratlas} package provides an extension to {ggplot2} by customizing the default theme to match brand requirements.</p>
+<p>This vignette walks through how to create consistent graphics that
+meet ATLAS formatting standards using {ggplot2}. The ggplot2 package
+uses the grammar of graphics to create elegant and reproducible plots
+that are publication ready. The ratlas package provides an extension to
+ggplot2 by customizing the default theme to match brand
+requirements.</p>
 <div class="section level2">
 <h2 id="introduction-to-ggplot2">Introduction to ggplot2<a class="anchor" aria-label="anchor" href="#introduction-to-ggplot2"></a>
 </h2>
-<p>A full tutorial of how to use {ggplot2} is beyond the scope of this vignette. If you are new to {ggplot2}, we recommend you start with these resources:</p>
+<p>A full tutorial of how to use ggplot2 is beyond the scope of this
+vignette. If you are new to ggplot2, we recommend you start with these
+resources:</p>
 <ul>
 <li>
-<a href="https://r4ds.had.co.nz/data-visualisation.html" class="external-link">Data Visualisation</a> in <em>R for Data Science</em>, by Hadley Wickham &amp; Garrett Grolemund</li>
+<a href="https://r4ds.hadley.nz/data-visualize.html" class="external-link">Data
+Visualisation</a> in <em>R for Data Science</em>, by Hadley Wickham,
+Mine Çetinkaya-Rundel, &amp; Garrett Grolemund</li>
 <li>
-<a href="https://socviz.co/" class="external-link"><em>Data Visualization</em></a>, by Kieran Healy</li>
+<a href="https://socviz.co/" class="external-link"><em>Data Visualization</em></a>, by
+Kieran Healy</li>
 <li>
-<a href="https://r-graphics.org" class="external-link"><em>R Graphics Cookbook</em></a>, by Winston Chang</li>
+<a href="https://r-graphics.org" class="external-link"><em>R Graphics Cookbook</em></a>,
+by Winston Chang</li>
 </ul>
-<p>These resources walk through how {ggplot2} works, and provide examples with code for creating different types of plots. For a more in depth description of how {ggplot2} works, we recommend <a href="https://ggplot2-book.org" class="external-link"><em>ggplot2: Elegant Graphics for Data Analysis</em></a>, by Hadley Wickham.</p>
-<p>To demonstrate how to use the ATLAS theme for {ggplot2}, we will use the following example plot of the <code>mtcars</code> data set (Figure <a href="#fig:init-plot">1</a>).</p>
-
+<p>These resources walk provide an overview of ggplot2 and provide
+examples with code for creating different types of plots. For a more in
+depth description of how ggplot2 works, we recommend <a href="https://ggplot2-book.org" class="external-link"><em>ggplot2: Elegant Graphics for Data
+Analysis</em></a>, by Hadley Wickham.</p>
+<p>To demonstrate how to use the ATLAS theme for ggplot2, we will use
+the following example plot of the <code>penguins</code> data set.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:init-plot"></span>
-<img src="plotting_files/figure-html/init-plot-1.png" alt="Default {ggplot2} theme." width="90%"><p class="caption">
-Figure 1: Default {ggplot2} theme.
-</p>
-</div>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_len</span>, y <span class="op">=</span> <span class="va">flipper_len</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">species</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p1</span></span></code></pre></div>
+<p><img src="plotting_files/figure-html/init-plot-1.png" class="r-plt" alt="" width="90%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="using-theme_atlas">Using <code>theme_atlas()</code><a class="anchor" aria-label="anchor" href="#using-theme_atlas"></a>
 </h2>
-<p>The ATLAS {ggplot2} theme can be applied by adding a <code><a href="../reference/theme_atlas.html">ratlas::theme_atlas()</a></code> layer to plot, just as you would add any other theme. The result is shown in Figure <a href="#fig:theme-atlas-ex">2</a>.</p>
-
+<p>The ATLAS ggplot2 theme can be applied by adding a
+<code><a href="../reference/theme_atlas.html">ratlas::theme_atlas()</a></code> layer to plot, just as you would add
+any other theme.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ratlas.netlify.app">ratlas</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="va">p1</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:theme-atlas-ex"></span>
-<img src="plotting_files/figure-html/theme-atlas-ex-1.png" alt="The result of applying ratlas::theme_atlas() to a plot." width="90%"><p class="caption">
-Figure 2: The result of applying <code><a href="../reference/theme_atlas.html">ratlas::theme_atlas()</a></code> to a plot.
-</p>
-</div>
-<p>There are a few points to draw attention to when comparing Figure <a href="#fig:theme-atlas-ex">2</a> back to Figure <a href="#fig:init-plot">1</a>. First, the gray background has been removed, and the grid lines have been changed from white to gray. Second, the legend has been moved from a vertical orientation on the right-hand side of the plot to a horizontal orientation below the plot. Finally, the font has been changed to Arial Narrow, which should be available on all systems and provides a more modern look.</p>
+<p><img src="plotting_files/figure-html/theme-atlas-ex-1.png" class="r-plt" alt="" width="90%" style="display: block; margin: auto;"></p>
+<p>There are a few points to draw attention to when comparing the ATLAS
+theme to the ggplot2 default. First, the gray background has been
+removed, and the grid lines have been changed from white to gray.
+Second, the legend has been moved from a vertical orientation on the
+right-hand side of the plot to a horizontal orientation below the plot.
+Finally, the font has been changed to Roboto Condensed, which is freely
+available from <a href="https://fonts.google.com/specimen/Roboto+Condensed" class="external-link">Google
+Fonts</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="changing-the-font">Changing the font<a class="anchor" aria-label="anchor" href="#changing-the-font"></a>
 </h2>
-<p>Although Arial Narrow provides a modern font available on all systems, it is often desirable to have a font that matches the brand requirements. The official font of the University of Kansas and ATLAS is <a href="https://brand.ku.edu/guidelines/design/typography" class="external-link">Gotham</a>. However, this font is expensive, and thus inaccessible to most users. <a href="https://fonts.google.com/specimen/Montserrat" class="external-link">Montserrat</a> is a very similar font that is available for free through Google Fonts. We recommend that you load this font with the {systemfonts} package.</p>
+<p>Although Roboto Condensed provides a modern font that works in most
+cases, it is often desirable to have a font that matches the brand
+requirements. For fonts that are available on most systems, the
+University of Kansas and ATLAS recommend <a href="https://brand.ku.edu/guidelines/design/typography#section4196" class="external-link">Arial
+and Palatino</a>. These fonts can be loaded using the
+<a href="https://github.com/r-lib/systemfonts" class="external-link">systemfonts</a> package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-lib/systemfonts" class="external-link">systemfonts</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://systemfonts.r-lib.org/reference/require_font.html" class="external-link">require_font</a></span><span class="op">(</span><span class="st">"Montserrat"</span><span class="op">)</span></span></code></pre></div>
-<p>Once the Montserrat font has been loaded, you can apply it to the ATLAS theme using <code>ratlas::theme_atlas(base_family = "Montserrat")</code>.</p>
+<span><span class="fu"><a href="https://systemfonts.r-lib.org/reference/require_font.html" class="external-link">require_font</a></span><span class="op">(</span><span class="st">"Arial"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://systemfonts.r-lib.org/reference/require_font.html" class="external-link">require_font</a></span><span class="op">(</span><span class="st">"Palatino"</span><span class="op">)</span></span></code></pre></div>
+<p>Once the fonts has been loaded, you can apply them to the ATLAS theme
+using the <code>base_family</code> argument.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Montserrat"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Palatino"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="colors">Colors<a class="anchor" aria-label="anchor" href="#colors"></a>
+<h2 id="using-color-blind-safe-palettes">Using color-blind-safe palettes<a class="anchor" aria-label="anchor" href="#using-color-blind-safe-palettes"></a>
 </h2>
-<p>One potential issue with graphics created with {ggplot2} is that the default color scales are not colorblind friendly. For example, Figure <a href="#fig:disc-cvd">3</a> shows our working example simulated with different types of color blindness.</p>
-
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:disc-cvd"></span>
-<img src="plotting_files/figure-html/disc-cvd-1.png" alt="The default {ggplot2} color palette for discrete scales with different types of color blindness." width="90%"><p class="caption">
-Figure 3: The default {ggplot2} color palette for discrete scales with different types of color blindness.
-</p>
-</div>
-<p>Figure <a href="#fig:disc-cvd">3</a> shows that most types of color blindness make it hard to distinguish between the different level of the <code>cyl</code> variable when using the default color palette. The palette for continuous variables has similar problems. Figure <a href="#fig:cont-ex">4</a> shows the default color palette for continuous variables in {ggplot2}.</p>
-
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:cont-ex"></span>
-<img src="plotting_files/figure-html/cont-ex-1.png" alt="Default color palette for continuous variables in {ggplot2}." width="90%"><p class="caption">
-Figure 4: Default color palette for continuous variables in {ggplot2}.
-</p>
-</div>
-<p>The simulated color blindness for this scale is shown in Figure <a href="#fig:cont-cvd">5</a>. Here, several types of color blindness result in large sections of the palette where it is difficult to differentiate values.</p>
-
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:cont-cvd"></span>
-<img src="plotting_files/figure-html/cont-cvd-1.png" alt="The default {ggplot2} color palette for continuous scales with different types of color blindness." width="90%"><p class="caption">
-Figure 5: The default {ggplot2} color palette for continuous scales with different types of color blindness.
-</p>
-</div>
-<div class="section level3">
-<h3 id="using-color-blind-safe-palettes">Using color blind safe palettes<a class="anchor" aria-label="anchor" href="#using-color-blind-safe-palettes"></a>
-</h3>
-<p>For discrete color scales, the {ratlas} package includes the Okabe Ito color palette developed by <a href="https://jfly.uni-koeln.de/color/" class="external-link">Masataka Okabe and Kei Ito</a>. This can be used with the <code><a href="../reference/scale_okabeito.html">ratlas::scale_color_okabeito()</a></code> function.</p>
+<p>For discrete color scales, the ratlas package includes the Okabe Ito
+color palette developed by <a href="https://jfly.uni-koeln.de/color/" class="external-link">Masataka Okabe and Kei Ito</a>.
+This can be used with the <code><a href="https://wjake.wjakethompson.com/reference/palette_okabeito.html" class="external-link">ratlas::scale_color_okabeito()</a></code>
+function.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
@@ -207,126 +202,81 @@ Figure 5: The default {ggplot2} color palette for continuous scales with differe
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/scale_okabeito.html">scale_color_okabeito</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://wjake.wjakethompson.com/reference/palette_okabeito.html" class="external-link">scale_color_okabeito</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:okabeito-compare"></span>
-<img src="plotting_files/figure-html/okabeito-compare-1.png" alt="Comparison plot using the default (left) and Okabe Ito (right) discrete color palettes." width="47%"><img src="plotting_files/figure-html/okabeito-compare-2.png" alt="Comparison plot using the default (left) and Okabe Ito (right) discrete color palettes." width="47%"><p class="caption">
-Figure 6: Comparison plot using the default (left) and Okabe Ito (right) discrete color palettes.
-</p>
-</div>
-<p>For continuous color scales, the viridis family of color palettes should be used. These palettes were created by <a href="https://github.com/stefanv" class="external-link">Stéfan van der Walt</a> and <a href="https://github.com/njsmith" class="external-link">Nathaniel Smith</a> and are shown in Figure <a href="#fig:show-viridis">7</a>.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:show-viridis"></span>
-<img src="plotting_files/figure-html/show-viridis-1.png" alt="The viridis color scales." width="90%"><p class="caption">
-Figure 7: The viridis color scales.
-</p>
-</div>
-<p>These color scales are perceptually uniform, perform well for a variety of colorblindness, and maintain the ability to discriminate across the perceptual spectrum when rendered or printed in gray scale. These color scales can be applied using <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">ggplot2::scale_color_viridis_c()</a></code>. Figure <a href="#fig:viridis-compare">8</a> shows and example of using the the viridis color palette. There is also a discrete option for the viridis color palette (<code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">ggplot2::scale_color_viridis_d()</a></code>); however, the Okabe Ito palette is preferred for discrete scales.</p>
+<p><img src="plotting_files/figure-html/okabeito-compare-1.png" class="r-plt" alt="" width="40%" style="display: block; margin: auto;"><img src="plotting_files/figure-html/okabeito-compare-2.png" class="r-plt" alt="" width="40%" style="display: block; margin: auto;"></p>
+<p>For continuous color scales, the viridis family of color palettes
+should be used. These palettes were created by <a href="https://github.com/stefanv" class="external-link">Stéfan van der Walt</a> and <a href="https://github.com/njsmith" class="external-link">Nathaniel Smith</a>.</p>
+<p><img src="plotting_files/figure-html/show-viridis-1.png" class="r-plt" alt="" width="90%" style="display: block; margin: auto;"></p>
+<p>These color scales are perceptually uniform, perform well for a
+variety of colorblindness, and maintain the ability to discriminate
+across the perceptual spectrum when rendered or printed in gray scale.
+These color scales can be applied using
+<code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">ggplot2::scale_color_viridis_c()</a></code>. There is also a discrete
+option for the viridis color palette
+(<code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">ggplot2::scale_color_viridis_d()</a></code>); however, the Okabe Ito
+palette is preferred for discrete scales.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">faithfuld</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">eruptions</span>, y <span class="op">=</span> <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_raster</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">density</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_tile</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">density</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">faithfuld</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">eruptions</span>, y <span class="op">=</span> <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_raster</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">density</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_tile</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">density</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_c</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:viridis-compare"></span>
-<img src="plotting_files/figure-html/viridis-compare-1.png" alt="Comparison plot with default (left) and viridis (right) continuous color palettes." width="47%"><img src="plotting_files/figure-html/viridis-compare-2.png" alt="Comparison plot with default (left) and viridis (right) continuous color palettes." width="47%"><p class="caption">
-Figure 8: Comparison plot with default (left) and viridis (right) continuous color palettes.
-</p>
-</div>
-</div>
-<div class="section level3">
-<h3 id="brand-colors">Brand colors<a class="anchor" aria-label="anchor" href="#brand-colors"></a>
-</h3>
-<p>In additional to palettes that are color blind safe, the {ratlas} package also include brand specific color palettes. For example, a plot can be created using the official ATLAS color palette by using the <code><a href="../reference/scale_atlas.html">ratlas::scale_color_atlas()</a></code> function, as shown in Figure <a href="#fig:atlas-colors">9</a>.</p>
-
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/scale_atlas.html">scale_color_atlas</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:atlas-colors"></span>
-<img src="plotting_files/figure-html/atlas-colors-1.png" alt="Plot with the official ATLAS colors using ratlas::scale_color_atlas()." width="90%"><p class="caption">
-Figure 9: Plot with the official ATLAS colors using <code><a href="../reference/scale_atlas.html">ratlas::scale_color_atlas()</a></code>.
-</p>
-</div>
-</div>
+<p><img src="plotting_files/figure-html/viridis-compare-1.png" class="r-plt" alt="" width="47%" style="display: block; margin: auto;"><img src="plotting_files/figure-html/viridis-compare-2.png" class="r-plt" alt="" width="47%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="setting-a-global-theme">Setting a global theme<a class="anchor" aria-label="anchor" href="#setting-a-global-theme"></a>
 </h2>
-<p>If you have several plots in a document, it can be a hassle to always remember to add <code>+ theme_atlas()</code> to every plot and to switch to a non-default color palette. To make the formatting of plots easier, {ratlas} includes a wrapper function, <code><a href="../reference/set_theme.html">ratlas::set_theme()</a></code> which will change the {ggplot2} defaults so that <code><a href="../reference/theme_atlas.html">theme_atlas()</a></code> is always used, and the default color scales are changed to the Okabe Ito palette for discrete scales and the viridis palette for continuous scales.</p>
-<p>For example, once <code><a href="../reference/set_theme.html">set_theme()</a></code> has been called, the <code><a href="../reference/scale_okabeito.html">scale_color_okabeito()</a></code> and <code><a href="../reference/theme_atlas.html">theme_atlas()</a></code> lines no longer need to be added. Instead, they are applied by default (Figure <a href="#fig:default-theme">10</a>).</p>
-
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_theme.html">set_theme</a></span><span class="op">(</span><span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Vectorized input to `element_text()` is not officially supported.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Results may be unexpected or may change in future versions of ggplot2.</span></span>
-<span><span class="co">#&gt; Vectorized input to `element_text()` is not officially supported.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Results may be unexpected or may change in future versions of ggplot2.</span></span>
-<span><span class="co">#&gt; Vectorized input to `element_text()` is not officially supported.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Results may be unexpected or may change in future versions of ggplot2.</span></span>
-<span><span class="co">#&gt; Vectorized input to `element_text()` is not officially supported.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Results may be unexpected or may change in future versions of ggplot2.</span></span>
-<span><span class="co">#&gt; Vectorized input to `element_text()` is not officially supported.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Results may be unexpected or may change in future versions of ggplot2.</span></span>
-<span><span class="co">#&gt; Vectorized input to `element_text()` is not officially supported.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Results may be unexpected or may change in future versions of ggplot2.</span></span>
-<span><span class="co">#&gt; Vectorized input to `element_text()` is not officially supported.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Results may be unexpected or may change in future versions of ggplot2.</span></span>
-<span><span class="co">#&gt; Vectorized input to `element_text()` is not officially supported.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Results may be unexpected or may change in future versions of ggplot2.</span></span>
-<span><span class="co">#&gt; Vectorized input to `element_text()` is not officially supported.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Results may be unexpected or may change in future versions of ggplot2.</span></span>
+<p>If you have several plots in a document, it can be a hassle to always
+remember to add <code>+ theme_atlas()</code> to every plot and to switch
+to a non-default color palette. To make the formatting of plots easier,
+you can use <code><a href="https://ggplot2.tidyverse.org/reference/get_theme.html" class="external-link">ggplot2::set_theme()</a></code> which will change the
+ggplot2 defaults so that <code><a href="../reference/theme_atlas.html">theme_atlas()</a></code> is always used, and
+the default color scales are changed to the Okabe Ito palette for
+discrete scales and the viridis palette for continuous scales. That is,
+once <code><a href="https://ggplot2.tidyverse.org/reference/get_theme.html" class="external-link">ggplot2::set_theme()</a></code> has been called, the
+<code><a href="https://wjake.wjakethompson.com/reference/palette_okabeito.html" class="external-link">scale_color_okabeito()</a></code> and <code><a href="../reference/theme_atlas.html">theme_atlas()</a></code> lines
+no longer need to be added. Instead, they are applied by default.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/get_theme.html" class="external-link">set_theme</a></span><span class="op">(</span><span class="fu"><a href="../reference/theme_atlas.html">theme_atlas</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:default-theme"></span>
-<img src="plotting_files/figure-html/default-theme-1.png" alt="Plot generated after using set_theme() to set new defaults globally." width="90%"><p class="caption">
-Figure 10: Plot generated after using <code><a href="../reference/set_theme.html">set_theme()</a></code> to set new defaults globally.
-</p>
-</div>
-<p>The <code><a href="../reference/set_theme.html">set_theme()</a></code> function also provides flexibility for which defaults are set. For example, to use the Montserrat font by default, use <code>set_theme(theme_atlas(base_family = "Montserrat"))</code>. See <code>?set_theme()</code> for all options.</p>
+<span><span class="va">p1</span></span></code></pre></div>
+<p><img src="plotting_files/figure-html/default-theme-1.png" class="r-plt" alt="" width="90%" style="display: block; margin: auto;"></p>
+<p><code><a href="https://ggplot2.tidyverse.org/reference/get_theme.html" class="external-link">ggplot2::set_theme()</a></code> also provides flexibility for which
+defaults are set. For example, to use the Palatino font by default, use
+<code>set_theme(theme_atlas(base_family = "Palatino"))</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="saving-plots">Saving plots<a class="anchor" aria-label="anchor" href="#saving-plots"></a>
 </h2>
-<p>Finally, it is often useful to save plots to a file. This can be done with <code><a href="../reference/ggsave2.html">ratlas::ggsave2()</a></code>. This is a wrapper around <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggplot2::ggsave()</a></code>. The <code><a href="../reference/ggsave2.html">ggsave2()</a></code> version applies some defaults to all ATLAS plots. Specifically, the plot labels and titles are automatically spell checked, the aspect ratio of plots is set to a reasonable default (rather than using the current size of your graphics device), and embeds the fonts when saving to a PDF format, allowing the plots to render correctly on any system.</p>
+<p>Finally, it is often useful to save plots to a file. This can be done
+with <code><a href="../reference/ggsave2.html">ggsave2()</a></code>, which is a wrapper around
+<code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggplot2::ggsave()</a></code>. The <code><a href="../reference/ggsave2.html">ggsave2()</a></code> version
+applies some defaults to all ATLAS plots. Specifically, the aspect ratio
+of plots is set to a reasonable default (rather than using the current
+size of your graphics device), and fonts are automatically embedded when
+saving to a PDF format, allowing the plots to render correctly on any
+system.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/ggsave2.html">ggsave2</a></span><span class="op">(</span>plot <span class="op">=</span> <span class="va">p1</span>, filename <span class="op">=</span> <span class="st">"my-plot.png"</span>, path <span class="op">=</span> <span class="st">"where/to/save"</span><span class="op">)</span></span></code></pre></div>
+<p>The <code><a href="../reference/ggsave2.html">ggsave2()</a></code> function also flips the order of the
+<code>filename</code> and <code>plot</code> arguments from the original
+<code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggplot2::ggsave()</a></code> function. This allows calls to the
+function to be chained together, making it easier to save the sample
+plot in multiple formats using the <code>|&gt;</code> operator.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/ggsave2.html">ggsave2</a></span><span class="op">(</span>plot <span class="op">=</span> <span class="va">p</span>, filename <span class="op">=</span> <span class="st">"my-plot.png"</span>, path <span class="op">=</span> <span class="st">"where/to/save"</span><span class="op">)</span></span></code></pre></div>
-<p>The <code><a href="../reference/ggsave2.html">ggsave2()</a></code> function also flips the order of the <code>filename</code> and <code>plot</code> arguments from the <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggplot2::ggsave()</a></code> function. This allows calls to the function to be chained together, making it easier to save the sample plot in multiple formats using the <code>%&gt;%</code> operator.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/ggsave2.html">ggsave2</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"my-plot.png"</span>, path <span class="op">=</span> <span class="st">"where/to/save"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/ggsave2.html">ggsave2</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"my-plot.png"</span>, path <span class="op">=</span> <span class="st">"where/to/save"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/ggsave2.html">ggsave2</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"my-plot.pdf"</span>, path <span class="op">=</span> <span class="st">"where/to/save"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="keep-learning">Keep Learning<a class="anchor" aria-label="anchor" href="#keep-learning"></a>
-</h2>
-<p>There are many resources available for learning more about how to make data visualizations with R and {ggplot2}. Here are a few <strong>free</strong> resources that I have found particularly helpful:</p>
-<ul>
-<li>For an introduction to {ggplot2}, see <a href="https://r4ds.had.co.nz/data-visualisation.html" class="external-link">Data Visualisation</a>, from <em>R for Data Science</em>, by Hadley Wickham and Garrett Grolemund</li>
-<li>For simple recipes for creating different types of plots with {ggplot2}, see the <a href="https://r-graphics.org/" class="external-link"><em>R Graphics Cookbook</em></a>, by Winston Chang</li>
-<li>For more details on how to customize {ggplot2} graphics to fit your specific use case, see <a href="https://socviz.co/" class="external-link"><em>Data Visualization: A Practical Introduction</em></a>, by Kieran Healy</li>
-<li>Finally, for a discussion of best principles for data visualization, see <a href="https://clauswilke.com/dataviz/" class="external-link"><em>Fundamentals of Data Visualization</em></a>, by Claus Wilke</li>
-</ul>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
@@ -339,7 +289,7 @@ Figure 10: Plot generated after using <code><a href="../reference/set_theme.html
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer>

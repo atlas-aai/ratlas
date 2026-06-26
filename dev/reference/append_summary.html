@@ -69,7 +69,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Append row and/or column summaries</h1>
-    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/main/R/misc-manipulation.R" class="external-link"><code>R/misc-manipulation.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/atlas-aai/ratlas/blob/main/R/formatting-dataframe.R" class="external-link"><code>R/formatting-dataframe.R</code></a></small>
     <div class="hidden name"><code>append_summary.Rd</code></div>
     </div>
 
@@ -90,25 +90,25 @@
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Unquoted names of columns to be included in the summary</p></dd>
+<dd><p>Unquoted names of columns to be included in the summary.</p></dd>
 
 
 <dt id="arg-row">row<a class="anchor" aria-label="anchor" href="#arg-row"></a></dt>
 <dd><p>logical indicating whether a summary row should be added (i.e.,
-summarizing each column)</p></dd>
+summarizing each column).</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
 <dd><p>logical indicating whether a summary column should be added (i.e.,
-summarizing each row)</p></dd>
+summarizing each row).</p></dd>
 
 
 <dt id="arg--f">.f<a class="anchor" aria-label="anchor" href="#arg--f"></a></dt>
-<dd><p>Function to use for calculating summaries</p></dd>
+<dd><p>Function to use for calculating summaries.</p></dd>
 
 
 <dt id="arg-args">args<a class="anchor" aria-label="anchor" href="#arg-args"></a></dt>
-<dd><p>A named list of arguments to pass to <code>.f</code></p></dd>
+<dd><p>A named list of additional arguments to pass to <code>.f</code>.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -118,27 +118,35 @@ summarizing each row)</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">9416</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>char <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">append_summary</span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, <span class="va">y</span>, row <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="cn">TRUE</span>, .f <span class="op">=</span> <span class="va">sum</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   char       x      y    sum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     -<span style="color: #BB0000;">0.743</span> -<span style="color: #BB0000;">1.28</span>  -<span style="color: #BB0000;">2.02</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b      0.205 -<span style="color: #BB0000;">0.900</span> -<span style="color: #BB0000;">0.695</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     -<span style="color: #BB0000;">0.724</span>  1.54   0.811</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d      0.319  1.40   1.72 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e      0.141 -<span style="color: #BB0000;">0.645</span> -<span style="color: #BB0000;">0.504</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> <span style="color: #BB0000;">NA</span>    -<span style="color: #BB0000;">0.802</span>  0.116 -<span style="color: #BB0000;">0.686</span></span>
-<span class="r-in"><span><span class="fu">append_summary</span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, <span class="va">y</span>, row <span class="op">=</span> <span class="cn">FALSE</span>, .f <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   char       x      y   mean</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     -<span style="color: #BB0000;">0.743</span> -<span style="color: #BB0000;">1.28</span>  -<span style="color: #BB0000;">1.01</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b      0.205 -<span style="color: #BB0000;">0.900</span> -<span style="color: #BB0000;">0.348</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     -<span style="color: #BB0000;">0.724</span>  1.54   0.406</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d      0.319  1.40   0.861</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e      0.141 -<span style="color: #BB0000;">0.645</span> -<span style="color: #BB0000;">0.252</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"species"</span>, <span class="st">"bill_len"</span>, <span class="st">"flipper_len"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">append_summary</span><span class="op">(</span><span class="va">df</span>, <span class="va">bill_len</span>, <span class="va">flipper_len</span>, row <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="cn">TRUE</span>, .f <span class="op">=</span> <span class="va">sum</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   species bill_len flipper_len   sum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  Adelie     39.1         181 220.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  Adelie     39.5         186 225.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  Adelie     40.3         195 235.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  Adelie       NA          NA    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  Adelie     36.7         193 229.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  Adelie     39.3         190 229.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    &lt;NA&gt;       NA          NA    NA</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">append_summary</span><span class="op">(</span><span class="va">df</span>, <span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, .f <span class="op">=</span> <span class="va">sum</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   species bill_len flipper_len    sum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  Adelie     39.1         181  220.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  Adelie     39.5         186  225.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  Adelie     40.3         195  235.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  Adelie       NA          NA    0.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  Adelie     36.7         193  229.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  Adelie     39.3         190  229.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    &lt;NA&gt;    194.9         945 1139.9</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">append_summary</span><span class="op">(</span><span class="va">df</span>, <span class="va">bill_len</span>, <span class="va">flipper_len</span>, row <span class="op">=</span> <span class="cn">FALSE</span>, .f <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   species bill_len flipper_len   mean</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  Adelie     39.1         181 110.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  Adelie     39.5         186 112.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  Adelie     40.3         195 117.65</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  Adelie       NA          NA     NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  Adelie     36.7         193 114.85</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  Adelie     39.3         190 114.65</span>
 </code></pre></div>
     </div>
   </div>
@@ -153,7 +161,7 @@ summarizing each row)</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer></div>
