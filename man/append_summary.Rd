@@ -11,10 +11,10 @@ append_summary(df, ..., row = TRUE, col = TRUE, .f = sum, args = NULL)
 
 \item{...}{Unquoted names of columns to be included in the summary.}
 
-\item{row}{logical indicating whether a summary row should be added (i.e.,
+\item{row}{Logical indicating whether a summary row should be added (i.e.,
 summarizing each column).}
 
-\item{col}{logical indicating whether a summary column should be added (i.e.,
+\item{col}{Logical indicating whether a summary column should be added (i.e.,
 summarizing each row).}
 
 \item{.f}{Function to use for calculating summaries.}
@@ -22,7 +22,7 @@ summarizing each row).}
 \item{args}{A named list of additional arguments to pass to \code{.f}.}
 }
 \value{
-A data frame with the summary row and/or column appended
+A data frame with the summary row and/or column appended.
 }
 \description{
 Add row and/or column summaries (e.g., total counts) to a data frame.

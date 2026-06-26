@@ -39,4 +39,6 @@ Commonly used names and labels for the Dynamic Learning
 Maps\ifelse{html}{\out{<sup>&reg;</sup>}}{\eqn{^\circledR}}
 (DLM\ifelse{html}{\out{<sup>&reg;</sup>}}{\eqn{^\circledR}}) assessments.
 }
+\concept{Learning}
+\concept{Maps}
 \keyword{datasets}

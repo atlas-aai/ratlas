@@ -13,7 +13,10 @@
 #' @param dir Orientation of the plot. One of `h` (default) for horizontal or
 #'   `v` for vertical.
 #' @param embed_fonts Logical. Use Ghostscript to embed fonts in a PDF graphic?
-#' @param ... Additional arguments passed to [ggplot2::ggsave()]
+#' @param ... Additional arguments passed to [ggplot2::ggsave()].
+#'
+#' @concept Ghostscript
+#' @concept PDF
 #'
 #' @return None. Called for side effects.
 #' @export

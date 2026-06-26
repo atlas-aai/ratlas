@@ -2,7 +2,7 @@
 % Please edit documentation in R/formatting-dataframe.R
 \name{combine_n_pct}
 \alias{combine_n_pct}
-\title{Combine N and Percent Columns for Accessibility}
+\title{Combine "N" and "Percent" columns for accessibility}
 \usage{
 combine_n_pct(df, n, pct, name, remove = TRUE, na_replace = NULL)
 }
@@ -24,7 +24,7 @@ represented.}
 A data frame.
 }
 \description{
-Combine N and Percent Columns for Accessibility
+Combine "N" and "Percent" columns for accessibility
 }
 \examples{
 pcts <- data.frame(Program = LETTERS[1:10],

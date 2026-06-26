@@ -1,18 +1,21 @@
-#' Create an R Markdown Word Document Topic Guide
+#' Create an R Markdown Word document topic guide
 #'
 #' This is a function called in the output of the yaml of the Rmd file to
 #' specify using the standard DLM topic guide word document formatting.
 #'
 #' @param type The type of report. Should be one of "topicguide", or
-#'   "techreport". The following outputs are supported for each type:
-#'   * topicguide: docx, rdocx, pdf
-#'   * techreport: pdf, gitbook
+#'   "techreport". The following outputs are supported for each type.
+#'   * topicguide: docx, rdocx, pdf.
+#'   * techreport: pdf, gitbook.
 #' @param ... Arguments to be passed to relevant bookdown or officedown
-#'   output functions:
-#'   * [report_docx()] passes to [bookdown::word_document2()]
-#'   * [report_rdocx()] passes to [officedown::rdocx_document()]
-#'   * [report_pdf()] passes to [bookdown::pdf_document2()]
-#'   * [report_gitbook()] passes to [bookdown::gitbook()]
+#'   output functions.
+#'   * [report_docx()] passes to [bookdown::word_document2()].
+#'   * [report_rdocx()] passes to [officedown::rdocx_document()].
+#'   * [report_pdf()] passes to [bookdown::pdf_document2()].
+#'   * [report_gitbook()] passes to [bookdown::gitbook()].
+#'
+#' @concept R Markdown
+#' @concept Word
 #'
 #' @return A modified output format with the appropriate template and default
 #'   options defined.

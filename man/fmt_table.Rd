@@ -2,7 +2,7 @@
 % Please edit documentation in R/formatting-dataframe.R
 \name{fmt_table}
 \alias{fmt_table}
-\title{Center and Decimal Align Tables}
+\title{Center and decimal align tables}
 \usage{
 fmt_table(
   df,

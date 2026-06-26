@@ -50,7 +50,7 @@ as is typical for raster output types.}
 
 \item{embed_fonts}{Logical. Use Ghostscript to embed fonts in a PDF graphic?}
 
-\item{...}{Additional arguments passed to \code{\link[ggplot2:ggsave]{ggplot2::ggsave()}}}
+\item{...}{Additional arguments passed to \code{\link[ggplot2:ggsave]{ggplot2::ggsave()}}.}
 }
 \value{
 None. Called for side effects.
@@ -70,3 +70,5 @@ ggsave2(p, "/mtcars.pdf", path = tempdir())
 ggsave2(p, "/mtcars.png", path = tempdir())
 }
 }
+\concept{Ghostscript}
+\concept{PDF}

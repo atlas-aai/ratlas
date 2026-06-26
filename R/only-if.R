@@ -2,7 +2,7 @@
 #'
 #' Adverb for conditionally skipping steps in a piped workflow.
 #'
-#' @param condition Logical condition to be evaluated
+#' @param condition Logical condition to be evaluated.
 #'
 #' @export
 #' @return None. Called for side effects.

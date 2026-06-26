@@ -4,6 +4,9 @@
 #' Maps\ifelse{html}{\out{<sup>&reg;</sup>}}{\eqn{^\circledR}}
 #' (DLM\ifelse{html}{\out{<sup>&reg;</sup>}}{\eqn{^\circledR}}) assessments.
 #'
+#' @concept Learning
+#' @concept Maps
+#'
 #' @rdname dlmalias
 #' @format `dlm_ll_info` is a data frame with 13 rows and 4 variables:
 #' * `subject`: The subject area for the linkage level

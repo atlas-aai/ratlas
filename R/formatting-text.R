@@ -1,11 +1,14 @@
-#' Format a String with Italics for HTML or Latex Output
+#' Format a string with italics for HTML or LaTeX output
 #'
 #' @param string The character vector to add italics to.
-#' @param indicator The indicator for which words should be italicized
-#' @param html Logical for whether the output should be HTML. If `FALSE`, Latex
+#' @param indicator The indicator for which words should be italicized.
+#' @param html Logical for whether the output should be HTML. If `FALSE`, LaTeX
 #'   output is provided.
 #'
-#' @return A character vector
+#' @concept HTML
+#' @concept LaTeX
+#'
+#' @return A character vector.
 #' @export
 #'
 #' @examples

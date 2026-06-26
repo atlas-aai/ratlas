@@ -5,7 +5,7 @@
 \alias{report_rdocx}
 \alias{report_pdf}
 \alias{report_gitbook}
-\title{Create an R Markdown Word Document Topic Guide}
+\title{Create an R Markdown Word document topic guide}
 \usage{
 report_docx(type = "topicguide", ...)
 
@@ -17,19 +17,19 @@ report_gitbook(type = "techreport", ...)
 }
 \arguments{
 \item{type}{The type of report. Should be one of "topicguide", or
-"techreport". The following outputs are supported for each type:
+"techreport". The following outputs are supported for each type.
 \itemize{
-\item topicguide: docx, rdocx, pdf
-\item techreport: pdf, gitbook
+\item topicguide: docx, rdocx, pdf.
+\item techreport: pdf, gitbook.
 }}
 
 \item{...}{Arguments to be passed to relevant bookdown or officedown
-output functions:
+output functions.
 \itemize{
-\item \code{\link[=report_docx]{report_docx()}} passes to \code{\link[bookdown:word_document2]{bookdown::word_document2()}}
-\item \code{\link[=report_rdocx]{report_rdocx()}} passes to \code{\link[officedown:rdocx_document]{officedown::rdocx_document()}}
-\item \code{\link[=report_pdf]{report_pdf()}} passes to \code{\link[bookdown:pdf_document2]{bookdown::pdf_document2()}}
-\item \code{\link[=report_gitbook]{report_gitbook()}} passes to \code{\link[bookdown:gitbook]{bookdown::gitbook()}}
+\item \code{\link[=report_docx]{report_docx()}} passes to \code{\link[bookdown:word_document2]{bookdown::word_document2()}}.
+\item \code{\link[=report_rdocx]{report_rdocx()}} passes to \code{\link[officedown:rdocx_document]{officedown::rdocx_document()}}.
+\item \code{\link[=report_pdf]{report_pdf()}} passes to \code{\link[bookdown:pdf_document2]{bookdown::pdf_document2()}}.
+\item \code{\link[=report_gitbook]{report_gitbook()}} passes to \code{\link[bookdown:gitbook]{bookdown::gitbook()}}.
 }}
 }
 \value{
@@ -45,3 +45,5 @@ specify using the standard DLM topic guide word document formatting.
 output: ratlas::report_docx
 }
 }
+\concept{R Markdown}
+\concept{Word}

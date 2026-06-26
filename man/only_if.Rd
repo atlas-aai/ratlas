@@ -7,7 +7,7 @@
 only_if(condition)
 }
 \arguments{
-\item{condition}{Logical condition to be evaluated}
+\item{condition}{Logical condition to be evaluated.}
 }
 \value{
 None. Called for side effects.

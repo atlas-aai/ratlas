@@ -1,10 +1,10 @@
 # output utils -----------------------------------------------------------------
 #' Generate a section for the yaml input
 #'
-#' @param input a file containing markdown text
-#' @param sep a separator for each line.
+#' @param input A file containing markdown text.
+#' @param sep A separator for each line.
 #'
-#' @return a string
+#' @return A string.
 #' @examples
 #' \dontrun{
 #' inc("front-matter/preface.Rmd")

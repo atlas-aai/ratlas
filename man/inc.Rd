@@ -7,12 +7,12 @@
 inc(input, sep = "\\n\\n  ")
 }
 \arguments{
-\item{input}{a file containing markdown text}
+\item{input}{A file containing markdown text.}
 
-\item{sep}{a separator for each line.}
+\item{sep}{A separator for each line.}
 }
 \value{
-a string
+A string.
 }
 \description{
 Generate a section for the yaml input

@@ -6,7 +6,7 @@
 \alias{pad_prop}
 \alias{pad_corr}
 \alias{pad_decimal}
-\title{Table Padding}
+\title{Table padding}
 \usage{
 pad_counts(x, ...)
 
@@ -17,11 +17,11 @@ pad_corr(x, digits, output = NULL, ...)
 pad_decimal(x, digits, output = NULL, ...)
 }
 \arguments{
-\item{x}{Number or number string to be formatted}
+\item{x}{Number or number string to be formatted.}
 
 \item{...}{Additional arguments passed to \code{\link[wjake:fmt_digits]{wjake::fmt_digits()}}.}
 
-\item{digits}{Number of decimal places to retain}
+\item{digits}{Number of decimal places to retain.}
 
 \item{output}{The output type for the rendered document. One of \code{"latex"} or
 \code{"html"}.}

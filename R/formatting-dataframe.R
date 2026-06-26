@@ -4,14 +4,14 @@
 #'
 #' @param df A data frame to append summaries to.
 #' @param ... Unquoted names of columns to be included in the summary.
-#' @param row logical indicating whether a summary row should be added (i.e.,
+#' @param row Logical indicating whether a summary row should be added (i.e.,
 #'   summarizing each column).
-#' @param col logical indicating whether a summary column should be added (i.e.,
+#' @param col Logical indicating whether a summary column should be added (i.e.,
 #'   summarizing each row).
 #' @param .f Function to use for calculating summaries.
 #' @param args A named list of additional arguments to pass to `.f`.
 #'
-#' @return A data frame with the summary row and/or column appended
+#' @return A data frame with the summary row and/or column appended.
 #' @export
 #'
 #' @examples
@@ -62,7 +62,7 @@ append_summary <- function(
 }
 
 
-#' Center and Decimal Align Tables
+#' Center and decimal align tables
 #'
 #' Automatic formatting for tables that should "just work" for most use cases.
 #' For more fine-grained control, see [wjake::fmt_digits()] and
@@ -151,13 +151,13 @@ fmt_table <- function(
 }
 
 
-#' Table Padding
+#' Table padding
 #'
 #' A family of functions for formatting numbers and then padding with spaces so
 #' that table columns can be both centered and decimal aligned.
 #'
-#' @param x Number or number string to be formatted
-#' @param digits Number of decimal places to retain
+#' @param x Number or number string to be formatted.
+#' @param digits Number of decimal places to retain.
 #' @param output The output type for the rendered document. One of `"latex"` or
 #'   `"html"`.
 #' @param ... Additional arguments passed to [wjake::fmt_digits()].
@@ -396,7 +396,7 @@ pad_decimal <- function(x, digits, output = NULL, ...) {
 }
 
 
-#' Combine N and Percent Columns for Accessibility
+#' Combine "N" and "Percent" columns for accessibility
 #'
 #' @param df A data frame that has already been sent to [fmt_table()].
 #' @param n The unquoted name of the column containing count values.
