@@ -8,12 +8,12 @@
 \description{
 \if{html}{\figure{logo.svg}{options: style='float: right' alt='logo' width='120'}}
 
-Provides templates, formatting tools, and 'ggplot2' themes tailored for the Accessible Teaching, Learning, and Assessment Systems (ATLAS) organization. These templates facilitate the creation of topic guides and technical reports, while the formatting functions enable users to customize numbers and tables to meet specific requirements. Additionally, the themes ensure a uniform visual style across graphics.
+Provides templates, formatting tools, and 'ggplot2' themes tailored for the Accessible Teaching, Learning, and Assessment Systems organization. These templates facilitate the creation of topic guides and technical reports, while the formatting functions enable users to customize numbers and tables to meet specific requirements. Additionally, the themes ensure a uniform visual style across graphics.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://ratlas.netlify.app}
+  \item \url{https://atlas-aai.github.io/ratlas}
   \item \url{https://github.com/atlas-aai/ratlas}
   \item Report bugs at \url{https://github.com/atlas-aai/ratlas/issues}
 }
@@ -31,7 +31,8 @@ Authors:
 
 Other contributors:
 \itemize{
-  \item University of Kansas [copyright holder, funder]
+  \item Accessible Teaching, Learning, and Assessment Systems [funder]
+  \item University of Kansas [copyright holder]
 }
 
 }
