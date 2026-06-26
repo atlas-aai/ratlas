@@ -17,7 +17,7 @@ fontsize: 11pt
 ---
 
 ```{r setup, include = FALSE}
-needed_packages <- c("knitr", "english", "systemfonts")
+needed_packages <- c("ratlas", "ggplot2", "knitr", "systemfonts")
 load_packages <- function(x) {
   if (!(x %in% installed.packages())) {
     install.packages(x, repos = "https://cran.rstudio.com/")
@@ -33,8 +33,6 @@ set_theme(theme_atlas(plot.margin = margin(3, 10, 0, 10)))
 
 require_font("Roboto Condensed")
 ```
-
-
 
 
 \newpage

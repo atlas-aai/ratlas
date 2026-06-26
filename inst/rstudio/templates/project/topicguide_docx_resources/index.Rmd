@@ -10,7 +10,7 @@ link-citations: yes
 ---
 
 ```{r setup, include = FALSE}
-needed_packages <- c("ratlas", "knitr", "english", "systemfonts")
+needed_packages <- c("ratlas", "knitr", "systemfonts")
 load_packages <- function(x) {
   if (!(x %in% installed.packages())) {
     install.packages(x, repos = "https://cran.rstudio.com/")

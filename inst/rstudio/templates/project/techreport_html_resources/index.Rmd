@@ -25,19 +25,15 @@ mainfont: Arial
 fontsize: 11pt
 acknowledgements: >
   `r if (knitr::is_latex_output()) ratlas::inc("front-matter/preface-latex.Rmd")  else "Filler"`
-copyright: "Copyright \\copyright\\ 2025 Accessible Teaching, Learning, and Assessment Systems (ATLAS)"
+copyright: "Copyright \\copyright\\ 2026 Accessible Teaching, Learning, and Assessment Systems (ATLAS)"
 ---
 
 ```{r setup, include = FALSE}
 needed_packages <- c(
   "ratlas",
-  "here",
-  "fs",
-  "glue",
-  "english",
+  "ggplot2",
   "knitr",
   "kableExtra",
-  "tidyverse",
   "conflicted",
   "systemfonts"
 )
@@ -61,7 +57,7 @@ require_font("Roboto Condensed")
 
 `r if (knitr::is_html_output()) "# Placeholder Title {.unlisted .unnumbered .blank}"`
 
-`r if (knitr::is_html_output()) glue("Copyright &copy; 2020 Accessible Teaching, Learning, and Assessment Systems (ATLAS)")`
+`r if (knitr::is_html_output()) "Copyright &copy; 2026 Accessible Teaching, Learning, and Assessment Systems (ATLAS)"`
 
 ```{js, echo = FALSE}
 title=document.getElementById('header');
@@ -151,14 +147,17 @@ suppressWarnings(
 )
 
 if (knitr::is_latex_output()) {
-  bib_output <- glue(
-    "\\printbibliography[heading=none]
-                     
-                     \\setlength{{\\parindent}}{{0pt}}
-                     \\setlength{{\\leftskip}}{{0pt}}"
+  bib_output <- paste(
+    c(
+      "\\printbibliography[heading=none]",
+      "",
+      "\\setlength{{\\parindent}}{{0pt}}",
+      "\\setlength{{\\leftskip}}{{0pt}}"
+    ),
+    collapse = "\n"
   )
 } else {
-  bib_output <- glue("<div id='refs'></div>")
+  bib_output <- "<div id='refs'></div>"
 }
 ```
 
