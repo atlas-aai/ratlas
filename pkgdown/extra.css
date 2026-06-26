@@ -1,0 +1,13 @@
+/* Article tables ------------------------------------------------------------*/
+.lightable-classic {
+  border-top: none;
+  border-bottom: none;
+}
+
+thead {
+  border-top: black solid 2px;
+}
+
+tbody {
+  border-bottom: black solid 2px;
+}

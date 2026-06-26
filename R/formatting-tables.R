@@ -79,7 +79,7 @@ fmt_kbl_header <- function(
   kable_input,
   row = 0,
   align = "c",
-  extra_css = "border-bottom: 0.16em solid #111111",
+  extra_css = "border-bottom: black solid 2px",
   ...
 ) {
   kableExtra::row_spec(
