@@ -12,11 +12,6 @@ test_that("techreport-html renders", {
     envir = new.env()
   ))
   reset_theme_settings()
-
-  print(list.files("_report/", recursive = TRUE))
-
-  print(list.files(report_dir, recursive = TRUE))
-
   expect_true(file.exists(paste0(
     "_report/",
     "index.html"

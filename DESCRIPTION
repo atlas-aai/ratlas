@@ -54,6 +54,7 @@ Suggests:
     here,
     kableExtra (>= 1.1.0),
     magick,
+    pdftools,
     pkgdown,
     rmarkdown,
     spelling,
@@ -66,8 +67,6 @@ Suggests:
     withr
 Config/testthat/edition: 3
 Config/Needs/documentation: openpharma/roxylint
-Config/Needs/coverage: pdftools
-Config/Needs/check: pdftools
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE, roclets = c("namespace", "rd", "roxylint::roxylint"))

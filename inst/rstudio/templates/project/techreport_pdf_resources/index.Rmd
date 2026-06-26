@@ -109,6 +109,7 @@ Etiam congue, mauris a suscipit accumsan, neque turpis hendrerit sapien, sit ame
 #| fig-cap: Here is some penguin data
 #| fig-alt: Penguin data plot.
 #| fig-note: Not all penguins are friendly.
+#| eval: false
 
 ggplot(penguins, aes(bill_len, flipper_len, color = species)) +
   geom_point()
