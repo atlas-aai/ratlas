@@ -37,6 +37,21 @@ test_that("techreport-pdf renders", {
     envir = new.env()
   ))
   reset_theme_settings()
+
+  if (
+    !(file.exists(paste0("_report/", basename(report_dir), ".pdf")) ||
+      file.exists(paste0(
+        "_report/",
+        stringr::str_to_title(basename(report_dir)),
+        ".pdf"
+      )))
+  ) {
+    readLines(paste0("_report/", basename(report_dir), ".tex")) |>
+      print()
+    readLines(paste0("_report/", basename(report_dir), ".log")) |>
+      print()
+  }
+
   expect_true(
     file.exists(paste0("_report/", basename(report_dir), ".pdf")) ||
       file.exists(paste0(
