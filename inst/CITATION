@@ -1,9 +1,0 @@
-bibentry(
-  bibtype = "Manual",
-  title = "ratlas: ATLAS formatting functions and templates",
-  author = "W Jake Thompson, Noelle Pablo, Jeffrey Hoover",
-  year = 2020,
-  note = "R package version 0.1.0",
-  url = "https://ratlas.netlify.app",
-  textVersion = paste("Thompson, WJ, Pablo, N, Hoover, J (2020). ratlas: ATLAS formatting functions and templates. R package version 0.1.0. https://ratlas.netlify.app/.")
-)
