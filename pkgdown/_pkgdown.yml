@@ -40,6 +40,7 @@ navbar:
     linkedin:
       icon: "fab fa-linkedin fa-lg"
       href: https://linkedin.com/company/atlas4learning
+      aria-label: Visit us on LinkedIn
 
 home:
   title: Custom Graphics and Report Templates for ATLAS
