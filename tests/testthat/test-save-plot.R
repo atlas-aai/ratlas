@@ -22,7 +22,10 @@ test_that("orientation works correctly", {
   expect_true(file.exists(file.path(fig_dir, "equl.png")))
 
   horz <- magick::image_info(magick::image_read(file.path(fig_dir, "horz.png")))
-  vert <- magick::image_info(magick::image_read(file.path(fig_dir, "vert.pdf")))
+  vert <- magick::image_info(magick::image_read_pdf(file.path(
+    fig_dir,
+    "vert.pdf"
+  )))
   equl <- magick::image_info(magick::image_read(file.path(fig_dir, "equl.png")))
 
   expect_equal(horz$width / horz$height, 1.618, tolerance = 0.001)
