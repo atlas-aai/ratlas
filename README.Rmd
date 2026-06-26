@@ -32,3 +32,8 @@ You can install the latest version with:
 install.packages("ratlas")
 ```
 
+---
+
+Contributions are welcome.
+To ensure a smooth process, please review the [Contributing Guide](https://atlas-aai.github.io/ratlas/CONTRIBUTING.html).
+Please note that the measr project is released with a [Contributor Code of Conduct](https://atlas-aai.github.io/ratlas/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
