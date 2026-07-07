@@ -29,6 +29,10 @@ append_summary <- function(
   .f = sum,
   args = NULL
 ) {
+  check_data_frame(df)
+  check_bool(row)
+  check_bool(col)
+
   func_name <- as.character(substitute(.f))
   new_df <- df
 
@@ -195,6 +199,10 @@ NULL
 #' @export
 #' @rdname padding
 pad_counts <- function(x, ...) {
+  if (!is.numeric(x)) {
+    cli::cli_abort("{.arg x} must be a numeric vector, not {.obj_type_friendly x}.")
+  }
+
   x <- round(x, digits = 0)
   max_dig <- max(
     nchar(stringr::str_replace_all(abs(x), "\\.", "")),
@@ -267,6 +275,9 @@ pad_counts <- function(x, ...) {
 #' @export
 #' @rdname padding
 pad_prop <- function(x, digits, output = NULL, ...) {
+  if (!is.numeric(x)) {
+    cli::cli_abort("{.arg x} must be a numeric vector, not {.obj_type_friendly x}.")
+  }
   output <- check_output(output)
   check_number_whole(digits, min = 1)
   new_x <- fmt_prop(x, digits = digits, ...)
@@ -298,6 +309,9 @@ pad_prop <- function(x, digits, output = NULL, ...) {
 #' @export
 #' @rdname padding
 pad_corr <- function(x, digits, output = NULL, ...) {
+  if (!is.numeric(x)) {
+    cli::cli_abort("{.arg x} must be a numeric vector, not {.obj_type_friendly x}.")
+  }
   check_number_whole(digits, min = 1)
   output <- check_output(output)
   new_x <- fmt_corr(x, digits = digits, ...)
@@ -330,6 +344,9 @@ pad_corr <- function(x, digits, output = NULL, ...) {
 #' @export
 #' @rdname padding
 pad_decimal <- function(x, digits, output = NULL, ...) {
+  if (!is.numeric(x)) {
+    cli::cli_abort("{.arg x} must be a numeric vector, not {.obj_type_friendly x}.")
+  }
   check_number_whole(digits, min = 1)
   output <- check_output(output)
 
@@ -416,6 +433,10 @@ pad_decimal <- function(x, digits, output = NULL, ...) {
 #'   fmt_table(max_value = 100) |>
 #'   combine_n_pct(n = n, pct = p, name = "States")
 combine_n_pct <- function(df, n, pct, name, remove = TRUE, na_replace = NULL) {
+  check_data_frame(df)
+  check_bool(remove)
+  if (!is.null(na_replace)) check_string(na_replace)
+
   n <- rlang::enquo(n)
   pct <- rlang::enquo(pct)
 
