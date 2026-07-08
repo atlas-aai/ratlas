@@ -6,6 +6,7 @@
 #'
 #' @noRd
 project_skeleton <- function(path, type) {
+  check_string(path)
   type <- rlang::arg_match(
     type,
     c(
@@ -63,6 +64,8 @@ project_skeleton <- function(path, type) {
 }
 
 bib_skeleton <- function(path) {
+  check_string(path)
+
   bib <- ratlas_file("rstudio", "templates", "project", "_common-files", "bib")
 
   # identify sub-directories
@@ -83,6 +86,10 @@ bib_skeleton <- function(path) {
 }
 
 fig_skeleton <- function(path, logo = NULL, letterhead = NULL) {
+  check_string(path)
+  if (!is.null(logo)) check_string(logo)
+  if (!is.null(letterhead)) check_string(letterhead)
+
   fig <- ratlas_file(
     "rstudio",
     "templates",

@@ -16,6 +16,8 @@
 #' data.frame(mtcars) |>
 #'   only_if(FALSE)(dplyr::filter)(mpg > 25)
 only_if <- function(condition) {
+  check_bool(condition)
+
   function(func) {
     if (condition) {
       func
