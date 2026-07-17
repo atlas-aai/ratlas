@@ -362,7 +362,9 @@ pad_corr <- function(x, digits, output = NULL, ...) {
 #' @rdname padding
 pad_decimal <- function(x, digits, output = NULL, ...) {
   if (!is.numeric(x)) {
-    cli::cli_abort("{.arg x} must be a numeric vector, not {.obj_type_friendly x}.")
+    cli::cli_abort(
+      "{.arg x} must be a numeric vector, not {.obj_type_friendly x}."
+    )
   }
   check_number_whole(digits, min = 1)
   output <- check_output(output)
