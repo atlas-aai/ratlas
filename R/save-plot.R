@@ -41,7 +41,9 @@ ggsave2 <- function(
   ...
 ) {
   check_string(filename)
-  if (!is.null(path)) check_string(path)
+  if (!is.null(path)) {
+    check_string(path)
+  }
   check_number_decimal(width, min = 0)
   if (!is.null(height)) check_number_decimal(height, min = 0)
   check_string(units)
