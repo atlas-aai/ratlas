@@ -210,7 +210,9 @@ NULL
 #' @rdname padding
 pad_counts <- function(x, ...) {
   if (!is.numeric(x)) {
-    cli::cli_abort("{.arg x} must be a numeric vector, not {.obj_type_friendly x}.")
+    cli::cli_abort(
+      "{.arg x} must be a numeric vector, not {.obj_type_friendly x}."
+    )
   }
 
   x <- round(x, digits = 0)
