@@ -22,7 +22,9 @@
 #' ramp_dlm(seq(0.1, 1, by = 0.2))
 ramp_dlm <- function(output, end = "#FFFFFF") {
   if (!is.numeric(output)) {
-    cli::cli_abort("{.arg output} must be a numeric vector, not {.obj_type_friendly output}.")
+    cli::cli_abort(
+      "{.arg output} must be a numeric vector, not {.obj_type_friendly output}."
+    )
   }
   if (any(output < 0 | output > 1, na.rm = TRUE)) {
     cli::cli_abort("{.arg output} must be between 0 and 1.")
