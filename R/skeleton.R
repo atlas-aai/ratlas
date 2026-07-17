@@ -87,8 +87,12 @@ bib_skeleton <- function(path) {
 
 fig_skeleton <- function(path, logo = NULL, letterhead = NULL) {
   check_string(path)
-  if (!is.null(logo)) check_string(logo)
-  if (!is.null(letterhead)) check_string(letterhead)
+  if (!is.null(logo)) {
+    check_string(logo)
+  }
+  if (!is.null(letterhead)) {
+    check_string(letterhead)
+  }
 
   fig <- ratlas_file(
     "rstudio",
