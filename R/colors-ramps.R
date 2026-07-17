@@ -41,7 +41,9 @@ ramp_dlm <- function(output, end = "#FFFFFF") {
 #' ramp_okabeito(seq(0.2, 1, length.out = 5), index = 2)
 ramp_okabeito <- function(output, end = "#FFFFFF", index = 1) {
   if (!is.numeric(output)) {
-    cli::cli_abort("{.arg output} must be a numeric vector, not {.obj_type_friendly output}.")
+    cli::cli_abort(
+      "{.arg output} must be a numeric vector, not {.obj_type_friendly output}."
+    )
   }
   if (any(output < 0 | output > 1, na.rm = TRUE)) {
     cli::cli_abort("{.arg output} must be between 0 and 1.")
