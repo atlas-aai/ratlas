@@ -455,7 +455,9 @@ combine_n_pct <- function(df, n, pct, name, remove = TRUE, na_replace = NULL) {
   check_data_frame(df)
   check_string(name)
   check_bool(remove)
-  if (!is.null(na_replace)) check_string(na_replace)
+  if (!is.null(na_replace)) {
+    check_string(na_replace)
+  }
 
   n <- rlang::enquo(n)
   pct <- rlang::enquo(pct)
