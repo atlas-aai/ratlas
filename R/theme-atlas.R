@@ -44,7 +44,9 @@ theme_atlas <- function(
 ) {
   check_number_decimal(base_size, min = 0)
   check_string(base_family)
-  if (!is.null(header_family)) check_string(header_family)
+  if (!is.null(header_family)) {
+    check_string(header_family)
+  }
   check_number_decimal(base_line_size, min = 0)
   check_number_decimal(base_rect_size, min = 0)
   check_string(ink)
