@@ -35,7 +35,9 @@ append_summary <- function(
   check_function(.f)
   if (!is.null(args)) {
     if (!is.list(args)) {
-      cli::cli_abort("{.arg args} must be a named list, not {.obj_type_friendly args}.")
+      cli::cli_abort(
+        "{.arg args} must be a named list, not {.obj_type_friendly args}."
+      )
     }
   }
 
