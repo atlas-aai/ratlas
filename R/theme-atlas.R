@@ -42,6 +42,20 @@ theme_atlas <- function(
   transparent = FALSE,
   ...
 ) {
+  check_number_decimal(base_size, min = 0)
+  check_string(base_family)
+  if (!is.null(header_family)) {
+    check_string(header_family)
+  }
+  check_number_decimal(base_line_size, min = 0)
+  check_number_decimal(base_rect_size, min = 0)
+  check_string(ink)
+  check_string(paper)
+  check_string(accent)
+  check_character(continuous)
+  check_character(discrete)
+  check_bool(transparent)
+
   atlas_theme <- ggplot2::theme_minimal(
     base_size = base_size,
     base_family = base_family,

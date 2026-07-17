@@ -11,12 +11,18 @@
 #' }
 #' @export
 inc <- function(input, sep = "\n\n  ") {
+  check_string(input)
+  check_string(sep)
+
   paste(readLines(input), collapse = sep)
 }
 
 
 # Helper functions from bookdown and rticles -----------------------------------
 find_file <- function(template, file) {
+  check_string(template)
+  check_string(file)
+
   template <- system.file(
     "rmarkdown",
     "templates",
@@ -37,6 +43,9 @@ find_file <- function(template, file) {
 }
 
 find_resource <- function(template, file) {
+  check_string(template)
+  check_string(file)
+
   find_file(template, file.path("resources", file))
 }
 

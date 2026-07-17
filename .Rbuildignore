@@ -11,3 +11,4 @@ hex-logo
 ^data-raw$
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
+^dev$

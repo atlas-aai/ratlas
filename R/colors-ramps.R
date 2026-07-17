@@ -21,6 +21,16 @@
 #' @examples
 #' ramp_dlm(seq(0.1, 1, by = 0.2))
 ramp_dlm <- function(output, end = "#FFFFFF") {
+  if (!is.numeric(output)) {
+    cli::cli_abort(
+      "{.arg output} must be a numeric vector, not {.obj_type_friendly output}."
+    )
+  }
+  if (any(output < 0 | output > 1, na.rm = TRUE)) {
+    cli::cli_abort("{.arg output} must be between 0 and 1.")
+  }
+  check_string(end)
+
   ramp <- wjake::make_color_pal(c(end, "#2B4098"), bias = 1)
   ramp(output)
 }
@@ -30,6 +40,17 @@ ramp_dlm <- function(output, end = "#FFFFFF") {
 #' @examples
 #' ramp_okabeito(seq(0.2, 1, length.out = 5), index = 2)
 ramp_okabeito <- function(output, end = "#FFFFFF", index = 1) {
+  if (!is.numeric(output)) {
+    cli::cli_abort(
+      "{.arg output} must be a numeric vector, not {.obj_type_friendly output}."
+    )
+  }
+  if (any(output < 0 | output > 1, na.rm = TRUE)) {
+    cli::cli_abort("{.arg output} must be between 0 and 1.")
+  }
+  check_string(end)
+  check_number_whole(index)
+
   ramp <- wjake::make_color_pal(
     colors = c("#FFFFFF", palette_okabeito[index]),
     bias = 1
