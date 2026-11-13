@@ -139,7 +139,7 @@ theme_atlas <- function(
     ) +
     ggplot2::theme(
       geom = ggplot2::element_geom(
-        ink = "black"
+        ink = ink
       ),
       palette.color.continuous = continuous,
       palette.fill.continuous = continuous,
