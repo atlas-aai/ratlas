@@ -29,6 +29,18 @@ append_summary <- function(
   .f = sum,
   args = NULL
 ) {
+  check_data_frame(df)
+  check_bool(row)
+  check_bool(col)
+  check_function(.f)
+  if (!is.null(args)) {
+    if (!is.list(args)) {
+      cli::cli_abort(
+        "{.arg args} must be a named list, not {.obj_type_friendly args}."
+      )
+    }
+  }
+
   func_name <- as.character(substitute(.f))
   new_df <- df
 
@@ -96,9 +108,11 @@ fmt_table <- function(
   keep_boundary = FALSE,
   ...
 ) {
-  check_number_whole(dec_dig, min = 1)
-  check_number_whole(prop_dig, min = 1)
-  check_number_whole(corr_dig, min = 1)
+  check_data_frame(df)
+  check_number_whole(dec_dig)
+  check_number_whole(prop_dig)
+  check_number_whole(corr_dig)
+  check_bool(keep_boundary)
   output <- check_output(output)
 
   df |>
@@ -195,6 +209,12 @@ NULL
 #' @export
 #' @rdname padding
 pad_counts <- function(x, ...) {
+  if (!is.numeric(x)) {
+    cli::cli_abort(
+      "{.arg x} must be a numeric vector, not {.obj_type_friendly x}."
+    )
+  }
+
   x <- round(x, digits = 0)
   max_dig <- max(
     nchar(stringr::str_replace_all(abs(x), "\\.", "")),
@@ -267,8 +287,14 @@ pad_counts <- function(x, ...) {
 #' @export
 #' @rdname padding
 pad_prop <- function(x, digits, output = NULL, ...) {
-  output <- check_output(output)
+  if (!is.numeric(x)) {
+    cli::cli_abort(
+      "{.arg x} must be a numeric vector, not {.obj_type_friendly x}."
+    )
+  }
   check_number_whole(digits, min = 1)
+  output <- check_output(output)
+
   new_x <- fmt_prop(x, digits = digits, ...)
   new_x[is.na(new_x)] <- "NA"
 
@@ -298,6 +324,11 @@ pad_prop <- function(x, digits, output = NULL, ...) {
 #' @export
 #' @rdname padding
 pad_corr <- function(x, digits, output = NULL, ...) {
+  if (!is.numeric(x)) {
+    cli::cli_abort(
+      "{.arg x} must be a numeric vector, not {.obj_type_friendly x}."
+    )
+  }
   check_number_whole(digits, min = 1)
   output <- check_output(output)
   new_x <- fmt_corr(x, digits = digits, ...)
@@ -330,6 +361,11 @@ pad_corr <- function(x, digits, output = NULL, ...) {
 #' @export
 #' @rdname padding
 pad_decimal <- function(x, digits, output = NULL, ...) {
+  if (!is.numeric(x)) {
+    cli::cli_abort(
+      "{.arg x} must be a numeric vector, not {.obj_type_friendly x}."
+    )
+  }
   check_number_whole(digits, min = 1)
   output <- check_output(output)
 
@@ -416,6 +452,13 @@ pad_decimal <- function(x, digits, output = NULL, ...) {
 #'   fmt_table(max_value = 100) |>
 #'   combine_n_pct(n = n, pct = p, name = "States")
 combine_n_pct <- function(df, n, pct, name, remove = TRUE, na_replace = NULL) {
+  check_data_frame(df)
+  check_string(name)
+  check_bool(remove)
+  if (!is.null(na_replace)) {
+    check_string(na_replace)
+  }
+
   n <- rlang::enquo(n)
   pct <- rlang::enquo(pct)
 

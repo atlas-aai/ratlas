@@ -1,33 +1,23 @@
 Package: ratlas
 Title: ATLAS Formatting Functions and Templates
 Version: 0.1.1.9000
-Authors@R: 
-    c(person(given = "W. Jake",
-             family = "Thompson",
-             role = c("aut", "cre"),
-             email = "wjakethompson@gmail.com",
-             comment = c(ORCID = "0000-0001-7339-0300")),
-      person(given = "Noelle",
-             family = "Pablo",
-             role = "aut",
-             email = "noellepablo@gmail.com"),
-      person(given = "Jeffrey",
-             family = "Hoover",
-             role = "aut",
-             email = "jeffrey.c.hoover@gmail.com",
-             comment = c(ORCID = "0000-0002-0276-0308")),
-      person(given = "University of Kansas",
-             role = c("cph", "fnd")))
-Description: Provides templates, formatting tools, and 'ggplot2' themes 
-    tailored for the Accessible Teaching, Learning, and Assessment Systems (ATLAS) 
-    organization. These templates facilitate the creation of topic guides and 
-    technical reports, while the formatting functions enable users to customize 
-    numbers and tables to meet specific requirements. Additionally, the themes 
-    ensure a uniform visual style across graphics.
+Authors@R: c(
+    person("W. Jake", "Thompson", , "wjakethompson@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-7339-0300")),
+    person("Noelle", "Pablo", , "noellepablo@gmail.com", role = "aut"),
+    person("Jeffrey", "Hoover", , "jeffrey.c.hoover@gmail.com", role = "aut",
+           comment = c(ORCID = "0000-0002-0276-0308")),
+    person("University of Kansas", role = c("cph", "fnd"))
+  )
+Description: Provides templates, formatting tools, and 'ggplot2' themes
+    tailored for the Accessible Teaching, Learning, and Assessment Systems
+    (ATLAS) organization. These templates facilitate the creation of topic
+    guides and technical reports, while the formatting functions enable
+    users to customize numbers and tables to meet specific requirements.
+    Additionally, the themes ensure a uniform visual style across
+    graphics.
 License: GPL-3
-VignetteBuilder: knitr
-URL: https://ratlas.netlify.app,
-    https://github.com/atlas-aai/ratlas
+URL: https://ratlas.netlify.app, https://github.com/atlas-aai/ratlas
 BugReports: https://github.com/atlas-aai/ratlas/issues
 Depends:
     R (>= 4.2.0)
@@ -40,35 +30,37 @@ Imports:
     ggplot2 (>= 4.0.0),
     ggtext,
     glue,
+    kableExtra (>= 1.1.0),
     knitr (>= 1.22),
     officedown,
     purrr,
     ragg,
     rlang (>= 1.1.0),
     stringr,
+    systemfonts,
     tidyr,
     wjake,
     xfun
 Suggests: 
     english,
     here,
-    kableExtra (>= 1.1.0),
     magick,
     pdftools,
     pkgdown,
     rmarkdown,
     spelling,
-    systemfonts,
     testthat,
     tibble,
-    tinytex,
     vdiffr,
     viridisLite,
     withr
-Config/testthat/edition: 3
+VignetteBuilder: 
+    knitr
 Config/Needs/documentation: openpharma/roxylint
-Encoding: UTF-8
-LazyData: true
-Roxygen: list(markdown = TRUE, roclets = c("namespace", "rd", "roxylint::roxylint"))
-Language: en-US
 Config/roxygen2/version: 8.0.0
+Config/testthat/edition: 3
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+Roxygen: list(markdown = TRUE, roclets = c("namespace", "rd",
+    "roxylint::roxylint"))

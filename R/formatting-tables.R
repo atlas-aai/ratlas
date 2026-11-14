@@ -50,6 +50,14 @@ fmt_kbl <- function(
   latex_options = "HOLD_position",
   ...
 ) {
+  check_data_frame(x)
+  check_bool(booktabs)
+  check_string(linesep)
+  check_bool(centering)
+  check_bool(escape)
+  check_character(position)
+  check_character(latex_options)
+
   x |>
     dplyr::mutate(
       dplyr::across(dplyr::everything(), \(x) {
@@ -82,6 +90,10 @@ fmt_kbl_header <- function(
   extra_css = "border-bottom: 0.16em solid #111111",
   ...
 ) {
+  check_number_whole(row, min = 0)
+  check_character(align)
+  check_string(extra_css)
+
   kableExtra::row_spec(
     kable_input = kable_input,
     row = row,

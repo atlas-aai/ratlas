@@ -40,6 +40,19 @@ ggsave2 <- function(
   embed_fonts = FALSE,
   ...
 ) {
+  check_string(filename)
+  if (!is.null(path)) {
+    check_string(path)
+  }
+  check_number_decimal(width, min = 0)
+  if (!is.null(height)) {
+    check_number_decimal(height, min = 0)
+  }
+  check_string(units)
+  check_character(dir)
+  check_string(dpi)
+  check_bool(embed_fonts)
+
   dir <- match.arg(dir)
 
   # Calculate aspect ratio if not fixed
